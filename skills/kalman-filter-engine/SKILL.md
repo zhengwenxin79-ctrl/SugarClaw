@@ -1,6 +1,6 @@
 ---
 name: kalman-filter-engine
-description: "SugarClaw CGM 血糖卡尔曼滤波预测引擎。Use when: (1) user provides CGM blood glucose readings and asks for trend/prediction (血糖趋势预测), (2) user reports eating a meal and wants to know future glucose impact (餐后血糖预测), (3) user took insulin and wants glucose forecast (注射胰岛素后预测), (4) system needs to generate Hypo_Alert or Hyper_Alert (低/高血糖预警), (5) Physiological Analyst agent needs to process CGM data stream, (6) user asks 'will I go low/high'. NOT for: food GI/GL lookup (use food-gi-rag), PubMed search (use pubmed-researcher), or clinical dosing decisions."
+description: "SugarClaw CGM 血糖卡尔曼滤波预测引擎。Use when: (1) user provides CGM blood glucose readings and asks for trend/prediction (血糖趋势预测), (2) user reports eating a meal and wants to know future glucose impact (餐后血糖预测), (3) user took insulin and wants glucose forecast (注射胰岛素后预测), (4) user reports exercise and wants glucose forecast (运动血糖预测), (5) system needs to generate Hypo_Alert or Hyper_Alert (低/高血糖预警), (6) Physiological Analyst agent needs to process CGM data stream, (7) user asks 'will I go low/high'. NOT for: food GI/GL lookup (use food-gi-rag), PubMed search (use pubmed-researcher), or clinical dosing decisions."
 ---
 
 # SugarClaw 卡尔曼滤波血糖预测引擎
@@ -27,6 +27,15 @@ $VENV scripts/kalman_engine.py --readings "6.2 6.5 6.8 7.3 7.9 8.5" --event meal
 # 注射胰岛素 — 自动切换 EKF 模拟胰岛素动力学
 $VENV scripts/kalman_engine.py --readings "12.5 11.8 10.9 10.1 9.5 9.0" --event insulin --dose 4
 
+# 运动事件 — 自动切换 EKF 运动模式
+$VENV scripts/kalman_engine.py --readings "8.5 8.2 7.8 7.3 6.9 6.5" --event exercise --intensity moderate --duration 30
+
+# 轻度运动（散步）
+$VENV scripts/kalman_engine.py --readings "7.0 6.9 6.8 6.7 6.6 6.5" --event exercise --intensity light --duration 45
+
+# 高强度运动（HIIT）
+$VENV scripts/kalman_engine.py --readings "9.0 8.5 7.8 7.0 6.3 5.8" --event exercise --intensity vigorous --duration 20
+
 # 睡眠/稳态 — 强制使用标准 KF
 $VENV scripts/kalman_engine.py --readings "5.8 5.7 5.6 5.5 5.6 5.5" --filter kf
 
@@ -43,6 +52,7 @@ $VENV scripts/kalman_engine.py --input cgm_data.json
 |---|---|---|
 | `--event meal` | **UKF** | sigma 点采样捕捉餐后非线性峰值 |
 | `--event insulin` | **EKF** | 模拟胰岛素指数衰减动力学 |
+| `--event exercise` | **EKF** | 模拟运动降糖动力学（延迟启动 + 持续降糖 + 运动后反弹） |
 | 稳态（变化率 < 0.4/5min） | **KF** | 线性足够，低功耗 |
 | 高变异（变化率 > 0.8/5min） | **UKF** | 自动推断非线性事件 |
 | 中等变异 | **EKF** | 可能有药物/进食影响 |
@@ -65,6 +75,8 @@ $VENV scripts/kalman_engine.py --input cgm_data.json
 | `--gi` | 0 | 食物 GI 值，联动 food-gi-rag 获取 |
 | `--gl` | 0 | 食物 GL 值，优先使用 |
 | `--dose` | 0 | 胰岛素注射剂量（单位） |
+| `--intensity` | moderate | 运动强度: light(0.3) / moderate(0.6) / vigorous(0.9) |
+| `--duration` | 30 | 运动持续时间（分钟） |
 | `--steps` | 6 | 预测步数（每步 5min，默认 30min） |
 | `--process-noise` | auto | 过程噪声 Q，从校准参数自动读取 |
 
@@ -92,6 +104,12 @@ $VENV scripts/kalman_engine.py --input cgm_data.json
 2. `kalman_engine.py --readings "..." --event meal --gi <GI> --gl <GL>`
 3. 若预测峰值超阈值 → 输出对冲方案
 
+### 用户报告运动
+1. 确认运动类型 → 映射到 light/moderate/vigorous 强度
+2. `kalman_engine.py --readings "..." --event exercise --intensity <强度> --duration <分钟>`
+3. 运动模型: 前 10 分钟延迟 → 活跃期指数降糖 → 结束后轻微反弹
+4. 若预测低血糖 → 触发 Hypo_Alert，建议运动前补充碳水
+
 ### 用户报告注射胰岛素
 1. 从 USER.md 读取 ISF
 2. `kalman_engine.py --readings "..." --event insulin --dose <剂量> --isf <ISF>`
@@ -101,3 +119,75 @@ $VENV scripts/kalman_engine.py --input cgm_data.json
 1. 每 5 分钟追加新读数到 `memory/cgm_buffer.json`
 2. 取最近 12 个读数（1 小时窗口）运行滤波预测
 3. 有预警时主动通知用户
+
+## BLE/CGM 数据解析
+
+`scripts/ble_cgm_parser.py` 解析蓝牙低功耗 (BLE) 连续血糖监测数据，遵循 Bluetooth SIG GATT Glucose Service (UUID 0x1808) 规范。
+
+### 数据输入
+
+```bash
+VENV=~/.openclaw/workspace/skills/food-gi-rag/.venv/bin/python3
+
+# 解析 BLE hex 通知数据 (CGM Measurement Characteristic 0x2AA7)
+$VENV scripts/ble_cgm_parser.py --hex "0600B4000A00"
+
+# 解析 BLE 二进制捕获文件
+$VENV scripts/ble_cgm_parser.py --file capture.bin
+
+# 解析 CGM app 导出 CSV (自动检测 timestamp/glucose 列)
+$VENV scripts/ble_cgm_parser.py --csv export.csv
+
+# 生成 24h 演示数据 (288 点, 含 3 餐 + 1 次胰岛素注射 + 高斯噪声)
+$VENV scripts/ble_cgm_parser.py --demo
+$VENV scripts/ble_cgm_parser.py --demo --json
+```
+
+### 输出格式
+
+```bash
+# 人类可读格式 (默认)
+$VENV scripts/ble_cgm_parser.py --demo
+
+# JSON 结构化输出
+$VENV scripts/ble_cgm_parser.py --demo --json
+
+# 空格分隔 mmol/L 值, 直接传给 kalman_engine.py
+$VENV scripts/ble_cgm_parser.py --demo --to-readings
+# 等价于:
+$VENV scripts/kalman_engine.py --readings "$($VENV scripts/ble_cgm_parser.py --buffer-window memory/cgm_buffer.json --last 12 --to-readings)"
+
+# 追加到 cgm_buffer.json (卡尔曼引擎期望的格式)
+$VENV scripts/ble_cgm_parser.py --demo --to-buffer memory/cgm_buffer.json
+```
+
+### Buffer 管理
+
+```bash
+# 查看 buffer 统计 (读数计数、时间范围、最新值、均值/标准差)
+$VENV scripts/ble_cgm_parser.py --buffer-status memory/cgm_buffer.json
+
+# 提取最近 12 个读数用于卡尔曼滤波 (默认 --last 12)
+$VENV scripts/ble_cgm_parser.py --buffer-window memory/cgm_buffer.json --last 12
+
+# 提取并直接输出为 --readings 格式
+$VENV scripts/ble_cgm_parser.py --buffer-window memory/cgm_buffer.json --last 12 --to-readings
+```
+
+### BLE 数据解析细节
+
+解析 CGM Measurement Characteristic (0x2AA7) 通知字节:
+- Flags (1 byte): 传感器状态、趋势信息、质量标志位
+- 血糖浓度 (2 bytes, SFLOAT IEEE 11073): mg/dL, 自动转换为 mmol/L (/18)
+- 时间偏移 (2 bytes): 从会话开始的分钟数
+- 可选: 传感器状态告警 (3 bytes)、趋势信息 (2 bytes)、质量百分比 (2 bytes)
+
+### 演示数据特性
+
+`--demo` 生成的 24h 数据模拟真实 CGM 信号:
+- 基础血糖 ~6.0 mmol/L
+- 黎明现象 (4:00-6:30 缓升 +1.5 mmol/L)
+- 早餐 GI=75, 午餐 GI=60, 晚餐 GI=70 的餐后峰值
+- 午餐后胰岛素注射 4u (ISF=0.73, tau=77min)
+- 高斯噪声 std=0.3 mmol/L
+- 生理范围钳制 2.2-22.2 mmol/L

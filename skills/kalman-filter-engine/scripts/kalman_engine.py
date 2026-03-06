@@ -19,6 +19,9 @@ SugarClaw 卡尔曼滤波血糖预测引擎
   # 报告注射胰岛素
   python3 kalman_engine.py --readings "12.5 11.8 10.9 10.1 9.5 9.0" --event insulin --dose 4
 
+  # 报告运动事件（自动切换 EKF 运动模式）
+  python3 kalman_engine.py --readings "8.5 8.2 7.8 7.3 6.9 6.5" --event exercise --intensity moderate --duration 30
+
   # JSON 输出（供下游模块解析）
   python3 kalman_engine.py --readings "6.2 6.5 6.8 7.3 7.9 8.5" --json
 """
@@ -160,13 +163,24 @@ class KalmanFilter:
 # 非线性: 胰岛素吸收遵循指数衰减动力学
 # ─────────────────────────────────────────────
 class ExtendedKalmanFilter:
-    """扩展卡尔曼滤波器，模拟胰岛素非线性动力学。"""
+    """扩展卡尔曼滤波器，模拟胰岛素或运动的非线性动力学。"""
+
+    # 运动强度映射
+    EXERCISE_INTENSITY_MAP = {
+        "light": 0.3,
+        "moderate": 0.6,
+        "vigorous": 0.9,
+    }
 
     def __init__(self, insulin_dose=0.0, isf=None, process_noise=None,
-                 measurement_noise=None):
+                 measurement_noise=None, exercise_mode=False,
+                 exercise_intensity="moderate", exercise_duration=30):
         """
         isf: 胰岛素敏感因子（每单位胰岛素降低血糖 mmol/L）
         insulin_dose: 注射剂量（单位）
+        exercise_mode: 是否启用运动模式
+        exercise_intensity: 运动强度 (light/moderate/vigorous)
+        exercise_duration: 运动持续时间（分钟）
         """
         if isf is None:
             isf = get_param("ekf", "isf_mmol_per_unit", 0.73)
@@ -179,41 +193,118 @@ class ExtendedKalmanFilter:
         self.H = np.array([[1.0, 0.0, 0.0]])
         self.Q = process_noise * np.diag([DT**2, DT, 0.1])
         self.R = np.array([[measurement_noise]])
-        # 状态: [glucose, rate, insulin_on_board]
+        # 状态: [glucose, rate, insulin_on_board / exercise_elapsed_minutes]
         self.x = None
         self.P = np.eye(3) * 10.0
         self.insulin_dose = insulin_dose
+
+        # 运动模式参数
+        self.exercise_mode = exercise_mode
+        if exercise_mode:
+            self.exercise_intensity = self.EXERCISE_INTENSITY_MAP.get(
+                exercise_intensity, 0.6
+            )
+            self.exercise_duration = exercise_duration
+            self.exercise_tau = get_param(
+                "exercise", "exercise_tau_minutes", 15.0
+            )
+            self.exercise_drop_rate = get_param(
+                "exercise", "exercise_drop_rate", 0.5
+            )
+            self.post_exercise_rebound = get_param(
+                "exercise", "post_exercise_rebound", 0.3
+            )
 
     def initialize(self, readings):
         if len(readings) >= 2:
             rate = (readings[-1] - readings[-2]) / DT
         else:
             rate = 0.0
-        self.x = np.array([readings[-1], rate, self.insulin_dose])
+        if self.exercise_mode:
+            # 第三状态: 运动已进行时间（分钟），从 0 开始
+            self.x = np.array([readings[-1], rate, 0.0])
+        else:
+            self.x = np.array([readings[-1], rate, self.insulin_dose])
+
+    def _exercise_glucose_effect(self, elapsed):
+        """计算运动对血糖的影响量（mmol/L per DT 分钟）。
+
+        模型:
+          - 延迟期 (0-10min): 最小效应，身体启动有氧代谢
+          - 活跃期 (10min ~ duration): 血糖以强度相关速率下降
+          - 运动后期 (> duration): 肝糖原释放导致轻微反弹
+        公式: effect = -intensity * drop_rate * (1 - exp(-(t - delay) / tau))
+        """
+        delay = 10.0  # 运动效应延迟（分钟）
+        intensity = self.exercise_intensity
+        drop_rate = self.exercise_drop_rate
+        tau = self.exercise_tau
+        duration = self.exercise_duration
+
+        if elapsed <= delay:
+            # 延迟期：几乎无效应
+            return 0.0
+        elif elapsed <= duration:
+            # 活跃期：指数渐进的降糖效应
+            t_active = elapsed - delay
+            effect = -intensity * drop_rate * (
+                1.0 - math.exp(-t_active / tau)
+            ) * (DT / 15.0)  # 归一化到每 DT 分钟
+            return effect
+        else:
+            # 运动后：轻微反弹（肝糖原释放）
+            t_post = elapsed - duration
+            # 反弹随时间指数衰减
+            rebound = self.post_exercise_rebound * math.exp(-t_post / 30.0) * (DT / 15.0)
+            return rebound
 
     def _f(self, x):
         """非线性状态转移函数。"""
-        glucose, rate, iob = x
-        # 胰岛素活性指数衰减
-        decay = math.exp(-DT / self.tau)
-        new_iob = iob * decay
-        # 胰岛素对血糖的降低效应
-        insulin_effect = (iob - new_iob) * self.isf
-        new_glucose = glucose + rate * DT - insulin_effect
-        # 变化率也受胰岛素影响
-        new_rate = rate - insulin_effect / DT * 0.3
-        return np.array([new_glucose, new_rate, new_iob])
+        glucose, rate, third_state = x
+
+        if self.exercise_mode:
+            # 运动模式：third_state = 运动已进行时间
+            elapsed = third_state
+            exercise_effect = self._exercise_glucose_effect(elapsed)
+            new_glucose = glucose + rate * DT + exercise_effect
+            # 变化率受运动影响
+            new_rate = rate + (exercise_effect / DT - rate) * 0.2
+            new_elapsed = elapsed + DT
+            return np.array([new_glucose, new_rate, new_elapsed])
+        else:
+            # 胰岛素模式：third_state = insulin_on_board
+            iob = third_state
+            decay = math.exp(-DT / self.tau)
+            new_iob = iob * decay
+            insulin_effect = (iob - new_iob) * self.isf
+            new_glucose = glucose + rate * DT - insulin_effect
+            new_rate = rate - insulin_effect / DT * 0.3
+            return np.array([new_glucose, new_rate, new_iob])
 
     def _jacobian_F(self, x):
         """状态转移的雅可比矩阵。"""
-        _, _, iob = x
-        decay = math.exp(-DT / self.tau)
-        d_insulin = (1 - decay) * self.isf
-        return np.array([
-            [1.0, DT, -d_insulin],
-            [0.0, 1.0, -d_insulin / DT * 0.3],
-            [0.0, 0.0, decay]
-        ])
+        _, _, third_state = x
+
+        if self.exercise_mode:
+            elapsed = third_state
+            # 数值近似雅可比（运动效应对 elapsed 的导数）
+            eps = 0.1
+            de = (self._exercise_glucose_effect(elapsed + eps)
+                  - self._exercise_glucose_effect(elapsed)) / eps
+            return np.array([
+                [1.0, DT, de],
+                [0.0, 1.0, de / DT * 0.2],
+                [0.0, 0.0, 1.0]  # elapsed 线性递增
+            ])
+        else:
+            iob = third_state
+            decay = math.exp(-DT / self.tau)
+            d_insulin = (1 - decay) * self.isf
+            return np.array([
+                [1.0, DT, -d_insulin],
+                [0.0, 1.0, -d_insulin / DT * 0.3],
+                [0.0, 0.0, decay]
+            ])
 
     def predict_step(self):
         self.x = self._f(self.x)
@@ -246,13 +337,17 @@ class ExtendedKalmanFilter:
             x_pred = self._f(x_pred)
             P_pred = F_jac @ P_pred @ F_jac.T + self.Q
             sigma = math.sqrt(P_pred[0, 0])
-            predictions.append({
+            pred_entry = {
                 "glucose": round(float(x_pred[0]), 2),
                 "sigma": round(sigma, 2),
                 "ci_low": round(float(x_pred[0] - 1.96 * sigma), 2),
                 "ci_high": round(float(x_pred[0] + 1.96 * sigma), 2),
-                "iob": round(float(x_pred[2]), 3),
-            })
+            }
+            if self.exercise_mode:
+                pred_entry["exercise_elapsed_min"] = round(float(x_pred[2]), 1)
+            else:
+                pred_entry["iob"] = round(float(x_pred[2]), 3)
+            predictions.append(pred_entry)
         return predictions
 
 
@@ -415,6 +510,12 @@ def auto_select_filter(readings, event=None, **kwargs):
         return "ekf", ExtendedKalmanFilter(
             insulin_dose=kwargs.get("dose", 0),
             isf=kwargs.get("isf", None)
+        )
+    elif event == "exercise":
+        return "ekf", ExtendedKalmanFilter(
+            exercise_mode=True,
+            exercise_intensity=kwargs.get("intensity", "moderate"),
+            exercise_duration=kwargs.get("duration", 30),
         )
     elif event == "meal":
         return "ukf", UnscentedKalmanFilter(
@@ -580,6 +681,10 @@ def main():
     parser.add_argument("--dose", type=float, default=0, help="胰岛素剂量（单位）")
     parser.add_argument("--isf", type=float, default=None,
                         help="胰岛素敏感因子 ISF（默认从校准参数读取）")
+    parser.add_argument("--intensity", choices=["light", "moderate", "vigorous"],
+                        default="moderate", help="运动强度（默认 moderate）")
+    parser.add_argument("--duration", type=int, default=30,
+                        help="运动持续时间（分钟，默认 30）")
     parser.add_argument("--steps", type=int, default=PREDICT_STEPS,
                         help=f"预测步数（默认 {PREDICT_STEPS}，每步 {int(DT)} 分钟）")
     parser.add_argument("--process-noise", type=float, default=None,
@@ -609,16 +714,25 @@ def main():
         filter_type, kf = auto_select_filter(
             readings, event=args.event,
             dose=args.dose, isf=args.isf,
-            gi=args.gi, gl=args.gl
+            gi=args.gi, gl=args.gl,
+            intensity=args.intensity, duration=args.duration
         )
     elif args.filter == "kf":
         filter_type = "kf"
         kf = KalmanFilter(process_noise=args.process_noise)
     elif args.filter == "ekf":
         filter_type = "ekf"
-        kf = ExtendedKalmanFilter(
-            insulin_dose=args.dose, isf=args.isf, process_noise=args.process_noise
-        )
+        if args.event == "exercise":
+            kf = ExtendedKalmanFilter(
+                exercise_mode=True,
+                exercise_intensity=args.intensity,
+                exercise_duration=args.duration,
+                process_noise=args.process_noise,
+            )
+        else:
+            kf = ExtendedKalmanFilter(
+                insulin_dose=args.dose, isf=args.isf, process_noise=args.process_noise
+            )
     elif args.filter == "ukf":
         filter_type = "ukf"
         gl = args.gl if args.gl else args.gi * 0.5
@@ -647,6 +761,8 @@ def main():
                 "gl": args.gl,
                 "insulin_dose": args.dose,
                 "isf": args.isf,
+                "exercise_intensity": args.intensity if args.event == "exercise" else None,
+                "exercise_duration": args.duration if args.event == "exercise" else None,
             }
         }
         print(json.dumps(output, indent=2, ensure_ascii=False))

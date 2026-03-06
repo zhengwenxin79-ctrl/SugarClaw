@@ -29,6 +29,12 @@
     "carb_t_decay_minutes": 60.0,
     "description": "UKF，用于进食后"
   },
+  "exercise_params": {
+    "exercise_tau_minutes": 15.0,
+    "exercise_drop_rate": 0.5,
+    "post_exercise_rebound": 0.3,
+    "description": "运动模式参数: tau=有氧代谢启动时间常数, drop_rate=中等强度下每15分钟降糖量(mmol/L), rebound=运动后肝糖原释放反弹量(mmol/L)"
+  },
   "alert_thresholds": {
     "hypo_warning": 3.9,
     "hypo_critical": 3.0,
