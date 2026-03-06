@@ -11,8 +11,8 @@
     "postinsulin_segments": 747
   },
   "kf_params": {
-    "process_noise_scale": 0.004276,
-    "measurement_noise_R": 5.042,
+    "process_noise_scale": 0.008,
+    "measurement_noise_R": 0.5,
     "description": "标准 KF，用于稳态/睡眠期"
   },
   "ekf_params": {
@@ -66,5 +66,20 @@
       "default": 2.5,
       "calibrated": 0.73
     }
+  },
+  "optimization": {
+    "method": "Hybrid",
+    "params": {
+      "type": "Hybrid",
+      "Q": 0.008,
+      "R": 0.5,
+      "ridge_alpha": 0.1,
+      "blend": 0.3,
+      "adapt": true
+    },
+    "clarke_a_pct": 95.68,
+    "rmse_mgdl": 12.35,
+    "trained_on": "5314 windows from GlucoBench",
+    "date": "2026-03-07"
   }
 }
