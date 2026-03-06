@@ -16,6 +16,10 @@ memory/user_backups/
 .DS_Store
 Thumbs.db
 
+# Benchmark: GlucoBench cloned repo (large, clone separately)
+tests/benchmark_data/GlucoBench/
+tests/benchmark_data/GI_Tables_2021_raw.txt
+
 # IDE
 .vscode/
 .idea/
