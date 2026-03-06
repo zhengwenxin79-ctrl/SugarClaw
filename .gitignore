@@ -1,0 +1,22 @@
+# Python virtual environments
+.venv/
+__pycache__/
+*.pyc
+
+# ChromaDB runtime data (rebuild with build_vectordb.py)
+skills/food-gi-rag/data/chromadb/
+
+# OpenClaw internal state
+.openclaw/
+
+# USER.md backups (contain personal data)
+memory/user_backups/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
