@@ -38,7 +38,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "腊肉蛋白脂肪缓冲；煎食比蒸食好",
+    "counter_strategy": "腊肉蛋白脂肪缓冲；煎食比蒸食好；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -60,7 +60,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "萝卜纤维缓冲部分GI；煎食比蒸食GI低",
+    "counter_strategy": "萝卜纤维缓冲部分GI；煎食比蒸食GI低；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -81,7 +81,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "已是较好选择；可进一步搭配豆类降低整体GI",
+    "counter_strategy": "已是较好选择；可进一步搭配豆类降低整体GI；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -103,7 +103,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "醋酸已降低部分GI；搭配鱼肉蛋白；控制米饭量",
+    "counter_strategy": "醋酸已降低部分GI；搭配鱼肉蛋白；控制米饭量；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -125,7 +125,7 @@
     },
     "regional_tag": "贵州",
     "food_category": "米制品",
-    "counter_strategy": "GL适中；搭配酸辣调料促进消化；加入蔬菜",
+    "counter_strategy": "GL适中；搭配酸辣调料促进消化；加入蔬菜；地域搭配: 搭配丝娃娃(贵州·GI55)；搭配恋爱豆腐果(贵州·GI15)",
     "data_source": "估算(大米浆制品)"
   },
   {
@@ -147,7 +147,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "米制品",
-    "counter_strategy": "胡萝卜+羊肉缓冲；控制米饭量",
+    "counter_strategy": "胡萝卜+羊肉缓冲；控制米饭量；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算"
   },
   {
@@ -169,7 +169,7 @@
     },
     "regional_tag": "东北",
     "food_category": "米制品",
-    "counter_strategy": "蔬菜鸡蛋肉类丰富缓冲；减半米饭量",
+    "counter_strategy": "蔬菜鸡蛋肉类丰富缓冲；减半米饭量；地域搭配: 搭配木耳(东北·GI10)；搭配锅包肉(东北·GI55)",
     "data_source": "估算"
   },
   {
@@ -191,7 +191,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "油脂和鸡蛋已降低GI；用隔夜饭(抗性淀粉更多)；多加蔬菜",
+    "counter_strategy": "油脂和鸡蛋已降低GI；用隔夜饭(抗性淀粉更多)；多加蔬菜；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "估算(白米饭GI83-油脂缓冲)"
   },
   {
@@ -213,7 +213,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "米制品",
-    "counter_strategy": "糯米馅GI高；蛋皮和肉馅部分缓冲；限量半份",
+    "counter_strategy": "糯米馅GI高；蛋皮和肉馅部分缓冲；限量半份；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -234,7 +234,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "锅巴抗性淀粉略高；肉菜搭配缓冲；加青菜",
+    "counter_strategy": "锅巴抗性淀粉略高；肉菜搭配缓冲；加青菜；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -255,7 +255,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "米制品",
-    "counter_strategy": "热食比冷食GI高；加醋辣油缓冲",
+    "counter_strategy": "热食比冷食GI高；加醋辣油缓冲；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -278,7 +278,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "米制品",
-    "counter_strategy": "肉类脂肪已缓冲部分GI；限量一个；搭配蔬菜汤",
+    "counter_strategy": "肉类脂肪已缓冲部分GI；限量一个；搭配蔬菜汤；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -299,7 +299,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "米制品",
-    "counter_strategy": "米浆糊化GI高；鱼糊蛋白部分缓冲；油条控量",
+    "counter_strategy": "米浆糊化GI高；鱼糊蛋白部分缓冲；油条控量；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -320,7 +320,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "荷叶无升糖作用；配料蛋白缓冲",
+    "counter_strategy": "荷叶无升糖作用；配料蛋白缓冲；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -340,7 +340,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "肉类蔬菜丰富缓冲；多吃配菜少吃米线",
+    "counter_strategy": "肉类蔬菜丰富缓冲；多吃配菜少吃米线；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -360,7 +360,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "肉类蔬菜搭配缓冲；比纯饵块好",
+    "counter_strategy": "肉类蔬菜搭配缓冲；比纯饵块好；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -383,7 +383,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "芝麻油脂缓冲部分GI；限量4-5个；煮汤不加糖",
+    "counter_strategy": "芝麻油脂缓冲部分GI；限量4-5个；煮汤不加糖；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "估算(糯米皮+芝麻馅)"
   },
   {
@@ -405,7 +405,7 @@
     },
     "regional_tag": "广西",
     "food_category": "米制品",
-    "counter_strategy": "酸笋和腐竹含纤维可缓冲；控制粉量加蔬菜",
+    "counter_strategy": "酸笋和腐竹含纤维可缓冲；控制粉量加蔬菜；地域搭配: 搭配百香果(广西·GI30)；搭配柳州酸笋(广西·GI10)",
     "data_source": "估算(基于干米粉GI+配料影响)"
   },
   {
@@ -427,7 +427,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "类似米线GI高；多加帽子(浇头)蛋白缓冲",
+    "counter_strategy": "类似米线GI高；多加帽子(浇头)蛋白缓冲；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -448,7 +448,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "糯米为主GI高；搭配烤肉蛋白缓冲",
+    "counter_strategy": "糯米为主GI高；搭配烤肉蛋白缓冲；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -470,7 +470,7 @@
     },
     "regional_tag": "四川",
     "food_category": "米制品",
-    "counter_strategy": "糯米制品高GI；限量1-2个",
+    "counter_strategy": "糯米制品高GI；限量1-2个；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -492,7 +492,7 @@
     },
     "regional_tag": "福建",
     "food_category": "米制品",
-    "counter_strategy": "米浆糊化GI高；海鲜配料蛋白缓冲",
+    "counter_strategy": "米浆糊化GI高；海鲜配料蛋白缓冲；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算"
   },
   {
@@ -514,7 +514,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "油炒降低部分GI；搭配鸡蛋和豆芽",
+    "counter_strategy": "油炒降低部分GI；搭配鸡蛋和豆芽；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -538,7 +538,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "选择干炒(加油降GI)；搭配大量蔬菜和肉类",
+    "counter_strategy": "选择干炒(加油降GI)；搭配大量蔬菜和肉类；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算(基于米粉GI+烹饪方式)"
   },
   {
@@ -560,7 +560,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "高GI高GL；建议半个为限；改选杂粮粽",
+    "counter_strategy": "高GI高GL；建议半个为限；改选杂粮粽；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "估算(糯米+糖+豆沙)"
   },
   {
@@ -582,7 +582,7 @@
     },
     "regional_tag": "湖南",
     "food_category": "米制品",
-    "counter_strategy": "高GI；选码子(浇头)丰富的；加酸菜增加纤维",
+    "counter_strategy": "高GI；选码子(浇头)丰富的；加酸菜增加纤维；地域搭配: 搭配臭豆腐(湖南·GI15)；搭配腊肉(湖南·GI0)",
     "data_source": "估算"
   },
   {
@@ -604,7 +604,7 @@
     },
     "regional_tag": "江西",
     "food_category": "米制品",
-    "counter_strategy": "高GI米粉；拌料增加蛋白(花生/肉末)；加醋",
+    "counter_strategy": "高GI米粉；拌料增加蛋白(花生/肉末)；加醋；地域搭配: 搭配臭豆腐(湖南·GI15)；搭配腊肉(湖南·GI0)",
     "data_source": "估算"
   },
   {
@@ -625,7 +625,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "米制品",
-    "counter_strategy": "类似热干面但用米粉GI更高；搭配蛋白质",
+    "counter_strategy": "类似热干面但用米粉GI更高；搭配蛋白质；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -648,7 +648,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "多加蔬菜和肉片；汤底选清汤(油脂适量缓冲)；控制米线量",
+    "counter_strategy": "多加蔬菜和肉片；汤底选清汤(油脂适量缓冲)；控制米线量；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算(基于米粉基础GI)"
   },
   {
@@ -670,7 +670,7 @@
     },
     "regional_tag": "广西",
     "food_category": "米制品",
-    "counter_strategy": "卤味蛋白质可部分对冲；减半主食量加酸豆角蔬菜",
+    "counter_strategy": "卤味蛋白质可部分对冲；减半主食量加酸豆角蔬菜；地域搭配: 搭配百香果(广西·GI30)；搭配柳州酸笋(广西·GI10)",
     "data_source": "估算(基于米粉GI+卤料蛋白缓冲)"
   },
   {
@@ -693,7 +693,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "米制品",
-    "counter_strategy": "切片炒食比汤煮GI低；搭配大量蔬菜和肉类；限量100g",
+    "counter_strategy": "切片炒食比汤煮GI低；搭配大量蔬菜和肉类；限量100g；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -715,7 +715,7 @@
     },
     "regional_tag": "云南",
     "food_category": "米制品",
-    "counter_strategy": "糯化米制品GI高；搭配酱料和蔬菜",
+    "counter_strategy": "糯化米制品GI高；搭配酱料和蔬菜；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -736,7 +736,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "糯米GI高；鸡肉蛋白部分缓冲；限量半个",
+    "counter_strategy": "糯米GI高；鸡肉蛋白部分缓冲；限量半个；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -759,7 +759,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "改用糙米饭(GI=68)或加入燕麦混合；搭配绿叶蔬菜先吃菜后吃饭",
+    "counter_strategy": "改用糙米饭(GI=68)或加入燕麦混合；搭配绿叶蔬菜先吃菜后吃饭；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "悉尼大学GI数据库 + 中国食物成分表(第6版)"
   },
   {
@@ -781,7 +781,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "高GI零食；限量30g以内；搭配坚果",
+    "counter_strategy": "高GI零食；限量30g以内；搭配坚果；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "估算(油炸米制品)"
   },
   {
@@ -804,7 +804,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "高GI；限量小块品尝；选择杂粮发糕替代",
+    "counter_strategy": "高GI；限量小块品尝；选择杂粮发糕替代；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "估算(精米粉+糖)"
   },
   {
@@ -825,7 +825,7 @@
     },
     "regional_tag": "广西",
     "food_category": "米制品",
-    "counter_strategy": "类似肠粉；加酱料和蔬菜",
+    "counter_strategy": "类似肠粉；加酱料和蔬菜；地域搭配: 搭配百香果(广西·GI30)；搭配柳州酸笋(广西·GI10)",
     "data_source": "估算"
   },
   {
@@ -847,7 +847,7 @@
     },
     "regional_tag": "东北",
     "food_category": "米制品",
-    "counter_strategy": "糯米捣制GI极高；严格限量",
+    "counter_strategy": "糯米捣制GI极高；严格限量；地域搭配: 搭配木耳(东北·GI10)；搭配锅包肉(东北·GI55)",
     "data_source": "估算"
   },
   {
@@ -869,7 +869,7 @@
     },
     "regional_tag": "全国",
     "food_category": "米制品",
-    "counter_strategy": "严格限量100g以内；搭配高纤维蔬菜；餐后30分钟活动",
+    "counter_strategy": "严格限量100g以内；搭配高纤维蔬菜；餐后30分钟活动；地域搭配: 搭配黑米饭(全国·GI55)；搭配杂粮粥(全国·GI48)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -892,7 +892,7 @@
     },
     "regional_tag": "西南",
     "food_category": "米制品",
-    "counter_strategy": "极高GI；严格限量50-80g；避免蘸糖吃",
+    "counter_strategy": "极高GI；严格限量50-80g；避免蘸糖吃；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算(糯米制品)"
   },
   {
@@ -915,7 +915,7 @@
     },
     "regional_tag": "广东",
     "food_category": "米制品",
-    "counter_strategy": "加入白灼菜心(纤维素对冲) + 搭配一个水煮蛋",
+    "counter_strategy": "加入白灼菜心(纤维素对冲) + 搭配一个水煮蛋；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "中国食物成分表(第6版) + 悉尼大学GI数据库"
   },
   {
@@ -1109,7 +1109,7 @@
     },
     "regional_tag": "全国",
     "food_category": "粥类",
-    "counter_strategy": "选择无糖版本；豆类比例越高越好；避免加糖桂圆",
+    "counter_strategy": "选择无糖版本；豆类比例越高越好；避免加糖桂圆；地域搭配: 搭配杂粮粥(全国·GI48)；搭配黑米粥(全国·GI50)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -1131,7 +1131,7 @@
     },
     "regional_tag": "北方",
     "food_category": "粥类",
-    "counter_strategy": "不宜煮太烂；加入燕麦或红豆降低GI；控制在一碗以内",
+    "counter_strategy": "不宜煮太烂；加入燕麦或红豆降低GI；控制在一碗以内；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -1154,7 +1154,7 @@
     },
     "regional_tag": "北方",
     "food_category": "粥类",
-    "counter_strategy": "搭配鸡蛋或豆腐；不宜煮太细腻",
+    "counter_strategy": "搭配鸡蛋或豆腐；不宜煮太细腻；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -1175,7 +1175,7 @@
     },
     "regional_tag": "广东",
     "food_category": "粥类",
-    "counter_strategy": "蛋白质已部分对冲；控制量在一碗以内；搭配青菜",
+    "counter_strategy": "蛋白质已部分对冲；控制量在一碗以内；搭配青菜；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算(基于粥底GI+蛋白质缓冲效应)"
   },
   {
@@ -1198,7 +1198,7 @@
     },
     "regional_tag": "全国",
     "food_category": "粥类",
-    "counter_strategy": "红薯比例控制在1/3以下；搭配牛奶或豆浆",
+    "counter_strategy": "红薯比例控制在1/3以下；搭配牛奶或豆浆；地域搭配: 搭配杂粮粥(全国·GI48)；搭配黑米粥(全国·GI50)",
     "data_source": "估算(基于红薯GI77+粥化效应)"
   },
   {
@@ -1219,7 +1219,7 @@
     },
     "regional_tag": "广东",
     "food_category": "粥类",
-    "counter_strategy": "海鲜蛋白丰富缓冲；控制粥底量",
+    "counter_strategy": "海鲜蛋白丰富缓冲；控制粥底量；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -1241,7 +1241,7 @@
     },
     "regional_tag": "广东",
     "food_category": "粥类",
-    "counter_strategy": "鱼片蛋白丰富；多吃鱼少喝粥",
+    "counter_strategy": "鱼片蛋白丰富；多吃鱼少喝粥；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -1262,7 +1262,7 @@
     },
     "regional_tag": "全国",
     "food_category": "粥类",
-    "counter_strategy": "南瓜GI高但GL较低；控制量并搭配蛋白质",
+    "counter_strategy": "南瓜GI高但GL较低；控制量并搭配蛋白质；地域搭配: 搭配杂粮粥(全国·GI48)；搭配黑米粥(全国·GI50)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -1283,7 +1283,7 @@
     },
     "regional_tag": "广东",
     "food_category": "粥类",
-    "counter_strategy": "海鲜蛋白丰富；粥底GI高；少吃粥多吃料",
+    "counter_strategy": "海鲜蛋白丰富；粥底GI高；少吃粥多吃料；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -1304,7 +1304,7 @@
     },
     "regional_tag": "广东",
     "food_category": "粥类",
-    "counter_strategy": "猪杂蛋白丰富缓冲；仍需控制粥底量",
+    "counter_strategy": "猪杂蛋白丰富缓冲；仍需控制粥底量；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -1327,7 +1327,7 @@
     },
     "regional_tag": "全国",
     "food_category": "粥类",
-    "counter_strategy": "加入杂粮(燕麦/荞麦)混煮；搭配鸡蛋和蔬菜；避免空腹喝粥",
+    "counter_strategy": "加入杂粮(燕麦/荞麦)混煮；搭配鸡蛋和蔬菜；避免空腹喝粥；地域搭配: 搭配杂粮粥(全国·GI48)；搭配黑米粥(全国·GI50)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -1349,7 +1349,7 @@
     },
     "regional_tag": "全国",
     "food_category": "粥类",
-    "counter_strategy": "尽量避免；改用杂粮粥或豆浆替代；若必须喝则搭配高蛋白食物",
+    "counter_strategy": "尽量避免；改用杂粮粥或豆浆替代；若必须喝则搭配高蛋白食物；地域搭配: 搭配杂粮粥(全国·GI48)；搭配黑米粥(全国·GI50)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -1460,7 +1460,7 @@
     },
     "regional_tag": "东北",
     "food_category": "面食",
-    "counter_strategy": "荞麦面低GI+冷食抗性淀粉双重优势；加醋更佳",
+    "counter_strategy": "荞麦面低GI+冷食抗性淀粉双重优势；加醋更佳；地域搭配: 搭配木耳(东北·GI10)；搭配锅包肉(东北·GI55)",
     "data_source": "估算(荞麦面+冷食)"
   },
   {
@@ -1482,7 +1482,7 @@
     },
     "regional_tag": "甘肃",
     "food_category": "面食",
-    "counter_strategy": "类似凉皮；放凉后抗性淀粉增加；加醋降GI",
+    "counter_strategy": "类似凉皮；放凉后抗性淀粉增加；加醋降GI；地域搭配: 搭配百合(甘肃·GI45)；搭配沙棘(西北·GI25)",
     "data_source": "估算"
   },
   {
@@ -1505,7 +1505,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面食",
-    "counter_strategy": "放凉后抗性淀粉增加；加醋和麻酱有助降GI；搭配面筋(蛋白)",
+    "counter_strategy": "放凉后抗性淀粉增加；加醋和麻酱有助降GI；搭配面筋(蛋白)；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算(淀粉冷却后+醋酸+油脂)"
   },
   {
@@ -1526,7 +1526,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面食",
-    "counter_strategy": "冷面抗性淀粉高+鸡肉蛋白缓冲；加醋更佳",
+    "counter_strategy": "冷面抗性淀粉高+鸡肉蛋白缓冲；加醋更佳；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -1549,7 +1549,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面食",
-    "counter_strategy": "油炸面饼GI反而中等(脂肪缓冲)；加蔬菜和鸡蛋；少喝汤",
+    "counter_strategy": "油炸面饼GI反而中等(脂肪缓冲)；加蔬菜和鸡蛋；少喝汤；地域搭配: 搭配意大利面(通心粉)(全国·GI49)；搭配黄豆面(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -1571,7 +1571,7 @@
     },
     "regional_tag": "福建",
     "food_category": "面食",
-    "counter_strategy": "沙茶酱油脂+配料蛋白缓冲；多选海鲜配料",
+    "counter_strategy": "沙茶酱油脂+配料蛋白缓冲；多选海鲜配料；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算"
   },
   {
@@ -1592,7 +1592,7 @@
     },
     "regional_tag": "安徽",
     "food_category": "面食",
-    "counter_strategy": "牛肉蛋白缓冲良好；加青菜",
+    "counter_strategy": "牛肉蛋白缓冲良好；加青菜；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -1614,7 +1614,7 @@
     },
     "regional_tag": "北京",
     "food_category": "面食",
-    "counter_strategy": "黄酱蛋白+菜码对冲；增加菜码种类(黄瓜丝/豆芽等)",
+    "counter_strategy": "黄酱蛋白+菜码对冲；增加菜码种类(黄瓜丝/豆芽等)；地域搭配: 搭配烤鸭(北京)(北京·GI0)；搭配豌豆黄(北京·GI55)",
     "data_source": "估算(手擀面+肉酱蛋白缓冲)"
   },
   {
@@ -1636,7 +1636,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面食",
-    "counter_strategy": "面体较厚消化慢；搭配卤/臊子增加蛋白质",
+    "counter_strategy": "面体较厚消化慢；搭配卤/臊子增加蛋白质；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -1658,7 +1658,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "面食",
-    "counter_strategy": "炒菜配料丰富(辣椒番茄肉)缓冲良好；面体粗壮消化慢",
+    "counter_strategy": "炒菜配料丰富(辣椒番茄肉)缓冲良好；面体粗壮消化慢；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算(粗面+炒菜)"
   },
   {
@@ -1680,7 +1680,7 @@
     },
     "regional_tag": "山西",
     "food_category": "面食",
-    "counter_strategy": "面体小块但较厚；搭配肉菜浇头",
+    "counter_strategy": "面体小块但较厚；搭配肉菜浇头；地域搭配: 搭配荞麦面(山西·GI54)；搭配豆腐脑(咸)(北方·GI18)",
     "data_source": "估算"
   },
   {
@@ -1701,7 +1701,7 @@
     },
     "regional_tag": "北京",
     "food_category": "面食",
-    "counter_strategy": "卤汁蛋白缓冲；多加蔬菜配料",
+    "counter_strategy": "卤汁蛋白缓冲；多加蔬菜配料；地域搭配: 搭配烤鸭(北京)(北京·GI0)；搭配豌豆黄(北京·GI55)",
     "data_source": "估算"
   },
   {
@@ -1723,7 +1723,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面食",
-    "counter_strategy": "鸡蛋面口感弹；云吞蛋白缓冲",
+    "counter_strategy": "鸡蛋面口感弹；云吞蛋白缓冲；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -1744,7 +1744,7 @@
     },
     "regional_tag": "贵州",
     "food_category": "面食",
-    "counter_strategy": "猪肠猪血蛋白丰富缓冲；加辣椒醋",
+    "counter_strategy": "猪肠猪血蛋白丰富缓冲；加辣椒醋；地域搭配: 搭配丝娃娃(贵州·GI55)；搭配恋爱豆腐果(贵州·GI15)",
     "data_source": "估算"
   },
   {
@@ -1765,7 +1765,7 @@
     },
     "regional_tag": "湖北",
     "food_category": "面食",
-    "counter_strategy": "牛杂蛋白丰富缓冲；加辣椒醋",
+    "counter_strategy": "牛杂蛋白丰富缓冲；加辣椒醋；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -1786,7 +1786,7 @@
     },
     "regional_tag": "河南",
     "food_category": "面食",
-    "counter_strategy": "杂粮面糊+蔬菜；比纯白面好",
+    "counter_strategy": "杂粮面糊+蔬菜；比纯白面好；地域搭配: 搭配山药(蒸)(河南·GI51)；搭配胡辣汤(河南·GI55)",
     "data_source": "估算"
   },
   {
@@ -1808,7 +1808,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面食",
-    "counter_strategy": "肉末和芝麻酱含蛋白脂肪缓冲；加醋食用",
+    "counter_strategy": "肉末和芝麻酱含蛋白脂肪缓冲；加醋食用；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算(碱面+肉末+芝麻酱)"
   },
   {
@@ -1829,7 +1829,7 @@
     },
     "regional_tag": "山西",
     "food_category": "面食",
-    "counter_strategy": "类似刀削面；搭配西红柿鸡蛋或肉臊子",
+    "counter_strategy": "类似刀削面；搭配西红柿鸡蛋或肉臊子；地域搭配: 搭配荞麦面(山西·GI54)；搭配豆腐脑(咸)(北方·GI18)",
     "data_source": "估算"
   },
   {
@@ -1851,7 +1851,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面食",
-    "counter_strategy": "臊子肉蛋白+醋酸双缓冲；蔬菜配料丰富",
+    "counter_strategy": "臊子肉蛋白+醋酸双缓冲；蔬菜配料丰富；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算(基于面条GI+酸汤+肉臊子)"
   },
   {
@@ -1873,7 +1873,7 @@
     },
     "regional_tag": "上海",
     "food_category": "面食",
-    "counter_strategy": "葱油已缓冲部分GI；搭配蛋白质(鸡蛋/豆干)",
+    "counter_strategy": "葱油已缓冲部分GI；搭配蛋白质(鸡蛋/豆干)；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算(面条+葱油)"
   },
   {
@@ -1896,7 +1896,7 @@
     },
     "regional_tag": "河南",
     "food_category": "面食",
-    "counter_strategy": "羊肉蛋白缓冲；面片宽厚消化慢；加醋",
+    "counter_strategy": "羊肉蛋白缓冲；面片宽厚消化慢；加醋；地域搭配: 搭配山药(蒸)(河南·GI51)；搭配胡辣汤(河南·GI55)",
     "data_source": "估算(宽面片+羊肉汤)"
   },
   {
@@ -1918,7 +1918,7 @@
     },
     "regional_tag": "安徽",
     "food_category": "面食",
-    "counter_strategy": "加卤蛋和蔬菜增加蛋白纤维",
+    "counter_strategy": "加卤蛋和蔬菜增加蛋白纤维；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -1940,7 +1940,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面食",
-    "counter_strategy": "宽面体消化稍慢；搭配肉臊子和醋",
+    "counter_strategy": "宽面体消化稍慢；搭配肉臊子和醋；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -1962,7 +1962,7 @@
     },
     "regional_tag": "山西",
     "food_category": "面食",
-    "counter_strategy": "面体厚实消化慢；搭配西红柿鸡蛋浇头；多加老陈醋(降GI)",
+    "counter_strategy": "面体厚实消化慢；搭配西红柿鸡蛋浇头；多加老陈醋(降GI)；地域搭配: 搭配荞麦面(山西·GI54)；搭配豆腐脑(咸)(北方·GI18)",
     "data_source": "估算(厚面体延缓消化吸收)"
   },
   {
@@ -1984,7 +1984,7 @@
     },
     "regional_tag": "重庆",
     "food_category": "面食",
-    "counter_strategy": "辣椒素促进代谢；搭配豌杂(豌豆蛋白缓冲)",
+    "counter_strategy": "辣椒素促进代谢；搭配豌杂(豌豆蛋白缓冲)；地域搭配: 搭配酸菜鱼(重庆·GI5)；搭配钵钵鸡(四川·GI10)",
     "data_source": "估算(碱水面+辣椒油)"
   },
   {
@@ -2005,7 +2005,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "面食",
-    "counter_strategy": "牛肉蛋白含量高缓冲明显；少喝汤；加酸豆角",
+    "counter_strategy": "牛肉蛋白含量高缓冲明显；少喝汤；加酸豆角；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -2026,7 +2026,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面食",
-    "counter_strategy": "甜酱汁升糖；搭配辣椒和花生碎缓冲",
+    "counter_strategy": "甜酱汁升糖；搭配辣椒和花生碎缓冲；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -2048,7 +2048,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面食",
-    "counter_strategy": "辣椒油脂缓冲部分GI；加醋食用；搭配凉拌菜",
+    "counter_strategy": "辣椒油脂缓冲部分GI；加醋食用；搭配凉拌菜；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算(宽面+油脂缓冲)"
   },
   {
@@ -2070,7 +2070,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面食",
-    "counter_strategy": "碎小面块消化快；加蔬菜鸡蛋增加营养密度",
+    "counter_strategy": "碎小面块消化快；加蔬菜鸡蛋增加营养密度；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算"
   },
   {
@@ -2093,7 +2093,7 @@
     },
     "regional_tag": "甘肃",
     "food_category": "面食",
-    "counter_strategy": "牛肉蛋白已部分对冲；选择二细以上粗面；多加蒜苗萝卜",
+    "counter_strategy": "牛肉蛋白已部分对冲；选择二细以上粗面；多加蒜苗萝卜；地域搭配: 搭配百合(甘肃·GI45)；搭配沙棘(西北·GI25)",
     "data_source": "估算(基于拉面工艺+牛肉蛋白缓冲)"
   },
   {
@@ -2115,7 +2115,7 @@
     },
     "regional_tag": "福建",
     "food_category": "面食",
-    "counter_strategy": "面线极细消化快GI高；多加海鲜配料",
+    "counter_strategy": "面线极细消化快GI高；多加海鲜配料；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算"
   },
   {
@@ -2137,7 +2137,7 @@
     },
     "regional_tag": "上海",
     "food_category": "面食",
-    "counter_strategy": "缺乏蛋白对冲；加一个荷包蛋+青菜",
+    "counter_strategy": "缺乏蛋白对冲；加一个荷包蛋+青菜；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算(清水煮面)"
   },
   {
@@ -2159,7 +2159,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面食",
-    "counter_strategy": "高GI；搭配蔬菜和蛋白质；煮后过冷水增加抗性淀粉",
+    "counter_strategy": "高GI；搭配蔬菜和蛋白质；煮后过冷水增加抗性淀粉；地域搭配: 搭配意大利面(通心粉)(全国·GI49)；搭配黄豆面(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -2181,7 +2181,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "面食",
-    "counter_strategy": "搭配一杯无糖豆浆(蛋白质缓冲) + 餐后步行15分钟",
+    "counter_strategy": "搭配一杯无糖豆浆(蛋白质缓冲) + 餐后步行15分钟；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "中国食物成分表(第6版) + 杨月欣等GI实测研究"
   },
   {
@@ -2289,7 +2289,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "煎制+肉馅双重降GI；比水饺GI更低",
+    "counter_strategy": "煎制+肉馅双重降GI；比水饺GI更低；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算(煎制+肉馅缓冲)"
   },
   {
@@ -2311,7 +2311,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "澄面皮+虾仁蛋白缓冲GI；可选食",
+    "counter_strategy": "澄面皮+虾仁蛋白缓冲GI；可选食；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -2332,7 +2332,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面点",
-    "counter_strategy": "红油+肉馅双重缓冲",
+    "counter_strategy": "红油+肉馅双重缓冲；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -2353,7 +2353,7 @@
     },
     "regional_tag": "上海",
     "food_category": "面点",
-    "counter_strategy": "煎底+肉馅双重降GI",
+    "counter_strategy": "煎底+肉馅双重降GI；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -2374,7 +2374,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "虾仁鸡蛋海参高蛋白缓冲良好",
+    "counter_strategy": "虾仁鸡蛋海参高蛋白缓冲良好；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -2398,7 +2398,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "肉菜馅蛋白纤维缓冲良好；蘸醋食用；15个为限",
+    "counter_strategy": "肉菜馅蛋白纤维缓冲良好；蘸醋食用；15个为限；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -2421,7 +2421,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面点",
-    "counter_strategy": "辣椒油+肉馅缓冲；比普通馄饨GI略低",
+    "counter_strategy": "辣椒油+肉馅缓冲；比普通馄饨GI略低；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -2442,7 +2442,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面点",
-    "counter_strategy": "清汤版GI略高于红油版",
+    "counter_strategy": "清汤版GI略高于红油版；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -2464,7 +2464,7 @@
     },
     "regional_tag": "东北",
     "food_category": "面点",
-    "counter_strategy": "比白面包低(杂粮发酵)；涂黄油搭配",
+    "counter_strategy": "比白面包低(杂粮发酵)；涂黄油搭配；地域搭配: 搭配木耳(东北·GI10)；搭配锅包肉(东北·GI55)",
     "data_source": "估算"
   },
   {
@@ -2487,7 +2487,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "薄皮多馅GI适中；搭配蔬菜汤",
+    "counter_strategy": "薄皮多馅GI适中；搭配蔬菜汤；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算(薄面皮+肉馅)"
   },
   {
@@ -2509,7 +2509,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "面点",
-    "counter_strategy": "油炸降低GI但增加热量；限量2-3个",
+    "counter_strategy": "油炸降低GI但增加热量；限量2-3个；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算(面皮+油炸+菜馅)"
   },
   {
@@ -2530,7 +2530,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "鸡蛋蛋白+韭菜纤维缓冲",
+    "counter_strategy": "鸡蛋蛋白+韭菜纤维缓冲；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算"
   },
   {
@@ -2552,7 +2552,7 @@
     },
     "regional_tag": "上海",
     "food_category": "面点",
-    "counter_strategy": "煎制+肉馅双重降GI；限量4个",
+    "counter_strategy": "煎制+肉馅双重降GI；限量4个；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算(面皮+煎制+肉馅)"
   },
   {
@@ -2574,7 +2574,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "面点",
-    "counter_strategy": "烤制面皮+羊肉馅蛋白缓冲",
+    "counter_strategy": "烤制面皮+羊肉馅蛋白缓冲；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算"
   },
   {
@@ -2596,7 +2596,7 @@
     },
     "regional_tag": "河北",
     "food_category": "面点",
-    "counter_strategy": "驴肉蛋白丰富缓冲好；面饼酥脆消化稍慢",
+    "counter_strategy": "驴肉蛋白丰富缓冲好；面饼酥脆消化稍慢；地域搭配: 搭配豆腐(全国·GI15)；搭配毛豆(全国·GI15)",
     "data_source": "估算"
   },
   {
@@ -2617,7 +2617,7 @@
     },
     "regional_tag": "河南",
     "food_category": "面点",
-    "counter_strategy": "烫面皮薄；肉馅蛋白缓冲",
+    "counter_strategy": "烫面皮薄；肉馅蛋白缓冲；地域搭配: 搭配山药(蒸)(河南·GI51)；搭配胡辣汤(河南·GI55)",
     "data_source": "估算"
   },
   {
@@ -2639,7 +2639,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "中GI较好选择；搭配蛋白质效果更佳",
+    "counter_strategy": "中GI较好选择；搭配蛋白质效果更佳；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -2661,7 +2661,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "黄油层叠降低GI；比白面包好；限量1个",
+    "counter_strategy": "黄油层叠降低GI；比白面包好；限量1个；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -2683,7 +2683,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "蔬菜纤维缓冲；中GI较好选择",
+    "counter_strategy": "蔬菜纤维缓冲；中GI较好选择；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算(馒头皮+蔬菜馅)"
   },
   {
@@ -2706,7 +2706,7 @@
     },
     "regional_tag": "上海",
     "food_category": "面点",
-    "counter_strategy": "汤汁+肉馅蛋白缓冲；限量6-8个；蘸醋食用",
+    "counter_strategy": "汤汁+肉馅蛋白缓冲；限量6-8个；蘸醋食用；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算(薄皮+肉汤)"
   },
   {
@@ -2728,7 +2728,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面点",
-    "counter_strategy": "肉类蛋白脂肪对冲充分；选瘦肉版本更佳",
+    "counter_strategy": "肉类蛋白脂肪对冲充分；选瘦肉版本更佳；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算(白吉馍+卤肉蛋白缓冲)"
   },
   {
@@ -2750,7 +2750,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "肉馅蛋白缓冲；避免糯米烧卖(GI更高)",
+    "counter_strategy": "肉馅蛋白缓冲；避免糯米烧卖(GI更高)；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -2771,7 +2771,7 @@
     },
     "regional_tag": "武汉",
     "food_category": "面点",
-    "counter_strategy": "油炸米浆制品；限量1个；搭配蛋白质",
+    "counter_strategy": "油炸米浆制品；限量1个；搭配蛋白质；地域搭配: 搭配苕皮(湖北)(湖北·GI40)；搭配莲藕(湖北·GI38)",
     "data_source": "估算"
   },
   {
@@ -2793,7 +2793,7 @@
     },
     "regional_tag": "四川",
     "food_category": "面点",
-    "counter_strategy": "鸡蛋蛋白缓冲；选咸味馅(肉/菜)而非甜馅",
+    "counter_strategy": "鸡蛋蛋白缓冲；选咸味馅(肉/菜)而非甜馅；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -2813,7 +2813,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面点",
-    "counter_strategy": "肉类蛋白脂肪对冲充分",
+    "counter_strategy": "肉类蛋白脂肪对冲充分；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -2836,7 +2836,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "肉馅蛋白脂肪缓冲GI；限量2个；搭配蔬菜",
+    "counter_strategy": "肉馅蛋白脂肪缓冲GI；限量2个；搭配蔬菜；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -2857,7 +2857,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "鸡蛋蛋白已缓冲；加生菜火腿进一步平衡",
+    "counter_strategy": "鸡蛋蛋白已缓冲；加生菜火腿进一步平衡；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算(面饼+鸡蛋)"
   },
   {
@@ -2879,7 +2879,7 @@
     },
     "regional_tag": "安徽",
     "food_category": "面点",
-    "counter_strategy": "梅干菜肉馅油酥缓冲；限量2-3个",
+    "counter_strategy": "梅干菜肉馅油酥缓冲；限量2-3个；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -2900,7 +2900,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面点",
-    "counter_strategy": "酥脆馍+卤肉缓冲；选瘦肉版",
+    "counter_strategy": "酥脆馍+卤肉缓冲；选瘦肉版；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -2921,7 +2921,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "蛋黄脂肪缓冲；限量1个",
+    "counter_strategy": "蛋黄脂肪缓冲；限量1个；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -2943,7 +2943,7 @@
     },
     "regional_tag": "天津",
     "food_category": "面点",
-    "counter_strategy": "杂粮面糊比白面低；鸡蛋蛋白缓冲；不加薄脆减碳水",
+    "counter_strategy": "杂粮面糊比白面低；鸡蛋蛋白缓冲；不加薄脆减碳水；地域搭配: 搭配烤鸭(北京)(北京·GI0)；搭配豌豆黄(北京·GI55)",
     "data_source": "估算(杂粮面糊+鸡蛋+油条)"
   },
   {
@@ -2965,7 +2965,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "层状油酥降低GI；加鸡蛋生菜肉片提升蛋白",
+    "counter_strategy": "层状油酥降低GI；加鸡蛋生菜肉片提升蛋白；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算(酥油面饼)"
   },
   {
@@ -2987,7 +2987,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "松软面团GI高；叉烧蛋白部分缓冲；限量1个",
+    "counter_strategy": "松软面团GI高；叉烧蛋白部分缓冲；限量1个；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -3008,7 +3008,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面点",
-    "counter_strategy": "馍掰碎泡汤消化快GI高；掰大块+多加粉丝(低GI)",
+    "counter_strategy": "馍掰碎泡汤消化快GI高；掰大块+多加粉丝(低GI)；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -3030,7 +3030,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "面饼+酱料糖分；限量半张",
+    "counter_strategy": "面饼+酱料糖分；限量半张；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -3051,7 +3051,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "面皮+奶黄馅(蛋黄牛油)；蛋黄脂肪缓冲部分",
+    "counter_strategy": "面皮+奶黄馅(蛋黄牛油)；蛋黄脂肪缓冲部分；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -3074,7 +3074,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "油炸GI反低于馒头(脂肪缓冲)但不健康；限量半根；搭配豆浆",
+    "counter_strategy": "油炸GI反低于馒头(脂肪缓冲)但不健康；限量半根；搭配豆浆；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3097,7 +3097,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "高GI；改用全麦面包(GI=54)；涂花生酱/牛油果降GI",
+    "counter_strategy": "高GI；改用全麦面包(GI=54)；涂花生酱/牛油果降GI；地域搭配: 搭配黑麦面包(全国·GI50)；搭配黑米饭(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3118,7 +3118,7 @@
     },
     "regional_tag": "河南",
     "food_category": "面点",
-    "counter_strategy": "类似油条；限量搭配胡辣汤",
+    "counter_strategy": "类似油条；限量搭配胡辣汤；地域搭配: 搭配山药(蒸)(河南·GI51)；搭配胡辣汤(河南·GI55)",
     "data_source": "估算"
   },
   {
@@ -3140,7 +3140,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "面点",
-    "counter_strategy": "厚面饼GI高；夹肉夹菜蛋白缓冲",
+    "counter_strategy": "厚面饼GI高；夹肉夹菜蛋白缓冲；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -3162,7 +3162,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "油脂缓冲部分GI；限量半张；搭配蛋白质",
+    "counter_strategy": "油脂缓冲部分GI；限量半张；搭配蛋白质；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算(面饼+油脂)"
   },
   {
@@ -3185,7 +3185,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "面点",
-    "counter_strategy": "高GI；搭配烤肉(蛋白缓冲)；限量半个",
+    "counter_strategy": "高GI；搭配烤肉(蛋白缓冲)；限量半个；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算(烤制面饼)"
   },
   {
@@ -3207,7 +3207,7 @@
     },
     "regional_tag": "东北",
     "food_category": "面点",
-    "counter_strategy": "黄米黏性高GI；红豆馅缓冲部分；限量1-2个",
+    "counter_strategy": "黄米黏性高GI；红豆馅缓冲部分；限量1-2个；地域搭配: 搭配木耳(东北·GI10)；搭配锅包肉(东北·GI55)",
     "data_source": "估算"
   },
   {
@@ -3229,7 +3229,7 @@
     },
     "regional_tag": "福建",
     "food_category": "面点",
-    "counter_strategy": "面饼GI高；夹肉夹菜降GI",
+    "counter_strategy": "面饼GI高；夹肉夹菜降GI；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算"
   },
   {
@@ -3251,7 +3251,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "高GI；控制半个为限；夹肉夹菜降低GI",
+    "counter_strategy": "高GI；控制半个为限；夹肉夹菜降低GI；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3273,7 +3273,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "比馒头稍低(含少量油脂)；搭配蔬菜和蛋白质",
+    "counter_strategy": "比馒头稍低(含少量油脂)；搭配蔬菜和蛋白质；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算(馒头基础-油脂缓冲)"
   },
   {
@@ -3294,7 +3294,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "糯米馅GI高；限量2个",
+    "counter_strategy": "糯米馅GI高；限量2个；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -3317,7 +3317,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "极高GI；改用全麦馒头(GI=66)；搭配菜和蛋白质一起吃",
+    "counter_strategy": "极高GI；改用全麦馒头(GI=66)；搭配菜和蛋白质一起吃；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3496,7 +3496,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "蒸煮GI较低；放凉吃更好(抗性淀粉)；带皮吃",
+    "counter_strategy": "蒸煮GI较低；放凉吃更好(抗性淀粉)；带皮吃；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3518,7 +3518,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "浓缩后GL较高；限量30g以内作为零食",
+    "counter_strategy": "浓缩后GL较高；限量30g以内作为零食；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "估算(脱水浓缩)"
   },
   {
@@ -3540,7 +3540,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "油炸降GI但高热量；严格限量；搭配蛋白质",
+    "counter_strategy": "油炸降GI但高热量；严格限量；搭配蛋白质；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3563,7 +3563,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "GL中等；带皮吃纤维更多；搭配蛋白质；限量150g",
+    "counter_strategy": "GL中等；带皮吃纤维更多；搭配蛋白质；限量150g；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3585,7 +3585,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "烤制比蒸更高GI；限量100g；放凉后GI降低",
+    "counter_strategy": "烤制比蒸更高GI；限量100g；放凉后GI降低；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3606,7 +3606,7 @@
     },
     "regional_tag": "全国",
     "food_category": "薯类",
-    "counter_strategy": "碾碎后GI飙升；避免选择；改用蒸整土豆",
+    "counter_strategy": "碾碎后GI飙升；避免选择；改用蒸整土豆；地域搭配: 搭配魔芋(全国·GI0)；搭配粉条(红薯)(全国·GI35)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3758,7 +3758,7 @@
     },
     "regional_tag": "北方",
     "food_category": "杂粮",
-    "counter_strategy": "中GI；混合其他杂粮同煮效果更佳",
+    "counter_strategy": "中GI；混合其他杂粮同煮效果更佳；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3780,7 +3780,7 @@
     },
     "regional_tag": "北方",
     "food_category": "杂粮",
-    "counter_strategy": "粗粮制品比白馒头好；搭配菜和蛋白",
+    "counter_strategy": "粗粮制品比白馒头好；搭配菜和蛋白；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3802,7 +3802,7 @@
     },
     "regional_tag": "北方",
     "food_category": "杂粮",
-    "counter_strategy": "比白面馒头低；搭配鱼或肉类",
+    "counter_strategy": "比白面馒头低；搭配鱼或肉类；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算"
   },
   {
@@ -3824,7 +3824,7 @@
     },
     "regional_tag": "北方",
     "food_category": "杂粮",
-    "counter_strategy": "干小米GI较高；煮粥不宜过烂；搭配蛋白质",
+    "counter_strategy": "干小米GI较高；煮粥不宜过烂；搭配蛋白质；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3846,7 +3846,7 @@
     },
     "regional_tag": "全国",
     "food_category": "杂粮",
-    "counter_strategy": "比甜玉米GI高得多；限量半根",
+    "counter_strategy": "比甜玉米GI高得多；限量半根；地域搭配: 搭配大麦(全国·GI28)；搭配燕麦(整粒)(全国·GI42)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -3868,7 +3868,7 @@
     },
     "regional_tag": "全国",
     "food_category": "杂粮",
-    "counter_strategy": "加工后GI飙升；改用整粒燕麦或钢切燕麦",
+    "counter_strategy": "加工后GI飙升；改用整粒燕麦或钢切燕麦；地域搭配: 搭配大麦(全国·GI28)；搭配燕麦(整粒)(全国·GI42)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -3890,7 +3890,7 @@
     },
     "regional_tag": "全国",
     "food_category": "杂粮",
-    "counter_strategy": "精制米粉GI极高；成人应避免作为早餐",
+    "counter_strategy": "精制米粉GI极高；成人应避免作为早餐；地域搭配: 搭配大麦(全国·GI28)；搭配燕麦(整粒)(全国·GI42)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -4477,7 +4477,7 @@
     },
     "regional_tag": "全国",
     "food_category": "豆类",
-    "counter_strategy": "不加糖或用木糖醇替代",
+    "counter_strategy": "不加糖或用木糖醇替代；地域搭配: 搭配豆腐(全国·GI15)；搭配毛豆(全国·GI15)",
     "data_source": "估算(绿豆+糖)"
   },
   {
@@ -4499,7 +4499,7 @@
     },
     "regional_tag": "全国",
     "food_category": "豆类",
-    "counter_strategy": "加糖后GI大幅升高；选无糖版本",
+    "counter_strategy": "加糖后GI大幅升高；选无糖版本；地域搭配: 搭配豆腐(全国·GI15)；搭配毛豆(全国·GI15)",
     "data_source": "估算(红豆+大量蔗糖)"
   },
   {
@@ -5520,7 +5520,7 @@
     },
     "regional_tag": "全国",
     "food_category": "蔬菜",
-    "counter_strategy": "GI高但GL低(含水量大)；控制量；搭配低GI食物",
+    "counter_strategy": "GI高但GL低(含水量大)；控制量；搭配低GI食物；地域搭配: 搭配西兰花(全国·GI10)；搭配菠菜(全国·GI10)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -5542,7 +5542,7 @@
     },
     "regional_tag": "杭州",
     "food_category": "蔬菜",
-    "counter_strategy": "精制淀粉GI极高；避免或极少量；加坚果牛奶缓冲",
+    "counter_strategy": "精制淀粉GI极高；避免或极少量；加坚果牛奶缓冲；地域搭配: 搭配东坡肉(杭州·GI5)；搭配竹笋(江浙·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -6344,7 +6344,7 @@
     },
     "regional_tag": "广东",
     "food_category": "水果",
-    "counter_strategy": "中GI高糖；日啖荔枝不宜超5颗(糖尿病患者)",
+    "counter_strategy": "中GI高糖；日啖荔枝不宜超5颗(糖尿病患者)；地域搭配: 搭配杨桃(广东·GI30)；搭配腐皮卷(广东·GI55)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -6366,7 +6366,7 @@
     },
     "regional_tag": "热带",
     "food_category": "水果",
-    "counter_strategy": "中GI；限量100g；搭配蛋白质食用",
+    "counter_strategy": "中GI；限量100g；搭配蛋白质食用；地域搭配: 搭配番石榴(热带·GI12)；搭配莲雾(热带·GI32)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6387,7 +6387,7 @@
     },
     "regional_tag": "热带",
     "food_category": "水果",
-    "counter_strategy": "中GI；酵素有助消化",
+    "counter_strategy": "中GI；酵素有助消化；地域搭配: 搭配番石榴(热带·GI12)；搭配莲雾(热带·GI32)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6409,7 +6409,7 @@
     },
     "regional_tag": "福建",
     "food_category": "水果",
-    "counter_strategy": "中GI高糖；严格限量5-6颗",
+    "counter_strategy": "中GI高糖；严格限量5-6颗；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算(高含糖量)"
   },
   {
@@ -6430,7 +6430,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "水果",
-    "counter_strategy": "脱水后GI升高；限量20g",
+    "counter_strategy": "脱水后GI升高；限量20g；地域搭配: 搭配葡萄(新疆·GI46)；搭配鹰嘴豆(新疆·GI28)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6451,7 +6451,7 @@
     },
     "regional_tag": "全国",
     "food_category": "水果",
-    "counter_strategy": "中GI；限量半根；运动后食用最佳",
+    "counter_strategy": "中GI；限量半根；运动后食用最佳；地域搭配: 搭配牛油果(全国·GI15)；搭配柠檬(全国·GI20)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6472,7 +6472,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "水果",
-    "counter_strategy": "中GI但高糖密度；限量一小把(15g)；搭配坚果",
+    "counter_strategy": "中GI但高糖密度；限量一小把(15g)；搭配坚果；地域搭配: 搭配无花果(鲜)(新疆·GI35)；搭配葡萄(新疆·GI46)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6494,7 +6494,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "水果",
-    "counter_strategy": "中GI但GL不高；控量200g",
+    "counter_strategy": "中GI但GL不高；控量200g；地域搭配: 搭配无花果(鲜)(新疆·GI35)；搭配葡萄(新疆·GI46)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6515,7 +6515,7 @@
     },
     "regional_tag": "广西",
     "food_category": "水果",
-    "counter_strategy": "中GI但纯糖分多；嚼食比榨汁好(纤维保留)；限量",
+    "counter_strategy": "中GI但纯糖分多；嚼食比榨汁好(纤维保留)；限量；地域搭配: 搭配百香果(广西·GI30)；搭配柳州酸笋(广西·GI10)",
     "data_source": "估算"
   },
   {
@@ -6536,7 +6536,7 @@
     },
     "regional_tag": "全国",
     "food_category": "水果",
-    "counter_strategy": "GI高但GL低(含水量大)；限量200g；不榨汁",
+    "counter_strategy": "GI高但GL低(含水量大)；限量200g；不榨汁；地域搭配: 搭配牛油果(全国·GI15)；搭配柠檬(全国·GI20)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -6558,7 +6558,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "水果",
-    "counter_strategy": "GI极高！脱水浓缩糖分；严格限量3颗以内",
+    "counter_strategy": "GI极高！脱水浓缩糖分；严格限量3颗以内；地域搭配: 搭配无花果(鲜)(新疆·GI35)；搭配葡萄(新疆·GI46)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -7793,7 +7793,7 @@
     },
     "regional_tag": "全国",
     "food_category": "坚果",
-    "counter_strategy": "坚果中罕见的高碳水品种；当主食替代而非零食；限量5-6颗",
+    "counter_strategy": "坚果中罕见的高碳水品种；当主食替代而非零食；限量5-6颗；地域搭配: 搭配夏威夷果(全国·GI10)；搭配碧根果(全国·GI10)",
     "data_source": "杨月欣等GI实测研究"
   },
   {
@@ -7921,7 +7921,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "芝麻脂肪缓冲；选无糖或少糖版",
+    "counter_strategy": "芝麻脂肪缓冲；选无糖或少糖版；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -7942,7 +7942,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "绿豆缓冲部分GI；选低糖版",
+    "counter_strategy": "绿豆缓冲部分GI；选低糖版；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -7963,7 +7963,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "芒果+西米+椰奶；选少糖版；限小杯",
+    "counter_strategy": "芒果+西米+椰奶；选少糖版；限小杯；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -7984,7 +7984,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "中GI(脂肪缓冲)；选小杯原味",
+    "counter_strategy": "中GI(脂肪缓冲)；选小杯原味；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -8006,7 +8006,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "甜品",
-    "counter_strategy": "坚果脂肪蛋白缓冲；糖分仍高限量小块",
+    "counter_strategy": "坚果脂肪蛋白缓冲；糖分仍高限量小块；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算"
   },
   {
@@ -8027,7 +8027,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "酥皮脂肪缓冲；限量1个",
+    "counter_strategy": "酥皮脂肪缓冲；限量1个；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8049,7 +8049,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "中GI但高糖；限量小块",
+    "counter_strategy": "中GI但高糖；限量小块；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -8071,7 +8071,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "高GI；限量1个",
+    "counter_strategy": "高GI；限量1个；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算(酥皮+蛋液+糖)"
   },
   {
@@ -8092,7 +8092,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "淀粉+糖；限量小块品尝",
+    "counter_strategy": "淀粉+糖；限量小块品尝；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8114,7 +8114,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "冬瓜蓉+糖+酥皮；限量半个",
+    "counter_strategy": "冬瓜蓉+糖+酥皮；限量半个；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8135,7 +8135,7 @@
     },
     "regional_tag": "杭州",
     "food_category": "甜品",
-    "counter_strategy": "酥皮+馅料；脂肪缓冲部分GI",
+    "counter_strategy": "酥皮+馅料；脂肪缓冲部分GI；地域搭配: 搭配东坡肉(杭州·GI5)；搭配竹笋(江浙·GI10)",
     "data_source": "估算"
   },
   {
@@ -8156,7 +8156,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "高GI但油脂缓冲；限量1个",
+    "counter_strategy": "高GI但油脂缓冲；限量1个；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8178,7 +8178,7 @@
     },
     "regional_tag": "天津",
     "food_category": "甜品",
-    "counter_strategy": "油炸面点+糖；限量小段",
+    "counter_strategy": "油炸面点+糖；限量小段；地域搭配: 搭配烤鸭(北京)(北京·GI0)；搭配豌豆黄(北京·GI55)",
     "data_source": "估算"
   },
   {
@@ -8199,7 +8199,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "面皮+果酱糖分高；限量1个",
+    "counter_strategy": "面皮+果酱糖分高；限量1个；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8221,7 +8221,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "面糊+糖+鸡蛋；限量半份",
+    "counter_strategy": "面糊+糖+鸡蛋；限量半份；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8242,7 +8242,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "甜品",
-    "counter_strategy": "红豆缓冲部分GI；不加糖或少糖",
+    "counter_strategy": "红豆缓冲部分GI；不加糖或少糖；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8263,7 +8263,7 @@
     },
     "regional_tag": "北京",
     "food_category": "甜品",
-    "counter_strategy": "单个小巧GL不高；限量2-3个",
+    "counter_strategy": "单个小巧GL不高；限量2-3个；地域搭配: 搭配豌豆黄(北京·GI55)；搭配烤鸭(北京)(北京·GI0)",
     "data_source": "估算"
   },
   {
@@ -8284,7 +8284,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "松软蛋糕GI高；限量小块",
+    "counter_strategy": "松软蛋糕GI高；限量小块；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8305,7 +8305,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "甜品",
-    "counter_strategy": "高GI糯米制品+糖；限量小块品尝",
+    "counter_strategy": "高GI糯米制品+糖；限量小块品尝；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8326,7 +8326,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "网红甜品高糖高碳水；偶尔品尝限小份",
+    "counter_strategy": "网红甜品高糖高碳水；偶尔品尝限小份；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8347,7 +8347,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "甜品",
-    "counter_strategy": "藕+糯米+糖三重碳水；限量小段品尝",
+    "counter_strategy": "藕+糯米+糖三重碳水；限量小段品尝；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8369,7 +8369,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "甜品",
-    "counter_strategy": "糯米皮高GI；选咸蛋黄肉松馅比豆沙馅好",
+    "counter_strategy": "糯米皮高GI；选咸蛋黄肉松馅比豆沙馅好；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8390,7 +8390,7 @@
     },
     "regional_tag": "四川",
     "food_category": "甜品",
-    "counter_strategy": "糯米皮+糖馅高GI；限量3-4个",
+    "counter_strategy": "糯米皮+糖馅高GI；限量3-4个；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -8411,7 +8411,7 @@
     },
     "regional_tag": "杭州",
     "food_category": "甜品",
-    "counter_strategy": "糯米+糖高GI；限量品尝",
+    "counter_strategy": "糯米+糖高GI；限量品尝；地域搭配: 搭配东坡肉(杭州·GI5)；搭配竹笋(江浙·GI10)",
     "data_source": "估算"
   },
   {
@@ -8432,7 +8432,7 @@
     },
     "regional_tag": "上海",
     "food_category": "甜品",
-    "counter_strategy": "糯米+豆沙高GI；限量半条",
+    "counter_strategy": "糯米+豆沙高GI；限量半条；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8453,7 +8453,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "粘米粉+糖GI高；限量品尝",
+    "counter_strategy": "粘米粉+糖GI高；限量品尝；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -8474,7 +8474,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "糯米粉+南瓜+油炸；限量1个",
+    "counter_strategy": "糯米粉+南瓜+油炸；限量1个；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8496,7 +8496,7 @@
     },
     "regional_tag": "北京",
     "food_category": "甜品",
-    "counter_strategy": "糯米+豆沙+糖三重升糖；限量小块",
+    "counter_strategy": "糯米+豆沙+糖三重升糖；限量小块；地域搭配: 搭配豌豆黄(北京·GI55)；搭配烤鸭(北京)(北京·GI0)",
     "data_source": "估算"
   },
   {
@@ -8518,7 +8518,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "甜品",
-    "counter_strategy": "糯米圆子+发酵糖水双重升糖；严格限量",
+    "counter_strategy": "糯米圆子+发酵糖水双重升糖；严格限量；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -8539,7 +8539,7 @@
     },
     "regional_tag": "北京",
     "food_category": "甜品",
-    "counter_strategy": "糯米皮+馅料高GI；限量1个",
+    "counter_strategy": "糯米皮+馅料高GI；限量1个；地域搭配: 搭配豌豆黄(北京·GI55)；搭配烤鸭(北京)(北京·GI0)",
     "data_source": "估算"
   },
   {
@@ -8562,7 +8562,7 @@
     },
     "regional_tag": "广东",
     "food_category": "甜品",
-    "counter_strategy": "极高GI+GL；限量1/4个；搭配绿茶",
+    "counter_strategy": "极高GI+GL；限量1/4个；搭配绿茶；地域搭配: 搭配龟苓膏(广东·GI35)；搭配双皮奶(广东·GI55)",
     "data_source": "估算(莲蓉+糖+面皮)"
   },
   {
@@ -8584,7 +8584,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "糯米+糖+油炸；限量1个",
+    "counter_strategy": "糯米+糖+油炸；限量1个；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8606,7 +8606,7 @@
     },
     "regional_tag": "北京",
     "food_category": "甜品",
-    "counter_strategy": "冰糖壳GI极高；不建议食用",
+    "counter_strategy": "冰糖壳GI极高；不建议食用；地域搭配: 搭配豌豆黄(北京·GI55)；搭配烤鸭(北京)(北京·GI0)",
     "data_source": "估算(糖壳包裹)"
   },
   {
@@ -8628,7 +8628,7 @@
     },
     "regional_tag": "陕西",
     "food_category": "甜品",
-    "counter_strategy": "糯米+红枣+蜜枣极高GI；严格限量50g",
+    "counter_strategy": "糯米+红枣+蜜枣极高GI；严格限量50g；地域搭配: 搭配荞麦面(山西·GI54)；搭配百合(甘肃·GI45)",
     "data_source": "估算"
   },
   {
@@ -8650,7 +8650,7 @@
     },
     "regional_tag": "四川",
     "food_category": "甜品",
-    "counter_strategy": "糯米团+糖浆+黄豆粉；严格限量品尝",
+    "counter_strategy": "糯米团+糖浆+黄豆粉；严格限量品尝；地域搭配: 搭配钵钵鸡(四川·GI10)；搭配火锅(清汤底)(四川·GI30)",
     "data_source": "估算"
   },
   {
@@ -8671,7 +8671,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "糖浆包裹GI极高；限量",
+    "counter_strategy": "糖浆包裹GI极高；限量；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8692,7 +8692,7 @@
     },
     "regional_tag": "湖南",
     "food_category": "甜品",
-    "counter_strategy": "糯米+糖+油炸三重升糖；严格限1-2个",
+    "counter_strategy": "糯米+糖+油炸三重升糖；严格限1-2个；地域搭配: 搭配臭豆腐(湖南·GI15)；搭配腊肉(湖南·GI0)",
     "data_source": "估算"
   },
   {
@@ -8714,7 +8714,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "红薯+糖浆+油炸；GI极高；避免或限量2-3块",
+    "counter_strategy": "红薯+糖浆+油炸；GI极高；避免或限量2-3块；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8735,7 +8735,7 @@
     },
     "regional_tag": "全国",
     "food_category": "甜品",
-    "counter_strategy": "纯糖GI极高；避免",
+    "counter_strategy": "纯糖GI极高；避免；地域搭配: 搭配凉粉(仙草)(全国·GI15)；搭配杏仁露(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -8820,7 +8820,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "中GI(油炸缓冲)但高热量；严格限量",
+    "counter_strategy": "中GI(油炸缓冲)但高热量；严格限量；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -8841,7 +8841,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "绿豆馅缓冲；选低糖版",
+    "counter_strategy": "绿豆馅缓冲；选低糖版；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "估算"
   },
   {
@@ -8862,7 +8862,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "油脂缓冲部分GI；限量1-2块",
+    "counter_strategy": "油脂缓冲部分GI；限量1-2块；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "估算"
   },
   {
@@ -8883,7 +8883,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "GI高但GL低(每份体积大重量小)；选原味无糖",
+    "counter_strategy": "GI高但GL低(每份体积大重量小)；选原味无糖；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -8905,7 +8905,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "高GI精制碳水；搭配花生酱或奶酪",
+    "counter_strategy": "高GI精制碳水；搭配花生酱或奶酪；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配黑米饭(全国·GI55)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -8926,7 +8926,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "面条+糖浆+油炸高GI；严格限量",
+    "counter_strategy": "面条+糖浆+油炸高GI；严格限量；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "估算"
   },
   {
@@ -8947,7 +8947,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "糯米+糖+油炸；极高GI；避免",
+    "counter_strategy": "糯米+糖+油炸；极高GI；避免；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "估算"
   },
   {
@@ -8968,7 +8968,7 @@
     },
     "regional_tag": "全国",
     "food_category": "零食",
-    "counter_strategy": "膨化米+糖浆；GI极高；避免",
+    "counter_strategy": "膨化米+糖浆；GI极高；避免；地域搭配: 搭配巧克力(黑70%)(全国·GI22)；搭配饼干(全麦消化)(全国·GI55)",
     "data_source": "估算"
   },
   {
@@ -9251,7 +9251,7 @@
     },
     "regional_tag": "广东",
     "food_category": "饮料",
-    "counter_strategy": "含糖凉茶等同于含糖饮料；选无糖版",
+    "counter_strategy": "含糖凉茶等同于含糖饮料；选无糖版；地域搭配: 搭配擂茶(广东·GI30)；搭配腐皮卷(广东·GI55)",
     "data_source": "估算"
   },
   {
@@ -9273,7 +9273,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "天然不代表低GI；限量一小勺",
+    "counter_strategy": "天然不代表低GI；限量一小勺；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9296,7 +9296,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "纯糖液体吸收极快；改喝无糖可乐或气泡水",
+    "counter_strategy": "纯糖液体吸收极快；改喝无糖可乐或气泡水；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9318,7 +9318,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "中GI但GL低(每瓶碳水不多)；注意酒精代谢影响血糖",
+    "counter_strategy": "中GI但GL低(每瓶碳水不多)；注意酒精代谢影响血糖；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9339,7 +9339,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "中GI；比牛奶GI高；选无糖版",
+    "counter_strategy": "中GI；比牛奶GI高；选无糖版；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9361,7 +9361,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "高糖+珍珠(木薯淀粉)双重升糖；严格避免或选无糖去珍珠版",
+    "counter_strategy": "高糖+珍珠(木薯淀粉)双重升糖；严格避免或选无糖去珍珠版；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "估算(糖浆+木薯珍珠+奶)"
   },
   {
@@ -9384,7 +9384,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "发酵糖化GI高；限量小碗；搭配鸡蛋",
+    "counter_strategy": "发酵糖化GI高；限量小碗；搭配鸡蛋；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "估算"
   },
   {
@@ -9407,7 +9407,7 @@
     },
     "regional_tag": "全国",
     "food_category": "饮料",
-    "counter_strategy": "设计目的就是快速补糖；非运动时避免饮用",
+    "counter_strategy": "设计目的就是快速补糖；非运动时避免饮用；地域搭配: 搭配绿茶(无糖)(全国·GI0)；搭配黑咖啡(全国·GI0)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9540,7 +9540,7 @@
     },
     "regional_tag": "全国",
     "food_category": "调味品",
-    "counter_strategy": "中GI但纯碳水；减量使用或用代糖替代",
+    "counter_strategy": "中GI但纯碳水；减量使用或用代糖替代；地域搭配: 搭配醋(全国·GI0)；搭配芝麻酱(全国·GI10)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9561,7 +9561,7 @@
     },
     "regional_tag": "全国",
     "food_category": "调味品",
-    "counter_strategy": "GI基准值=100；仅用于低血糖急救",
+    "counter_strategy": "GI基准值=100；仅用于低血糖急救；地域搭配: 搭配醋(全国·GI0)；搭配芝麻酱(全国·GI10)",
     "data_source": "悉尼大学GI数据库(定义基准)"
   },
   {
@@ -9583,7 +9583,7 @@
     },
     "regional_tag": "全国",
     "food_category": "调味品",
-    "counter_strategy": "GI最高的糖类之一；严格避免",
+    "counter_strategy": "GI最高的糖类之一；严格避免；地域搭配: 搭配醋(全国·GI0)；搭配芝麻酱(全国·GI10)",
     "data_source": "悉尼大学GI数据库"
   },
   {
@@ -9711,7 +9711,7 @@
     },
     "regional_tag": "福建",
     "food_category": "混合",
-    "counter_strategy": "薯粉浆GI中等；海蛎蛋白缓冲；搭配蔬菜",
+    "counter_strategy": "薯粉浆GI中等；海蛎蛋白缓冲；搭配蔬菜；地域搭配: 搭配肉燕(福建·GI55)；搭配鱼丸(福建·GI10)",
     "data_source": "估算"
   },
   {
@@ -9733,7 +9733,7 @@
     },
     "regional_tag": "新疆",
     "food_category": "混合",
-    "counter_strategy": "鸡肉蛋白+土豆+皮带面混合；蛋白缓冲良好；多吃肉少吃面",
+    "counter_strategy": "鸡肉蛋白+土豆+皮带面混合；蛋白缓冲良好；多吃肉少吃面；地域搭配: 搭配鹰嘴豆(新疆·GI28)；搭配无花果(鲜)(新疆·GI35)",
     "data_source": "估算"
   },
   {
@@ -9755,7 +9755,7 @@
     },
     "regional_tag": "北京",
     "food_category": "混合",
-    "counter_strategy": "内脏蛋白丰富缓冲；火烧面饼控量",
+    "counter_strategy": "内脏蛋白丰富缓冲；火烧面饼控量；地域搭配: 搭配炒肝(北京·GI45)；搭配烤鸭(北京)(北京·GI0)",
     "data_source": "估算"
   },
   {
@@ -10266,7 +10266,7 @@
     },
     "regional_tag": "全国",
     "food_category": "杂粮",
-    "counter_strategy": "比精白米糕低；仍需控量",
+    "counter_strategy": "比精白米糕低；仍需控量；地域搭配: 搭配大麦(全国·GI28)；搭配燕麦(整粒)(全国·GI42)",
     "data_source": "估算"
   },
   {
@@ -10287,7 +10287,7 @@
     },
     "regional_tag": "山西",
     "food_category": "面点",
-    "counter_strategy": "比白面馒头低GI；搭配菜和蛋白",
+    "counter_strategy": "比白面馒头低GI；搭配菜和蛋白；地域搭配: 搭配荞麦面(山西·GI54)；搭配豆腐脑(咸)(北方·GI18)",
     "data_source": "估算"
   },
   {
@@ -10308,7 +10308,7 @@
     },
     "regional_tag": "北方",
     "food_category": "面点",
-    "counter_strategy": "比白面馒头低；玉米纤维缓冲",
+    "counter_strategy": "比白面馒头低；玉米纤维缓冲；地域搭配: 搭配豆腐脑(咸)(北方·GI18)；搭配白菜(北方·GI10)",
     "data_source": "估算"
   },
   {
@@ -10479,7 +10479,7 @@
     },
     "regional_tag": "全国",
     "food_category": "面点",
-    "counter_strategy": "层状酥油面饼；加鸡蛋增加蛋白",
+    "counter_strategy": "层状酥油面饼；加鸡蛋增加蛋白；地域搭配: 搭配面包(杂粮)(全国·GI49)；搭配黑麦面包(全国·GI50)",
     "data_source": "估算"
   },
   {
@@ -10501,7 +10501,7 @@
     },
     "regional_tag": "广东",
     "food_category": "面点",
-    "counter_strategy": "虾仁蛋白缓冲好；比糯米烧卖GI低",
+    "counter_strategy": "虾仁蛋白缓冲好；比糯米烧卖GI低；地域搭配: 搭配腐皮卷(广东·GI55)；搭配菜心(广东·GI10)",
     "data_source": "估算"
   },
   {
@@ -10523,7 +10523,7 @@
     },
     "regional_tag": "江浙",
     "food_category": "面点",
-    "counter_strategy": "汤汁+肉馅蛋白缓冲；蘸醋食用",
+    "counter_strategy": "汤汁+肉馅蛋白缓冲；蘸醋食用；地域搭配: 搭配竹笋(江浙·GI10)；搭配枇杷(江浙·GI35)",
     "data_source": "估算"
   },
   {
@@ -10545,7 +10545,7 @@
     },
     "regional_tag": "贵州",
     "food_category": "米制品",
-    "counter_strategy": "牛肉蛋白丰富缓冲；加酸菜和辣椒",
+    "counter_strategy": "牛肉蛋白丰富缓冲；加酸菜和辣椒；地域搭配: 搭配丝娃娃(贵州·GI55)；搭配恋爱豆腐果(贵州·GI15)",
     "data_source": "估算"
   },
   {
@@ -10566,7 +10566,7 @@
     },
     "regional_tag": "湖南",
     "food_category": "米制品",
-    "counter_strategy": "高GI；选丰富码子(浇头)蛋白缓冲",
+    "counter_strategy": "高GI；选丰富码子(浇头)蛋白缓冲；地域搭配: 搭配臭豆腐(湖南·GI15)；搭配腊肉(湖南·GI0)",
     "data_source": "估算"
   },
   {
@@ -10866,5 +10866,665 @@
     "food_category": "肉类",
     "counter_strategy": "零GI最佳蛋白来源；蘸酱油+芥末",
     "data_source": "中国食物成分表(第6版)"
+  },
+  {
+    "food_name": "旺仔牛奶",
+    "aliases": [
+      "旺仔",
+      "旺仔复原乳",
+      "Want Want milk"
+    ],
+    "gi_value": 65,
+    "gi_level": "中",
+    "gl_per_serving": 17,
+    "serving_size_g": 245,
+    "macro": {
+      "carb_g": 26,
+      "protein_g": 4,
+      "fat_g": 5,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "含糖调味乳，GI中偏高；建议换成纯牛奶(GI27)或无糖酸奶(GI20)",
+    "data_source": "估算(复原乳+白砂糖配方)"
+  },
+  {
+    "food_name": "养乐多",
+    "aliases": [
+      "益力多",
+      "Yakult",
+      "乳酸菌饮料"
+    ],
+    "gi_value": 46,
+    "gi_level": "低",
+    "gl_per_serving": 8,
+    "serving_size_g": 100,
+    "macro": {
+      "carb_g": 17,
+      "protein_g": 1,
+      "fat_g": 0,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "虽GI偏低但含糖量高；每瓶仅100ml，注意不要多瓶饮用",
+    "data_source": "估算(乳酸菌饮料+白砂糖)"
+  },
+  {
+    "food_name": "可口可乐",
+    "aliases": [
+      "可乐",
+      "Coca-Cola",
+      "Coke",
+      "百事可乐"
+    ],
+    "gi_value": 63,
+    "gi_level": "中",
+    "gl_per_serving": 16,
+    "serving_size_g": 330,
+    "macro": {
+      "carb_g": 35,
+      "protein_g": 0,
+      "fat_g": 0,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "纯糖饮料，零营养缓冲；建议换成无糖版或气泡水",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "雪碧",
+    "aliases": [
+      "Sprite",
+      "柠檬味汽水"
+    ],
+    "gi_value": 63,
+    "gi_level": "中",
+    "gl_per_serving": 16,
+    "serving_size_g": 330,
+    "macro": {
+      "carb_g": 33,
+      "protein_g": 0,
+      "fat_g": 0,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "纯糖饮料；建议换成无糖版或柠檬水",
+    "data_source": "估算(同可乐类碳酸饮料)"
+  },
+  {
+    "food_name": "康师傅红烧牛肉面",
+    "aliases": [
+      "方便面",
+      "泡面",
+      "instant noodles",
+      "康师傅"
+    ],
+    "gi_value": 73,
+    "gi_level": "高",
+    "gl_per_serving": 33,
+    "serving_size_g": 100,
+    "macro": {
+      "carb_g": 45,
+      "protein_g": 8,
+      "fat_g": 18,
+      "fiber_g": 1
+    },
+    "regional_tag": "全国",
+    "food_category": "面食",
+    "counter_strategy": "油炸面饼GI高+调料包钠高；加个鸡蛋+蔬菜缓冲",
+    "data_source": "估算(油炸面饼+调料)"
+  },
+  {
+    "food_name": "星巴克拿铁",
+    "aliases": [
+      "拿铁",
+      "latte",
+      "咖啡拿铁"
+    ],
+    "gi_value": 27,
+    "gi_level": "低",
+    "gl_per_serving": 4,
+    "serving_size_g": 350,
+    "macro": {
+      "carb_g": 15,
+      "protein_g": 8,
+      "fat_g": 7,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "无糖拿铁GI低(牛奶+咖啡)；不加糖浆；蛋白脂肪双缓冲",
+    "data_source": "估算(全脂牛奶+浓缩咖啡)"
+  },
+  {
+    "food_name": "红牛",
+    "aliases": [
+      "Red Bull",
+      "功能饮料",
+      "能量饮料"
+    ],
+    "gi_value": 72,
+    "gi_level": "高",
+    "gl_per_serving": 19,
+    "serving_size_g": 250,
+    "macro": {
+      "carb_g": 28,
+      "protein_g": 0,
+      "fat_g": 0,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "高糖+咖啡因双重刺激；建议换成无糖版或黑咖啡",
+    "data_source": "估算(蔗糖+葡萄糖配方)"
+  },
+  {
+    "food_name": "蛋糕(奶油)",
+    "aliases": [
+      "生日蛋糕",
+      "奶油蛋糕",
+      "cream cake"
+    ],
+    "gi_value": 73,
+    "gi_level": "高",
+    "gl_per_serving": 22,
+    "serving_size_g": 80,
+    "macro": {
+      "carb_g": 30,
+      "protein_g": 4,
+      "fat_g": 15,
+      "fiber_g": 0.5
+    },
+    "regional_tag": "全国",
+    "food_category": "甜品",
+    "counter_strategy": "面粉+糖+奶油三重升糖；限量小块；餐后散步30分钟",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "冰淇淋",
+    "aliases": [
+      "雪糕",
+      "冰激凌",
+      "ice cream",
+      "梦龙",
+      "哈根达斯"
+    ],
+    "gi_value": 62,
+    "gi_level": "中",
+    "gl_per_serving": 10,
+    "serving_size_g": 80,
+    "macro": {
+      "carb_g": 16,
+      "protein_g": 3,
+      "fat_g": 8,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "甜品",
+    "counter_strategy": "脂肪缓冲降低了部分GI；但高热量高糖；限量1-2球",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "AD钙奶",
+    "aliases": [
+      "娃哈哈AD钙奶",
+      "哇哈哈",
+      "AD calcium milk"
+    ],
+    "gi_value": 60,
+    "gi_level": "中",
+    "gl_per_serving": 14,
+    "serving_size_g": 220,
+    "macro": {
+      "carb_g": 24,
+      "protein_g": 2,
+      "fat_g": 1,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "含糖乳饮料；建议换成纯牛奶或无糖酸奶",
+    "data_source": "估算(含糖乳饮料)"
+  },
+  {
+    "food_name": "营养快线",
+    "aliases": [
+      "娃哈哈营养快线"
+    ],
+    "gi_value": 62,
+    "gi_level": "中",
+    "gl_per_serving": 16,
+    "serving_size_g": 280,
+    "macro": {
+      "carb_g": 28,
+      "protein_g": 2,
+      "fat_g": 2,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "含糖乳饮料，非真正牛奶；建议换成纯牛奶",
+    "data_source": "估算(含糖乳饮料)"
+  },
+  {
+    "food_name": "肯德基炸鸡",
+    "aliases": [
+      "KFC",
+      "炸鸡",
+      "吮指原味鸡",
+      "fried chicken"
+    ],
+    "gi_value": 0,
+    "gi_level": "低",
+    "gl_per_serving": 3,
+    "serving_size_g": 150,
+    "macro": {
+      "carb_g": 12,
+      "protein_g": 25,
+      "fat_g": 18,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "肉类",
+    "counter_strategy": "裹粉炸鸡碳水不高但脂肪极高；去皮可降低30%热量",
+    "data_source": "估算(裹粉油炸鸡肉)"
+  },
+  {
+    "food_name": "麦当劳巨无霸",
+    "aliases": [
+      "巨无霸",
+      "Big Mac",
+      "汉堡",
+      "麦当劳"
+    ],
+    "gi_value": 66,
+    "gi_level": "中",
+    "gl_per_serving": 30,
+    "serving_size_g": 215,
+    "macro": {
+      "carb_g": 46,
+      "protein_g": 26,
+      "fat_g": 28,
+      "fiber_g": 3
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "白面包胚GI高(61)+糖酱料叠加，总GL高达30；牛肉蛋白脂肪缓冲了部分GI但碳水总量大；配沙拉代替薯条，不喝含糖饮料",
+    "data_source": "glycemic-index.net估算(GI66) + 麦当劳官网营养表"
+  },
+  {
+    "food_name": "薯条",
+    "aliases": [
+      "French fries",
+      "麦当劳薯条",
+      "炸薯条"
+    ],
+    "gi_value": 75,
+    "gi_level": "高",
+    "gl_per_serving": 22,
+    "serving_size_g": 100,
+    "macro": {
+      "carb_g": 29,
+      "protein_g": 3,
+      "fat_g": 15,
+      "fiber_g": 2
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "油炸土豆GI极高；高温使淀粉高度糊化；严格限量",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "蜜雪冰城柠檬水",
+    "aliases": [
+      "蜜雪冰城",
+      "柠檬水"
+    ],
+    "gi_value": 58,
+    "gi_level": "中",
+    "gl_per_serving": 14,
+    "serving_size_g": 500,
+    "macro": {
+      "carb_g": 30,
+      "protein_g": 0,
+      "fat_g": 0,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "饮料",
+    "counter_strategy": "糖浆+柠檬汁；选无糖版可大幅降低GI",
+    "data_source": "估算(糖浆+柠檬汁)"
+  },
+  {
+    "food_name": "咖喱饭",
+    "aliases": [
+      "咖喱鸡饭",
+      "日式咖喱饭",
+      "curry rice",
+      "炸鸡咖喱饭"
+    ],
+    "gi_value": 72,
+    "gi_level": "高",
+    "gl_per_serving": 38,
+    "serving_size_g": 350,
+    "macro": {
+      "carb_g": 53,
+      "protein_g": 15,
+      "fat_g": 12,
+      "fiber_g": 2
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "白米饭GI高+咖喱酱含糖；换糙米饭可降GI；多加蔬菜",
+    "data_source": "估算(白米饭GI83+咖喱酱+炸鸡/肉类缓冲)"
+  },
+  {
+    "food_name": "黄焖鸡米饭",
+    "aliases": [
+      "黄焖鸡",
+      "braised chicken rice"
+    ],
+    "gi_value": 70,
+    "gi_level": "高",
+    "gl_per_serving": 35,
+    "serving_size_g": 400,
+    "macro": {
+      "carb_g": 50,
+      "protein_g": 20,
+      "fat_g": 10,
+      "fiber_g": 1.5
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "鸡肉蛋白缓冲；但白米饭量大GI高；减米饭量加蔬菜",
+    "data_source": "估算(白米饭+红烧鸡块)"
+  },
+  {
+    "food_name": "蛋炒饭",
+    "aliases": [
+      "炒饭",
+      "扬州炒饭",
+      "fried rice"
+    ],
+    "gi_value": 68,
+    "gi_level": "中",
+    "gl_per_serving": 32,
+    "serving_size_g": 300,
+    "macro": {
+      "carb_g": 47,
+      "protein_g": 12,
+      "fat_g": 15,
+      "fiber_g": 1
+    },
+    "regional_tag": "全国",
+    "food_category": "米制品",
+    "counter_strategy": "炒制后部分淀粉回生降GI；鸡蛋油脂缓冲；但总碳水仍高",
+    "data_source": "估算(炒制白米饭+鸡蛋+油)"
+  },
+  {
+    "food_name": "鱼香肉丝盖饭",
+    "aliases": [
+      "盖浇饭",
+      "鱼香肉丝饭"
+    ],
+    "gi_value": 72,
+    "gi_level": "高",
+    "gl_per_serving": 36,
+    "serving_size_g": 400,
+    "macro": {
+      "carb_g": 50,
+      "protein_g": 15,
+      "fat_g": 12,
+      "fiber_g": 2
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "酱汁含糖升GI；白米饭量大；减饭量，多吃菜和肉",
+    "data_source": "估算(白米饭+糖醋酱汁+肉丝)"
+  },
+  {
+    "food_name": "卤肉饭",
+    "aliases": [
+      "台湾卤肉饭",
+      "braised pork rice"
+    ],
+    "gi_value": 72,
+    "gi_level": "高",
+    "gl_per_serving": 34,
+    "serving_size_g": 350,
+    "macro": {
+      "carb_g": 48,
+      "protein_g": 14,
+      "fat_g": 15,
+      "fiber_g": 1
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "卤汁含糖+白米饭双重升糖；五花肉脂肪部分缓冲；减饭量加青菜",
+    "data_source": "估算(白米饭+五花肉卤汁)"
+  },
+  {
+    "food_name": "沙县拌面",
+    "aliases": [
+      "沙县小吃拌面",
+      "花生酱拌面"
+    ],
+    "gi_value": 68,
+    "gi_level": "中",
+    "gl_per_serving": 30,
+    "serving_size_g": 200,
+    "macro": {
+      "carb_g": 44,
+      "protein_g": 8,
+      "fat_g": 8,
+      "fiber_g": 1.5
+    },
+    "regional_tag": "福建",
+    "food_category": "面食",
+    "counter_strategy": "花生酱脂肪蛋白缓冲部分GI；搭配蒸饺增加蛋白质",
+    "data_source": "估算(碱面+花生酱+酱油)"
+  },
+  {
+    "food_name": "烧烤(综合)",
+    "aliases": [
+      "撸串",
+      "BBQ",
+      "烤肉"
+    ],
+    "gi_value": 0,
+    "gi_level": "低",
+    "gl_per_serving": 2,
+    "serving_size_g": 200,
+    "macro": {
+      "carb_g": 5,
+      "protein_g": 30,
+      "fat_g": 20,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "肉类",
+    "counter_strategy": "纯肉串GI极低；但高钠高脂；注意不配啤酒和馒头",
+    "data_source": "估算(烤肉类为主)"
+  },
+  {
+    "food_name": "披萨",
+    "aliases": [
+      "pizza",
+      "必胜客",
+      "意式披萨"
+    ],
+    "gi_value": 80,
+    "gi_level": "高",
+    "gl_per_serving": 28,
+    "serving_size_g": 150,
+    "macro": {
+      "carb_g": 35,
+      "protein_g": 14,
+      "fat_g": 12,
+      "fiber_g": 2
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "面饼GI极高；奶酪蛋白脂肪缓冲部分；限量1-2片配沙拉",
+    "data_source": "悉尼大学GI数据库(Pizza Hut类)"
+  },
+  {
+    "food_name": "炒河粉",
+    "aliases": [
+      "干炒牛河",
+      "河粉",
+      "fried rice noodles"
+    ],
+    "gi_value": 70,
+    "gi_level": "高",
+    "gl_per_serving": 30,
+    "serving_size_g": 300,
+    "macro": {
+      "carb_g": 43,
+      "protein_g": 10,
+      "fat_g": 12,
+      "fiber_g": 1
+    },
+    "regional_tag": "广东",
+    "food_category": "面食",
+    "counter_strategy": "米浆制品GI高；牛肉豆芽缓冲部分；油脂量大注意热量",
+    "data_source": "估算(米粉+牛肉+油炒)"
+  },
+  {
+    "food_name": "小龙虾",
+    "aliases": [
+      "麻辣小龙虾",
+      "蒜蓉小龙虾",
+      "crayfish"
+    ],
+    "gi_value": 0,
+    "gi_level": "低",
+    "gl_per_serving": 0,
+    "serving_size_g": 300,
+    "macro": {
+      "carb_g": 2,
+      "protein_g": 25,
+      "fat_g": 5,
+      "fiber_g": 0
+    },
+    "regional_tag": "湖北",
+    "food_category": "肉类",
+    "counter_strategy": "纯蛋白GI为零；但配的啤酒和米饭才是升糖主力",
+    "data_source": "估算(虾肉为主)"
+  },
+  {
+    "food_name": "寿司",
+    "aliases": [
+      "手握寿司",
+      "sushi",
+      "日料寿司"
+    ],
+    "gi_value": 55,
+    "gi_level": "低",
+    "gl_per_serving": 18,
+    "serving_size_g": 200,
+    "macro": {
+      "carb_g": 33,
+      "protein_g": 12,
+      "fat_g": 5,
+      "fiber_g": 1
+    },
+    "regional_tag": "全国",
+    "food_category": "快餐",
+    "counter_strategy": "醋饭降低了部分GI；生鱼片蛋白缓冲；控制个数(6-8个)",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "面条",
+    "aliases": [
+      "白面条",
+      "挂面",
+      "noodles",
+      "面"
+    ],
+    "gi_value": 81,
+    "gi_level": "高",
+    "gl_per_serving": 36,
+    "serving_size_g": 200,
+    "macro": {
+      "carb_g": 44,
+      "protein_g": 8,
+      "fat_g": 1,
+      "fiber_g": 1.5
+    },
+    "regional_tag": "全国",
+    "food_category": "面食",
+    "counter_strategy": "白面条GI高；选全麦面或荞麦面可降GI；搭配蛋白蔬菜",
+    "data_source": "悉尼大学GI数据库"
+  },
+  {
+    "food_name": "鸡排",
+    "aliases": [
+      "炸鸡排",
+      "chicken cutlet"
+    ],
+    "gi_value": 5,
+    "gi_level": "低",
+    "gl_per_serving": 2,
+    "serving_size_g": 150,
+    "macro": {
+      "carb_g": 10,
+      "protein_g": 25,
+      "fat_g": 15,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "肉类",
+    "counter_strategy": "裹粉炸鸡排碳水不高但脂肪高；去皮减少热量",
+    "data_source": "估算(裹粉油炸鸡胸肉)"
+  },
+  {
+    "food_name": "白粥",
+    "aliases": [
+      "稀饭",
+      "白米粥",
+      "rice porridge"
+    ],
+    "gi_value": 89,
+    "gi_level": "高",
+    "gl_per_serving": 22,
+    "serving_size_g": 300,
+    "macro": {
+      "carb_g": 25,
+      "protein_g": 3,
+      "fat_g": 0.5,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "米制品",
+    "counter_strategy": "米粥完全糊化GI极高；搭配鸡蛋蔬菜降低整体GI；换杂粮粥更佳",
+    "data_source": "中国食物成分表+GI实测"
+  },
+  {
+    "food_name": "虾(白灼)",
+    "aliases": [
+      "虾",
+      "白灼虾",
+      "水煮虾",
+      "shrimp"
+    ],
+    "gi_value": 0,
+    "gi_level": "低",
+    "gl_per_serving": 0,
+    "serving_size_g": 150,
+    "macro": {
+      "carb_g": 0,
+      "protein_g": 24,
+      "fat_g": 1,
+      "fiber_g": 0
+    },
+    "regional_tag": "全国",
+    "food_category": "肉类",
+    "counter_strategy": "纯蛋白零GI；优质蛋白来源；可作为高GI主食的对冲搭配",
+    "data_source": "中国食物成分表"
   }
 ]
