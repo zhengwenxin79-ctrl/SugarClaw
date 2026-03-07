@@ -1,0 +1,85 @@
+{
+  "calibration_source": "Shanghai_T1DM_T2DM_CGM_Dataset",
+  "calibration_date": "2026-03-06",
+  "dataset_type": "all",
+  "data_stats": {
+    "files": 125,
+    "cgm_points": 128157,
+    "cgm_cbg_pairs": 4019,
+    "stable_segments": 44437,
+    "postmeal_segments": 3462,
+    "postinsulin_segments": 747
+  },
+  "kf_params": {
+    "process_noise_scale": 0.008,
+    "measurement_noise_R": 0.5,
+    "description": "标准 KF，用于稳态/睡眠期"
+  },
+  "ekf_params": {
+    "process_noise_scale": 0.008552,
+    "measurement_noise_R": 5.042,
+    "insulin_tau_minutes": 77.0,
+    "isf_mmol_per_unit": 0.73,
+    "description": "EKF，用于胰岛素注射后 (人群基线; 个人值由 user_manager.py --calibrate-isf 覆写)"
+  },
+  "ukf_params": {
+    "process_noise_scale": 0.012828,
+    "measurement_noise_R": 5.042,
+    "carb_t_peak_minutes": 45.0,
+    "carb_t_decay_minutes": 60.0,
+    "description": "UKF，用于进食后"
+  },
+  "exercise_params": {
+    "exercise_tau_minutes": 15.0,
+    "exercise_drop_rate": 0.5,
+    "post_exercise_rebound": 0.3,
+    "description": "运动模式参数: tau=有氧代谢启动时间常数, drop_rate=中等强度下每15分钟降糖量(mmol/L), rebound=运动后肝糖原释放反弹量(mmol/L)"
+  },
+  "alert_thresholds": {
+    "hypo_warning": 3.9,
+    "hypo_critical": 3.0,
+    "hyper_warning": 10.0,
+    "hyper_critical": 13.9
+  },
+  "comparison_with_defaults": {
+    "measurement_noise_R": {
+      "default": 0.25,
+      "calibrated": 5.042
+    },
+    "process_noise_Q": {
+      "default": 0.01,
+      "calibrated": 0.004276
+    },
+    "insulin_tau": {
+      "default": 55.0,
+      "calibrated": 77.0
+    },
+    "carb_t_peak": {
+      "default": 35.0,
+      "calibrated": 45.0
+    },
+    "carb_t_decay": {
+      "default": 90.0,
+      "calibrated": 60.0
+    },
+    "isf": {
+      "default": 2.5,
+      "calibrated": 0.73
+    }
+  },
+  "optimization": {
+    "method": "Hybrid",
+    "params": {
+      "type": "Hybrid",
+      "Q": 0.008,
+      "R": 0.5,
+      "ridge_alpha": 0.1,
+      "blend": 0.3,
+      "adapt": true
+    },
+    "clarke_a_pct": 95.68,
+    "rmse_mgdl": 12.35,
+    "trained_on": "5314 windows from GlucoBench",
+    "date": "2026-03-07"
+  }
+}

@@ -1,0 +1,1923 @@
+id,food_name,gi_value,gi_sem,gl_value,gi_level,category,country
+1,"(Bakery School, Herk-de-Stad, Belgium)",20,4,6,Low,Bakery Products,Belgium
+2,"honeycomb, light (Sara Lee Bakery, Australia)",31,5,9,Low,Bakery Products,Australia
+3,"Carrot cake, prepared with wheat flour and coconut flour",37,2,11,Low,Bakery Products,Philippines
+4,"(Betty Crocker, General Mills Inc., Minneapolis, USA)",38,3,11,Low,Bakery Products,USA
+5,"Pound cake 0% (Bimbo S.A de C.V, Mexico)",38,5,11,Low,Bakery Products,Mexico
+6,production,39,6,12,Low,Bakery Products,Spain
+7,"(Loblaw Brands Limited, Canada)",41,3,12,Low,Bakery Products,Canada
+8,"(Betty Crocker, General Mills Inc., Minneapolis, USA)",42,4,13,Low,Bakery Products,USA
+9,"Shaer AG/SPA, Italy)8",42,6,13,Low,Bakery Products,Italy
+10,Chocolate mudcake,43,4,13,Low,Bakery Products,Australia
+11,Cranberry Raisin muffin,43,3,13,Low,Bakery Products,Australia
+12,HemoCue,43,4,13,Low,Bakery Products,Philippines
+13,"all'albicocca, Italy)6",44,4,13,Low,Bakery Products,Italy
+14,"Croissant, all butter (Coles Supermarkets Pty Ltd, Australia)",45,6,14,Low,Bakery Products,Australia
+15,production,45,3,14,Low,Bakery Products,Philippines
+16,"Double chocolate muffin (Sara Lee Bakery, Australia)",46,4,14,Low,Bakery Products,Australia
+17,"Pancakes, prepared with wheat flour and coconut flour",46,2,14,Low,Bakery Products,Philippines
+18,"Bianco, Barilla, Italy)6",47,6,14,Low,Bakery Products,Italy
+19,"Pastry, puff, with wheat flour and sugar (Nastrine, Italy)6",47,6,14,Low,Bakery Products,Italy
+20,"Menu™ (Loblaw Brands Limited, Canada)",48,6,14,Low,Bakery Products,Canada
+21,"strawberries, banana and passionfruit pulp",49,5,15,Low,Bakery Products,Australia
+22,"Apple Blueberry muffin (Sara Lee Bakery, Australia)",49,4,15,Low,Bakery Products,Australia
+23,"(Loblaw Brands Limited, Canada)",50,4,15,Low,Bakery Products,Canada
+24,Australia),50,4,15,Low,Bakery Products,Australia
+25,"Blueberry muffin (Sara Lee Bakery, Australia)",50,3,15,Low,Bakery Products,Australia
+26,"Sweet bread, with chocolate chips (Pangoccioli, Italy)6",50,5,15,Low,Bakery Products,Italy
+27,"(Camille, Mulino Bianco, Barilla, Italy)",51,3,15,Low,Bakery Products,Italy
+28,"Chocolate chip muffin (Sara Lee Bakery, Australia)",52,6,16,Low,Bakery Products,Australia
+29,"(Loblaw Brands Limited, Canada)",52,3,16,Low,Bakery Products,Canada
+30,"Orograin Bakeries Manufacturing Inc, PA, USA)",52,4,16,Low,Bakery Products,USA
+31,Christmas fruit cake,53,3,16,Low,Bakery Products,Australia
+32,Chocolate butterscotch muffin,53,5,16,Low,Bakery Products,Australia
+33,"Apple, oat, sultana muffin",54,4,16,Low,Bakery Products,Australia
+34,Muffin made with oat flour,54,5,16,Low,Bakery Products,Singapore
+35,Muffin made with barley flour,55,5,17,Low,Bakery Products,Singapore
+36,"Ferrero, Italy)",56,6,17,Medium,Bakery Products,Italy
+37,"Pastry, puff (Pampas™, Australia)",56,5,17,Medium,Bakery Products,Australia
+38,"brioss, Ferrero, Italy)",57,5,17,Medium,Bakery Products,Italy
+39,"Menu™ (Loblaw Brands Limited, Canada)",57,7,17,Medium,Bakery Products,Canada
+40,"chocolate (Kinder Délice, Italy)6",58,8,17,Medium,Bakery Products,Italy
+41,"Fruit mince pies, shortcrust pastry case filled with dried fruit",58,6,17,Medium,Bakery Products,Australia
+42,"Menu™ (Loblaw Brands Limited, Canada)",58,7,17,Medium,Bakery Products,Canada
+43,"Bakeries, Chatswood, Australia)",59,7,18,Medium,Bakery Products,Australia
+44,"Normal, 10",60,6,18,Medium,Bakery Products,Italy
+45,"with apricot jam (Brioss Albicocca ecereali, Ferrero Italy)6",60,7,18,Medium,Bakery Products,Italy
+46,"Apricot, coconut and honey muffin",60,4,18,Medium,Bakery Products,Australia
+47,"(Kinder Pan e Cioc Cacao, Kinder, Ferrero, Italy)",61,3,18,Medium,Bakery Products,Italy
+48,108.8 mL water),61,7,18,Medium,Bakery Products,Australia
+49,"Foods, Cheltenham, Australia)",61,6,18,Medium,Bakery Products,Australia
+50,coconut flour,62,4,19,Medium,Bakery Products,Philippines
+51,"Banana, oat and honey muffin",65,11,20,Medium,Bakery Products,Australia
+52,production,66,8,20,Medium,Bakery Products,Italy
+53,Italy),66,3,20,Medium,Bakery Products,Italy
+54,"Hot cross buns, spiced sweet bun with dried fruit",66,6,20,Medium,Bakery Products,Australia
+55,Italy),67,6,20,Medium,Bakery Products,Italy
+56,Croissant,67,2,20,Medium,Bakery Products,
+57,"Glendenning, Australia)",67,5,20,Medium,Bakery Products,Australia
+58,"Holdings, Tooronga, Australia)",73,12,22,High,Bakery Products,Australia
+59,Muffin made with corn flour,74,5,22,High,Bakery Products,Singapore
+60,Muffin made with wheat flour,74,8,22,High,Bakery Products,Singapore
+61,Doughnut,75,3,23,High,Bakery Products,
+62,"Pancakes, millet (100% foxtail millet flour)",76,11,23,High,Bakery Products,China
+63,Muffin made with rice flour,79,6,24,High,Bakery Products,Singapore
+64,"Pancakes, prepared from wheat flour",80,4,24,High,Bakery Products,China
+65,Gingerbread11,81,5,24,High,Bakery Products,France
+66,"flour (w/w, dry basis)",83,10,25,High,Bakery Products,China
+67,Australia),85,14,26,High,Bakery Products,Australia
+68,Gingerbread11,88,5,26,High,Bakery Products,France
+69,Gingerbread11,89,8,27,High,Bakery Products,France
+70,Australia),92,8,28,High,Bakery Products,Australia
+71,"(Orgran Natural Foods, Carrum Downs, Australia)",102,11,31,High,Bakery Products,Australia
+72,"(Thorpedo Foods, Australia)",11,2,3,Low,Beverages,Australia
+73,"Menu™ (Loblaw Brands Limited, Canada)",15,4,4,Low,Beverages,Canada
+74,"Foods, Australia)",16,4,4,Low,Beverages,Australia
+75,"UHT (Aussie Bodies Pty Ltd, Australia)",24,3,6,Low,Beverages,Australia
+76,"Ltd, New Zealand), powder prepared with water",25,2,6,Low,Beverages,New Zealand
+77,"(Aussie Bodies Pty Ltd, Australia)",26,4,7,Low,Beverages,Australia
+78,"Goulburn Co-Operative Company Limited, Australia)",28,3,7,Low,Beverages,Australia
+79,"Menu™ (Loblaw Brands Limited, Canada)",28,3,7,Low,Beverages,Canada
+80,"Smoothie, banana",30,4,8,Low,Beverages,Australia
+81,Australia),30,3,8,Low,Beverages,Australia
+82,"Smoothie, Tropical, Devondale brand (Murray Goulburn CoOperative Company Limited, Australia)",31,4,8,Low,Beverages,Australia
+83,"Group Pty Ltd), prepared with water",32,4,8,Low,Beverages,Australia
+84,"(Australia Jersey Dairy Group Pty Ltd), prepared with water",32,4,8,Low,Beverages,Australia
+85,"Smoothie, mango",32,4,8,Low,Beverages,Australia
+86,"Smoothie, raspberry (Con Agra Inc, Omaha, USA)",33,9,8,Low,Beverages,USA
+87,mL water),33,4,8,Low,Beverages,USA
+88,"Foods, Australia)",34,3,9,Low,Beverages,Australia
+89,(Kellogg’s Australia),35,4,9,Low,Beverages,Australia
+90,"(Yakult, Dandenong, Australia)",36,6,9,Low,Beverages,Australia
+91,"Smoothie, mango and passionfruit (Innocent Ltd., UK)",36,5,9,Low,Beverages,UK
+92,prepared with water,36,3,9,Low,Beverages,Australia
+93,prepared with water,37,3,9,Low,Beverages,Australia
+94,"fructose) (Estathè deteinato limone, Ferrero, Italy)",38,3,10,Low,Beverages,Italy
+95,Kellogg‘s® Nutri-Grain Breakfast Fuel (Kellogg’s Australia),38,3,10,Low,Beverages,Australia
+96,"Goulburn Co-Operative Company Limited, Australia)",39,4,10,Low,Beverages,Australia
+97,"Smoothie, strawberry and banana (Innocent Ltd., UK)",39,4,10,Low,Beverages,UK
+98,"with fructose (So Natural Foods, Australia)",39,2,10,Low,Beverages,Australia
+99,"Menu™ (Loblaw Brands Limited, Canada)",40,5,10,Low,Beverages,Canada
+100,"(Nestlé, Australia)",41,4,10,Low,Beverages,Australia
+101,Australia),42,3,11,Low,Beverages,Australia
+102,"breakfast (Sanitarium Health Foods, Australia)",43,5,11,Low,Beverages,Australia
+103,"Menu™ (Loblaw Brands Limited, Canada)",44,5,11,Low,Beverages,Canada
+104,"Soup Company, Camden, USA)",44,3,11,Low,Beverages,USA
+105,"Health Foods, Australia)",46,3,12,Low,Beverages,Australia
+106,"breakfast (Sanitarium Health Foods, Australia)",46,5,12,Low,Beverages,Australia
+107,"Company, USA)",47,4,12,Low,Beverages,USA
+108,"Fruit drink, decreased GI variant (containing 8% isomaltose)",48,8,12,Low,Beverages,Belgium
+109,"Goulburn Co-Operative Company Limited, Australia)",49,3,12,Low,Beverages,Australia
+110,"Corporation (S) Private Ltd, Singapore)",50,5,13,Low,Beverages,Singapore
+111,with water,50,4,13,Low,Beverages,Australia
+112,Australia),51,3,13,Low,Beverages,Australia
+113,Yakult (Yakult Italia),51,4,13,Low,Beverages,Italy
+114,"mL water (GlaxoSmithKline Group, Australia)",52,5,13,Low,Beverages,Australia
+115,"Milo™ (Nestlé, Auckland, New Zealand) dissolved in water",52,5,13,Low,Beverages,New Zealand
+116,"Normal, 10",53,7,13,Low,Beverages,Australia
+117,"Nesquik™, chocolate (Nestlé, Australia), prepared with water",53,5,13,Low,Beverages,Australia
+118,"Schweppes, Sydney, Australia)",54,5,14,Low,Beverages,Australia
+119,"Milo™ (Nestlé, Australia) dissolved in water",55,3,14,Low,Beverages,Australia
+120,"Coconut Water, water of green coconut, Nudie™",55,3,14,Low,Beverages,Australia
+121,"Schweppes, Australia)",58,5,15,Medium,Beverages,Australia
+122,carbohydrate),58,3,15,Medium,Beverages,Australia
+123,"Company, Australia)",64,3,16,Medium,Beverages,Australia
+124,"Nesquik™, strawberry (Nestlé, Australia), prepared with",64,6,16,Medium,Beverages,Australia
+125,"Pty Ltd, Australia)",65,5,16,Medium,Beverages,Australia
+126,Fruit flavored beverage,67,5,17,Medium,Beverages,Australia
+127,"Pacific Health Laboratories, Parsippany, NJ, USA)",67,6,17,Medium,Beverages,USA
+128,HemoCue,68,5,17,Medium,Beverages,Italy
+129,"organic brown rice (Pure Harvest Coco Quench, Australia)",68,6,17,Medium,Beverages,Australia
+130,Australia),69,6,17,Medium,Beverages,Australia
+131,Italy),71,7,18,High,Beverages,Italy
+132,Finland),72,7,18,High,Beverages,Finland
+133,"Ferrero, Italy)",72,6,18,High,Beverages,Italy
+134,"Normal, 10",73,7,,High,Beverages,Australia
+135,"(F&N Foods Private Ltd, Singapore)",74,7,19,High,Beverages,Singapore
+136,"Foods Ltd, Australia)",79,8,20,High,Beverages,Australia
+137,production,80,6,8,High,Beverages,Finland
+138,"Fruit drink, increased GI variant (containing 8% sucrose)",86,14,22,High,Beverages,Belgium
+139,Republic,89,2,9,High,Beverages,
+140,"Natural Foods, Taren Point, Australia)",92,9,23,High,Beverages,Australia
+141,"Ltd, Finland)",119,10,12,High,Beverages,Finland
+142,"Lower Carb Bread (Herman Brot Pty Ltd, Australia)",24,3,4,Low,Breads,Australia
+143,"Protein Wraps (Herman Brot Pty Ltd, Australia)",27,3,4,Low,Breads,Australia
+144,"Bengal flour, psyllium husk powder and fenugreek powder",27,2,4,Low,Breads,India
+145,"HermanBurger Protein Bun (Herman Brot Pty Ltd, Australia)",31,4,5,Low,Breads,Australia
+146,Australia),34,4,5,Low,Breads,Australia
+147,"(Tip Top Bakeries, Australia)",36,4,5,Low,Breads,Australia
+148,min proving (low loaf volume),38,4,6,Low,Breads,UK
+149,"Life Bakery, Australia)",38,3,6,Low,Breads,Australia
+150,Australia),39,8,6,Low,Breads,Australia
+151,"Soft pretzel, soy11",39,6,6,Low,Breads,USA
+152,"White bread, gluten free (Country Life Bakery, Australia)",40,5,6,Low,Breads,Australia
+153,Greece,40,8,6,Low,Breads,
+154,"School, Herk-de-Stad, Belgium)",40,4,6,Low,Breads,Belgium
+155,Soy flour bread,40,6,6,Low,Breads,Australia
+156,"Roberto Industria Alimentare, Italy)",41,2,6,Low,Breads,Italy
+157,"White bread, containing 0.8% Reducose®, lab made",42,4,6,Low,Breads,China
+158,"Multi-Grain bread, 9-Grain (Tip Top Bakeries, Australia)",43,5,6,Low,Breads,Australia
+159,"Fruit loaf, Bürgen® (Tip Top Bakeries, Chatswood, Australia)",44,5,7,Low,Breads,Australia
+160,"Blue Menu™ (Loblaw Brands Limited, Canada)",45,3,7,Low,Breads,Canada
+161,"Roti (unleavened flatbread), whole wheat flour",45,4,7,Low,Breads,India
+162,Whole-wheat bread with dried fruit,47,2,7,Low,Breads,China
+163,Sourdough rye bread,48,5,7,Low,Breads,Australia
+164,Greece,48,10,7,Low,Breads,
+165,Australia),49,4,7,Low,Breads,Australia
+166,"Bürgen™ (Tip Top Bakeries, Australia)",49,4,7,Low,Breads,Australia
+167,Seeded bread,49,7,7,Low,Breads,UK
+168,HemoCue,49,4,7,Low,Breads,
+169,"Diego Tortilla Factory Pty Ltd, Andrews, QLD, Australia)",49,6,7,Low,Breads,Australia
+170,"maker) (Con Agra Inc., USA)",50,6,8,Low,Breads,USA
+171,"White bread, toasted (Hovis, UK)",50,7,8,Low,Breads,UK
+172,Pty Ltd),50,5,8,Low,Breads,Australia
+173,"brand (Gruma Oceania Pty Ltd, Australia)",50,6,8,Low,Breads,Australia
+174,"(Quality Bakers, Sydney, Australia)",51,4,8,Low,Breads,Australia
+175,"Bakers, Sydney, Australia)",51,5,8,Low,Breads,Australia
+176,"Rye, Bürgen™ (Tip Top Bakeries, Australia)",51,3,,Low,Breads,Australia
+177,"AG/SPA, Italy)8",52,7,8,Low,Breads,Italy
+178,"Chatswood, Australia)",52,4,8,Low,Breads,Australia
+179,Australia),52,4,8,Low,Breads,Australia
+180,"Hi Fibre Lo GI (Bakers Delight Holdings, Australia)",52,7,8,Low,Breads,Australia
+181,"Active (Quality Bakers, Sydney, Australia)",52,4,8,Low,Breads,Australia
+182,(Mission Foods Australia),52,4,8,Low,Breads,Australia
+183,"Crusty malted wheat bread (Finest, UK)",52,8,8,Low,Breads,UK
+184,production,53,4,8,Low,Breads,Australia
+185,"Raisin Toast, TipTop™ (Tip Top Bakeries, Australia)",53,3,8,Low,Breads,Australia
+186,"Coast Bakeries, QLD, Australia)",53,7,8,Low,Breads,Australia
+187,"Delight Holdings, Australia)",53,9,8,Low,Breads,Australia
+188,"Sydney, Australia)",53,5,8,Low,Breads,Australia
+189,Enzymatic,53,4,8,Low,Breads,
+190,"Mulino Bianco, Barilla, Italy)",53,5,8,Low,Breads,Italy
+191,"Normal, 10",54,6,,Low,Breads,UK
+192,"machine (Con Agra Inc., USA)",54,6,8,Low,Breads,USA
+193,production,54,4,8,Low,Breads,UK
+194,Sourdough wheat bread,54,5,8,Low,Breads,Australia
+195,"Multigrain spelt bread® (Pav's bakery, Australia)",54,10,8,Low,Breads,Australia
+196,"Bakeries, George Weston Ltd, Australia)",54,4,8,Low,Breads,Australia
+197,"White 'Low GI' (Quality Bakers, Australia)",54,3,8,Low,Breads,Australia
+198,"Hearty 7 Grain bread, Healthy Choice™ (Con Agra Inc.",55,6,8,Low,Breads,USA
+199,"Bread, Toronto, Canada)",55,6,8,Low,Breads,Canada
+200,Enzymatic,55,4,8,Low,Breads,Australia
+201,"(Kraftkerni, Lieken Urkorn, Dortmund, Germany)",55,4,8,Low,Breads,Germany
+202,"Ltd, Australia)",55,6,8,Low,Breads,Australia
+203,Potato mixed flour bread (lab made),55,3,8,Low,Breads,China
+204,"Alam, Selangor, Malaysia)",56,6,8,Medium,Breads,Malaysia
+205,"Soy & Linseed bread (Coles Supermarkets Pty Ltd, Australia)",56,7,8,Medium,Breads,Australia
+206,"Pita bread, wholemeal",56,13,8,Medium,Breads,UK
+207,Zealand)13,57,5,9,Medium,Breads,New Zealand
+208,"Fruit loaf, sliced",57,6,9,Medium,Breads,UK
+209,"+ 50% wheat, separate proving of wheat dough part)",57,4,9,Medium,Breads,Norway
+210,"(Tip Top Bakeries, George Weston Ltd, Australia)",58,3,9,Medium,Breads,Australia
+211,"(4.3%) (Cuor di Lino, Mulino Bianco, Barilla, Italy)",58,10,9,Medium,Breads,Italy
+212,"New Zealand), tested after a high-fat evening meal13",59,4,9,Medium,Breads,New Zealand
+213,"Whole grain bread, Hunger Filler™ (Natural Ovens, USA)",59,8,9,Medium,Breads,USA
+214,"Whole grain bread, Nutty Natural™ (Natural Ovens, USA)",59,7,9,Medium,Breads,USA
+215,"Wheat bread, sliced (Pan Bauletto Bianco)6",59,7,9,Medium,Breads,Italy
+216,White bread,59,11,9,Medium,Breads,UK
+217,"White 'Low GI' (Quality Bakers, Australia)",59,3,9,Medium,Breads,Australia
+218,per 100 g (6.04 g FMC/100 g carbohydrate),59,6,9,Medium,Breads,Australia
+219,Italy)19,59,5,9,Medium,Breads,Italy
+220,"Organic Bread, Cardiff, Australia)",59,8,9,Medium,Breads,Australia
+221,"brand (Gruma Oceania Pty Ltd, Australia)",59,5,9,Medium,Breads,Australia
+222,"Normal, 9",59,9,,Medium,Breads,Australia
+223,"Multigrain loaf, containing wheat flour and coconut flour",60,5,9,Medium,Breads,Philippines
+224,"30% wheat flour, and baker’s yeast13",60,3,9,Medium,Breads,New Zealand
+225,"Pittsburgh, PA, USA)11",60,6,9,Medium,Breads,USA
+226,"Pan Bauletto 5 cereali e soia (Mulino Bianco, Barilla, Italy)",60,9,9,Medium,Breads,Italy
+227,Italy)8,61,6,9,Medium,Breads,Italy
+228,"Bakery, Australia)",61,9,9,Medium,Breads,Australia
+229,Sprouted rye bread,61,5,9,Medium,Breads,Australia
+230,"and 40% sourdough), baked at 200°C for 40 min13",61,8,9,Medium,Breads,Spain
+231,"Choice® Blue Menu™ (Loblaw Brands Limited, Canada)",62,6,9,Medium,Breads,Canada
+232,"Choice® Blue Menu™(Loblaw Brands Limited, Canada)",62,6,9,Medium,Breads,Canada
+233,"(5.4%) (Mulino Bianco, Barilla, Italy)",62,11,9,Medium,Breads,Italy
+234,"Agra Inc., USA)",62,6,9,Medium,Breads,USA
+235,Multigrain batch bread,62,8,9,Medium,Breads,UK
+236,Oatmeal batch bread,62,8,9,Medium,Breads,UK
+237,"Dortmund, Germany)",62,4,9,Medium,Breads,Germany
+238,Sprouted Spelt bread,62,6,9,Medium,Breads,Australia
+239,"White bread (Pepperidge Farm Original White Bread, USA) 11",62,2,9,Medium,Breads,USA
+240,"Oat Light Wrap bread (Mountain Bread, VIC, Australia)",62,6,9,Medium,Breads,Australia
+241,"Manitowoc, USA)",63,5,9,Medium,Breads,USA
+242,"White roll bread, gluten free (Dr Schär AG/SPA, Italy)8",63,8,9,Medium,Breads,Italy
+243,Wholemeal spelt wheat bread (local bakery),63,4,9,Medium,Breads,Germany
+244,White bread11,63,7,9,Medium,Breads,France
+245,"Roberto Industria Alimentare, Italy)",63,4,9,Medium,Breads,Italy
+246,"Holdings, Australia)",63,3,9,Medium,Breads,Australia
+247,Dried wheat bread rusk,63,6,9,Medium,Breads,
+248,production,63,8,9,Medium,Breads,Italy
+249,"Pain au lait (Pasquier, France)",63,10,9,Medium,Breads,France
+250,"flour) (Speltlompe) (Buer AS, Askim, Norway)",63,6,9,Medium,Breads,Norway
+251,"concentrate + 50% wheat, 5 h proving time)",64,5,10,Medium,Breads,Norway
+252,"Bakers, Australia)",64,10,10,Medium,Breads,Australia
+253,"Barilla, Italy)",65,9,10,Medium,Breads,Italy
+254,"Fielder, Australia)",65,5,10,Medium,Breads,Australia
+255,"75% wheat, separate proving of wheat dough part)",65,4,10,Medium,Breads,Norway
+256,spelt flour with intact barley kernels and mung bean kernels11,65,4,10,Medium,Breads,Sweden
+257,White bread11,65,4,10,Medium,Breads,France
+258,"proving time, 10 min steaming at 100°C)",65,4,10,Medium,Breads,Singapore
+259,"Soft pretzel, wheat11",66,4,10,Medium,Breads,USA
+260,"Holdings, Australia)",66,6,,Medium,Breads,Australia
+261,White spelt wheat bread,66,6,10,Medium,Breads,Belgium
+262,White bread,66,4,10,Medium,Breads,Canada
+263,"Berhad, Shah Alam, Selangor, Malaysia)",67,7,10,Medium,Breads,Malaysia
+264,spelt flour and intact barley kernels and white bean kernels11,67,5,10,Medium,Breads,Sweden
+265,"Ltd, Australia)",67,6,10,Medium,Breads,Australia
+266,"Wholemeal bread sticks, crunchy",67,5,10,Medium,Breads,
+267,Sprouted kamut bread,67,5,10,Medium,Breads,Australia
+268,"New Zealand), tested after a high-CHO evening meal13",68,4,10,Medium,Breads,New Zealand
+269,Australia),68,9,10,Medium,Breads,Australia
+270,"Kibbled Konini bread (Country Fare, New Zealand)",68,12,10,Medium,Breads,New Zealand
+271,White bread,68,3,10,Medium,Breads,Canada
+272,"Mulino Bianco, Barilla, Italy)",68,7,10,Medium,Breads,Italy
+273,"White bread, Alfacar13",68,8,10,Medium,Breads,Spain
+274,"(15 min resting time, 40 min proving time, 10 min steaming",68,5,10,Medium,Breads,Singapore
+275,"Pita bread, white, mini",68,5,10,Medium,Breads,UK
+276,White bread,69,3,10,Medium,Breads,Canada
+277,Wholemeal flour bread,69,3,10,Medium,Breads,China
+278,"(Bakery School, Herk-de-Stad, Belgium)",69,15,10,Medium,Breads,Belgium
+279,"Whole grain bread, Stay Trim™ (Natural Ovens, USA)",70,10,11,High,Breads,USA
+280,Australia),70,3,11,High,Breads,Australia
+281,"Australia), tested by subjects with a low AMY1 copy number",70,3,11,High,Breads,Australia
+282,"White bread, Sunblest™ (Tip Top Bakeries, Australia)",70,5,11,High,Breads,Australia
+283,"Normal, 10",71,11,11,High,Breads,UK
+284,"temperature, 60 min baking time13",71,10,11,High,Breads,New Zealand
+285,countries,71,3,11,High,Breads,
+286,"White bread (Somerfield Plc, Oxford, UK)",71,5,11,High,Breads,UK
+287,"Norwalk, CT, USA)",71,6,11,High,Breads,USA
+288,"Companies, Kansas City, USA)",71,9,11,High,Breads,USA
+289,"resting time, 70 min proving time, 11 min baking at 210°C)",71,5,11,High,Breads,Singapore
+290,microwave for 25 sec,71,5,11,High,Breads,Australia
+291,"Ingleburn, Australia)",72,9,11,High,Breads,Australia
+292,White bread,72,3,11,High,Breads,Canada
+293,"preparation (Pan Gustavo, Novaterra Zeelandia, Italy)",72,8,11,High,Breads,Italy
+294,"Companies, Kansas City, USA)",72,4,11,High,Breads,USA
+295,min proving (moderate loaf volume),72,7,11,High,Breads,UK
+296,"flour, separate proving of wheat dough",72,6,11,High,Breads,Norway
+297,"(Loblaw Brands Limited, Canada)",73,6,11,High,Breads,Canada
+298,"Bianco all'olio d'oliva, Coop, Italy)",73,7,11,High,Breads,Italy
+299,White bread,74,3,11,High,Breads,Australia
+300,"Fielder, Auckland, New Zealand)",75,10,11,High,Breads,New Zealand
+301,White bread,75,4,11,High,Breads,Canada
+302,"White bread (Nishin Shokuhin, Japan)16",75,10,11,High,Breads,Japan
+303,Republic,75,10,11,High,Breads,
+304,"Weston Foods Ltd, Australia)",75,6,11,High,Breads,Australia
+305,production,75,4,11,High,Breads,Singapore
+306,Wholemeal flour bread,75,5,11,High,Breads,Australia
+307,"Normal, 9",75,9,11,High,Breads,Australia
+308,time13,76,15,11,High,Breads,New Zealand
+309,White bread,76,4,11,High,Breads,Canada
+310,White bread11,76,6,11,High,Breads,France
+311,"White bread, containing 9% sourdough, baked for 30 min at",76,8,11,High,Breads,Spain
+312,countries,76,13,11,High,Breads,
+313,"Wheat bread, sliced (Harry's)",76,14,11,High,Breads,Italy
+314,"English Muffin™ bread (Natural Ovens, USA)",77,7,12,High,Breads,USA
+315,min bake13,77,6,12,High,Breads,New Zealand
+316,Australia),77,3,12,High,Breads,Australia
+317,production,77,3,12,High,Breads,USA
+318,"Weston Foods Ltd, Australia)",77,9,12,High,Breads,Australia
+319,"Auckland, New Zealand)",77,10,12,High,Breads,New Zealand
+320,White bread,78,4,12,High,Breads,Canada
+321,"Weston Foods Ltd, Australia)",78,11,12,High,Breads,Australia
+322,preserved at -18°C; 2nd baking at 230°C for 12 min13,78,8,12,High,Breads,Spain
+323,"temperature, 30 min baking time13",78,5,12,High,Breads,New Zealand
+324,"Dandenong, Australia)",79,13,12,High,Breads,Australia
+325,"(George Weston Foods Ltd, Australia)",79,5,12,High,Breads,Australia
+326,"Soft pretzel (Ditsch, Mainz, Germany)",80,6,12,High,Breads,Germany
+327,"Weston Foods Ltd, Australia)",80,9,12,High,Breads,Australia
+328,"(Noble Rise Crunchy Toast, Australia)",80,4,12,High,Breads,Australia
+329,"temperature, 30 min baking time13",80,7,12,High,Breads,New Zealand
+330,"Australia), tested by subjects with a high AMY1 copy number",81,3,12,High,Breads,Australia
+331,"proving time, 220°C baking temperature, 30 min bake time13",82,11,12,High,Breads,New Zealand
+332,time13,82,13,12,High,Breads,New Zealand
+333,Selangor),83,7,12,High,Breads,Malaysia
+334,"White bread (Gardenia brand, NTUC Fairprice, Singapore)",83,9,12,High,Breads,Singapore
+335,Wheat bread,84,7,13,High,Breads,Norway
+336,"Alam, Selangor, Malaysia)",85,6,13,High,Breads,Malaysia
+337,"NSW, Australia)",85,12,13,High,Breads,Australia
+338,"White bread, candeal-flour13",86,8,13,High,Breads,Spain
+339,"Foods Ltd, Australia)",86,8,13,High,Breads,Australia
+340,min proving (moderate loaf volume),86,9,13,High,Breads,UK
+341,White bread (lab made),87,11,13,High,Breads,China
+342,"preparation (Pan Semola, Novaterra Zeelandia, Italy)",87,11,13,High,Breads,Italy
+343,White bread,88,3,13,High,Breads,China
+344,baking time13,88,8,13,High,Breads,New Zealand
+345,Steamed wheat bread,88,7,13,High,Breads,China
+346,Linola seed bread,90,11,14,High,Breads,China
+347,"extrusion flour (w/w, dry basis)",90,9,14,High,Breads,China
+348,"temperature, 40-50 min baking time13",92,10,14,High,Breads,New Zealand
+349,proving and a third 50 min proving (large loaf volume),100,7,15,High,Breads,UK
+350,production,31,4,6,Low,Breakfast Cereals,Australia
+351,Australia),43,3,9,Low,Breakfast Cereals,Australia
+352,"Cereals, Australia)",43,6,9,Low,Breakfast Cereals,Australia
+353,Australia),45,5,9,Low,Breakfast Cereals,Australia
+354,"Menu™ (Loblaw Brands Limited, Canada)",47,4,9,Low,Breakfast Cereals,Canada
+355,Australia),48,5,10,Low,Breakfast Cereals,Australia
+356,"Ku-ring-gai, NSW, Australia)",48,6,10,Low,Breakfast Cereals,Australia
+357,"and Food Company, New Zealand)",49,7,10,Low,Breakfast Cereals,New Zealand
+358,"sultanas, 20.1 g fiber/100 g (Specialty Cereals, Mt Ku-ringgai, NSW, Australia)",49,3,10,Low,Breakfast Cereals,Australia
+359,Bran Flakes,50,7,10,Low,Breakfast Cereals,UK
+360,"Vogel’s Cluster Crunch Classic (Specialty Cereals, Australia)",50,6,10,Low,Breakfast Cereals,Australia
+361,"Muesli, gluten-free with psyllium (Freedom Foods, Australia)",50,7,10,Low,Breakfast Cereals,Australia
+362,"Granola, whole-grain oat protein",51,4,10,Low,Breakfast Cereals,USA
+363,"Fruit & Muesli, Bürgen® (George Weston Foods, Australia)",51,4,10,Low,Breakfast Cereals,Australia
+364,and Food Company),52,6,10,Low,Breakfast Cereals,New Zealand
+365,Malted wholewheat cereal,56,5,11,Medium,Breakfast Cereals,UK
+366,"Town, South Africa)",59,6,12,Medium,Breakfast Cereals,South Africa
+367,Malted wholewheat cereal,60,7,12,Medium,Breakfast Cereals,UK
+368,Malted wheat cereal,60,5,12,Medium,Breakfast Cereals,UK
+369,"classic, Italy)6",62,8,12,Medium,Breakfast Cereals,Italy
+370,"Menu™ Loblaw Brands Limited, Canada)",63,4,13,Medium,Breakfast Cereals,Canada
+371,"Cornflakes (Kellogg's, Australia)13, tested in younger adults",64,4,13,Medium,Breakfast Cereals,Australia
+372,"Granola, blueberry",64,6,13,Medium,Breakfast Cereals,Canada
+373,"Muesli (Value, UK)",64,9,13,Medium,Breakfast Cereals,UK
+374,"(Kellogg's, Australia)",64,7,13,Medium,Breakfast Cereals,Australia
+375,"Brands Limited, Canada)",65,8,13,Medium,Breakfast Cereals,Canada
+376,Cornflakes11,66,5,13,Medium,Breakfast Cereals,France
+377,Australia),66,11,13,Medium,Breakfast Cereals,Australia
+378,"Muesli (Cereali croccanti classic, Italy)6",66,6,13,Medium,Breakfast Cereals,Italy
+379,Fruit and Fibre,67,7,13,Medium,Breakfast Cereals,UK
+380,Australia),67,3,13,Medium,Breakfast Cereals,Australia
+381,"Muesli, fruit",67,7,13,Medium,Breakfast Cereals,UK
+382,"Fruit and Fibre (Value, UK)",68,7,14,Medium,Breakfast Cereals,UK
+383,Malted wheat cereal,68,5,14,Medium,Breakfast Cereals,UK
+384,"Chocapic™, wheat-based flaked cereal",70,10,14,High,Breakfast Cereals,France
+385,"Choice® Blue Menu™ Loblaw Brands Limited, Canada)",70,7,14,High,Breakfast Cereals,Canada
+386,"Cornflakes, Crunchy Nut™ (Kellogg’s, Australia)",72,4,14,High,Breakfast Cereals,Australia
+387,"Bran Flakes™ (Kellogg's, Australia)",74,6,15,High,Breakfast Cereals,Australia
+388,"Chocapic™, wheat-based flaked cereal",74,9,15,High,Breakfast Cereals,France
+389,Cornflakes,74,3,15,High,Breakfast Cereals,China
+390,Cornflakes11,77,6,15,High,Breakfast Cereals,France
+391,Cornflakes,79,4,16,High,Breakfast Cereals,China
+392,"Cornflakes (Kellogg's, Australia)13, tested in older adults",81,3,16,High,Breakfast Cereals,Australia
+393,"Cornflakes (Kellogg's, Australia)",82,4,16,High,Breakfast Cereals,Australia
+394,"Chocapic™, wheat-based flaked cereal",84,9,17,High,Breakfast Cereals,France
+395,"Muesli (Healthy Eating, UK)",86,10,17,High,Breakfast Cereals,UK
+396,Cornflakes (Kellogg's),93,8,19,High,Breakfast Cereals,Thailand
+397,Cornflakes (Kellogg's),105,10,21,High,Breakfast Cereals,Thailand
+398,"Rice porridge, made from rice bran",19,1,9,Low,Cereal Grains,China
+399,"(Coles Smart Buy Plain Flour, Coles Supermarkets Pty Ltd)",20,2,9,Low,Cereal Grains,Australia
+400,"was removed), boiled for 25 min",21,4,9,Low,Cereal Grains,Canada
+401,"and most of the germ removed), boiled for 30 min",22,3,10,Low,Cereal Grains,Canada
+402,"husk was removed), boiled for 25 min",22,4,10,Low,Cereal Grains,Canada
+403,"Plot 6:181), consumed suspended in 250 mL water",22,3,10,Low,Cereal Grains,Australia
+404,"whole grain (only the husk was removed), boiled for 25 min",24,5,11,Low,Cereal Grains,Canada
+405,"Products, Concord, Canada)",25,2,11,Low,Cereal Grains,Canada
+406,"bran and germ were also removed), boiled for 25 min",25,3,11,Low,Cereal Grains,Canada
+407,"was removed), boiled for 25 min",25,4,11,Low,Cereal Grains,Canada
+408,"whole grain (only the husk was removed), boiled for 25 min",26,6,12,Low,Cereal Grains,Canada
+409,"Mongolia Golden Flax Biotech Pty Ltd, China)",27,3,12,Low,Cereal Grains,China
+410,"whole grain (only the husk was removed), boiled for 25 min",28,4,13,Low,Cereal Grains,Canada
+411,"whole grain (only the husk was removed), boiled for 25 min",29,4,13,Low,Cereal Grains,Canada
+412,min,29,7,13,Low,Cereal Grains,Canada
+413,boiled for 30 min,30,3,14,Low,Cereal Grains,Canada
+414,whole blood,30,5,14,Low,Cereal Grains,Canada
+415,Sweden),30,5,,Low,Cereal Grains,Sweden
+416,whole blood,32,6,14,Low,Cereal Grains,Canada
+417,boiled for 30 min,33,3,15,Low,Cereal Grains,Canada
+418,"Barley, pot, boiled (Goudas Food Products, Canada)",33,8,15,Low,Cereal Grains,Canada
+419,"Barley, pot, boiled (Goudas Food Products, Canada)",35,4,16,Low,Cereal Grains,Canada
+420,for 25 min,36,8,16,Low,Cereal Grains,Canada
+421,"Guilin rice vermicelli (Chinese rice vermicelli), cooked 8 min",37,8,17,Low,Cereal Grains,UK
+422,"(Waitrose Limited, Bracknell, UK)",39,10,18,Low,Cereal Grains,UK
+423,min,40,6,18,Low,Cereal Grains,UK
+424,"Ebly Express (Ebly, France)",40,5,18,Low,Cereal Grains,France
+425,whole blood,41,5,18,Low,Cereal Grains,Canada
+426,"Cereals (rice, oat, kamut) (Riso Gallo, Italy)",41,6,18,Low,Cereal Grains,Italy
+427,"Rice porridge, made from black rice",42,3,19,Low,Cereal Grains,China
+428,Whole wheat powder,42,2,19,Low,Cereal Grains,China
+429,"(Suma Whole Foods, UK)",43,8,19,Low,Cereal Grains,UK
+430,"(Waitrose Limited, Bracknell, UK)",44,7,20,Low,Cereal Grains,UK
+431,"Cereals (rice, spelt, barley) (Riso Gallo, Italy)",44,8,20,Low,Cereal Grains,Italy
+432,"(pouch) (Effem Foods, USA)",45,5,20,Low,Cereal Grains,USA
+433,"for 40 sec (SunRice® brand, Rice Growers Co-Op., Australia)",45,4,20,Low,Cereal Grains,Australia
+434,"Grain (pouch) (Effem Foods, USA)",46,4,21,Low,Cereal Grains,USA
+435,"Instant rice, white, cooked 3 min",46,3,21,Low,Cereal Grains,China
+436,cooked 15 min,47,6,21,Low,Cereal Grains,UK
+437,production,47,8,21,Low,Cereal Grains,UK
+438,"Growers Co-Op., Australia)",48,4,22,Low,Cereal Grains,Australia
+439,Enzymatic,48,4,22,Low,Cereal Grains,New Zealand
+440,"(Effem Foods, USA)",48,5,22,Low,Cereal Grains,USA
+441,Mauritius,48,5,22,Low,Cereal Grains,
+442,"(pouch) (Effem Foods, USA)",48,6,22,Low,Cereal Grains,USA
+443,"Medley™ (pouch) (Effem Foods, USA)",48,5,22,Low,Cereal Grains,USA
+444,"(Coles Supermarkets, Australia)",49,3,22,Low,Cereal Grains,Australia
+445,"(Effem Foods, USA)",49,3,22,Low,Cereal Grains,USA
+446,"(Suma Whole Foods, UK)",50,5,23,Low,Cereal Grains,UK
+447,"Foods, Australia)",50,6,23,Low,Cereal Grains,Australia
+448,Enzymatic,50,6,23,Low,Cereal Grains,UK
+449,"Sticky rice, high-amylose",50,2,23,Low,Cereal Grains,China
+450,"Durum wheat, precooked, cooked 10 min (Ebly, France)",50,5,23,Low,Cereal Grains,France
+451,"Sweet corn, cooked in microwave for 1.5 min",51,4,23,Low,Cereal Grains,Australia
+452,"(Effem Foods, USA)",51,4,23,Low,Cereal Grains,USA
+453,"Foods, USA)",51,4,23,Low,Cereal Grains,USA
+454,"Rice, parboiled, NS",51,4,23,Low,Cereal Grains,Canada
+455,Corn granules,52,3,23,Low,Cereal Grains,China
+456,"Benedikts Imports, Australia), rehydrated with hot water",52,5,23,Low,Cereal Grains,Australia
+457,"Lal Setia Exports Ltd, India)",52,6,23,Low,Cereal Grains,India
+458,"Rice, plain, Uncle Ben's, Masterfoods, UK)",52,5,23,Low,Cereal Grains,UK
+459,"Co-Op., Australia), heated in microwave",52,5,23,Low,Cereal Grains,Australia
+460,France),52,4,23,Low,Cereal Grains,France
+461,"Benedikts Imports, Australia), rehydrated with hot water",53,4,24,Low,Cereal Grains,Australia
+462,"Cups, microwaved for 70 sec (Coles Supermarkets, Australia)",53,3,24,Low,Cereal Grains,Australia
+463,"min (Nature First Organic, Australia)",53,5,24,Low,Cereal Grains,Australia
+464,"Doongara, white",53,4,24,Low,Cereal Grains,Australia
+465,"Parboiled rice, NS (Riso Blond Risotti, Riso Gallo, Italy)",53,6,24,Low,Cereal Grains,Italy
+466,"Foods, Australia)",54,4,24,Low,Cereal Grains,Australia
+467,"Doongara, white",54,6,24,Low,Cereal Grains,Australia
+468,Australia),54,4,24,Low,Cereal Grains,Australia
+469,"Moolgiri white rice (Tajmahal Agro Industries, India)",54,5,24,Low,Cereal Grains,India
+470,"Parboiled rice, long grain white Uncle Ben's®",54,7,24,Low,Cereal Grains,Belgium
+471,"Sweet corn, cooked",55,2,25,Low,Cereal Grains,China
+472,"Doongara rice, cooked in rice cooker 13",55,4,25,Low,Cereal Grains,Australia
+473,Enzymatic,56,4,25,Medium,Cereal Grains,China
+474,HemoCue,56,3,25,Medium,Cereal Grains,Singapore
+475,"Long grain, white (Uncle Ben’s, Auckland, New Zealand)",56,7,25,Medium,Cereal Grains,New Zealand
+476,production,56,6,,Medium,Cereal Grains,Italy
+477,Australia)13,57,4,26,Medium,Cereal Grains,Australia
+478,HemoCue,57,4,26,Medium,Cereal Grains,UK
+479,"Parboiled, long-grain rice (Harlem Foods AS, Oslo) 11",57,5,26,Medium,Cereal Grains,Norway
+480,"Zealand, NSW, Australia)13",57,3,26,Medium,Cereal Grains,Australia
+481,boiled in water for 15 min,57,5,26,Medium,Cereal Grains,Australia
+482,whole blood,58,8,26,Medium,Cereal Grains,Italy
+483,"Basmati, white, boiled (Mahatma brand, Australia)",58,8,26,Medium,Cereal Grains,Australia
+484,"variety ""Bapatla"" (BPT-5204), pressure cooked for 8 min",58,7,26,Medium,Cereal Grains,India
+485,"Mixed cereals powder, NS",58,1,26,Medium,Cereal Grains,China
+486,"Cereal powder, various cereals NS",58,1,26,Medium,Cereal Grains,China
+487,"Co-Op., Australia)",59,6,27,Medium,Cereal Grains,Pakistan
+488,"brown basmati rice), cooked for 25 min",59,9,27,Medium,Cereal Grains,UK
+489,"(SunRice brand, Rice Growers Co-Op., Australia)",59,8,27,Medium,Cereal Grains,Australia
+490,"Premium long grain, white (SunRice brand, Rice Growers CoOp., Australia)",59,7,27,Medium,Cereal Grains,Australia
+491,"Ben’s®, Masterfoods, Australia)",59,6,27,Medium,Cereal Grains,Australia
+492,"Hassawi rice (Al-Hassa, Saudi Arabia)",59,5,27,Medium,Cereal Grains,Saudi Arabia
+493,"High-fiber white rice, harvested 2013 (Kharif), pressurecooked for 32 min",59,4,27,Medium,Cereal Grains,India
+494,"Red Raw rice, Sri Lankan, cooked in rice cooker",59,4,27,Medium,Cereal Grains,Sri Lanka
+495,"Basmati rice (Dreamrice, Singapore)",60,4,27,Medium,Cereal Grains,Singapore
+496,"Superior (Masterfoods, Belgium)",60,5,27,Medium,Cereal Grains,Belgium
+497,"Gallo, Italy)",61,11,27,Medium,Cereal Grains,Italy
+498,"Technology, China)",63,5,28,Medium,Cereal Grains,China
+499,Enzymatic,63,6,28,Medium,Cereal Grains,Sweden
+500,"Basmati rice (Dreamrice, Singapore)",63,3,28,Medium,Cereal Grains,Singapore
+501,cooked 20 min,63,8,28,Medium,Cereal Grains,UK
+502,"Ben’s®, Masterfoods, Australia)",63,6,28,Medium,Cereal Grains,Australia
+503,"Spelt, pearled (Farro, Barilla, Italy)",63,10,28,Medium,Cereal Grains,Italy
+504,"Foxtail millet, cooked (millet:water ratio 1:1.5)",64,9,29,Medium,Cereal Grains,China
+505,"Products, Canada)",64,3,29,Medium,Cereal Grains,Canada
+506,"White rice, Carnaroli, regular (Scotti, Italy)",64,11,29,Medium,Cereal Grains,Italy
+507,for 32 min,64,4,29,Medium,Cereal Grains,India
+508,"(Masterfoods, Belgium)",64,7,29,Medium,Cereal Grains,Belgium
+509,"Couscous, rehydrated with hot water (San Remo, Australia)",65,7,29,Medium,Cereal Grains,Australia
+510,Australia),65,7,29,Medium,Cereal Grains,Pakistan
+511,"Brown rice (SunRice, Ricegrowers Ltd., NSW, Australia)13",65,4,29,Medium,Cereal Grains,Australia
+512,"Rice porridge, made from sticky rice",65,7,29,Medium,Cereal Grains,China
+513,"Basmati rice (Laila Basmati Rice, Surya Foods, Harwich",66,7,30,Medium,Cereal Grains,UK
+514,"Rice porridge, NS",66,5,30,Medium,Cereal Grains,China
+515,"Basmati rice (SunRice; Ricegrowers Ltd.; Leeton, NSW)13",67,5,30,Medium,Cereal Grains,Australia
+516,"Doongara rice, cooked in rice cooker 13",67,4,30,Medium,Cereal Grains,Australia
+517,"Espresso (Riso Gallo, Italy)",67,8,30,Medium,Cereal Grains,Italy
+518,Cornmeal porridge,68,3,31,Medium,Cereal Grains,China
+519,"Co-operative Ltd., Singapore), chewed 15 times",68,3,31,Medium,Cereal Grains,Singapore
+520,"Ltd., NSW, Australia)13",68,4,31,Medium,Cereal Grains,Australia
+521,"Masterfoods, Belgium)",68,6,31,Medium,Cereal Grains,Belgium
+522,Canada),69,3,31,Medium,Cereal Grains,Canada
+523,"Co-Op., Australia)",69,7,,Medium,Cereal Grains,Australia
+524,"Rice porridge, NS",69,6,31,Medium,Cereal Grains,China
+525,"White rice, Ponni, cooked in rice cooker for 33 min",70,4,32,High,Cereal Grains,India
+526,"brand, Rice Growers Co-op, Australia)",72,6,32,High,Cereal Grains,Australia
+527,min,72,5,32,High,Cereal Grains,India
+528,"Zealand, NSW, Australia)13",72,5,32,High,Cereal Grains,Australia
+529,"Wheat, pearled (Grano, Barilla, Italy)",72,8,32,High,Cereal Grains,Italy
+530,"Koshihikari rice, white (SunRice brand, Rice Growers CoOp., Australia",73,7,33,High,Cereal Grains,Australia
+531,for 10 min,73,5,33,High,Cereal Grains,India
+532,"(Masterfoods, Belgium)",74,5,33,High,Cereal Grains,Belgium
+533,min,75,8,34,High,Cereal Grains,UK
+534,"Masterfoods, Belgium)",75,7,34,High,Cereal Grains,Belgium
+535,mL water (COFCO China),76,5,34,High,Cereal Grains,Thailand
+536,Canada),76,13,34,High,Cereal Grains,Canada
+537,"brand, Rice Growers Co-Op., Australia)",76,7,34,High,Cereal Grains,Australia
+538,"Red rice, Thai, unpolished, cooked 25 min",76,8,34,High,Cereal Grains,UK
+539,for 30 min,77,8,35,High,Cereal Grains,India
+540,min,77,4,35,High,Cereal Grains,India
+541,in water for 28 min,78,6,35,High,Cereal Grains,Australia
+542,"Brown rice (SunRice, Ricegrowers Ltd., NSW, Australia)13",78,5,35,High,Cereal Grains,Australia
+543,"Limited, Australia)",79,5,36,High,Cereal Grains,Australia
+544,"Jasmine Fragrant rice (SunRice, Ricegrowers Limited, NSW)",80,3,36,High,Cereal Grains,Australia
+545,"Ltd., NSW, Australia) 13",80,4,36,High,Cereal Grains,Australia
+546,"variety ""Bapatla"" (BPT-5204), pressure cooked for 18 min",80,7,36,High,Cereal Grains,India
+547,31.6 g rice cooked with 250 mL water (COFCO China),80,7,36,High,Cereal Grains,Thailand
+548,for 30 min,81,7,36,High,Cereal Grains,India
+549,Jasmine long grain rice,82,8,37,High,Cereal Grains,Canada
+550,"White rice, NS",83,1,37,High,Cereal Grains,China
+551,"Bolton, Ontario, Canada)",84,4,38,High,Cereal Grains,Canada
+552,"Growers Co-Op., Australia)",85,10,38,High,Cereal Grains,Australia
+553,"Bangkok, Thailand)",86,8,39,High,Cereal Grains,Thailand
+554,Brown rice,87,2,39,High,Cereal Grains,China
+555,"Instant rice, white, cooked 6 min",87,2,39,High,Cereal Grains,China
+556,Sticky rice,87,2,39,High,Cereal Grains,China
+557,"Co-operative Ltd., Singapore); chewed 30 times",88,10,40,High,Cereal Grains,Singapore
+558,"Rice porridge, NS",88,5,40,High,Cereal Grains,Australia
+559,Sticky rice,88,2,40,High,Cereal Grains,China
+560,"Instant brown rice, cooked for 20 min",88,7,40,High,Cereal Grains,India
+561,"Andhra Pradesh, India)",89,6,40,High,Cereal Grains,India
+562,"Limited, Australia)",89,4,40,High,Cereal Grains,Australia
+563,"fragrant rice, Thailand) 11",90,5,41,High,Cereal Grains,Thailand
+564,"fragrant rice, Thailand) 11",91,4,41,High,Cereal Grains,Thailand
+565,for 90 sec,92,6,41,High,Cereal Grains,Australia
+566,"fragrant rice, Thailand) 11",92,4,41,High,Cereal Grains,Thailand
+567,"Sticky rice, Thai glutinous rice, cooked for 10 min",92,8,41,High,Cereal Grains,UK
+568,Foxtail millet porridge (millet:water ratio 1:9),94,11,42,High,Cereal Grains,China
+569,Australia),94,7,42,High,Cereal Grains,Australia
+570,"Meng Rice Co., Bangkok, Thailand)",94,6,42,High,Cereal Grains,Thailand
+571,"cooker (NTUC Fairprice, Singapore)",96,6,43,High,Cereal Grains,Singapore
+572,"Meng Rice Mill, Bangkok, Thailand)",98,7,44,High,Cereal Grains,Thailand
+573,for 90 sec,101,7,45,High,Cereal Grains,Australia
+574,"Inc., USA) 11",106,13,48,High,Cereal Grains,USA
+575,"Foods, Bangkok, Thailand)",109,10,49,High,Cereal Grains,Thailand
+576,"Inc., Thailand) 11",115,7,52,High,Cereal Grains,Thailand
+577,"Jasmine Rice Co., Thailand) 11",116,11,52,High,Cereal Grains,Thailand
+578,"Gran'Dia Banana, Oats and Honey (LU, Brazil)",28,5,6,Low,Cookies,Brazil
+579,"Macaroons, containing wheat flour and with coconut flour",32,2,6,Low,Cookies,Philippines
+580,"Nutrition, QLD, Australia)",35,7,7,Low,Cookies,Australia
+581,"Golden Flaxseed biscuits (SCIQ Biotech Pty Ltd, Australia)",36,5,7,Low,Cookies,Australia
+582,Italy)25,37,7,7,Low,Cookies,Italy
+583,"Cookie, decreased GI variant (sugar-to-flour ratio: 0.45)",37,10,7,Low,Cookies,Belgium
+584,"(LU France, LU Belgium, LU Czech Republic)",37,5,7,Low,Cookies,
+585,"Biscuit, Danone, NS",39,4,8,Low,Cookies,China
+586,Digestives,39,5,8,Low,Cookies,UK
+587,"Gran'Dia Chocolate with five cereals (Danone, Brazil)",39,8,8,Low,Cookies,Brazil
+588,Jyväshyvä Paussi Vanilla (LU Finland),39,4,8,Low,Cookies,Finland
+589,Belgium),39,4,8,Low,Cookies,
+590,Sweetmeal biscuit,39,4,8,Low,Cookies,UK
+591,Rich Tea,40,5,8,Low,Cookies,UK
+592,Republic,41,5,8,Low,Cookies,
+593,"Jo Reggelt Fruits and Figs (LU, Hungary)",41,6,8,Low,Cookies,Hungary
+594,Belgium),41,6,8,Low,Cookies,
+595,"Edmonton. AB, Canada)",41,3,8,Low,Cookies,Canada
+596,"Thé (LU, France)",41,7,8,Low,Cookies,France
+597,Germany)11,42,4,8,Low,Cookies,Germany
+598,"LU P'tit Déjeuner Chocolat (LU, France)",42,5,8,Low,Cookies,France
+599,"Edmonton. AB, Canada)",42,2,8,Low,Cookies,Canada
+600,Sweetmeal biscuit,42,4,8,Low,Cookies,UK
+601,"Edmonton. AB, Canada)",43,3,9,Low,Cookies,Canada
+602,"Biscuits, wholegrain, filled with peanut butter",44,3,9,Low,Cookies,USA
+603,"Chocolate chip cookies, containing wheat flour and coconut",44,3,9,Low,Cookies,Philippines
+604,Russia,44,3,9,Low,Cookies,
+605,Sandwich Rotary-Molded biscuit11,44,4,9,Low,Cookies,France
+606,Republic,45,4,9,Low,Cookies,
+607,Muesli (LU Hungary),45,5,9,Low,Cookies,Hungary
+608,Russia,45,4,9,Low,Cookies,
+609,Jyväshyvä Paussi Mysli and Fruits (LU Finland),45,5,9,Low,Cookies,Finland
+610,"LU P'tit Déjeuner Miel et Pépites Chocolat (LU, France)",45,5,9,Low,Cookies,France
+611,LU Petit Dejeuner Fruits and Muesli (LU France),45,5,9,Low,Cookies,France
+612,Oat biscuit,45,7,9,Low,Cookies,UK
+613,"Petiki Go ! Fruits and Muesli (LU, Poland)",45,5,9,Low,Cookies,Poland
+614,"Prince Petit Déjeuner Vanille (LU, France and Spain)",45,6,9,Low,Cookies,
+615,"Principe megamanana vanilla (LU, Spain)",45,6,9,Low,Cookies,Spain
+616,Rotary-Molded biscuit11,45,6,9,Low,Cookies,France
+617,Republic,46,4,9,Low,Cookies,
+618,Better Choice Wholegrain (LU Denmark),46,3,9,Low,Cookies,Denmark
+619,"Gemme Integrali (Mulino Bianco, Barilla, Italy)",46,6,9,Low,Cookies,Italy
+620,Jyväshyvä Paussi Wholegrain (LU Finland),46,3,9,Low,Cookies,Finland
+621,"LU Petit Dejeuner Chocolate & Cereals (LU, France)",46,6,9,Low,Cookies,France
+622,LU Petit Dejeuner Honey & Chocolate chips (LU France),46,4,9,Low,Cookies,France
+623,"LU Petit Dejeuner Multicereals (LU France, LU Belgium)",46,3,9,Low,Cookies,
+624,"Foods, Australia)",47,4,9,Low,Cookies,Australia
+625,"Biscuit, Danone, NS",47,4,9,Low,Cookies,China
+626,"Fior di Latte (Mulino Bianco, Barilla, Italy)",47,4,9,Low,Cookies,Italy
+627,Muesli (LU Hungary),47,6,9,Low,Cookies,Hungary
+628,Jyväshyvä Paussi Mysli and Fruits (LU Finland),47,6,9,Low,Cookies,Finland
+629,LU Petit Dejeuner Honey & Chocolate chips (LU France),47,6,9,Low,Cookies,France
+630,"Petiki Go ! Fruits and Muesli (LU, Poland)",47,6,9,Low,Cookies,Poland
+631,Rotary-Molded biscuit11,47,4,9,Low,Cookies,France
+632,Sweet biscuit,47,6,9,Low,Cookies,UK
+633,Republic,48,3,10,Low,Cookies,
+634,"Pty Ltd, Australia)",48,6,10,Low,Cookies,Australia
+635,"Petit LU Roussillon (LU, France)",48,4,10,Low,Cookies,France
+636,Rotary-Molded biscuit11,48,4,10,Low,Cookies,France
+637,"(Arnott's, Australia)",48,2,10,Low,Cookies,Australia
+638,"Cereale Classico, Italy)6",49,4,10,Low,Cookies,Italy
+639,"Gran Cereale Classico (Grancereale, Barilla, Italy)",49,4,10,Low,Cookies,Italy
+640,Muesli (LU Hungary),49,5,10,Low,Cookies,Hungary
+641,Jyväshyvä Paussi Mysli and Fruits (LU Finland),49,5,10,Low,Cookies,Finland
+642,"LU P'tit Déjeuner Miel et Pépites Chocolat (LU, France)",49,8,10,Low,Cookies,France
+643,LU Petit Dejeuner Fruits and Muesli (LU France),49,5,10,Low,Cookies,France
+644,"Petiki Go ! Fruits and Muesli (LU, Poland)",49,5,10,Low,Cookies,Poland
+645,Republic,50,4,10,Low,Cookies,
+646,"Grany en-cas Fruits des bois (LU, France)",50,5,10,Low,Cookies,France
+647,"Maltmeal wafer (Griffin's Foods Ltd., New Zealand)",50,10,10,Low,Cookies,New Zealand
+648,"Prince fourré chocolat (LU, France)",50,5,10,Low,Cookies,France
+649,"Snack Right Fruit Slice, Mixed berry (Arnott's, Australia)",50,3,10,Low,Cookies,Australia
+650,Republic,51,4,10,Low,Cookies,
+651,"Better Choice Multicereals (LU, Denmark)",51,4,10,Low,Cookies,Denmark
+652,"Gran Cereale Frutta (Grancereale, Barilla, Italy)",51,7,10,Low,Cookies,Italy
+653,"LU Petit Dejeuner, Chocolate, low in sugar (LU France)",51,7,10,Low,Cookies,France
+654,"LU Petit Dejeuner Coconut, nuts and chocolate (LU France)",51,7,10,Low,Cookies,France
+655,"LU Petit Dejeuner with Prunes (LU, France)",51,6,10,Low,Cookies,France
+656,"Petit LU Normand (LU, France)",51,3,10,Low,Cookies,France
+657,"Prince Petit Déj Cereals and Chocolate (LU, France)",51,5,10,Low,Cookies,France
+658,"Véritable Petit Beurre (LU, France)",51,8,10,Low,Cookies,France
+659,"Biscuits, wheat flour, butter, cream (Macine, Italy)6",52,7,10,Low,Cookies,Italy
+660,"Gran Cereale Cioccolato (Grancereale, Barilla, Italy)",52,10,10,Low,Cookies,Italy
+661,"LU P'tit Déjeuner Miel et Pépites Chocolat (LU, France)",52,3,10,Low,Cookies,France
+662,"Pavesini (Pavesi, Barilla, Italy)",52,5,10,Low,Cookies,Italy
+663,"Prince Petit Déj Cereals (LU, France)",52,7,10,Low,Cookies,France
+664,Sandwich Rotary-Molded biscuit11,52,7,10,Low,Cookies,France
+665,"Snack Right Fruit Pillow, Wild berry (Arnott's, Australia)",52,3,10,Low,Cookies,Australia
+666,"Shanghai, China)",53,4,11,Low,Cookies,China
+667,"Prince fourré chocolat (LU, France)",53,5,11,Low,Cookies,France
+668,"Prince gout chocolat (LU, France)",53,5,11,Low,Cookies,France
+669,"Biscuit, wholegrain",54,5,11,Low,Cookies,USA
+670,"Véritable Petit Beurre (LU, France)",54,5,11,Low,Cookies,France
+671,"Grany en-cas Abricot (LU, France)",55,6,11,Low,Cookies,France
+672,"Shanghai, China)",55,6,11,Low,Cookies,China
+673,Jyväshyvä Paussi Vanilla (LU Finland),55,7,11,Low,Cookies,Finland
+674,"LU Petit Dejeuner Coconut, nuts and chocolate (LU France)",55,6,11,Low,Cookies,France
+675,Belgium),55,7,11,Low,Cookies,
+676,Oat biscuit,55,1,11,Low,Cookies,China
+677,"Oatcakes Ltd, Edinburgh, Scotland)",55,6,11,Low,Cookies,UK
+678,Sandwich Rotary-Molded biscuit11,56,4,11,Medium,Cookies,France
+679,Republic,57,9,11,Medium,Cookies,
+680,"Nutrigrain Fruits des bois (Kellogg's, France)",57,4,11,Medium,Cookies,France
+681,"Sablé des Flandres (LU, France)",57,10,11,Medium,Cookies,France
+682,"(6.2%) (Molinetti, Italy)6",58,7,12,Medium,Cookies,Italy
+683,"LU Petit Dejeuner Chocolate & Cereals (LU, France)",58,6,12,Medium,Cookies,France
+684,Normal,59,10,,Medium,Cookies,Italy
+685,"(Loblaw Brands Limited, Canada)",60,4,12,Medium,Cookies,Canada
+686,"Oro (Saiwa, Italy)",61,9,12,Medium,Cookies,Italy
+687,"Grany Rush Apricot (LU, Netherlands)",62,3,12,Medium,Cookies,Netherlands
+688,"(Loblaw Brands Limited, Canada)",62,7,12,Medium,Cookies,Canada
+689,Sweet biscuit,63,4,13,Medium,Cookies,UK
+690,"(Loblaw Brands Limited, Canada)",64,5,13,Medium,Cookies,Canada
+691,"Evergreen met Krenten (LU, Netherlands)",66,12,13,Medium,Cookies,Netherlands
+692,Gingerbread cookies,66,4,13,Medium,Cookies,Australia
+693,Republic,67,11,13,Medium,Cookies,
+694,"Barquette Abricot (LU, Ris, Orangis, France)",71,6,14,High,Cookies,France
+695,"Biscuit, NS",72,5,14,High,Cookies,China
+696,"Prince Energie+ (LU, France)",73,5,15,High,Cookies,France
+697,"Petit brun extra (LU, France)",77,12,15,High,Cookies,France
+698,"Biscuit, thin, NS",81,2,16,High,Cookies,China
+699,"Protein cracker, Cheese (Herman Brot Pty Ltd, Australia)",22,2,3,Low,Crackers,Australia
+700,"Protein cracker, Natural (Herman Brot Pty Ltd, Australia)",24,3,4,Low,Crackers,Australia
+701,"Grain cracker (Bestore, Wuhan, China)",25,2,4,Low,Crackers,China
+702,"Protein cracker, Spicy (Herman Brot Pty Ltd, Australia)",26,3,4,Low,Crackers,Australia
+703,"Protein cracker, Zatar (Herman Brot Pty Ltd, Australia)",27,3,4,Low,Crackers,Australia
+704,"Protein cracker, Olive (Herman Brot Pty Ltd, Australia)",29,4,4,Low,Crackers,Australia
+705,Australia),31,3,5,Low,Crackers,Australia
+706,Wholewheat crackers with pumpkin and thyme,36,3,5,Low,Crackers,UK
+707,"Bianco, Barilla, Italy)",45,5,7,Low,Crackers,Italy
+708,"Foods, North Ryde, Australia)",46,7,7,Low,Crackers,Australia
+709,"Panmonviso, Italy)",47,6,7,Low,Crackers,Italy
+710,CRACKERS,48,4,7,Low,Crackers,Australia
+711,"Foods, North Ryde, Australia)",48,8,7,Low,Crackers,Australia
+712,"Choice grain crackers (Jacob’s Bakery, UK)",49,7,7,Low,Crackers,UK
+713,"Wholewheat sticks, crunchy, yeast extract flavored",50,8,8,Low,Crackers,UK
+714,Cracker11,51,4,8,Low,Crackers,France
+715,"(Panmonviso, Italy)",52,5,8,Low,Crackers,Italy
+716,"Protein cracker (Herman Brot), mean of six foods",52,8,8,Low,Crackers,Malaysia
+717,"Grancereale, Barilla, Italy)",53,5,8,Low,Crackers,Italy
+718,Wholegrain crackers with sesame seeds and rosemary,53,8,8,Low,Crackers,UK
+719,Rye crackers with sesame,57,12,9,Medium,Crackers,UK
+720,Cracker11,60,5,9,Medium,Crackers,France
+721,"Menu™ (Loblaw Brands Limited, Canada)",60,6,9,Medium,Crackers,Canada
+722,Cracker11,61,5,9,Medium,Crackers,France
+723,"Growers Co-op, Australia)",61,5,9,Medium,Crackers,Australia
+724,"grano, Mulino Bianco, Barilla, Italy)",63,5,9,Medium,Crackers,Italy
+725,"di grano, Mulino Bianco, Barilla, Italy)",63,8,9,Medium,Crackers,Italy
+726,"Cream cracker (LU Triumfo, Brazil)",64,11,10,Medium,Crackers,Brazil
+727,Italy)6,64,11,10,Medium,Crackers,Italy
+728,Rye crackers with oats,64,11,10,Medium,Crackers,UK
+729,"Menu™ (Loblaw Brands Limited, Canada)",65,6,10,Medium,Crackers,Canada
+730,"(Loblaw Brands Limited, Canada)",65,7,10,Medium,Crackers,Canada
+731,Grain cracker,68,5,10,Medium,Crackers,Australia
+732,Italy),69,8,10,Medium,Crackers,Italy
+733,"Barilla, Italy)",73,9,11,High,Crackers,Italy
+734,"Puffed rice cakes, caramel flavored",82,10,12,High,Crackers,USA
+735,"Peters, Australia)",87,10,13,High,Crackers,Australia
+736,"Co-op, Australia)",91,7,14,High,Crackers,Australia
+737,"Rice cracker, plain (Sakada, Japan)",91,11,14,High,Crackers,Japan
+738,"Yoghurt, summer fruit: apricot (Healthy Living Light, UK)",11,4,2,Low,Dairy Products,UK
+739,"Blue Menu™ (Loblaw Brands Limited, Canada)",15,4,2,Low,Dairy Products,Canada
+740,"Yoplait™ (National Foods Ltd, Australia)",16,3,3,Low,Dairy Products,Australia
+741,"Yoghurt, black cherry (Finest, UK)",17,3,3,Low,Dairy Products,UK
+742,"Yoghurt, low fat, natural",17,2,2,Low,Dairy Products,Australia
+743,"(National Foods Ltd, Australia)",17,3,2,Low,Dairy Products,Australia
+744,Australia),18,4,4,Low,Dairy Products,Australia
+745,"yoghurts, Yoplait™(National Foods Ltd, Australia)",18,3,4,Low,Dairy Products,Australia
+746,"Premium Vitality+ (National Foods Ltd, Australia)",18,3,2,Low,Dairy Products,Australia
+747,"Living, UK)",19,6,4,Low,Dairy Products,UK
+748,"yoghurts, Yoplait™(National Foods Ltd, Australia)",19,3,4,Low,Dairy Products,Australia
+749,"Foods, Australia)",19,4,4,Low,Dairy Products,Australia
+750,"Pura™ HiLo milk (National Foods Ltd, Australia)",20,5,2,Low,Dairy Products,Australia
+751,"Pura™ Skimmer milk (National Foods Ltd, Australia)",20,5,2,Low,Dairy Products,Australia
+752,"Yoplait™(National Foods Ltd, Australia)",20,4,4,Low,Dairy Products,Australia
+753,production,21,4,4,Low,Dairy Products,Australia
+754,"Yoghurt, Yitangping (Beijing Sanyuan Foods, Beijing, China)",21,4,4,Low,Dairy Products,China
+755,"Diet Passionfruit yoghurt, Dairy Dream (Aldi, Australia)",21,2,4,Low,Dairy Products,Australia
+756,"Diet Raspberry yoghurt, Dairy Dream (Aldi, Australia)",21,2,4,Low,Dairy Products,Australia
+757,Australia),21,2,4,Low,Dairy Products,Australia
+758,"Fromage Frais, red fruit: blackcurrant (Healthy Living, UK)",22,5,4,Low,Dairy Products,UK
+759,sweetened with acesulfame K and Splenda,23,2,5,Low,Dairy Products,Australia
+760,"Supa Sundaes Pty Ltd, Australia)",24,6,5,Low,Dairy Products,Australia
+761,"Flavored milk, Rush® Intense Coffee milk",24,3,5,Low,Dairy Products,Australia
+762,"Living Light, UK)",24,7,5,Low,Dairy Products,UK
+763,"Foods, Australia)",24,5,5,Low,Dairy Products,Australia
+764,"Fromage Frais, red fruit: red cherry (Healthy Living, UK)",25,6,5,Low,Dairy Products,UK
+765,"Ice cream, low-fat, Chocolate Toffee flavor (ProYo, USA)",25,2,5,Low,Dairy Products,USA
+766,sweetened with acesulfame K and Splenda,25,3,5,Low,Dairy Products,Australia
+767,"Foods Ltd, Australia)",25,3,5,Low,Dairy Products,Australia
+768,HemoCue,26,6,3,Low,Dairy Products,Australia
+769,"Flavored milk, Rush® Ultimate Chocolate milk",26,5,5,Low,Dairy Products,Australia
+770,"Flavored milk, Rush® Wicked Latte milk",26,3,5,Low,Dairy Products,Australia
+771,"Light, UK)",26,7,5,Low,Dairy Products,UK
+772,Australia),26,4,5,Low,Dairy Products,Australia
+773,"Reduced-fat, Vaalia™, French vanilla (Pauls Ltd., Australia)",26,4,5,Low,Dairy Products,Australia
+774,"Cream Products, VIC, Australia)",27,3,5,Low,Dairy Products,Australia
+775,"(Regal Cream Products, VIC, Australia)",27,3,5,Low,Dairy Products,Australia
+776,"free (National Foods Ltd, Australia)",27,5,5,Low,Dairy Products,Australia
+777,"Light, UK)",27,6,5,Low,Dairy Products,UK
+778,"Ltd, Australia)",27,2,5,Low,Dairy Products,Australia
+779,"Fat-free, Passionfruit yoghurt (Jalna Dairy Foods, Australia)",27,4,5,Low,Dairy Products,Australia
+780,"Crème fraiche dessert, peach (Finest, UK)",28,8,6,Low,Dairy Products,UK
+781,"Yoghurt, peach & apricot (Healthy Living Light, UK)",28,6,6,Low,Dairy Products,UK
+782,"Yoghurt, summer fruit: raspberry (Healthy Living Light, UK)",28,5,6,Low,Dairy Products,UK
+783,"Low-fat, Nestlé Diet, Mixed Berry (Nestlé, Australia)",28,4,6,Low,Dairy Products,Australia
+784,"Low-fat, Nestlé Diet, Peaches & Cream (Nestlé, Australia)",28,3,6,Low,Dairy Products,Australia
+785,"Low-fat, sugar sweetened, Strawberry flavor, Vaalia (Pauls",28,3,6,Low,Dairy Products,Australia
+786,"Reduced-fat, Extra-Lite™, strawberry (Pauls Ltd., Australia)",28,4,6,Low,Dairy Products,Australia
+787,"Custard, low-fat, vanilla flavored (Nestlé, Australia)",29,4,6,Low,Dairy Products,Australia
+788,"Fromage Frais, red fruit: strawberry (Healthy Living, UK)",29,9,6,Low,Dairy Products,UK
+789,(Pauls Ltd),29,2,6,Low,Dairy Products,Australia
+790,production,30,3,,Low,Dairy Products,Australia
+791,"Crème fraiche dessert, raspberry (Finest, UK)",30,7,6,Low,Dairy Products,UK
+792,"Cream Products, Australia)",30,4,6,Low,Dairy Products,Australia
+793,Enzymatic,30,3,3,Low,Dairy Products,Australia
+794,"Pura™ Light Start milk (National Foods Ltd, Australia)",30,5,3,Low,Dairy Products,Australia
+795,"Pura™ Tone milk (National Foods Ltd, Australia)",30,5,3,Low,Dairy Products,Australia
+796,"Yoghurt, strawberry (Healthy Living Light, UK)",30,6,6,Low,Dairy Products,UK
+797,"Probiotic drink, orange",30,8,6,Low,Dairy Products,UK
+798,"Fromage Frais, red fruit: raspberry (Healthy Living, UK)",31,8,6,Low,Dairy Products,UK
+799,"Banana, honey and malt flavored milk",31,4,6,Low,Dairy Products,Australia
+800,"Flavored milk, Rush® Heavenly Vanilla Malt milk",31,4,6,Low,Dairy Products,Australia
+801,commercial mousse mix with water,31,4,6,Low,Dairy Products,Australia
+802,"Farmers Ltd, Australia)",31,4,6,Low,Dairy Products,Australia
+803,"Soy milk, full-fat, with sucrose (Sanitarium, Australia)",31,5,3,Low,Dairy Products,Australia
+804,"(National Foods Ltd, Australia)",31,3,6,Low,Dairy Products,Australia
+805,"Ice cream, low-fat, Blueberry Pomegranate flavor (ProYo",32,4,6,Low,Dairy Products,USA
+806,"Foods Ltd, Australia)",32,4,6,Low,Dairy Products,Australia
+807,commercial mousse mix with water,32,3,6,Low,Dairy Products,Australia
+808,"Yoghurt, Scottish raspberry (Finest, UK)",32,7,6,Low,Dairy Products,UK
+809,"Yoghurt, tropical fruit: mango (Healthy Living Light, UK)",32,8,6,Low,Dairy Products,UK
+810,"Low-fat, Nestlé Diet, Blueberry (Nestlé, Australia)",32,4,6,Low,Dairy Products,Australia
+811,(Pauls Ltd),32,4,6,Low,Dairy Products,Australia
+812,"Low-fat, sugar sweetened, Passionfruit flavor, Vaalia (Pauls",32,3,6,Low,Dairy Products,Australia
+813,commercial mousse mix with water,33,5,7,Low,Dairy Products,Australia
+814,"(National Foods Ltd, Australia)",33,5,7,Low,Dairy Products,Australia
+815,"Melbourne, Australia)",34,5,7,Low,Dairy Products,Australia
+816,"Ltd, Melbourne, Australia)",34,5,7,Low,Dairy Products,Australia
+817,"Ice cream, low-fat, Dutch Chocolate flavor (ProYo, USA)",34,6,7,Low,Dairy Products,USA
+818,"Ice cream, low-fat, Mint Chip flavor (ProYo, USA)",34,6,7,Low,Dairy Products,USA
+819,"Full-fat, pasteurized, fresh, organic milk (Arla, UK)",34,6,3,Low,Dairy Products,UK
+820,HemoCue,34,8,3,Low,Dairy Products,UK
+821,"Yoghurt, Valencia orange (Finest, UK)",34,7,7,Low,Dairy Products,UK
+822,"Low-fat, raspberry",34,6,7,Low,Dairy Products,UK
+823,"Probiotic drink, original",34,5,7,Low,Dairy Products,UK
+824,"(Nestlé, Australia)",35,2,7,Low,Dairy Products,Australia
+825,"(National Foods Ltd, Australia)",35,5,7,Low,Dairy Products,Australia
+826,"Yoghurt, red fruit: Morello cherry (Healthy Living Light, UK)",35,6,7,Low,Dairy Products,UK
+827,Enzymatic,35,10,4,Low,Dairy Products,UK
+828,"Products, VIC, Australia)",36,5,7,Low,Dairy Products,Australia
+829,"Kefir, low-fat, plain (Lifeway Foods, Chicago, USA)",36,9,4,Low,Dairy Products,USA
+830,commercial mousse mix with water,36,4,7,Low,Dairy Products,Australia
+831,"Yoghurt, Greek style, honey topped (UK)",36,7,7,Low,Dairy Products,UK
+832,"Yoghurt, summer fruit: strawberry (Healthy Living Light",36,9,7,Low,Dairy Products,UK
+833,"maltodextrin (So Natural Foods, Australia)",36,4,4,Low,Dairy Products,Australia
+834,"Reduced-fat custard, TRIM™ (Pauls Ltd, Brisbane, Australia)",37,4,7,Low,Dairy Products,Australia
+835,"Melbourne, Australia)",37,6,7,Low,Dairy Products,Australia
+836,"(Norco, Australia)",37,4,7,Low,Dairy Products,Australia
+837,"Ice cream, low-fat, Mocha flavor (ProYo, USA)",37,5,7,Low,Dairy Products,USA
+838,"Gosford, NSW, Australia)",37,3,7,Low,Dairy Products,Australia
+839,"Foods, Newtown, Australia)",37,5,7,Low,Dairy Products,Australia
+840,"Foods Ltd, Australia)",37,4,7,Low,Dairy Products,Australia
+841,"Yoghurt, Devonshire fudge (Finest, UK)",37,7,7,Low,Dairy Products,UK
+842,"Light, UK)",37,8,7,Low,Dairy Products,UK
+843,Australia),38,3,8,Low,Dairy Products,Australia
+844,"Yoghurt, tropical pineapple (Healthy Living Light, UK)",38,7,8,Low,Dairy Products,UK
+845,"(Pauls Ltd., Australia)",38,4,8,Low,Dairy Products,Australia
+846,"Ice cream, low-fat, Coconut flavor (ProYo, USA)",39,5,8,Low,Dairy Products,USA
+847,"Ice cream, low-fat, Vanilla Bean flavor (ProYo, USA)",39,5,8,Low,Dairy Products,USA
+848,"Newtown, Australia)",39,4,8,Low,Dairy Products,Australia
+849,"milk, instant (White Wings, Australia)",40,4,8,Low,Dairy Products,Australia
+850,"Farmers Ltd, Australia)",40,2,8,Low,Dairy Products,Australia
+851,"Menu™(Loblaw Brands Limited, Canada)",40,5,8,Low,Dairy Products,Canada
+852,"(National Foods Ltd, Australia)",41,6,8,Low,Dairy Products,Australia
+853,"Yoghurt, strawberry and cream (Finest, UK)",41,6,8,Low,Dairy Products,UK
+854,"Low-fat, black cherry",41,5,8,Low,Dairy Products,UK
+855,"Natural Foods, Australia)",41,4,4,Low,Dairy Products,Australia
+856,"Nestlé Milo Combo mousse (Nestlé, Australia)",42,5,8,Low,Dairy Products,Australia
+857,"Low-fat, apricot",42,6,8,Low,Dairy Products,UK
+858,Foods Ltd),43,4,9,Low,Dairy Products,Australia
+859,"Yoghurt, raspberry (Healthy Living Light, UK)",43,8,9,Low,Dairy Products,UK
+860,(Pauls Ltd),43,6,9,Low,Dairy Products,Australia
+861,Republic,43,5,9,Low,Dairy Products,
+862,"Soy milk, Vitasoy® Organic (National Foods Ltd, Australia)",43,3,4,Low,Dairy Products,Australia
+863,"with a plain cone (Wendy's Supa Sundaes Pty Ltd, Australia)",44,7,9,Low,Dairy Products,Australia
+864,"Yoghurt, strawberry (Astro yoghurt, Canada)",44,4,9,Low,Dairy Products,Canada
+865,"Yoghurt, probiotic, prune",44,10,9,Low,Dairy Products,UK
+866,"maltodextrin (So Natural Foods, Australia)",44,5,4,Low,Dairy Products,Australia
+867,"containing maltodextrin (So Natural Foods, Australia)",44,3,4,Low,Dairy Products,Australia
+868,"Muesli flavor (National Foods Ltd, Australia)",45,4,9,Low,Dairy Products,Australia
+869,"(National Foods Ltd, Australia)",45,4,9,Low,Dairy Products,Australia
+870,"Yoghurt, probiotic, raspberry",45,10,9,Low,Dairy Products,UK
+871,"Foods Ltd, Australia)",45,5,5,Low,Dairy Products,Australia
+872,"Ice cream, low-fat, vanilla, 'Light' (Nestlé Peter's, Australia)",46,5,9,Low,Dairy Products,Australia
+873,"(Dairy Crest, UK)",46,10,5,Low,Dairy Products,UK
+874,"Nestlé Milo flavored mousse (Nestlé, Australia)",46,3,9,Low,Dairy Products,Australia
+875,"Foods Ltd, Australia)",46,3,9,Low,Dairy Products,Australia
+876,"brand (Loblaw Brands Limited, Canada)",46,5,9,Low,Dairy Products,Canada
+877,"Melbourne, Australia)",47,6,9,Low,Dairy Products,Australia
+878,"(Norco, Australia)",47,5,9,Low,Dairy Products,Australia
+879,mix with water,47,5,9,Low,Dairy Products,Australia
+880,"whole milk, instant (White Wings, Australia)",47,4,9,Low,Dairy Products,Australia
+881,"Kefir, orange flavor (Lifeway Foods, Chicago, USA)",48,10,10,Low,Dairy Products,USA
+882,"Danone, Italy)",51,5,10,Low,Dairy Products,Italy
+883,"Menu™ brand (Loblaw Brands Limited, Canada)",51,5,10,Low,Dairy Products,Canada
+884,"flavor (National Foods Ltd, Australia)",52,4,,Low,Dairy Products,Australia
+885,flavor (National Foods Ltd),52,4,10,Low,Dairy Products,Australia
+886,"Low-fat, hazelnut",53,9,11,Low,Dairy Products,UK
+887,"(National Foods Ltd, Australia)",54,4,11,Low,Dairy Products,Australia
+888,(National Foods Ltd),54,6,11,Low,Dairy Products,Australia
+889,Dairy beverage with flaxseed gum (2.5 g fiber),54,9,5,Low,Dairy Products,Canada
+890,"(Nestlé Peter's, Australia)",55,3,11,Low,Dairy Products,Australia
+891,"a waffle cone (Wendy's Supa Sundaes Pty Ltd, Australia)",55,6,11,Low,Dairy Products,Australia
+892,"Menu™ brand (Loblaw Brands Limited, Canada)",55,6,11,Low,Dairy Products,Canada
+893,"Low-fat, peach melba (Value, UK)",56,11,11,Medium,Dairy Products,UK
+894,"Probiotic drink, cranberry",56,9,11,Medium,Dairy Products,UK
+895,Dairy pudding with flaxseed gum (2.5 g fiber),57,8,6,Medium,Dairy Products,Canada
+896,"(Nestlé Peter's, Australia)",59,4,12,Medium,Dairy Products,Australia
+897,"Kefir, low-fat strawberry (Lifeway Foods, Chicago, USA)",60,10,12,Medium,Dairy Products,USA
+898,Enzymatic,61,6,6,Medium,Dairy Products,Australia
+899,"Low-fat, strawberry",61,11,12,Medium,Dairy Products,UK
+900,Dairy pudding with soy-soluble polysaccharides (2.5 g fiber),61,6,6,Medium,Dairy Products,Canada
+901,Control dairy pudding (0.25 g fiber),63,6,6,Medium,Dairy Products,Canada
+902,"Yoghurt, bourbon vanilla (Finest, UK)",64,14,13,Medium,Dairy Products,UK
+903,Dairy beverage with soy-soluble polysaccharides (2.5 g fiber),65,11,7,Medium,Dairy Products,Canada
+904,"Yoghurt, black cherry (Healthy Living Light, UK)",67,15,13,Medium,Dairy Products,UK
+905,"Yoghurt, lemon curd (Finest, UK)",67,14,13,Medium,Dairy Products,UK
+906,Control dairy beverage,70,7,7,High,Dairy Products,Canada
+907,"Ginger Spread, sucrose-free (Buderim Ginger, Australia)",10,2,2,Low,Fruit,Australia
+908,"(Loblaw Brands Limited, Canada)",23,6,2,Low,Fruit,Canada
+909,"Pear, Williams, raw, under ripe/crunchy",24,3,4,Low,Fruit,Australia
+910,"Foods, Australia)",26,4,4,Low,Fruit,Australia
+911,"sugar (Freedom Foods, Australia)",27,3,4,Low,Fruit,Australia
+912,"Apple, dried",29,5,4,Low,Fruit,Australia
+913,"Guava, raw, cut into bite size pieces",29,4,4,Low,Fruit,Singapore
+914,"Prunes, pitted (Sunsweet Growers Inc., Yuba City, USA)",29,4,4,Low,Fruit,USA
+915,Australia),29,4,4,Low,Fruit,Australia
+916,"Foods, Australia)",29,4,4,Low,Fruit,Australia
+917,"Pear slices, canned in natural juice (SPC Ltd, Australia)",31,2,5,Low,Fruit,Australia
+918,"Apricots, dried, ready to eat, bite size",32,7,5,Low,Fruit,UK
+919,"Pear, Williams, raw, ripe/soft",33,4,5,Low,Fruit,Australia
+920,"Apricots, raw, NS",34,3,5,Low,Fruit,Australia
+921,"Dates, Khalas variety, dried and vacuum packed",36,3,5,Low,Fruit,
+922,"Fruit Company, Australia)",37,3,7,Low,Fruit,Australia
+923,"Papaya/paw paw, raw, cut into bite size pieces",38,2,6,Low,Fruit,Singapore
+924,"Tomato juice, canned, no added sugar (Berri Ltd, Australia)",38,4,4,Low,Fruit,Australia
+925,"Ltd, Berri, Australia)",39,5,8,Low,Fruit,Australia
+926,and banana puree,39,3,8,Low,Fruit,Australia
+927,"City, USA)",40,6,6,Low,Fruit,USA
+928,"Strawberries, fresh, raw",40,7,6,Low,Fruit,Australia
+929,Enzymatic,41,5,6,Low,Fruit,Australia
+930,"Apples, canned in juice",42,5,6,Low,Fruit,Australia
+931,"and Ashton Foods Pty Ltd, South Africa)",42,2,6,Low,Fruit,South Africa
+932,"Apricots, raw, NS",42,5,6,Low,Fruit,Canada
+933,"Foods, Toowong, Australia)",42,3,6,Low,Fruit,Australia
+934,"Papaya/paw paw, raw, puree",42,5,6,Low,Fruit,Singapore
+935,"Apples, dried (Malus pumila Mill.)",43,4,6,Low,Fruit,China
+936,"Dates, Shaqra cultivar, Tamer stage",43,6,6,Low,Fruit,Saudi Arabia
+937,"Dates, Sukkary cultivar, Tamer stage",43,5,6,Low,Fruit,Saudi Arabia
+938,"Nectarines, raw",43,6,,Low,Fruit,Australia
+939,"Fruit Company, Australia)",43,3,9,Low,Fruit,Australia
+940,Enzymatic,43,3,4,Low,Fruit,Australia
+941,"Foods, Australia)",43,6,6,Low,Fruit,Australia
+942,"Apples, raw",44,5,7,Low,Fruit,Australia
+943,Algeria,44,2,7,Low,Fruit,
+944,"Apple juice, Granny Smith, unsweetened",44,3,9,Low,Fruit,Australia
+945,"Company, Wandin, VIC, Australia)",44,2,9,Low,Fruit,Australia
+946,"Asiago, Italy)",44,4,7,Low,Fruit,Italy
+947,manner) variety,45,8,7,Low,Fruit,
+948,"Dates, Sag'ai cultivar, Tamer stage",45,6,7,Low,Fruit,Saudi Arabia
+949,"Oranges, navel",45,5,7,Low,Fruit,Australia
+950,"Select, Australia)",45,4,7,Low,Fruit,Australia
+951,"Dates, Bo ma'an variety (Al Saad date factory, Al Ain, UAE)",46,7,7,Low,Fruit,
+952,Enzymatic,46,5,7,Low,Fruit,Australia
+953,"Shepparton, VIC, Australia)",46,4,7,Low,Fruit,Australia
+954,"Select, Australia)",46,5,7,Low,Fruit,Australia
+955,"Schweppes, Australia)",46,5,7,Low,Fruit,Australia
+956,"Banana, raw",47,5,7,Low,Fruit,Australia
+957,Jamaica,47,5,7,Low,Fruit,
+958,"Dates, Khalas (Rutab, soft early ripened) variety",47,5,7,Low,Fruit,
+959,"Guava, raw, puree",47,4,7,Low,Fruit,Singapore
+960,whole blood,47,2,7,Low,Fruit,Australia
+961,"Watermelon (Citrullus lanatus), raw, yellow-fleshed, seedless",47,2,7,Low,Fruit,Malaysia
+962,"About Fruit Company, Australia)",47,5,9,Low,Fruit,Australia
+963,"Fruit Company, Australia)",47,5,9,Low,Fruit,Australia
+964,pineapple juice,47,3,9,Low,Fruit,Australia
+965,and guava puree,47,3,9,Low,Fruit,Australia
+966,"Rigoni di Asiago, Italy)",47,4,7,Low,Fruit,Italy
+967,Algeria,48,2,7,Low,Fruit,
+968,"Watermelon (Citrullus lanatus), raw, red-fleshed, seeded",48,1,7,Low,Fruit,Malaysia
+969,"Wild About Fruit Company, Australia)",48,5,10,Low,Fruit,Australia
+970,"Orange juice beverage, President's Choice® Blue Menu™ OhMega j (Loblaw Brands Limited, Canada)",48,4,10,Low,Fruit,Canada
+971,Orange marmalade,48,9,7,Low,Fruit,Australia
+972,"Banana, lady finger (Moraitis, Australia)",49,5,7,Low,Fruit,Australia
+973,"Dates, Dabbas variety (Al Saad date factory, Al Ain, UAE)",49,7,7,Low,Fruit,
+974,"Raisins (Sun Maid, USA)",49,4,7,Low,Fruit,USA
+975,"Dates, Shishi cultivar, Tamer stage",50,7,8,Low,Fruit,Saudi Arabia
+976,"Grapes, Crimson seedless",50,3,8,Low,Fruit,Australia
+977,"Ginger marmalade, Original (Buderim Ginger, Australia)",50,7,8,Low,Fruit,Australia
+978,"Foods Pty Ltd, South Africa)",51,5,8,Low,Fruit,South Africa
+979,"Dates, Rashodia cultivar, Tamer stage",51,7,8,Low,Fruit,Saudi Arabia
+980,"Dates, Wannanah cultivar, Tamer stage",51,7,8,Low,Fruit,Saudi Arabia
+981,"Watermelon (Citrullus lanatus), raw, red-fleshed, seedless",51,2,8,Low,Fruit,Malaysia
+982,Glucometer9,51,4,8,Low,Fruit,Canada
+983,HemoCue,51,1,10,Low,Fruit,Malaysia
+984,"(Fiordifrutta Mirtilli neri, Rigoni di Asiago, Italy)",51,9,8,Low,Fruit,Italy
+985,"(Fiordifrutta arance amare, Rigoni di Asiago, Italy)",51,8,8,Low,Fruit,Italy
+986,Strawberry jam,51,10,8,Low,Fruit,Australia
+987,Algeria,52,3,8,Low,Fruit,
+988,Enzymatic,52,8,8,Low,Fruit,Italy
+989,production,52,3,10,Low,Fruit,Australia
+990,"Grape Nectar (Chateau Barossa, Lyndoch, SA, Australia)",52,5,10,Low,Fruit,Australia
+991,"Banana, lady finger (Moraitis, Australia)",53,4,8,Low,Fruit,Australia
+992,"Dates, Ruthana cultivar, Tamer stage",53,4,8,Low,Fruit,Saudi Arabia
+993,"Select, Australia)",53,4,8,Low,Fruit,Australia
+994,"(Woolworths Select, Australia)",53,7,8,Low,Fruit,Australia
+995,"POM Pomegranate juice (POM Wonderful LLC, USA)",53,3,11,Low,Fruit,USA
+996,Enzymatic,54,2,8,Low,Fruit,Australia
+997,"Dates, Fara'd variety (Al Saad date factory, Al Ain, UAE)",54,6,8,Low,Fruit,
+998,"Dates, Lulu variety (Al Saad date factory, Al Ain, UAE)",54,9,8,Low,Fruit,
+999,"Dates, Nabtat-seyf cultivar, Tamer stage",54,10,8,Low,Fruit,Saudi Arabia
+1000,"Macro brand, Australia)",54,6,8,Low,Fruit,Turkey
+1001,"Grapes, green, Menidee, seedless",54,4,8,Low,Fruit,Australia
+1002,"Juicy brand (Berri Ltd, Australia)",54,5,11,Low,Fruit,Australia
+1003,"Dates, Khalas variety (Al Saad date factory, Al Ain, UAE)",55,8,8,Low,Fruit,
+1004,production,55,6,8,Low,Fruit,Saudi Arabia
+1005,"Dates, Medjool cultivar, Tamer stage",55,7,8,Low,Fruit,Saudi Arabia
+1006,"Normal, 10",55,6,8,Low,Fruit,China
+1007,"Watermelon, raw (Citrullus vulgaris-red variety)",55,3,8,Low,Fruit,Malaysia
+1008,"Select, Australia)",55,5,8,Low,Fruit,Australia
+1009,Raisins,55,5,8,Low,Fruit,Canada
+1010,"Hills, Australia)",55,7,8,Low,Fruit,Australia
+1011,"Bonne Maman, Italy)",55,6,8,Low,Fruit,Italy
+1012,"Schweppes, Australia)",55,4,8,Low,Fruit,Australia
+1013,"Apricots, dried (Armeniaca vulgaris Lam.)",56,4,8,Medium,Fruit,China
+1014,"Dates, Sayer, dried, Trident™ brand",56,3,8,Medium,Fruit,Australia
+1015,Raisins (Vitis vinifera Linn.),56,5,8,Medium,Fruit,China
+1016,"Bridgewater, Somerset, UK)",56,4,11,Medium,Fruit,UK
+1017,"Fruit Apricot spread (Loblaw Brands Limited, Canada)",56,8,8,Medium,Fruit,Canada
+1018,"Banana, raw, overripe",57,8,9,Medium,Fruit,Australia
+1019,"Dates, Osilah cultivar, Tamer stage",57,12,9,Medium,Fruit,Saudi Arabia
+1020,"Lychee, fresh",57,3,9,Medium,Fruit,Australia
+1021,"Dates, Um-Kabar cultivar, Tamer stage",59,7,9,Medium,Fruit,Saudi Arabia
+1022,"Grapes, black, Waltham Cross",59,5,9,Medium,Fruit,Australia
+1023,"Normal, 10",59,8,9,Medium,Fruit,UK
+1024,"Dates, dried",60,6,9,Medium,Fruit,Saudi Arabia
+1025,"Dates, Nabtat-ali cultivar, Tamer stage",60,7,9,Medium,Fruit,Saudi Arabia
+1026,Enzymatic,60,9,9,Medium,Fruit,Italy
+1027,"Sons, Sydney, Australia)",61,6,9,Medium,Fruit,Australia
+1028,Raisins,61,4,9,Medium,Fruit,USA
+1029,Enzymatic,62,6,9,Medium,Fruit,USA
+1030,"Dates, Khudri cultivar, Tamer stage",62,7,9,Medium,Fruit,Saudi Arabia
+1031,"Grape juice, 100%, Daily C (Weichuan Shanghai, China)",63,5,13,Medium,Fruit,China
+1032,"Apricot, St Dalfour, Italy)",63,6,9,Medium,Fruit,Italy
+1033,"albicocca, Rigoni di Asiago, Italy)",63,9,9,Medium,Fruit,Italy
+1034,"selvatici, Bonne Maman, Italy)",63,3,9,Medium,Fruit,Italy
+1035,Australia),64,3,10,Medium,Fruit,Australia
+1036,"Jackfruit365 Green Jackfruit, prepared as a porridge with",65,5,10,Medium,Fruit,India
+1037,"Apple juice, green apple (100%) (Pfanner, Italy)",67,7,13,Medium,Fruit,Italy
+1038,"Dates, NS",68,6,10,Medium,Fruit,Canada
+1039,"Cranberry juice cocktail (Ocean Spray Inc., LakevilleMiddleboro, MA, USA)",68,3,14,Medium,Fruit,USA
+1040,"Orange Spread, Thick Cut St Dalfour, Italy)",68,6,10,Medium,Fruit,Italy
+1041,"Dates, Maktoomi cultivar, Tamer stage",71,11,11,High,Fruit,Saudi Arabia
+1042,Jamaica,72,8,11,High,Fruit,
+1043,"Wild Blueberry, St. Dalfour, Italy)",74,5,11,High,Fruit,Italy
+1044,"Dates, Sellaj cultivar, Tamer stage",75,10,11,High,Fruit,Saudi Arabia
+1045,HemoCue,76,9,11,High,Fruit,Italy
+1046,"Lychee, canned in syrup and drained, Narcissus brand",79,8,12,High,Fruit,China
+1047,"Pineapple, raw (Ananas comosa)",82,4,12,High,Fruit,Malaysia
+1048,powder + 233.3 g water),18,3,2,Low,Infant Formula,Australia
+1049,(Wyeth Australia Pty Ltd) (42.5 g powder + 300 g water),19,3,2,Low,Infant Formula,Australia
+1050,water),23,6,2,Low,Infant Formula,Australia
+1051,"Growing up beverage powder, product 3",23,4,2,Low,Infant Formula,Malaysia
+1052,Australia Pty Ltd) (45.2 g powder + 288.1 g water),26,4,3,Low,Infant Formula,Australia
+1053,consistency,29,4,3,Low,Infant Formula,Australia
+1054,powder + 271.7 g water),30,3,3,Low,Infant Formula,Australia
+1055,"Nan-1™ infant formula with iron (Nestlé, Australia)",30,6,3,Low,Infant Formula,Australia
+1056,production,34,7,3,Low,Infant Formula,Australia
+1057,"(Nutricia, Auckland, New Zealand)",35,5,4,Low,Infant Formula,New Zealand
+1058,"S-26™ infant formula (Wyeth Nutritionals, Australia)",36,6,4,Low,Infant Formula,Australia
+1059,consistency,36,4,4,Low,Infant Formula,Australia
+1060,g powder + 261.9 g water),37,4,4,Low,Infant Formula,Australia
+1061,"Breast milk, human, unpasteurized",38,7,4,Low,Infant Formula,Australia
+1062,powder + 295.4 g water),38,5,4,Low,Infant Formula,Australia
+1063,consistency,38,3,4,Low,Infant Formula,Australia
+1064,"Growing up beverage powder, product 6",43,3,4,Low,Infant Formula,Indonesia
+1065,months,43,5,4,Low,Infant Formula,Australia
+1066,"ages 4 – 6 months, commercial",44,4,4,Low,Infant Formula,Australia
+1067,"(Heinz Wattie's Ltd, Australia)",46,4,5,Low,Infant Formula,Australia
+1068,"Growing up beverage powder, product 4",51,3,5,Low,Infant Formula,Indonesia
+1069,Australia Limited) (43.5 g powder + 303.7 g water),52,6,5,Low,Infant Formula,Australia
+1070,"Growing up beverage powder, product 5",54,5,5,Low,Infant Formula,Malaysia
+1071,consistency,54,7,5,Low,Infant Formula,Australia
+1072,"Baulkham Hills, NSW, Australia)",55,6,6,Low,Infant Formula,Australia
+1073,"Growing up beverage powder, product 2",55,5,6,Low,Infant Formula,Indonesia
+1074,powder + 299.6 g water),57,7,6,Medium,Infant Formula,Australia
+1075,"(Nutricia, Wells, UK)",59,8,6,Medium,Infant Formula,UK
+1076,Pty Ltd) (47.0 g powder + 331.8 g water),60,5,6,Medium,Infant Formula,Australia
+1077,consistency,61,3,6,Medium,Infant Formula,Australia
+1078,mL water,65,7,7,Medium,Infant Formula,Australia
+1079,"Wattie's Ltd, Australia)",65,13,7,Medium,Infant Formula,Australia
+1080,"Growing up beverage powder, product 1",66,6,7,Medium,Infant Formula,Malaysia
+1081,Ltd) (42.0 g powder + 291.3 g water),67,6,7,Medium,Infant Formula,Australia
+1082,production,67,11,7,Medium,Infant Formula,Australia
+1083,"Growing up beverage powder, product 7",68,6,7,Medium,Infant Formula,Malaysia
+1084,prepared with 239 mL water,74,7,7,High,Infant Formula,Australia
+1085,mL water,74,8,7,High,Infant Formula,Australia
+1086,"Ltd., Malvern, Australia)",95,13,10,High,Infant Formula,Australia
+1087,"until soft (Saskatchewan Pulse Growers, Canada)",10,3,2,Low,Legumes,Canada
+1088,whole blood,13,2,2,Low,Legumes,Canada
+1089,"until soft (Saskatchewan Pulse Growers, Canada)",14,3,,Low,Legumes,Canada
+1090,"Chesterfield, VA)",15,3,2,Low,Legumes,USA
+1091,whole blood,15,5,2,Low,Legumes,
+1092,whole blood,17,4,3,Low,Legumes,
+1093,"until soft (Saskatchewan Pulse Growers, Canada)",18,3,3,Low,Legumes,Canada
+1094,"Chilled Foods Pty Ltd, ACT, Australia)",22,5,3,Low,Legumes,Australia
+1095,"until soft (Saskatchewan Pulse Growers, Canada)",23,5,3,Low,Legumes,Canada
+1096,"Mung bean, germinated",25,4,4,Low,Legumes,Australia
+1097,"Australia, Cheltenham, Australia)",31,5,5,Low,Legumes,Australia
+1098,Australia),35,3,5,Low,Legumes,Australia
+1099,"(Simplot Australia, Australia)",36,4,5,Low,Legumes,Australia
+1100,"Australia, Cheltenham, Australia)",36,3,5,Low,Legumes,Australia
+1101,Australia),36,4,5,Low,Legumes,Australia
+1102,"Australia, Australia)",37,5,6,Low,Legumes,Australia
+1103,"Edgell's™ brand (Simplot Australia, Australia)",38,3,6,Low,Legumes,Australia
+1104,"Ltd, Australia), heated in microwave for 1.5 min",38,3,6,Low,Legumes,Australia
+1105,"Chickpeas, dried, roasted (‘chicknuts’)",39,4,6,Low,Legumes,
+1106,"Baked Beans in Tomato sauce (HJ Heinz, Australia)",40,5,6,Low,Legumes,Australia
+1107,"Australia, Australia)",42,5,,Low,Legumes,Australia
+1108,"Mung bean, pressure cooked",42,5,6,Low,Legumes,Australia
+1109,"brand (Simplot Australia, Australia)",43,5,6,Low,Legumes,Australia
+1110,"Baked Beans in Cheesy Tomato sauce (HJ Heinz, Australia)",44,4,7,Low,Legumes,Australia
+1111,"Baked Beans in Sweet Chilli sauce (HJ Heinz, Australia)",46,3,7,Low,Legumes,Australia
+1112,"Baked Beans in Barbecue sauce (HJ Heinz, Australia)",47,4,7,Low,Legumes,Australia
+1113,"Baked Beans in Ham sauce (HJ Heinz, Australia)",53,4,8,Low,Legumes,Australia
+1114,"Mung bean, fried",53,8,8,Low,Legumes,Australia
+1115,"microwave for 1.5 min (HJ Heinz, Australia)",57,7,9,Medium,Legumes,Australia
+1116,"Ltd, Australia)",63,9,9,Medium,Legumes,Australia
+1117,"Apple (Herbalife International of America, Inc.)",15,2,3,Low,Meal Replacement,USA
+1118,"Cream (Herbalife International of America, Inc.)",15,2,3,Low,Meal Replacement,USA
+1119,"(Herbalife Australasia Pty Ltd, Australia), prepared with",15,2,3,Low,Meal Replacement,Australia
+1120,"(Herbalife Australasia Pty Ltd, Australia), prepared with",19,2,4,Low,Meal Replacement,Australia
+1121,Australia),20,2,4,Low,Meal Replacement,Australia
+1122,"Australasia Pty Ltd, Australia), prepared with water",20,2,4,Low,Meal Replacement,Australia
+1123,"(SlimFast Foods Ltd, UK), prepared with water",20,2,4,Low,Meal Replacement,UK
+1124,"Australasia Pty Ltd, Australia), prepared with water",21,2,4,Low,Meal Replacement,Australia
+1125,Peanut Butter weight management bar (Shaklee Corporation,22,4,4,Low,Meal Replacement,USA
+1126,"(Herbalife International of America, Inc.)",22,3,4,Low,Meal Replacement,Brazil
+1127,prepared with 356.2 mL water,22,2,4,Low,Meal Replacement,Australia
+1128,"Lemon weight management bar (Shaklee Corporation, USA)",23,4,5,Low,Meal Replacement,USA
+1129,"Ltd, Australia)",23,3,5,Low,Meal Replacement,Australia
+1130,"Australia), prepared with water",24,3,5,Low,Meal Replacement,Australia
+1131,"Science, Australia)",25,2,5,Low,Meal Replacement,Australia
+1132,"Australia), prepared with water",25,3,5,Low,Meal Replacement,Australia
+1133,"Lake City, USA)",26,3,5,Low,Meal Replacement,USA
+1134,Australia),27,4,5,Low,Meal Replacement,Australia
+1135,"Science, Australia)",27,4,5,Low,Meal Replacement,Australia
+1136,"Foods Ltd, UK)",27,3,5,Low,Meal Replacement,UK
+1137,"Hangzhou, China)",27,4,5,Low,Meal Replacement,China
+1138,"Australia), prepared with water",27,3,5,Low,Meal Replacement,Australia
+1139,"(Indevex AB, Sweden)",28,5,6,Low,Meal Replacement,Sweden
+1140,"water (Indevex AB, Sweden)",28,5,6,Low,Meal Replacement,Sweden
+1141,"Pleasanton, CA, USA)",29,4,6,Low,Meal Replacement,USA
+1142,"Science, Australia)",29,4,6,Low,Meal Replacement,Australia
+1143,Prolessa Duo (1 serve) (Herbalife International of America,29,4,6,Low,Meal Replacement,USA
+1144,plasma,29,3,6,Low,Meal Replacement,USA
+1145,"Salt Lake City, UT, USA)",30,4,6,Low,Meal Replacement,USA
+1146,"Science, Australia)",30,3,6,Low,Meal Replacement,Australia
+1147,"Ltd, Australia)",30,4,6,Low,Meal Replacement,Australia
+1148,"Australia), prepared with water",31,3,6,Low,Meal Replacement,Australia
+1149,"Inc., Salt Lake City, UT, USA)",32,4,6,Low,Meal Replacement,USA
+1150,plasma,32,4,6,Low,Meal Replacement,USA
+1151,vanilla flavor,32,4,6,Low,Meal Replacement,Australia
+1152,"shake (SlimFast Foods Ltd, UK)",33,3,7,Low,Meal Replacement,UK
+1153,"Australia), prepared with water",34,4,7,Low,Meal Replacement,Australia
+1154,"Biomedical Technology, Beijing, China)",35,4,7,Low,Meal Replacement,China
+1155,chocolate flavor,35,5,7,Low,Meal Replacement,Australia
+1156,"(Slim Fast Foods Company, Englewood, NJ, USA)",37,5,7,Low,Meal Replacement,USA
+1157,"(Aussie Bodies Pty Ltd, Australia)",39,4,8,Low,Meal Replacement,Australia
+1158,"(Aussie Bodies Pty Ltd, Australia)",41,3,8,Low,Meal Replacement,Australia
+1159,"Hazelnut & Apricot bar (Dietworks, South Yarra, Australia)",42,7,8,Low,Meal Replacement,Australia
+1160,"Dough (Herbalife International of America, Inc.)",42,6,8,Low,Meal Replacement,USA
+1161,"Tianyi Cuisine Nutritional Food, China)",43,4,9,Low,Meal Replacement,China
+1162,"Meal Shake Solid Beverage, Lychee Rose (Mary Kay, China)",44,4,9,Low,Meal Replacement,China
+1163,"City, UT, USA)",45,4,9,Low,Meal Replacement,USA
+1164,"Biomedical Technology, Beijing, China)",47,3,9,Low,Meal Replacement,China
+1165,"Ltd, UK)",49,6,10,Low,Meal Replacement,UK
+1166,"(Herbalife International of America, Inc.)",49,8,10,Low,Meal Replacement,USA
+1167,"Ltd, Baulkham Hills, Australia)",49,4,10,Low,Meal Replacement,USA
+1168,"(SlimFast Foods Ltd, Slough, Berks, UK)",54,3,11,Low,Meal Replacement,UK
+1169,"Laboratories Inc, USA)",15,3,5,Low,Nutritional Support,USA
+1170,Nutrition International),16,3,5,Low,Nutritional Support,Australia
+1171,New Zealand),16,4,5,Low,Nutritional Support,New Zealand
+1172,"Glucerna™, vanilla flavor (Abbott Nutrition International)",19,4,6,Low,Nutritional Support,Australia
+1173,"Nutrition, Canada)",20,2,6,Low,Nutritional Support,Canada
+1174,"Glucerna™, vanilla flavor (Abbott Nutrition International)",20,4,6,Low,Nutritional Support,Japan
+1175,Laboratories),23,4,7,Low,Nutritional Support,Canada
+1176,"Laboratories Inc., USA)",23,5,7,Low,Nutritional Support,USA
+1177,Inslow™ (Abbott Nutrition International -Japan),25,3,8,Low,Nutritional Support,Japan
+1178,"Peptide 1.5 Plain nutrition formula (Kate Farms, Inc.)",26,4,8,Low,Nutritional Support,USA
+1179,"Standard 1.0 Vanilla nutrition formula (Kate Farms, Inc.",26,2,8,Low,Nutritional Support,USA
+1180,"mixed in 670 mL water (Dr. Reddy's Laboratories, India)",27,5,8,Low,Nutritional Support,India
+1181,"mL water (PT Mirota KSM, Indonesia)",27,3,8,Low,Nutritional Support,Indonesia
+1182,"Incorporated, Bridgewater, NJ), prepared with water",27,2,8,Low,Nutritional Support,USA
+1183,"(Mead Johnson, Australia), prepared with water",27,3,8,Low,Nutritional Support,Australia
+1184,International - Japan),27,5,8,Low,Nutritional Support,Japan
+1185,"Zoetermeer, Netherlands)",28,4,8,Low,Nutritional Support,Netherlands
+1186,"Glucerna™, vanilla (Abbott Laboratories Inc., USA)",31,2,9,Low,Nutritional Support,USA
+1187,"Standard 1.0 Chocolate nutrition formula (Kate Farms, Inc.",31,3,9,Low,Nutritional Support,USA
+1188,"Squibb, Rydalmere, Australia)",31,4,9,Low,Nutritional Support,Australia
+1189,"Zoetermeer, Netherlands)",33,6,10,Low,Nutritional Support,Netherlands
+1190,"powdered mix (Mead Johnson, Australia), prepared with",33,4,10,Low,Nutritional Support,Australia
+1191,"Zoetermeer, Netherlands)",34,4,10,Low,Nutritional Support,Netherlands
+1192,"Corp., Young America, USA), prepared with water",34,3,10,Low,Nutritional Support,USA
+1193,"Inc, Ashland, USA)",36,4,11,Low,Nutritional Support,USA
+1194,"Pharmaceutical India Pvt. Ltd.), prepared with 457.8 mL",36,4,11,Low,Nutritional Support,India
+1195,"mixed in 765 mL water (Dr. Reddy's Laboratories, India)",37,4,11,Low,Nutritional Support,India
+1196,"Health Science, Australia), prepared with water",37,3,11,Low,Nutritional Support,Australia
+1197,"Ensure Plus™, vanilla (Abbott Australasia)",40,4,12,Low,Nutritional Support,Australia
+1198,Zealand),40,8,12,Low,Nutritional Support,New Zealand
+1199,"(Nestlé Health Science, Australia), prepared with water",42,5,13,Low,Nutritional Support,Australia
+1200,"(Viplus Dairy Pty Ltd, Australia)",42,2,13,Low,Nutritional Support,Australia
+1201,"Ensure™ bar, chocolate fudge brownie (Abbott Australasia)",43,3,13,Low,Nutritional Support,Australia
+1202,"(Nestlé Health Science, Australia), prepared with water",45,4,14,Low,Nutritional Support,Australia
+1203,"Australia), prepared with water",45,5,14,Low,Nutritional Support,Australia
+1204,"Science, Australia), prepared with water",46,3,14,Low,Nutritional Support,Australia
+1205,"(Novartis, New Zealand)",47,9,14,Low,Nutritional Support,New Zealand
+1206,"Ensure™, vanilla (Abbott Australasia)",48,3,14,Low,Nutritional Support,Australia
+1207,Vietnam,48,3,14,Low,Nutritional Support,
+1208,Jevity™ (Abbott Australasia),48,3,14,Low,Nutritional Support,Australia
+1209,"Science, Australia), prepared with water",48,3,14,Low,Nutritional Support,Australia
+1210,Promote with fiber™ nutritional supplement (Ross Nutrition,49,8,15,Low,Nutritional Support,USA
+1211,"Science, Australia), prepared with water",49,5,15,Low,Nutritional Support,Australia
+1212,with 304.2 mL water (Abbott Nutrition International),51,5,15,Low,Nutritional Support,Australia
+1213,"Standard 1.4 Plain nutrition formula (Kate Farms, Inc., USA)",51,5,15,Low,Nutritional Support,USA
+1214,"Tang Biological Science and Technology, China)",52,5,16,Low,Nutritional Support,China
+1215,Nutrition International),54,5,16,Low,Nutritional Support,USA
+1216,"(Novartis, New Zealand)",54,7,16,Low,Nutritional Support,New Zealand
+1217,"Science, Australia), prepared with water",54,3,16,Low,Nutritional Support,Australia
+1218,Nutrition International),55,5,17,Low,Nutritional Support,Australia
+1219,flavor (Abbott Nutrition International),55,5,17,Low,Nutritional Support,Australia
+1220,Nutrition International),59,6,18,Medium,Nutritional Support,Australia
+1221,"Isocal, ready-to-drink (Nestlé Nutrition, Tainan, Taiwan)",79,9,24,High,Nutritional Support,Taiwan
+1222,"Isocal, ready-to-drink (Nestlé Nutrition, Tainan, Taiwan)",82,13,25,High,Nutritional Support,Taiwan
+1223,"Isocal, ready-to-drink (Nestlé Nutrition, Tainan, Taiwan)",85,9,26,High,Nutritional Support,Taiwan
+1224,"Kalmar, Sweden)",106,13,32,High,Nutritional Support,Sweden
+1225,"Ltd., Beijing, China)",118,14,35,High,Nutritional Support,China
+1226,"bar (Hershey's Food Corporation, Hershey, PA, USA)",14,3,4,Low,Nuts,USA
+1227,"(Hershey's Food Corporation, Hershey, PA, USA)",14,3,4,Low,Nuts,USA
+1228,"(Hershey's Food Corporation, Hershey, PA, USA)",15,3,4,Low,Nuts,USA
+1229,"Corporation, Hershey, PA, USA)",16,3,4,Low,Nuts,USA
+1230,"(Hershey's Food Corporation, Hershey, PA, USA)",16,4,4,Low,Nuts,USA
+1231,"Food Corporation, Hershey, PA, USA)",18,2,5,Low,Nuts,USA
+1232,"Ltd, Tokyo, Japan)",19,2,5,Low,Nuts,Japan
+1233,"Chocolate Fudge Brownie flavor (M&M/Mars, USA)",20,4,5,Low,Nuts,USA
+1234,Mixed nuts and raisins,21,5,1,Low,Nuts,UK
+1235,"gluten-free (Freedom Foods, Australia)",21,2,5,Low,Nuts,Australia
+1236,"Butter flavor (M&M/Mars, USA)",21,4,5,Low,Nuts,USA
+1237,"Average carbohydrate portion = 5 g, this value was used to determine the nominal GL for each item in this category.",22,5,1,Low,Nuts,Australia
+1238,"Nutbutter bar (SoLo GI Nutrition, Inc, Canada, Canada)",22,1,6,Low,Nuts,Canada
+1239,"Chocolate Cherry Almond bar (Beachbody, LLC, USA)",22,2,6,Low,Nuts,USA
+1240,"(Hershey's Food Corporation, Hershey, PA, USA)",23,5,6,Low,Nuts,USA
+1241,period,23,3,6,Low,Nuts,
+1242,"Alberta, Canada)",23,3,6,Low,Nuts,Canada
+1243,"Mixed nuts, roasted and salted",24,10,1,Low,Nuts,UK
+1244,"Hot cereal, Sustagrain, unflavored (Con Agra Inc., USA)",25,5,5,Low,Nuts,USA
+1245,"Co Ltd, Tokyo, Japan)",25,3,6,Low,Nuts,Japan
+1246,"Trim bar, Mocha flavor (Aussie Bodies Pty. Ltd., Australia)",25,3,6,Low,Nuts,Australia
+1247,"Rush flavor (M&M/Mars, USA)",26,3,7,Low,Nuts,USA
+1248,"Co Ltd, Tokyo, Japan)",27,4,7,Low,Nuts,Japan
+1249,"Pharmaceutical Co Ltd, Tokyo, Japan)",27,2,7,Low,Nuts,Japan
+1250,Standard,27,4,7,Low,Nuts,
+1251,"Alberta, Canada)",27,4,7,Low,Nuts,Canada
+1252,"Pharmaceutical Co Ltd, Tokyo, Japan)",28,2,7,Low,Nuts,Japan
+1253,"Inc, Alberta, Canada)",28,2,7,Low,Nuts,Canada
+1254,"Co Ltd, Tokyo, Japan)",29,5,7,Low,Nuts,Japan
+1255,"Alberta, Canada)",29,5,7,Low,Nuts,Canada
+1256,"Trim bar, Chocorama (Aussie Bodies Pty. Ltd., Australia)",31,3,8,Low,Nuts,Australia
+1257,"Red Fruits Protein Muesli (Herman Brot Pty Ltd, Australia)",32,4,6,Low,Nuts,Australia
+1258,"Peanut Butter Chocolate bar (Beachbody, LLC)",32,4,8,Low,Nuts,USA
+1259,"Burst flavor (M&M/Mars, USA)",32,4,8,Low,Nuts,USA
+1260,"All-Bran Soy 'n Fiber™ (Kellogg's, Australia)",33,3,7,Low,Nuts,Australia
+1261,"Cereal bar, hazelnut flavor",33,6,7,Low,Nuts,UK
+1262,production,33,3,7,Low,Nuts,UK
+1263,Canada),33,6,8,Low,Nuts,Canada
+1264,"Pharmaceutical Co Ltd, Tokyo, Japan)",33,2,8,Low,Nuts,Japan
+1265,"(M&M/Mars, USA)",34,5,9,Low,Nuts,USA
+1266,"Chocolate Protein Muesli (Herman Brot Pty Ltd, Australia)",35,4,7,Low,Nuts,Australia
+1267,"flavor (M&M/Mars, USA)",36,5,9,Low,Nuts,USA
+1268,"Guardian™ (Kellogg's, Australia)",37,9,7,Low,Nuts,Australia
+1269,"Hot cereal, Sustagrain, apple & cinnamon (Con Agra Inc",37,6,7,Low,Nuts,USA
+1270,"Snack bar, Peanut Butter and Choc-Chip (Con Agra Inc.",37,6,9,Low,Nuts,USA
+1271,"Muesli, Natural (Sanitarium, Australia)",40,6,8,Low,Nuts,Australia
+1272,"Snack bar, Apple Cinnamon (Con Agra Inc., Omaha, NE",40,8,10,Low,Nuts,USA
+1273,per 100 g (4.01 g FMC/100 g carbohydrate),40,4,10,Low,Nuts,Australia
+1274,"Rye Muesli, Bürgen® (George Weston Foods, Australia)",41,5,8,Low,Nuts,Australia
+1275,"All-Bran Fruit 'n Oats™ (Kellogg's, Australia)",41,9,8,Low,Nuts,Australia
+1276,"cereal, 30.2 g fiber/100 g (Specialty Cereals, Australia)",41,4,8,Low,Nuts,Australia
+1277,"Pharmaceutical Co Ltd, Tokyo, Japan)",41,7,10,Low,Nuts,Japan
+1278,"flavor (M&M/Mars, USA)",41,3,10,Low,Nuts,USA
+1279,"Cereal bar, cranberry flavor",42,5,8,Low,Nuts,UK
+1280,"Bran cereal, high fiber",43,10,9,Low,Nuts,UK
+1281,"Guardian™ (Kellogg's, Australia)",43,4,9,Low,Nuts,Australia
+1282,production,44,3,9,Low,Nuts,Australia
+1283,whole blood,44,6,11,Low,Nuts,USA
+1284,"Muesli, yeast & wheat free (Freedom Foods, Australia)",45,5,9,Low,Nuts,Australia
+1285,"Uncle Toby’s® Breakfast Bakes, Apple and Cinnamon",45,5,9,Low,Nuts,Australia
+1286,and corn syrup,45,6,11,Low,Nuts,Australia
+1287,"Uncle Toby’s® Milk and Oats, Vanilla cereal bar",46,4,9,Low,Nuts,Australia
+1288,"Milo® Protein Clusters Cereal (Nestlé, Australia)",47,4,9,Low,Nuts,Australia
+1289,"Uncle Toby’s® Breakfast Bakes, Classic Peanut Butter",47,5,9,Low,Nuts,Australia
+1290,"Muesli, Naytura Fruit and Nut (Woolworths, Australia)",48,6,10,Low,Nuts,Australia
+1291,"Porridge, made from steel-cut oats, cooked in water",48,5,10,Low,Nuts,Australia
+1292,"Komplete™ (Kellogg's, Australia)",48,5,10,Low,Nuts,Australia
+1293,"Uncle Toby’s® Milk and Oats, Chocolate cereal bar",48,3,10,Low,Nuts,Australia
+1294,Whole-grain protein cereal,49,3,10,Low,Nuts,USA
+1295,"flavor (M&M/Mars, USA)",49,6,12,Low,Nuts,USA
+1296,"VO2 Max Chocolate Energy bar (M&M/Mars, USA)",49,8,12,Low,Nuts,USA
+1297,"Porridge oats (Freedom Foods, Australia)",50,4,10,Low,Nuts,Australia
+1298,"Muesli breakfast bar, gluten-free (Freedom Foods, Australia)",50,6,10,Low,Nuts,Australia
+1299,"Uncle Toby’s® Milk and Oats, Strawberry cereal bar",50,4,10,Low,Nuts,Australia
+1300,"Uncle Toby’s® Breakfast Bakes, Honey Almond",50,4,10,Low,Nuts,Australia
+1301,"(M&M/Mars, USA)",50,4,13,Low,Nuts,USA
+1302,"Porridge oats, traditional (Lowan Whole Foods, Australia)",51,8,10,Low,Nuts,Australia
+1303,"Porridge, made from steel-cut oats, Moulamein™, cooked in",51,5,10,Low,Nuts,Australia
+1304,"fruit covered with yoghurt coating (Sanitarium, Australia)",51,4,10,Low,Nuts,Australia
+1305,"Muesli, Swiss Bircher (Woolworths Select, Australia)",52,5,10,Low,Nuts,Australia
+1306,"Porridge, made from steel-cut oats, cooked in water",52,4,10,Low,Nuts,USA
+1307,prepared with water,52,5,10,Low,Nuts,Australia
+1308,High-fiber cereal,52,6,10,Low,Nuts,UK
+1309,"Pharmaceuticals, Inc., USA)",52,4,13,Low,Nuts,USA
+1310,"(Meebags, Sunny International Trading Pty Ltd)",53,3,11,Low,Nuts,Australia
+1311,"Hi-Lite™ breakfast bar (Freedom Foods, Australia)",53,3,11,Low,Nuts,Australia
+1312,"Performance Chocolate Energy bar (Power Bar, USA)",53,6,13,Low,Nuts,USA
+1313,"Foods, Cheltenham, Australia)",54,5,11,Low,Nuts,Australia
+1314,"nuts, Alpen original (Weetabix, UK)",55,10,11,Low,Nuts,UK
+1315,Whole-grain oat muesli,55,4,11,Low,Nuts,USA
+1316,Porridge oats,55,2,11,Low,Nuts,China
+1317,"Company, Beecroft, Australia)",55,2,11,Low,Nuts,Australia
+1318,Canada),55,7,11,Low,Nuts,Canada
+1319,"Sustain™, Original (Kellogg's, Australia)",55,5,11,Low,Nuts,Australia
+1320,"Frosties™, sugar-coated cornflakes (Kellogg's, Australia)",55,7,11,Low,Nuts,Australia
+1321,"Muesli, wholewheat",56,6,11,Medium,Nuts,UK
+1322,"Sustain™ (Kellogg's)13, tested in younger adults (19-32 y)",56,4,11,Medium,Nuts,Australia
+1323,"Menu™ (Loblaw Brands Limited, Canada)",56,10,11,Medium,Nuts,Canada
+1324,"nuts with yoghurt coating (Sanitarium, Australia)",56,4,11,Medium,Nuts,Australia
+1325,"Muesli, Natural (Sanitarium, New Zealand)",57,9,11,Medium,Nuts,New Zealand
+1326,production,57,4,11,Medium,Nuts,Australia
+1327,Canada),57,8,11,Medium,Nuts,Canada
+1328,"Protein, prepared with water",57,5,11,Medium,Nuts,Australia
+1329,Australia),57,3,11,Medium,Nuts,Australia
+1330,"Oat bran Weet-Bix™ (Sanitarium, Australia)",57,4,11,Medium,Nuts,Australia
+1331,"Sustain™ bar (Kellogg's, Australia)",57,10,11,Medium,Nuts,Australia
+1332,"Berkeley, USA)",57,6,14,Medium,Nuts,USA
+1333,"Normal, 10",58,9,12,Medium,Nuts,New Zealand
+1334,"Power Bar®, chocolate (Powerfood Inc., Berkeley, USA)",58,5,15,Medium,Nuts,USA
+1335,Australia),59,4,12,Medium,Nuts,Australia
+1336,"All-Bran Wheat Flakes™ (Kellogg's, Australia)",60,8,12,Medium,Nuts,Australia
+1337,"Just Right™ (Kellogg's, Australia)",60,15,12,Medium,Nuts,Australia
+1338,Australia),60,5,12,Medium,Nuts,Australia
+1339,"Springs, New Zealand)13",60,5,15,Medium,Nuts,New Zealand
+1340,"(Sanitarium, Australia)",61,4,12,Medium,Nuts,Australia
+1341,"Raisin Bran™ (Kellogg's, USA)",61,5,12,Medium,Nuts,USA
+1342,HemoCue,61,7,15,Medium,Nuts,Italy
+1343,Australia),62,6,12,Medium,Nuts,Australia
+1344,"Just Right Just Grains™ (Kellogg's, Australia)",62,11,12,Medium,Nuts,Australia
+1345,"Porridge, Scottish, made with water, cooked in microwave",63,7,13,Medium,Nuts,UK
+1346,"Rice Bubble Treat™ bar (Kellogg's, Australia)",63,11,13,Medium,Nuts,Australia
+1347,"Sultana Bran™ (Kellogg's, Australia)",64,3,13,Medium,Nuts,Australia
+1348,"Muesli, toasted, with nuts",65,5,13,Medium,Nuts,Australia
+1349,Sultana Goldies™ (Kellogg's Australia),65,6,13,Medium,Nuts,Australia
+1350,"Sustain™ (Kellogg's)13, tested in older adults (56–86 y)",66,3,13,Medium,Nuts,Australia
+1351,"Vita-Brits™ (Uncle Toby's, Australia)",68,6,14,Medium,Nuts,Australia
+1352,"Good Start™, muesli wheat biscuits (Sanitarium, Australia)",68,4,14,Medium,Nuts,Australia
+1353,"Special K™ (Kellogg's, USA)",69,5,14,Medium,Nuts,USA
+1354,"Weet-Bix™ (Sanitarium, Australia)",69,4,14,Medium,Nuts,Australia
+1355,"Froot Loops™ (Kellogg's, Australia)",69,9,14,Medium,Nuts,Australia
+1356,"Whole wheat Goldies™ (Kellogg's, Australia)",70,4,14,High,Nuts,Australia
+1357,"Lite-Bix™, plain, no added sugar (Sanitarium, Australia)",70,3,14,High,Nuts,Australia
+1358,carbohydrate),70,4,14,High,Nuts,Australia
+1359,"Pty Ltd, Australia)",70,6,14,High,Nuts,Australia
+1360,"Golden Wheats™ (Kellogg's, Australia)",71,8,14,High,Nuts,Australia
+1361,"Honey Smacks™ (Kellogg's, Australia)",71,10,14,High,Nuts,Australia
+1362,Wheat based cereal biscuits,72,10,14,High,Nuts,UK
+1363,Honey Goldies™ (Kellogg's Australia),72,3,14,High,Nuts,Australia
+1364,carbohydrate),72,5,14,High,Nuts,Australia
+1365,"Mini Wheats™, blackcurrant (Kellogg's, Australia)",72,10,14,High,Nuts,Australia
+1366,"Crunchy Nut Cornflakes™ bar (Kellogg's, Australia)",72,6,14,High,Nuts,Australia
+1367,"K-Time Just Right™ bar (Kellogg's, Australia)",72,4,14,High,Nuts,Australia
+1368,"Menu™ (Loblaw Brands Limited, Canada)",72,6,18,High,Nuts,Canada
+1369,Wheat flakes,73,7,15,High,Nuts,Australia
+1370,"Grapenuts™ (Kraft Foods Inc, Port Chester, USA)",75,6,15,High,Nuts,USA
+1371,"Oats; Peterborough, Ontario)",76,4,15,High,Nuts,Canada
+1372,Finland),76,7,15,High,Nuts,Finland
+1373,Wheat flake cereal biscuits,76,5,15,High,Nuts,Australia
+1374,"Coco Pops™ (Kellogg's, Australia)",77,3,15,High,Nuts,Australia
+1375,"Honey Rice Bubbles™ (Kellogg's, Australia)",77,4,15,High,Nuts,Australia
+1376,"Oat 'n Honey Bake™ (Kellogg's, Australia)",77,11,15,High,Nuts,Australia
+1377,"K-Time Strawberry Crunch™ bar (Kellogg's, Australia)",77,5,15,High,Nuts,Australia
+1378,"Corn Pops™ (Kellogg's, Australia)",80,4,16,High,Nuts,Australia
+1379,"Energy Mix™, wheat-based flaked cereal (Quaker, France)",80,7,16,High,Nuts,France
+1380,"Toby's, Australia)",82,10,16,High,Nuts,Australia
+1381,"Instant oat cereal porridge, prepared with 348 g water",83,10,17,High,Nuts,UK
+1382,"Special K™, made from rice (Kellogg's, France)",84,12,17,High,Nuts,France
+1383,"Rice Bubbles™ (Kellogg's, Australia)",85,3,17,High,Nuts,Australia
+1384,HemoCue,85,10,17,High,Nuts,Australia
+1385,"Instant oat porridge, prepared with water, cooked",87,9,17,High,Nuts,Australia
+1386,"Rice Bubbles™ (Kellogg's, Australia)",92,8,18,High,Nuts,Australia
+1387,"Fruity-Bix™, berry (Sanitarium, New Zealand)",113,10,23,High,Nuts,New Zealand
+1388,"Noodles, potato",14,1,6,Low,Pasta & Noodles,China
+1389,water for 7 min,22,3,9,Low,Pasta & Noodles,Australia
+1390,"San Antonio, TX, USA)",28,1,11,Low,Pasta & Noodles,USA
+1391,"Linguine, fresh (Hollywood Foods More than Pasta, Canada)",31,4,12,Low,Pasta & Noodles,Canada
+1392,"Spaghetti n°5 (Barilla, Italy)",33,6,13,Low,Pasta & Noodles,Italy
+1393,Italy),35,3,14,Low,Pasta & Noodles,Italy
+1394,and 3.5-fold increase in resistant starch),38,3,15,Low,Pasta & Noodles,Italy
+1395,"Low GI Noodles (Holista Biotech Corp., USA)",38,4,15,Low,Pasta & Noodles,USA
+1396,"Pty Ltd, Australia)",39,4,16,Low,Pasta & Noodles,Australia
+1397,"(Yantai cereals, China)",39,9,16,Low,Pasta & Noodles,China
+1398,"Rice noodles, freshly made, boiled (Sydney, NSW, Australia)",40,4,16,Low,Pasta & Noodles,Australia
+1399,number,44,2,18,Low,Pasta & Noodles,Australia
+1400,"Concord, ON, Canada)",44,3,18,Low,Pasta & Noodles,Canada
+1401,"Normal, 9",44,5,18,Low,Pasta & Noodles,Italy
+1402,"Rotini (Banza, LLC, USA)",44,9,18,Low,Pasta & Noodles,USA
+1403,"Spaghetti, white (Unico, Canada)",45,9,18,Low,Pasta & Noodles,Canada
+1404,"(Loblaw Brands Limited, Canada)",45,5,18,Low,Pasta & Noodles,Canada
+1405,"Industry, Puyang, China)",46,3,18,Low,Pasta & Noodles,China
+1406,"Spaghetti, white (Nishin Shokuhin, Japan)",46,9,18,Low,Pasta & Noodles,Japan
+1407,"Wheat noodle, dried",46,2,18,Low,Pasta & Noodles,China
+1408,"Penne mezzane, durum wheat flour (De Cecco, Italy)",47,4,19,Low,Pasta & Noodles,Italy
+1409,Australia),47,6,19,Low,Pasta & Noodles,Australia
+1410,"(Pipe rigate con pomodori e carote, Piccolini, Barilla, Italy)",47,7,19,Low,Pasta & Noodles,Italy
+1411,"Pharmaceuticals, Inc, USA)",47,7,19,Low,Pasta & Noodles,USA
+1412,"Pasta, Penne, gluten free (Dr Schär AG/SPA, Italy)8",48,6,19,Low,Pasta & Noodles,Italy
+1413,"Pennette integrali, durum wheat wholemeal (Coop, Italy)",48,9,19,Low,Pasta & Noodles,Italy
+1414,Italy),48,5,19,Low,Pasta & Noodles,Italy
+1415,"Spaghetti, white (Unico, Canada)",48,3,19,Low,Pasta & Noodles,Canada
+1416,"Spaghetti, Svevo 2017 durum wheat line",48,4,19,Low,Pasta & Noodles,Italy
+1417,"Australia), boiled for 12 min",49,7,20,Low,Pasta & Noodles,Australia
+1418,2.8-fold increase in resistant starch),49,3,20,Low,Pasta & Noodles,Italy
+1419,"Penne, durum wheat flour (Barilla, Italy)",50,7,20,Low,Pasta & Noodles,Italy
+1420,number,50,2,20,Low,Pasta & Noodles,Australia
+1421,"Spaghetti n°12 (De Cecco, Italy)",50,9,20,Low,Pasta & Noodles,Italy
+1422,"(Freedom Foods, Australia)",51,5,20,Low,Pasta & Noodles,Australia
+1423,"Rice pasta, gluten-free (Freedom Foods, Australia)",51,6,20,Low,Pasta & Noodles,Australia
+1424,"Spaghetti classici (Voiello, Italy)",51,9,20,Low,Pasta & Noodles,Italy
+1425,"(Pastificio Lo Scoiattolo, Italy)",51,7,20,Low,Pasta & Noodles,Italy
+1426,"Australia), including noodle broth",52,7,21,Low,Pasta & Noodles,Australia
+1427,including noodle broth,52,5,21,Low,Pasta & Noodles,Australia
+1428,"Spaghetti, Svevo 2016 durum wheat line",52,3,21,Low,Pasta & Noodles,Italy
+1429,"Pennette rigate, durum wheat flour (Barilla, Italy)",53,5,21,Low,Pasta & Noodles,Italy
+1430,Italy),53,10,21,Low,Pasta & Noodles,Italy
+1431,"Lasagne, egg, dry pasta, boiled in unsalted water for 10 min",53,9,21,Low,Pasta & Noodles,UK
+1432,unsalted water,55,8,22,Low,Pasta & Noodles,UK
+1433,"Cecco, Italy)",55,10,22,Low,Pasta & Noodles,Italy
+1434,Italy),55,4,22,Low,Pasta & Noodles,Italy
+1435,Zealand) 13,56,4,22,Medium,Pasta & Noodles,New Zealand
+1436,"Noodles, Jianxi rice vermicelli, boiled 8 min",56,7,22,Medium,Pasta & Noodles,China
+1437,"Barley pasta (celebrity white pearled fraction), cooked 5 min",58,4,23,Medium,Pasta & Noodles,Canada
+1438,"Hokkien noodles (Fantastic Fresh, Australia)",58,3,23,Medium,Pasta & Noodles,Australia
+1439,"(Raviolini con Carne di Vitello, Pastificio Rana SpA, Italy)",58,7,23,Medium,Pasta & Noodles,Italy
+1440,"Penne rigate, mini (Piccolini, Barilla, Italy)",59,11,24,Medium,Pasta & Noodles,Italy
+1441,"(Farfalle con carote e zucca, Piccolini, Barilla, Italy)",59,1,24,Medium,Pasta & Noodles,
+1442,"Tortellini pasta, fresh, gluten free (Sine srl, Italy)8",60,7,24,Medium,Pasta & Noodles,Italy
+1443,salted water,61,9,24,Medium,Pasta & Noodles,UK
+1444,"Tagliatelle pasta, fresh, gluten free (Sine srl, Italy)8",61,6,24,Medium,Pasta & Noodles,Italy
+1445,"Rice noodles, dried, boiled (Thai World, Bangkok, Thailand)",61,6,24,Medium,Pasta & Noodles,Thailand
+1446,"starch, boiled 3 min",61,5,24,Medium,Pasta & Noodles,China
+1447,"Wholemeal spaghetti, boiled for 8 min",62,4,25,Medium,Pasta & Noodles,Australia
+1448,"Gardens, SA, Australia)",62,8,25,Medium,Pasta & Noodles,Australia
+1449,"Shandong, China)",62,8,25,Medium,Pasta & Noodles,China
+1450,"Roeselare, Belgium)11",63,3,25,Medium,Pasta & Noodles,Belgium
+1451,"Barley pasta (AC Parkhill, white pearled fraction), cooked 5",64,4,26,Medium,Pasta & Noodles,Canada
+1452,"Pasta, NS",67,8,27,Medium,Pasta & Noodles,Canada
+1453,"puree, boiled in water for 2 min",67,5,27,Medium,Pasta & Noodles,Australia
+1454,"Downs, VIC, Australia)",68,7,27,Medium,Pasta & Noodles,Australia
+1455,"Spaghetti, gluten-free, rice and split pea, canned in tomato",68,9,27,Medium,Pasta & Noodles,Australia
+1456,"Noodles, Taiwan vermicelli, rice and maize starch, boiled 2",68,12,27,Medium,Pasta & Noodles,China
+1457,"Barley pasta (celebrity, whole grain fraction), cooked 5 min",71,6,28,High,Pasta & Noodles,Canada
+1458,"Barley pasta (AC Parkhill, whole grain fraction), cooked 5",73,7,29,High,Pasta & Noodles,Canada
+1459,Italy),73,3,29,High,Pasta & Noodles,Italy
+1460,Australia),76,6,30,High,Pasta & Noodles,Australia
+1461,"Corn pasta, gluten-free (Orgran Natural Foods, Australia)",78,10,31,High,Pasta & Noodles,Australia
+1462,Semolina pasta,78,8,31,High,Pasta & Noodles,Canada
+1463,"Noodles, potato, served with meat, NS",17,3,6,Low,Regional/Traditional Foods,China
+1464,Potato noodles with meat,17,3,6,Low,Regional/Traditional Foods,China
+1465,"Dumpling, containing meat and shallots",28,3,10,Low,Regional/Traditional Foods,China
+1466,Hong Kong,29,5,10,Low,Regional/Traditional Foods,
+1467,Hong Kong,30,4,11,Low,Regional/Traditional Foods,
+1468,Hong Kong,33,3,12,Low,Regional/Traditional Foods,
+1469,"Fairprice, Singapore)",35,3,12,Low,Regional/Traditional Foods,Singapore
+1470,whole blood,35,4,12,Low,Regional/Traditional Foods,China
+1471,full-fat plain yoghurt (125 g),37,5,13,Low,Regional/Traditional Foods,
+1472,Côte d’Ivoire,39,1,14,Low,Regional/Traditional Foods,
+1473,"noodles), dried, boiled",39,9,14,Low,Regional/Traditional Foods,China
+1474,"Stuffed bun, with shallots and meat, steamed",39,4,14,Low,Regional/Traditional Foods,China
+1475,Hong Kong,40,4,14,Low,Regional/Traditional Foods,
+1476,chicken and potatoes (Old Chang Kee (S) Private Limited),41,4,14,Low,Regional/Traditional Foods,Singapore
+1477,"Harees, beef (whole wheat served with meat)",42,2,15,Low,Regional/Traditional Foods,
+1478,"Indystry Group, Guangzhou, China)",42,4,15,Low,Regional/Traditional Foods,China
+1479,"fillings (Tibet Jingu Agricultural High Tech. Tibet, China)",43,4,15,Low,Regional/Traditional Foods,China
+1480,"Chapati, flatbread with 10% fenugreek",43,5,15,Low,Regional/Traditional Foods,Malaysia
+1481,Legemat (Doughnut cake),44,4,15,Low,Regional/Traditional Foods,
+1482,Khanfaroosh (Doughnut cake),45,3,16,Low,Regional/Traditional Foods,
+1483,"MX, Hong Kong)",45,3,16,Low,Regional/Traditional Foods,China
+1484,"Sushi, brown rice, vegetable and tofu",45,3,16,Low,Regional/Traditional Foods,Australia
+1485,Pill potato and yam powder,46,6,16,Low,Regional/Traditional Foods,Singapore
+1486,"Soba noodles, instant, reheated in hot water, served with soup",46,9,16,Low,Regional/Traditional Foods,Japan
+1487,"Tuna Fish Bun, instant (Maxim's MX, H.K.)",46,4,16,Low,Regional/Traditional Foods,China
+1488,"Habba Hamra (red seed drink, containing evaporated milk)",47,3,16,Low,Regional/Traditional Foods,
+1489,Khameer bread (baked bread),47,3,16,Low,Regional/Traditional Foods,
+1490,China),47,3,16,Low,Regional/Traditional Foods,China
+1491,Glutinous rice ball with cut glutinous cake (mochi)16,48,5,17,Low,Regional/Traditional Foods,Japan
+1492,"Sushi, salmon ('I Love Sushi', Sydney, Australia)",48,8,17,Low,Regional/Traditional Foods,Australia
+1493,"Shokuhin, Japan) 16",48,5,17,Low,Regional/Traditional Foods,Japan
+1494,"(Snow Brand, Japan), eaten together16",48,8,17,Low,Regional/Traditional Foods,Japan
+1495,Kaya Butter Toast (Just Acia Private Limited),49,4,17,Low,Regional/Traditional Foods,Singapore
+1496,"Spring roll, instant",50,5,18,Low,Regional/Traditional Foods,China
+1497,Glucometer9,50,3,18,Low,Regional/Traditional Foods,Malaysia
+1498,Bun with 10% fenugreek,51,7,18,Low,Regional/Traditional Foods,Malaysia
+1499,"Biryani, chicken (Basmati rice with chicken)",52,4,18,Low,Regional/Traditional Foods,
+1500,Chapatti with 8% ß-glucan,52,10,18,Low,Regional/Traditional Foods,UK
+1501,with Arabic coffee,53,6,19,Low,Regional/Traditional Foods,
+1502,"Indystry Group, Guangzhou, China)",53,5,19,Low,Regional/Traditional Foods,China
+1503,"(Kawan Food Manufacturing, Malaysia)",53,5,19,Low,Regional/Traditional Foods,Malaysia
+1504,Chebab bread (Emirati pancake),54,8,19,Low,Regional/Traditional Foods,
+1505,Fried rice vermicelli in Singapore-style,54,6,19,Low,Regional/Traditional Foods,China
+1506,"Co., LTD., China)",54,6,19,Low,Regional/Traditional Foods,China
+1507,"Baked Barbecued Pork Puff, instant (Hoixe Cake Shop, H.K.)",55,8,19,Low,Regional/Traditional Foods,China
+1508,Curry rice with processed cheese16,55,9,19,Low,Regional/Traditional Foods,Japan
+1509,mean of three types,55,4,,Low,Regional/Traditional Foods,
+1510,Singapore),55,4,19,Low,Regional/Traditional Foods,Singapore
+1511,Chapatti with 4% ß-glucan,55,5,19,Low,Regional/Traditional Foods,UK
+1512,"Wah Bakery Shop, Hong Kong)",56,7,20,Medium,Regional/Traditional Foods,China
+1513,"(Snow Brand, Japan), milk eaten before rice16",56,7,20,Medium,Regional/Traditional Foods,Japan
+1514,(natto) 16,56,8,20,Medium,Regional/Traditional Foods,Japan
+1515,soybean (Mitake Food Ind. Japan) 16,56,4,20,Medium,Regional/Traditional Foods,Japan
+1516,"(130 mL, 225 mg caffeine)",57,4,20,Medium,Regional/Traditional Foods,
+1517,"Bun, white, filled with red bean paste",58,4,20,Medium,Regional/Traditional Foods,Singapore
+1518,"Bun, white, steamed Chinese",58,3,20,Medium,Regional/Traditional Foods,Malaysia
+1519,Fried rice vermicelli in Singapore-style,58,9,20,Medium,Regional/Traditional Foods,China
+1520,"(Meiji Dairy, Japan), yoghurt eaten after rice16",58,6,20,Medium,Regional/Traditional Foods,Japan
+1521,Chapatti,58,6,20,Medium,Regional/Traditional Foods,UK
+1522,Batheetha (Khalas date paste),59,4,21,Medium,Regional/Traditional Foods,
+1523,Cake crisp,59,2,21,Medium,Regional/Traditional Foods,China
+1524,"(Meiji Dairy, Japan), yoghurt eaten before rice16",59,7,21,Medium,Regional/Traditional Foods,Japan
+1525,"triticale, buckwheat, barley, sesame seeds), cooked for 30 min",59,5,21,Medium,Regional/Traditional Foods,India
+1526,Chami (cottage cheese),60,9,21,Medium,Regional/Traditional Foods,
+1527,"Machbous, fish (Basmati rice with fish)",60,3,21,Medium,Regional/Traditional Foods,
+1528,"Sambosa vegetable, fried in oil, served with water",60,5,21,Medium,Regional/Traditional Foods,
+1529,"pickled cucumber, pickled foods eaten before rice16",60,8,21,Medium,Regional/Traditional Foods,Japan
+1530,HemoCue,60,6,21,Medium,Regional/Traditional Foods,UK
+1531,H.K.; Boiled,61,10,21,Medium,Regional/Traditional Foods,China
+1532,"""Mai-Lai"" Cake, Instant, prepared freshly in the morning",61,8,21,Medium,Regional/Traditional Foods,China
+1533,paste soup) 16,61,4,21,Medium,Regional/Traditional Foods,Japan
+1534,"pickled cucumber, consumed together16",61,6,21,Medium,Regional/Traditional Foods,Japan
+1535,Singapore),62,6,22,Medium,Regional/Traditional Foods,Singapore
+1536,Balalet (Sweet vermicelli),63,5,22,Medium,Regional/Traditional Foods,
+1537,"Chapati, flatbread",63,4,22,Medium,Regional/Traditional Foods,Malaysia
+1538,"served with Omani coffee (130 mL, 225 mg caffeine)",64,5,22,Medium,Regional/Traditional Foods,
+1539,caffeine),65,4,23,Medium,Regional/Traditional Foods,
+1540,"served with Omani coffee (130 mL, 225 mg caffeine)",65,5,23,Medium,Regional/Traditional Foods,
+1541,with roasted ground soybean16,65,4,23,Medium,Regional/Traditional Foods,Japan
+1542,"(wheat flour), boiled 3 min",65,4,23,Medium,Regional/Traditional Foods,China
+1543,"Venous, NS",65,8,23,Medium,Regional/Traditional Foods,China
+1544,"WoTao, made from corn and wheat",65,5,23,Medium,Regional/Traditional Foods,China
+1545,"& Confectionary, Singapore)",66,7,23,Medium,Regional/Traditional Foods,Singapore
+1546,Nasi Lemak (Old Chang Kee (S) Private Limited),66,5,23,Medium,Regional/Traditional Foods,Singapore
+1547,Finger millet vermicelli in the form of upma,66,6,23,Medium,Regional/Traditional Foods,India
+1548,Arabic bread (baked bread),67,5,23,Medium,Regional/Traditional Foods,
+1549,served with water,67,5,23,Medium,Regional/Traditional Foods,
+1550,Khabisa (semolina pudding with cardamom),67,4,23,Medium,Regional/Traditional Foods,
+1551,Curry rice16,67,8,23,Medium,Regional/Traditional Foods,Japan
+1552,boiled water added,67,5,23,Medium,Regional/Traditional Foods,China
+1553,"Sweet milky bun, instant",67,5,23,Medium,Regional/Traditional Foods,China
+1554,"Chapatti flour, Rank Hovis Ltd., Manchester, UK)",68,8,24,Medium,Regional/Traditional Foods,UK
+1555,"Barbecue pork bun, instant (Maxim's MX, H.K.)",69,9,24,Medium,Regional/Traditional Foods,China
+1556,"Fried Fritter, instant (Ocean Empire International Ltd., H.K.)",69,9,24,Medium,Regional/Traditional Foods,China
+1557,"International Ltd., H.K.)",69,8,24,Medium,Regional/Traditional Foods,China
+1558,"Kemrakuren, Japan)16",69,10,24,Medium,Regional/Traditional Foods,Japan
+1559,Low-protein white rice with dried sea algae16,70,7,25,High,Regional/Traditional Foods,Japan
+1560,"flour, cooked for 15 min",71,5,25,High,Regional/Traditional Foods,India
+1561,HemoCue,71,6,25,High,Regional/Traditional Foods,India
+1562,Arseyah (Basmati rice with chicken),72,4,25,High,Regional/Traditional Foods,
+1563,served with water,72,4,25,High,Regional/Traditional Foods,
+1564,"Food Ltd., H.K.)",72,8,25,High,Regional/Traditional Foods,China
+1565,production,73,8,26,High,Regional/Traditional Foods,China
+1566,"Fendal (boiled sweet potato, dates added to cooking water)",74,7,26,High,Regional/Traditional Foods,
+1567,"Thareed, beef (Regag bread served with meat stew)",74,3,26,High,Regional/Traditional Foods,
+1568,"flour, cooked for 15 min",75,7,26,High,Regional/Traditional Foods,India
+1569,"LTD., China)",75,8,26,High,Regional/Traditional Foods,China
+1570,Regag bread (Thin crispy crepe),76,7,27,High,Regional/Traditional Foods,
+1571,Rice dosa,76,5,27,High,Regional/Traditional Foods,India
+1572,caffeine),77,3,27,High,Regional/Traditional Foods,
+1573,Muhalla bread (Emirati sweet crepe),77,2,27,High,Regional/Traditional Foods,
+1574,"Foods Private Ltd, Singapore)",77,8,27,High,Regional/Traditional Foods,Singapore
+1575,"Roasted rice ball (Satou Co Ltd., Japan)16",77,6,27,High,Regional/Traditional Foods,Japan
+1576,"Butter rice, warm white rice and 10 g butter16",79,12,28,High,Regional/Traditional Foods,Japan
+1577,"Fried Rice in Yangzhou-style, instant",80,6,28,High,Regional/Traditional Foods,China
+1578,(umeboshi) 16,80,13,28,High,Regional/Traditional Foods,Japan
+1579,Singapore),81,7,28,High,Regional/Traditional Foods,Singapore
+1580,"Rice gruel with dried algae (Satou Co Ltd., Japan)16",81,10,28,High,Regional/Traditional Foods,Japan
+1581,"International Ltd., H.K.)",81,7,28,High,Regional/Traditional Foods,China
+1582,"Basmati rice pilau, with onion and curry powder",82,5,29,High,Regional/Traditional Foods,Malaysia
+1583,Finger millet flakes in the form of upma,82,7,29,High,Regional/Traditional Foods,India
+1584,"Sticky rice wrapped in lotus leaf, instant (Maxim's MX, H.K.)",83,5,29,High,Regional/Traditional Foods,China
+1585,"Bun, steamed, made from wheat flour",85,7,30,High,Regional/Traditional Foods,China
+1586,Rice idli (commercially available dry mix),85,4,30,High,Regional/Traditional Foods,India
+1587,choice),85,8,30,High,Regional/Traditional Foods,India
+1588,plan rice four (Wei Cian Foods Private Limited),86,11,30,High,Regional/Traditional Foods,Singapore
+1589,Côte d’Ivoire,88,2,31,High,Regional/Traditional Foods,
+1590,boiled 3 min,88,8,31,High,Regional/Traditional Foods,China
+1591,"Steamed glutinous rice roll, instant",89,8,31,High,Regional/Traditional Foods,China
+1592,"Plain steamed vermicelli roll, instant",90,8,32,High,Regional/Traditional Foods,China
+1593,boiled water added,94,12,33,High,Regional/Traditional Foods,China
+1594,whole blood,97,12,34,High,Regional/Traditional Foods,Singapore
+1595,Lo Mai Gai (Hock Seng Food Private Limited),106,12,37,High,Regional/Traditional Foods,Singapore
+1596,boiled water added,108,8,38,High,Regional/Traditional Foods,China
+1597,"Ginger, candied, sucrose-free (Buderim Ginger, Australia)",10,4,3,Low,Snack Foods,Australia
+1598,"Fruit and nut mix (Finest, UK)",15,3,4,Low,Snack Foods,UK
+1599,"Chocolate Kouka Cacao 86% (Meiji Co. Ltd, Japan)",18,2,5,Low,Snack Foods,Japan
+1600,"(M&M/Mars, USA)",21,3,5,Low,Snack Foods,USA
+1601,"Company™, WA, USA), tested with coffee or tea",22,3,6,Low,Snack Foods,USA
+1602,"Chocolate, dark, Dove® (M&M/Mars, USA)",23,3,6,Low,Snack Foods,USA
+1603,"Chocolate candy, sugar free, Dove® (M&M/Mars, USA)",23,3,6,Low,Snack Foods,USA
+1604,Enzymatic,24,2,6,Low,Snack Foods,Japan
+1605,"Macadamia Chocolate (Meiji Co. Ltd, Japan)",24,2,6,Low,Snack Foods,Japan
+1606,"Company™, WA, USA), tested with water",25,5,6,Low,Snack Foods,USA
+1607,Australia),25,4,6,Low,Snack Foods,Australia
+1608,"Munch Peanut Butter bar (M&M/Mars, USA)",27,5,7,Low,Snack Foods,USA
+1609,"WA, USA)",29,4,7,Low,Snack Foods,USA
+1610,"Chocolate Kouka Cacao 72% (Meiji Co. Ltd, Japan)",29,4,7,Low,Snack Foods,Japan
+1611,"Brampton, ON, Canada)",30,2,8,Low,Snack Foods,Canada
+1612,Citrus Lemon Protein Bar (Herbalife of Japan K.K.),31,4,8,Low,Snack Foods,Japan
+1613,"Brampton, ON, Canada)",31,2,8,Low,Snack Foods,Canada
+1614,"Brampton, ON, Canada)",32,2,8,Low,Snack Foods,Canada
+1615,"ExtendBar™ Peanut Delight bar (ExtendBar, USA)",32,5,8,Low,Snack Foods,USA
+1616,"(Loblaw Brands Limited, Canada)",33,2,8,Low,Snack Foods,Canada
+1617,"WA, USA)",33,7,8,Low,Snack Foods,USA
+1618,"M&M's®, peanut (Mars Confectionery, Australia)",33,3,8,Low,Snack Foods,Australia
+1619,"Milson's Point, NSW, Australia)",33,4,8,Low,Snack Foods,Australia
+1620,"Cocoavia™ Crispy Chocolate bar (M&M/Mars, USA)",33,5,8,Low,Snack Foods,USA
+1621,"ExtendBar™ Apple Cinnamon Delight bar (ExtendBar, USA)",33,7,8,Low,Snack Foods,USA
+1622,"(Loblaw Brands Limited, Canada)",34,3,9,Low,Snack Foods,Canada
+1623,Apricot and Almond bar,34,6,9,Low,Snack Foods,UK
+1624,"Brampton, ON, Canada)",34,2,9,Low,Snack Foods,Canada
+1625,"Menu™ (Loblaw Brands Limited, Canada)",34,5,9,Low,Snack Foods,Canada
+1626,Switzerland,34,4,9,Low,Snack Foods,
+1627,"Straps (Windsor Farm Foods, Australia)",35,5,9,Low,Snack Foods,Australia
+1628,"Brampton, ON, Canada)",35,2,9,Low,Snack Foods,Canada
+1629,production,35,4,9,Low,Snack Foods,Australia
+1630,"(Aussie Bodies Pty. Ltd., Australia)",35,3,9,Low,Snack Foods,Australia
+1631,"Brampton, ON, Canada)",36,2,9,Low,Snack Foods,Canada
+1632,"(Otsuka Pharmaceutical Co, Ltd, Japan)",37,5,9,Low,Snack Foods,Japan
+1633,"(Meiji Co. Ltd, Japan)",37,4,9,Low,Snack Foods,Japan
+1634,"Chocolate, milk, Meiji brand (Meiji Co. Ltd, Japan)",39,3,10,Low,Snack Foods,Japan
+1635,"Apricot & Yoghurt Healtheries Simple Bar, wheat and glutenfree (Aussie Bodies Pty. Ltd., Australia)",40,5,10,Low,Snack Foods,Australia
+1636,"Straps (Windsor Farm Foods, Australia)",40,5,10,Low,Snack Foods,Australia
+1637,Canada),40,6,10,Low,Snack Foods,Canada
+1638,Tropical dried fruit snack,41,3,10,Low,Snack Foods,Australia
+1639,"Chip Company, VIC, Australia)",41,4,,Low,Snack Foods,Australia
+1640,"(Otsuka Pharmaceutical Co, Ltd, Japan)",41,4,10,Low,Snack Foods,Japan
+1641,Wasabi peas,41,4,10,Low,Snack Foods,Australia
+1642,"Chocolate, white, Milky Bar® (Nestlé, Australia)",41,6,10,Low,Snack Foods,Australia
+1643,"ExtendBar™ Chocolate Delight bar (ExtendBar, USA)",41,6,10,Low,Snack Foods,USA
+1644,Apricot dried fruit snack,42,3,11,Low,Snack Foods,Australia
+1645,"Food Co., Australia)",42,4,11,Low,Snack Foods,Australia
+1646,"Normal, 10",42,8,11,Low,Snack Foods,Australia
+1647,"(Kinder, Ferrero, Italy)",42,5,11,Low,Snack Foods,Italy
+1648,"Ferrero, Italy)",43,7,11,Low,Snack Foods,Italy
+1649,"Yummiees lollies (Allseps Pty. Ltd., Australia)",43,3,11,Low,Snack Foods,Australia
+1650,"Banana chips, dried banana pieces",44,5,11,Low,Snack Foods,Australia
+1651,"Normal, 10",44,7,11,Low,Snack Foods,Australia
+1652,"Pharmaceutical Co, Ltd, Japan)",44,4,11,Low,Snack Foods,Japan
+1653,Enzymatic,44,4,11,Low,Snack Foods,Philippines
+1654,"Qiaokemei, China)",44,6,11,Low,Snack Foods,China
+1655,Republic,44,5,11,Low,Snack Foods,
+1656,"Chocolate, white, Milky Bar® (Nestlé, Australia)",44,6,11,Low,Snack Foods,Australia
+1657,"White chocolate bar (Galak, Nestlè, Italy)",44,5,11,Low,Snack Foods,Italy
+1658,"Menu™ (Loblaw Brands Limited, Canada)",45,6,11,Low,Snack Foods,Canada
+1659,"Nutella® (Ferrero, Italy)",45,4,11,Low,Snack Foods,Italy
+1660,"(M&M/Mars, USA)",45,6,11,Low,Snack Foods,USA
+1661,"Milky Way® Lite bar (M&M/Mars, USA)",45,5,11,Low,Snack Foods,USA
+1662,Australia),46,4,12,Low,Snack Foods,Australia
+1663,"Granola bar, containing wheat flour and coconut flour",46,3,12,Low,Snack Foods,Philippines
+1664,"Kinder Bueno white (Wafer bar, milk and hazelnut spreadfilled, coated white chocolate) (Kinder, Ferrero, Italy)",47,5,12,Low,Snack Foods,Italy
+1665,"Kinder Happy Hippo (Wafer bar, milk and hazelnut spreadfilled, partially coated with white chocolate) (Kinder, Ferrero)",47,4,12,Low,Snack Foods,Italy
+1666,"Potato chips, crinkle cut, Smith’s™ Original",48,5,12,Low,Snack Foods,Australia
+1667,"Milk chocolate egg (Ovetto cioccolato, Dolci Preziosi, Italy)",48,9,12,Low,Snack Foods,Italy
+1668,"Tropical fruit and nut mix (Finest, UK)",49,7,12,Low,Snack Foods,UK
+1669,"Chocolate, NS",49,3,12,Low,Snack Foods,China
+1670,production,50,8,13,Low,Snack Foods,New Zealand
+1671,"Rum balls, containing dark chocolate and coconut",50,6,13,Low,Snack Foods,Australia
+1672,Maltodextrin),50,5,13,Low,Snack Foods,USA
+1673,"KitKat (Nestlè, Italy)",50,7,13,Low,Snack Foods,Italy
+1674,"free (Aussie Bodies Pty. Ltd., Australia)",51,4,13,Low,Snack Foods,Australia
+1675,"Grain Waves Original flavored wholegrain chips, Smith’s™",51,5,13,Low,Snack Foods,Australia
+1676,"coated with chocolate, fresh) (Kinder, Ferrero, Italy)",51,5,13,Low,Snack Foods,Italy
+1677,"Combos Snacks Cheddar Cheese Pretzels (M&M/Mars, USA)",52,6,13,Low,Snack Foods,USA
+1678,"Raffaello (Ferrero, Italy)",52,7,13,Low,Snack Foods,Italy
+1679,"Chocolate Mini Baking Bits (M&M/Mars, USA)",52,4,13,Low,Snack Foods,USA
+1680,"Gourmet, Sea Cliff, NY, USA), tested with water",53,6,13,Low,Snack Foods,USA
+1681,"Gourmet, Sea Cliff, NY, USA), tested with coffee or tea",53,6,13,Low,Snack Foods,USA
+1682,prepared with water,53,6,13,Low,Snack Foods,Australia
+1683,"Rocher (Ferrero, Italy)",53,6,13,Low,Snack Foods,Italy
+1684,Combos Snacks Cheddar Cheese Crackers (M&M/Mars,54,6,14,Low,Snack Foods,USA
+1685,Zealand) 13,54,5,14,Low,Snack Foods,New Zealand
+1686,"(Kinder, Ferrero, Italy)",55,5,14,Low,Snack Foods,Italy
+1687,"Potato chips, Pringles™ Original",57,5,14,Medium,Snack Foods,Australia
+1688,"(Ferrero, Italy)",57,9,14,Medium,Snack Foods,Italy
+1689,Italy),57,8,14,Medium,Snack Foods,Italy
+1690,"Blue Menu™ (Loblaw Brands Limited, Canada)",58,8,15,Medium,Snack Foods,Canada
+1691,"Pocket Coffee (Praline, with coffee cream) (Ferrero, Italy)",58,9,15,Medium,Snack Foods,Italy
+1692,Italy),58,7,15,Medium,Snack Foods,Italy
+1693,"Blue Menu™(Loblaw Brands Limited, Canada)",58,5,15,Medium,Snack Foods,Canada
+1694,"cream filling, Duplo nocciolato (Ferrero, Italy)",59,6,15,Medium,Snack Foods,Italy
+1695,Potato crisps,60,2,15,Medium,Snack Foods,China
+1696,"Banana Fruit Fingers, Heinz Kidz™ (HJ Heinz, Australia)",61,11,15,Medium,Snack Foods,Australia
+1697,"Malvern, Australia)",61,11,15,Medium,Snack Foods,Australia
+1698,"Mars Bar® (Mars Confectionery, Australia)",62,8,16,Medium,Snack Foods,Australia
+1699,"Marshmallows (Candy Lane, Australia)",62,6,16,Medium,Snack Foods,Australia
+1700,"Caffè/Cappuccino, Ferrero, Italy)",62,5,16,Medium,Snack Foods,Italy
+1701,"Hackettstown, USA)",62,8,16,Medium,Snack Foods,USA
+1702,"Milky Way® bar (M&M/Mars, USA)",62,8,16,Medium,Snack Foods,USA
+1703,"(M&M/Mars, USA)",63,7,16,Medium,Snack Foods,USA
+1704,Finger millet extruded snack,65,7,16,Medium,Snack Foods,India
+1705,"fat (Green's Foods, Australia)",67,8,17,Medium,Snack Foods,Australia
+1706,"Marshmallows (Woolworths Homebrand, Australia)",67,4,17,Medium,Snack Foods,Australia
+1707,Licorice pieces,69,8,17,Medium,Snack Foods,Australia
+1708,"Brands Limited, Canada)",70,8,18,High,Snack Foods,Canada
+1709,"American Gourmet, Sea Cliff, NY, USA)",70,5,18,High,Snack Foods,USA
+1710,"Brown rice chips with wild rice, gluten-free, SunRice™",70,6,18,High,Snack Foods,Australia
+1711,"Pop Tarts™, double choc (Kellogg's, Australia)",70,2,18,High,Snack Foods,Australia
+1712,"Skittles® (Mars Confectionery, Australia)",70,5,18,High,Snack Foods,Australia
+1713,"Baked potato chips (Baked Lays, Original Potato Crisps)",71,8,18,High,Snack Foods,Canada
+1714,"Blue Menu™ (Loblaw Brands Limited, Canada)",72,8,18,High,Snack Foods,Canada
+1715,"Baked potato chips (Baked Lays, Original Potato Crisps)",72,6,18,High,Snack Foods,Canada
+1716,"Sorbet, lemon (Sorbetto al limone, Carte d’or, Algida, Italy)",72,6,18,High,Snack Foods,Italy
+1717,"Menu™ (Loblaw Brands Limited, Canada)",74,11,19,High,Snack Foods,Canada
+1718,"Gourmet, Sea Cliff, NY, USA)",74,11,19,High,Snack Foods,USA
+1719,"(Smith's Snackfood Co., Australia)",74,5,19,High,Snack Foods,Australia
+1720,"tapioca and wheat (Majans Pty Ltd, QLD, Australia)",74,5,19,High,Snack Foods,Australia
+1721,"Tooronga, Australia)",76,6,19,High,Snack Foods,Australia
+1722,"Sour Straws, strawberry flavor, gummy/chewy confectionery",76,7,19,High,Snack Foods,Australia
+1723,Republic,77,5,19,High,Snack Foods,
+1724,"Licorice, soft (Coles Supermarkets, Australia)",78,11,20,High,Snack Foods,Australia
+1725,Canada),78,6,20,High,Snack Foods,Canada
+1726,"Choice® Blue Menu™ (Loblaw Brands Limited, Canada)",82,7,21,High,Snack Foods,Canada
+1727,"(Parker's, Smith's Snack Food Co., Australia)",84,6,21,High,Snack Foods,Australia
+1728,"Menu™ (Loblaw Brands Limited, Canada)",84,6,21,High,Snack Foods,Canada
+1729,"Physicians Pharmaceuticals, Inc., USA)",87,8,22,High,Snack Foods,USA
+1730,"(Loblaw Brands Limited, Canada)",90,13,23,High,Snack Foods,Canada
+1731,Australia),90,12,23,High,Snack Foods,Australia
+1732,"Blue Menu™ (Loblaw Brands Limited, Canada)",91,6,23,High,Snack Foods,Canada
+1733,DE Maltodextrin),93,8,23,High,Snack Foods,USA
+1734,"Fruit snack processed, Roll-Ups® (Uncle Toby's, Australia)",99,12,25,High,Snack Foods,Australia
+1735,"(Loblaw Brands Limited, Canada)",35,4,7,Low,Soups,Canada
+1736,"Blue Menu™ (Loblaw Brands Limited, Canada)",36,4,7,Low,Soups,Canada
+1737,"Blue Menu™ (Loblaw Brands Limited, Canada)",41,3,8,Low,Soups,Canada
+1738,"NSW, Australia)",41,4,8,Low,Soups,Australia
+1739,"(Campbell's Soups, Homebush, NSW, Australia)",43,3,9,Low,Soups,Australia
+1740,"Mushroom Barley, ready-to-serve, President's Choice® Blue",45,10,9,Low,Soups,Canada
+1741,"Blue Menu™ (Loblaw Brands Limited, Canada)",46,5,9,Low,Soups,Canada
+1742,"(Loblaw Brands Limited, Canada)",47,5,9,Low,Soups,Canada
+1743,"Soup Company, Camden, NJ, USA)",48,6,10,Low,Soups,USA
+1744,"Soups, Homebush, NSW, Australia)",52,3,10,Low,Soups,Australia
+1745,"Blue Menu™ (Loblaw Brands Limited, Canada)",52,8,10,Low,Soups,Canada
+1746,"Soup Company, Camden, NJ, USA)",52,4,10,Low,Soups,USA
+1747,"(Loblaw Brands Limited, Canada)",56,4,11,Medium,Soups,Canada
+1748,"Blue Menu™ (Loblaw Brands Limited, Canada)",57,5,11,Medium,Soups,Canada
+1749,"(Loblaw Brands Limited, Canada)",57,9,11,Medium,Soups,Canada
+1750,"Choice® Blue Menu™ (Loblaw Brands Limited, Canada)",57,4,11,Medium,Soups,Canada
+1751,"Menu™ (Loblaw Brands Limited, Canada)",62,7,12,Medium,Soups,Canada
+1752,"pumpkin, cream, potatoes (Heinz Wattie's Ltd, Australia)",76,7,15,High,Soups,Australia
+1753,"Commerce Corp., USA)",10,1,1,Low,Sugars & Syrups,USA
+1754,"Commerce Corp., City of Industry, CA, USA)",11,1,1,Low,Sugars & Syrups,USA
+1755,"Premium Agave nectar (Sweet Cactus Farms, USA)",19,4,1,Low,Sugars & Syrups,USA
+1756,Fructose,23,1,1,Low,Sugars & Syrups,China
+1757,Enzymatic,23,5,1,Low,Sugars & Syrups,Italy
+1758,"Fructose from corn (Despar, Italy)",25,4,1,Low,Sugars & Syrups,Italy
+1759,Yellow box honey (46% fructose),35,4,2,Low,Sugars & Syrups,Australia
+1760,Germany),39,4,2,Low,Sugars & Syrups,Germany
+1761,Stringy Bark honey (52% fructose),44,4,2,Low,Sugars & Syrups,Australia
+1762,"Phytolin® (Queen's Joy, Wuzuo Technology, Tianjin, China)",45,3,2,Low,Sugars & Syrups,China
+1763,Red Gum honey (35% fructose),46,3,2,Low,Sugars & Syrups,Australia
+1764,Lactose,46,1,2,Low,Sugars & Syrups,China
+1765,Iron Bark honey (34% fructose),48,3,2,Low,Sugars & Syrups,Australia
+1766,carbohydrate),50,3,3,Low,Sugars & Syrups,Australia
+1767,"(Capilano Honey Limited, QLD, Australia)",51,3,3,Low,Sugars & Syrups,Australia
+1768,Yapunya honey (42 % fructose),52,5,3,Low,Sugars & Syrups,Australia
+1769,whole blood,52,4,3,Low,Sugars & Syrups,China
+1770,"Biotech Co., Ltd, China)",52,3,3,Low,Sugars & Syrups,China
+1771,HDI Clover Honey with Bee Pollen (PT. Harmoni Dinamik),53,5,3,Low,Sugars & Syrups,New Zealand
+1772,"Coconut sugar, organic, Loving Earth™ brand",54,6,3,Low,Sugars & Syrups,Indonesia
+1773,Malaysia),54,4,3,Low,Sugars & Syrups,Malaysia
+1774,"Maple syrup, pure Canadian (Queen Foods, Australia)",54,6,3,Low,Sugars & Syrups,Canada
+1775,High fructose corn syrup,56,5,3,Medium,Sugars & Syrups,Australia
+1776,Sucrose,59,4,3,Medium,Sugars & Syrups,Australia
+1777,"Ltd, SA, Australia)",60,4,3,Medium,Sugars & Syrups,Australia
+1778,"Sucrose, cane sugar",60,4,3,Medium,Sugars & Syrups,Australia
+1779,"Sucrose (LoGiCane) (Horizon Science, Australia)13",60,3,3,Medium,Sugars & Syrups,Australia
+1780,Sucrose,61,4,3,Medium,Sugars & Syrups,Australia
+1781,"Capilano Honey Ltd., Australia)",62,3,3,Medium,Sugars & Syrups,Australia
+1782,"Sucrose (LoGiCane) (Horizon Science, Australia)13",62,4,3,Medium,Sugars & Syrups,Australia
+1783,Golden Syrup,63,6,3,Medium,Sugars & Syrups,Australia
+1784,Salvation Jane honey (32% fructose),64,5,3,Medium,Sugars & Syrups,Australia
+1785,Sucrose,64,4,3,Medium,Sugars & Syrups,Germany
+1786,"Manuka honey, MGO 440+ (Manuka Health New Zealand",65,7,3,Medium,Sugars & Syrups,New Zealand
+1787,Sucrose,66,3,3,Medium,Sugars & Syrups,Germany
+1788,"Maple flavored syrup (Cottee's Foods, Australia)",68,5,3,Medium,Sugars & Syrups,Australia
+1789,"Hermiston, OR, USA)16",69,8,3,Medium,Sugars & Syrups,USA
+1790,"Sugar, cane (Panela)",69,10,3,Medium,Sugars & Syrups,Italy
+1791,"Capilano Honey Ltd., Australia)",72,6,4,High,Sugars & Syrups,Australia
+1792,"Farms, USA)16",73,6,4,High,Sugars & Syrups,USA
+1793,"Apiaries, Los Banos, CA, USA)16",74,7,4,High,Sugars & Syrups,USA
+1794,"Honey, NS",74,4,4,High,Sugars & Syrups,China
+1795,"Blossom Honey Co, Edgewater, FL, USA)",74,8,4,High,Sugars & Syrups,USA
+1796,Maltose,75,6,4,High,Sugars & Syrups,China
+1797,production,84,4,,High,Sugars & Syrups,China
+1798,Karo Dark Corn Syrup,90,6,5,High,Sugars & Syrups,USA
+1799,"Sugar, refined (Sadam-Eridania, Italy)",91,10,5,High,Sugars & Syrups,Italy
+1800,"Rice malt syrup (Pure Harvest Organic, Australia)",98,6,5,High,Sugars & Syrups,Australia
+1801,Maltose,105,2,5,High,Sugars & Syrups,China
+1802,Enzymatic,107,7,5,High,Sugars & Syrups,Australia
+1803,"Tomato and vegetable pasta sauce, commercially-prepared",23,3,2,Low,Vegetables,France
+1804,"Peas, plain and frozen (Talleys Group Ltd, New Zealand)13",29,2,3,Low,Vegetables,New Zealand
+1805,"Carrots, diced, frozen (Talleys Group Ltd) 13",31,2,3,Low,Vegetables,New Zealand
+1806,"Carrots, unpeeled, boiled",32,4,3,Low,Vegetables,Australia
+1807,Jamaica,35,3,7,Low,Vegetables,
+1808,"Yam, peeled, boiled",35,5,7,Low,Vegetables,New Zealand
+1809,"Foods, New Zealand) 13",35,3,4,Low,Vegetables,New Zealand
+1810,Jamaica,37,5,7,Low,Vegetables,
+1811,"harvested prior to maturity Oct. 2009), unpeeled, cut into 2.53 cm cubes, boiled in salted water for 15 min",38,6,8,Low,Vegetables,Canada
+1812,Jamaica,39,4,8,Low,Vegetables,
+1813,Jamaica,40,3,8,Low,Vegetables,
+1814,"24-28 h, served cold",40,5,8,Low,Vegetables,Canada
+1815,"refrigerated at 4°C for 24-28 h, served cold",41,5,8,Low,Vegetables,Canada
+1816,Jamaica,41,5,8,Low,Vegetables,
+1817,"Pty Ltd, Australia)",42,4,4,Low,Vegetables,Australia
+1818,Jamaica,43,4,9,Low,Vegetables,
+1819,"24-28 h, served cold",44,7,9,Low,Vegetables,Canada
+1820,Jamaica,45,3,9,Low,Vegetables,
+1821,Jamaica,46,5,9,Low,Vegetables,
+1822,"at 4°C for 24-28 h, served cold",48,6,10,Low,Vegetables,Canada
+1823,served cold,49,7,10,Low,Vegetables,Canada
+1824,Jamaica,49,5,10,Low,Vegetables,
+1825,Jamaica,50,3,10,Low,Vegetables,
+1826,"Butternut pumpkin, boiled",51,6,5,Low,Vegetables,Australia
+1827,"at 210oC for 18 min (Simplot Australia Pty Ltd, Australia)",51,4,,Low,Vegetables,Australia
+1828,"Yam, steamed",51,4,10,Low,Vegetables,China
+1829,"Parsnips, peeled, boiled",52,5,5,Low,Vegetables,Australia
+1830,"thickness of 0.5 cm, boiled for 8-9 min",53,7,11,Low,Vegetables,Australia
+1831,"Yam, cooked, NS",54,2,11,Low,Vegetables,China
+1832,Sweet corn,55,2,11,Low,Vegetables,China
+1833,"refrigerated at 4°C for 24-28 h, served cold",55,7,11,Low,Vegetables,Canada
+1834,"Marfona potato, peeled, quartered, boiled 15 min in unsalted",56,3,11,Medium,Vegetables,UK
+1835,"overnight in refrigerator, consumed cold",56,5,11,Medium,Vegetables,Canada
+1836,"230oC for 17 min, Birds Eye™",56,6,11,Medium,Vegetables,Australia
+1837,boiled for 8 min,57,5,11,Medium,Vegetables,Australia
+1838,"Nicola potato, unpeeled, boiled whole for 15 min",58,3,12,Medium,Vegetables,Australia
+1839,"Brunswick), boiled 15 min, reheated in microwave 2-3 min",58,5,12,Medium,Vegetables,Canada
+1840,"Nicola potato, peeled, quartered, boiled 15 min",59,7,12,Medium,Vegetables,UK
+1841,Jamaica,59,4,12,Medium,Vegetables,
+1842,"refrigerated, reheated for 1 min",60,5,12,Medium,Vegetables,Canada
+1843,"2.5-3 cm cubes, boiled in salted water for 15 min",60,5,12,Medium,Vegetables,Canada
+1844,"min, refrigerated, reheated for 1 min",61,10,12,Medium,Vegetables,Canada
+1845,boiled for 8 min,61,6,12,Medium,Vegetables,Australia
+1846,Jamaica,61,5,12,Medium,Vegetables,
+1847,"Potato, NS, steamed",62,2,12,Medium,Vegetables,China
+1848,"refrigerated, reheated for 1 min",62,6,12,Medium,Vegetables,Canada
+1849,Jamaica,63,2,13,Medium,Vegetables,
+1850,"Co, Pittsburgh, PA, USA)",64,6,13,Medium,Vegetables,USA
+1851,"Taters™, Edgell's™ brand, Cheltenham, Australia)",65,9,13,Medium,Vegetables,Australia
+1852,"Superfries, McCains, Wendouree, VIC, Australia)",65,4,13,Medium,Vegetables,Australia
+1853,Jamaica,66,2,13,Medium,Vegetables,
+1854,"Charlotte potato, peeled, quartered, boiled 15 min",66,5,13,Medium,Vegetables,UK
+1855,"Estima potato, peeled, quartered, boiled 15 min",66,5,13,Medium,Vegetables,UK
+1856,"Potato, NS, boiled",66,1,13,Medium,Vegetables,China
+1857,Jamaica,67,4,13,Medium,Vegetables,
+1858,for 8 min,68,6,14,Medium,Vegetables,Australia
+1859,Jamaica,68,3,14,Medium,Vegetables,
+1860,"thickness of 0.5 cm, boiled for 8-9 min",69,5,14,Medium,Vegetables,Australia
+1861,prepared with water,69,9,14,Medium,Vegetables,USA
+1862,Jamaica,69,3,14,Medium,Vegetables,
+1863,"Cubes, McCains, Wendouree, VIC, Australia)",70,4,14,High,Vegetables,Australia
+1864,Jamaica,70,6,14,High,Vegetables,
+1865,"refrigerated, reheated for 1 min",71,8,14,High,Vegetables,Canada
+1866,salted water for 15 min,72,8,14,High,Vegetables,Canada
+1867,"Potato mash (Homestyle, continental, Unilever, Australasia)13",72,6,14,High,Vegetables,New Zealand
+1868,"California white potatoes, cubed, roasted in soybean oil",72,8,14,High,Vegetables,USA
+1869,"Ontario), boiled 15 min, reheated in microwave 2-3 min",73,6,15,High,Vegetables,Canada
+1870,"Mashed potato, NS",73,3,15,High,Vegetables,
+1871,min,73,5,15,High,Vegetables,Canada
+1872,Jamaica,73,3,15,High,Vegetables,
+1873,"thickness of 0.5 cm, boiled for 8-9 min",74,8,15,High,Vegetables,Australia
+1874,Jamaica,74,7,15,High,Vegetables,
+1875,unsalted water,75,10,15,High,Vegetables,UK
+1876,reheated in microwave for 2-3 min,75,5,15,High,Vegetables,Canada
+1877,boiled for 8 min,75,5,15,High,Vegetables,Australia
+1878,Jamaica,75,3,15,High,Vegetables,
+1879,"Mashed potato, Aviko B.V.",76,7,15,High,Vegetables,UK
+1880,"Mashed potato, NS",76,7,15,High,Vegetables,UK
+1881,Jamaica,76,4,15,High,Vegetables,
+1882,microwave for 18 min,77,9,15,High,Vegetables,USA
+1883,"Sweet potato, kumara, cooking method NS",77,12,15,High,Vegetables,New Zealand
+1884,Jamaica,77,4,15,High,Vegetables,
+1885,"Dasheen, peeled, boiled 30 min, refrigerated, reheated for 1",77,10,15,High,Vegetables,Canada
+1886,"New potato, unpeeled and boiled 20 min",78,12,,High,Vegetables,Australia
+1887,"thickness of 0.5 cm, boiled for 8-9 min",79,6,16,High,Vegetables,Australia
+1888,salted water for 15 min,79,9,16,High,Vegetables,Canada
+1889,"Brunswick), boiled 15 min, reheated in microwave 2-3 min",79,4,16,High,Vegetables,Canada
+1890,"Pontiac potato, peeled, cooked in microwave on high for 6-7.5",79,9,16,High,Vegetables,Australia
+1891,Jamaica,79,4,16,High,Vegetables,
+1892,Jamaica,80,7,16,High,Vegetables,
+1893,"(Superior Potet, Hoff SA, Gjøvik, Norway) 11",81,4,16,High,Vegetables,Norway
+1894,Jamaica,81,4,16,High,Vegetables,
+1895,"at a thickness of 0.5 cm, boiled for 8-9 min",82,3,16,High,Vegetables,Australia
+1896,"cubes, boiled in salted water for 15 min",82,7,16,High,Vegetables,Canada
+1897,Jamaica,82,3,16,High,Vegetables,
+1898,Jamaica,83,6,17,High,Vegetables,
+1899,"Red sweet potato (Ipomoea batatas), NS, cooking method",84,6,17,High,Vegetables,New Zealand
+1900,unsalted water,85,4,17,High,Vegetables,UK
+1901,Jamaica,85,2,17,High,Vegetables,
+1902,Jamaica,86,2,17,High,Vegetables,
+1903,"Sebago potato, peeled, boiled for 35 min",87,7,17,High,Vegetables,Australia
+1904,Jamaica,87,4,17,High,Vegetables,
+1905,"Pontiac potato, peeled, boiled 35 min",88,9,18,High,Vegetables,Australia
+1906,"Instant mashed potato (Idahoan Foods, Lewisville, ID, USA)",88,8,18,High,Vegetables,USA
+1907,"Red potatoes, boiled with skin on in salted water for 12 min",89,7,18,High,Vegetables,Canada
+1908,Jamaica,89,3,18,High,Vegetables,
+1909,Jamaica,90,6,18,High,Vegetables,
+1910,"Pontiac potato, peeled, cubed, boiled 15 min, mashed",91,9,18,High,Vegetables,Australia
+1911,Jamaica,91,3,18,High,Vegetables,
+1912,prepared with water,92,4,18,High,Vegetables,USA
+1913,"Pontiac potato, peeled and baked",93,11,19,High,Vegetables,Australia
+1914,"a thickness of 0.5 cm, boiled for 8-9 min",93,10,19,High,Vegetables,Australia
+1915,"Estima potato, cooked in microwave 6 min then baked 10 min",93,8,19,High,Vegetables,UK
+1916,Jamaica,93,5,19,High,Vegetables,
+1917,"thickness of 0.5 cm, boiled for 8-9 min",94,8,19,High,Vegetables,Australia
+1918,Jamaica,94,3,19,High,Vegetables,
+1919,"Instant mashed potato (Idahoan Foods, Lewisville, ID, USA)",97,6,19,High,Vegetables,USA
+1920,Jamaica,97,10,19,High,Vegetables,
+1921,"Desiree potato, peeled, boiled 35 min",101,15,20,High,Vegetables,Australia
+1922,"thickness of 0.5 cm, boiled for 8-9 min",103,8,21,High,Vegetables,Australia

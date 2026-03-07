@@ -1,3 +1,6 @@
+# Secrets
+.env
+
 # Flutter
 frontend/build/
 frontend/.dart_tool/
@@ -6,9 +9,6 @@ frontend/.flutter-plugins
 frontend/.flutter-plugins-dependencies
 frontend/pubspec.lock
 
-# Secrets
-.env
-
 # Python
 __pycache__/
 *.pyc
@@ -16,9 +16,25 @@ __pycache__/
 .venv/
 venv/
 
+# ChromaDB runtime data
+skills/food-gi-rag/data/chromadb/
+
+# OpenClaw internal state
+.openclaw/
+
+# USER.md backups
+memory/user_backups/
+
+# Benchmark data
+tests/benchmark_data/GlucoBench/
+tests/benchmark_data/GI_Tables_2021_raw.txt
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# OS files
 .DS_Store
+Thumbs.db
