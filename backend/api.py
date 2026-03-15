@@ -42,6 +42,15 @@ sys.path.insert(0, os.path.join(SKILLS_DIR, "food-gi-rag", "scripts"))
 
 import kalman_engine as kf_engine
 
+# CGM 模拟数据 + PubMed 文献检索
+sys.path.insert(0, os.path.join(SKILLS_DIR, "pubmed-researcher", "scripts"))
+import ble_cgm_parser
+import pubmed_researcher
+
+# SQLite 持久化
+import database
+import guidelines
+
 # ─── 内置经典案例 ────────────────────────────
 CASES_DIR = os.path.join(os.path.dirname(__file__), "cases")
 
@@ -184,6 +193,8 @@ class FoodItem(BaseModel):
 
 class CalculateRiskRequest(BaseModel):
     food_name: str
+    query_time: Optional[str] = Field(None, description="ISO8601 时间戳，用于推断用餐场景")
+    quantity_multiplier: float = Field(1.0, ge=0.5, le=5.0, description="份数倍数，1.0=1份")
 
 
 class CalculateRiskResponse(BaseModel):
@@ -191,6 +202,8 @@ class CalculateRiskResponse(BaseModel):
     risk_weight: float = Field(..., description="0-100 standardized risk score")
     risk_level: str = Field(..., description="low / medium / high / very_high")
     risk_detail: str
+    meal_context: str = Field("", description="推断的用餐场景，如 午后加餐")
+    time_advice: str = Field("", description="基于时间的建议")
     agent_traces: List[AgentTrace]
 
 
@@ -206,6 +219,7 @@ class CounterSolution(BaseModel):
 class FindBalanceRequest(BaseModel):
     food_name: str
     risk_weight: float = 0
+    query_time: Optional[str] = Field(None, description="ISO8601 时间戳，用于推断用餐场景")
 
 
 class AddExerciseRequest(BaseModel):
@@ -219,11 +233,27 @@ class AddFoodCounterRequest(BaseModel):
     risk_weight: float = 0
 
 
+class RefreshAdviceRequest(BaseModel):
+    food_name: str
+    risk_weight: float
+    selected_indices: List[int] = Field(default_factory=list, description="用户选中的对冲方案索引列表")
+    all_solutions: List[CounterSolution] = Field(default_factory=list, description="全部可选对冲方案")
+    query_time: Optional[str] = Field(None, description="ISO8601 时间戳")
+
+
+class RefreshAdviceResponse(BaseModel):
+    advice: str
+    meal_context: str = ""
+    time_advice: str = ""
+
+
 class FindBalanceResponse(BaseModel):
     risk_weight: float
     food: FoodItem
     solutions: List[CounterSolution]
     advice: str
+    meal_context: str = Field("", description="推断的用餐场景")
+    time_advice: str = Field("", description="基于时间的建议")
     agent_traces: List[AgentTrace]
 
 
@@ -495,8 +525,95 @@ EXERCISE_OPTIONS = [
 ]
 
 
+def infer_meal_context(query_time: Optional[str]) -> dict:
+    """
+    根据查询时间推断用餐场景，返回 meal_context 信息。
+
+    时段划分:
+      6:00-9:00   早餐
+      9:00-11:00  上午加餐
+      11:00-13:30 午餐
+      13:30-17:00 午后加餐
+      17:00-20:00 晚餐
+      20:00-23:00 夜间加餐/宵夜
+      23:00-6:00  深夜进食
+    """
+    if not query_time:
+        return {"label": "", "period": "", "risk_modifier": 0.0, "hour": -1}
+
+    try:
+        dt = datetime.fromisoformat(query_time.replace("Z", "+00:00"))
+    except (ValueError, TypeError):
+        return {"label": "", "period": "", "risk_modifier": 0.0, "hour": -1}
+
+    hour = dt.hour + dt.minute / 60.0
+
+    if 6.0 <= hour < 9.0:
+        return {"label": "早餐", "period": "breakfast", "risk_modifier": 0.0, "hour": hour}
+    elif 9.0 <= hour < 11.0:
+        return {"label": "上午加餐", "period": "morning_snack", "risk_modifier": 3.0, "hour": hour}
+    elif 11.0 <= hour < 13.5:
+        return {"label": "午餐", "period": "lunch", "risk_modifier": 0.0, "hour": hour}
+    elif 13.5 <= hour < 17.0:
+        return {"label": "午后加餐", "period": "afternoon_snack", "risk_modifier": 5.0, "hour": hour}
+    elif 17.0 <= hour < 20.0:
+        return {"label": "晚餐", "period": "dinner", "risk_modifier": 2.0, "hour": hour}
+    elif 20.0 <= hour < 23.0:
+        return {"label": "宵夜", "period": "late_snack", "risk_modifier": 8.0, "hour": hour}
+    else:
+        return {"label": "深夜进食", "period": "midnight", "risk_modifier": 10.0, "hour": hour}
+
+
+def generate_time_advice(meal_ctx: dict, food_name: str, risk_weight: float) -> str:
+    """根据用餐时段和食物风险生成时间相关的建议。"""
+    period = meal_ctx.get("period", "")
+    label = meal_ctx.get("label", "")
+    if not period:
+        return ""
+
+    lines = []
+
+    if period == "afternoon_snack":
+        lines.append(f"现在是午后时段，搜索「{food_name}」看起来你想吃点零食。")
+        if risk_weight >= 50:
+            lines.append("午后血糖通常已从午餐峰值回落，此时高GI零食容易造成二次血糖波动。")
+            lines.append("建议：先吃一小把坚果或一杯无糖酸奶垫底，10分钟后再少量享用，可以显著削平血糖峰值。")
+        else:
+            lines.append("午后适量加餐有助于避免晚餐前低血糖，这个选择的血糖负荷不算高。")
+    elif period == "late_snack":
+        lines.append(f"已经是晚上了，此时进食「{food_name}」需要格外注意。")
+        lines.append("夜间身体代谢减慢、胰岛素敏感性下降，同样的食物在夜间对血糖的影响比白天更大。")
+        if risk_weight >= 40:
+            lines.append("建议：如果确实想吃，可以将份量减半，搭配高蛋白食物（如鸡蛋、奶酪）来减缓吸收。")
+        else:
+            lines.append("好在这个食物血糖负荷不高，控制好份量问题不大。")
+    elif period == "midnight":
+        lines.append(f"现在已经是深夜了，进食「{food_name}」对血糖影响会比白天大很多。")
+        lines.append("深夜进食会干扰昼夜节律，显著降低胰岛素敏感性，建议尽量避免。")
+        lines.append("如果实在饿了，建议选择一小杯温牛奶或几颗坚果，既能缓解饥饿又不会大幅升糖。")
+    elif period == "morning_snack":
+        lines.append(f"上午加餐时间，「{food_name}」作为加餐需要注意份量。")
+        if risk_weight >= 50:
+            lines.append("距离午餐还有一段时间，高GI加餐可能导致午餐前血糖波动，建议选择低GI替代或减量。")
+    elif period == "breakfast":
+        lines.append(f"早餐时间吃「{food_name}」。")
+        if risk_weight >= 60:
+            lines.append("早晨皮质醇水平较高，胰岛素抵抗相对较强，高GI早餐更容易引起血糖飙升。")
+            lines.append("建议搭配蛋白质（鸡蛋、豆浆）和膳食纤维，采用先菜后饭的进食顺序。")
+    elif period == "lunch":
+        if risk_weight >= 60:
+            lines.append(f"午餐选择「{food_name}」升糖较快，建议饭后20分钟散步来帮助控制餐后血糖。")
+    elif period == "dinner":
+        lines.append(f"晚餐时间吃「{food_name}」。")
+        if risk_weight >= 50:
+            lines.append("晚餐后活动量通常较少，建议适当减量或饭后散步15-20分钟。")
+
+    return "\n".join(lines)
+
+
 def calculate_risk_weight(gi: float, gl: float, carb_g: float,
-                          fiber_g: float, protein_g: float, fat_g: float) -> float:
+                          fiber_g: float, protein_g: float, fat_g: float,
+                          time_modifier: float = 0.0) -> float:
     """
     将食物的 GI/GL/营养素转换为 0-100 的标准化风险权重。
 
@@ -511,7 +628,7 @@ def calculate_risk_weight(gi: float, gl: float, carb_g: float,
     fiber_discount = min(fiber_g * 2.0, 15.0)
     protein_discount = min(protein_g * 0.5, 10.0)
     fat_slow = min(fat_g * 0.3, 5.0)
-    risk = base - fiber_discount - protein_discount - fat_slow
+    risk = base - fiber_discount - protein_discount - fat_slow + time_modifier
     return round(max(0, min(100, risk)), 1)
 
 
@@ -527,7 +644,12 @@ def risk_level_label(risk: float) -> str:
 
 
 def lookup_food(food_name: str) -> Optional[dict]:
-    """查询食物信息：精确匹配 → 拆词组合估算 → 向量搜索。"""
+    """查询食物信息：SQLite 缓存 → 精确匹配 → 拆词组合估算 → 向量搜索。"""
+    # === 第零步：SQLite 缓存命中 ===
+    cached = database.get_cached_food(food_name)
+    if cached:
+        return {k: v for k, v in cached.items() if k not in ("id", "created_at")}
+
     all_foods = _load_all_foods()
 
     # === 第一步：精确匹配 ===
@@ -671,33 +793,31 @@ def _deepseek_food_lookup(food_name: str) -> Optional[dict]:
 
 
 def _cache_food_to_db(food_data: dict):
-    """将 AI 返回的食物数据缓存到 foods_500.json 并刷新内存缓存。"""
+    """将 AI 返回的食物数据缓存到 SQLite food_cache 表。"""
     global _ALL_FOODS
-    # 转为数据库条目格式（含 macro 嵌套和 aliases）
-    db_entry = {
-        "food_name": food_data["food_name"],
-        "aliases": [food_data["food_name"]],
-        "gi_value": food_data["gi_value"],
-        "gi_level": food_data["gi_level"],
-        "gl_per_serving": food_data["gl_per_serving"],
-        "serving_size_g": food_data["serving_size_g"],
-        "macro": {
-            "carb_g": food_data.get("carb_g", 0),
-            "protein_g": food_data.get("protein_g", 0),
-            "fat_g": food_data.get("fat_g", 0),
-            "fiber_g": food_data.get("fiber_g", 0),
-        },
-        "regional_tag": food_data.get("regional_tag", "全国"),
-        "food_category": food_data.get("food_category", "其他"),
-        "counter_strategy": food_data.get("counter_strategy", ""),
-        "data_source": food_data.get("data_source", "DeepSeek AI 估算"),
-    }
     try:
+        database.cache_food(food_data)
+        # 同时追加到内存缓存以便当次会话可用
+        db_entry = {
+            "food_name": food_data["food_name"],
+            "aliases": [food_data["food_name"]],
+            "gi_value": food_data["gi_value"],
+            "gi_level": food_data["gi_level"],
+            "gl_per_serving": food_data["gl_per_serving"],
+            "serving_size_g": food_data["serving_size_g"],
+            "macro": {
+                "carb_g": food_data.get("carb_g", 0),
+                "protein_g": food_data.get("protein_g", 0),
+                "fat_g": food_data.get("fat_g", 0),
+                "fiber_g": food_data.get("fiber_g", 0),
+            },
+            "regional_tag": food_data.get("regional_tag", "全国"),
+            "food_category": food_data.get("food_category", "其他"),
+            "counter_strategy": food_data.get("counter_strategy", ""),
+            "data_source": food_data.get("data_source", "DeepSeek AI 估算"),
+        }
         all_foods = _load_all_foods()
         all_foods.append(db_entry)
-        with open(FOODS_DB_PATH, "w", encoding="utf-8") as f:
-            json.dump(all_foods, f, ensure_ascii=False, indent=2)
-        # 内存缓存已通过 list.append 就地更新，无需重新赋值
     except Exception:
         pass
 
@@ -932,6 +1052,32 @@ def build_food_item(raw: dict, risk: float = 0) -> FoodItem:
     )
 
 
+# 每类别对冲食物的合理推荐克数上限
+MAX_SERVING = {
+    "蔬菜": 100, "菌菇": 80, "豆类": 80, "坚果": 30,
+    "水果": 100, "肉类": 50, "奶类": 200, "饮料": 250,
+    "蛋类": 60, "主食": 100, "谷物": 50, "薯类": 100,
+}
+
+
+def _get_serving_label(category: str, grams: int, food_name: str) -> str:
+    """将克数转为语义化描述。"""
+    FOOD_SPECIFIC = {
+        "豆腐": "约1/4块", "魔芋": "几片", "黄瓜": "半根",
+        "西红柿": "1个", "番茄": "1个", "鸡蛋": "1个", "牛奶": "1杯",
+        "豆浆": "1杯", "西兰花": "小半朵",
+    }
+    for key, label in FOOD_SPECIFIC.items():
+        if key in food_name:
+            return label
+    labels = {
+        "蔬菜": "1小把", "菌菇": "1小碟", "豆类": "适量",
+        "坚果": "一小把", "水果": "约半个", "肉类": "薄切几片",
+        "奶类": "1杯", "饮料": "1杯",
+    }
+    return labels.get(category, "适量")
+
+
 def generate_food_counters(risk_weight: float, source_food: dict) -> List[CounterSolution]:
     """生成饮食对冲方案：按地域推荐低 GI 配菜来平衡高 GI 主食。"""
     solutions = []
@@ -969,8 +1115,15 @@ def generate_food_counters(risk_weight: float, source_food: dict) -> List[Counte
         "豆类": "蛋白搭配",
         "肉类": "蛋白搭配",
         "奶类": "蛋白搭配",
+        "蛋类": "蛋白搭配",
         "主食": "主食替换",
         "谷物": "主食替换",
+        "米制品": "主食替换",
+        "面食": "主食替换",
+        "面点": "主食替换",
+        "粥类": "主食替换",
+        "薯类": "主食替换",
+        "杂粮": "主食替换",
         "饮料": "汤饮搭配",
         "汤": "汤饮搭配",
         "水果": "蔬菜搭配",
@@ -1006,11 +1159,17 @@ def generate_food_counters(risk_weight: float, source_food: dict) -> List[Counte
         if counter:
             desc += counter
 
-        group = CATEGORY_TO_GROUP.get(cat, "蔬菜搭配")
+        group = CATEGORY_TO_GROUP.get(cat, "其他搭配")
+
+        capped_serving = int(min(serving, MAX_SERVING.get(cat, 150))) if serving else 0
+        label = _get_serving_label(cat, capped_serving, name)
+        counter_name = f"搭配 {name}"
+        if capped_serving:
+            counter_name += f" · {label}({capped_serving}g)"
 
         solutions.append(CounterSolution(
             type="food",
-            name=f"搭配 {name}" + (f" ({serving}g)" if serving else ""),
+            name=counter_name,
             description=desc,
             balance_weight=balance,
             group=group,
@@ -1035,14 +1194,7 @@ def generate_exercise_counters(risk_weight: float) -> List[CounterSolution]:
         raw_effect = ex["met"] * ex["duration_min"] / 60.0 * 15.0
         balance = round(min(raw_effect, 40.0), 1)
 
-        # 按 MET 值分组
-        met = ex["met"]
-        if met <= 4.0:
-            group = "轻度运动"
-        elif met <= 6.5:
-            group = "中度运动"
-        else:
-            group = "高强度运动"
+        group = "运动"
 
         solutions.append(CounterSolution(
             type="exercise",
@@ -1059,11 +1211,151 @@ def generate_exercise_counters(risk_weight: float) -> List[CounterSolution]:
     return solutions
 
 
+def _classify_food_role(sol: CounterSolution) -> str:
+    """将对冲食物分类为用餐顺序角色。"""
+    name = sol.name.replace("搭配 ", "").split(" (")[0]  # 提取纯食物名
+    group = sol.group
+    details = sol.details or {}
+    fiber = details.get("fiber_g", 0)
+    protein = details.get("protein_g", 0)
+    gi = details.get("gi", 50)
+
+    # 蔬菜/菌菇类 → 先吃（高纤维打底）
+    if group == "蔬菜搭配":
+        return "vegetable"
+    # 蛋白类（豆/肉/奶/蛋/坚果）→ 中间吃
+    if group == "蛋白搭配":
+        return "protein"
+    # 汤饮类 → 餐前或餐中
+    if group == "汤饮搭配":
+        return "soup"
+    # 主食替换 → 最后吃
+    if group == "主食替换":
+        return "staple"
+    # 烹饪技巧 → 贯穿全程
+    if group == "烹饪技巧":
+        return "technique"
+    # 兜底：高纤维当蔬菜，高蛋白当蛋白，其他当配菜
+    if fiber >= 3:
+        return "vegetable"
+    if protein >= 5:
+        return "protein"
+    return "side"
+
+
+def _build_meal_plan(food_name: str, food_sols: List[CounterSolution],
+                     exercise_sols: List[CounterSolution],
+                     meal_ctx: Optional[dict] = None,
+                     risk_weight: float = 0) -> str:
+    """根据用户选择的对冲食物和运动，生成结构化用餐方案。"""
+    period = (meal_ctx or {}).get("period", "")
+    label = (meal_ctx or {}).get("label", "")
+
+    # 按角色分类所有对冲食物
+    roles = {}
+    for sol in food_sols:
+        role = _classify_food_role(sol)
+        roles.setdefault(role, []).append(sol)
+
+    plan_lines = ["", "🍽️ 推荐用餐方案："]
+    step = 1
+
+    def _short_name(sol: CounterSolution) -> str:
+        return sol.name.replace("搭配 ", "")
+
+    # ── 第一步：汤饮打底（如果有）──
+    if "soup" in roles:
+        soup_names = "、".join(_short_name(s) for s in roles["soup"])
+        plan_lines.append(f"  Step {step}. 餐前先喝 {soup_names}")
+        plan_lines.append(f"         → 温热汤饮能激活消化酶，延缓后续碳水吸收")
+        step += 1
+
+    # ── 第二步：蔬菜先行 ──
+    if "vegetable" in roles:
+        veg_names = "、".join(_short_name(s) for s in roles["vegetable"])
+        total_fiber = sum(s.details.get("fiber_g", 0) for s in roles["vegetable"])
+        plan_lines.append(f"  Step {step}. 先吃蔬菜：{veg_names}")
+        reason = "膳食纤维在胃中形成凝胶层，减缓糖分进入血液的速度"
+        if total_fiber >= 5:
+            reason += f"（共约 {total_fiber:.0f}g 纤维）"
+        plan_lines.append(f"         → {reason}")
+        step += 1
+
+    # ── 第三步：蛋白质 ──
+    if "protein" in roles:
+        prot_names = "、".join(_short_name(s) for s in roles["protein"])
+        total_protein = sum(s.details.get("protein_g", 0) for s in roles["protein"])
+        plan_lines.append(f"  Step {step}. 再吃蛋白质：{prot_names}")
+        reason = "蛋白质刺激 GLP-1 分泌，延缓胃排空"
+        if total_protein >= 8:
+            reason += f"（共约 {total_protein:.0f}g 蛋白质）"
+        plan_lines.append(f"         → {reason}")
+        step += 1
+
+    # ── 第四步：主食/高碳水最后吃 ──
+    # 主食替换 + 原食物
+    staple_names = []
+    if "staple" in roles:
+        staple_names.extend(_short_name(s) for s in roles["staple"])
+    staple_names.append(food_name)  # 原食物始终是主角
+    plan_lines.append(f"  Step {step}. 最后吃主食：{' 或 '.join(staple_names)}")
+    plan_lines.append(f"         → 先吃菜和蛋白后再吃碳水，血糖峰值可降低约 30-40%")
+    step += 1
+
+    # ── 烹饪技巧贯穿 ──
+    if "technique" in roles:
+        tech_descs = "；".join(s.description for s in roles["technique"] if s.description)
+        if tech_descs:
+            plan_lines.append(f"  * 烹饪提示：{tech_descs}")
+
+    # ── 其他配菜穿插 ──
+    if "side" in roles:
+        side_names = "、".join(_short_name(s) for s in roles["side"])
+        plan_lines.append(f"  * 可穿插搭配：{side_names}")
+
+    # ── 餐后运动建议 ──
+    if exercise_sols:
+        plan_lines.append("")
+        plan_lines.append("🏃 餐后消食建议：")
+        names = "、".join(s.name for s in exercise_sols)
+        if period == "late_snack":
+            plan_lines.append(f"  · 饭后 10-15 分钟：{names}（夜间宜轻柔，避免影响睡眠）")
+        elif period == "breakfast":
+            plan_lines.append(f"  · 饭后 15-30 分钟：{names}（早餐后活动帮助唤醒身体代谢）")
+        else:
+            plan_lines.append(f"  · 饭后 15-30 分钟：{names}（餐后运动抑制血糖快速攀升）")
+
+        # 运动时长与消耗提示
+        total_kcal = sum(s.details.get("kcal_approx", 0) for s in exercise_sols)
+        total_min = sum(s.details.get("duration_min", 0) for s in exercise_sols)
+        if total_kcal > 0:
+            plan_lines.append(f"  → 预计总运动约 {total_min} 分钟，消耗约 {total_kcal} kcal")
+    else:
+        # 没选运动也给一个通用消食建议
+        plan_lines.append("")
+        plan_lines.append("🏃 餐后消食建议：")
+        if period == "late_snack":
+            plan_lines.append("  · 饭后可原地站立或缓慢踱步 10 分钟，避免立即躺下")
+        elif period == "midnight":
+            plan_lines.append("  · 深夜进食后建议至少保持直立姿势 15-20 分钟再休息")
+        else:
+            plan_lines.append("  · 建议饭后散步 10-15 分钟，哪怕是短距离走动也能帮助降低餐后血糖峰值")
+
+    return "\n".join(plan_lines)
+
+
 def generate_counterbalance_advice(food_name: str, risk_weight: float,
-                                   selected_solutions: List[CounterSolution]) -> str:
-    """生成 Coordinator 综合建议。注意使用非绝对化的建议性措辞。"""
+                                   selected_solutions: List[CounterSolution],
+                                   meal_ctx: Optional[dict] = None) -> str:
+    """生成 Coordinator 综合建议。注意使用非绝对化的建议性措辞。含时间上下文。"""
     total_balance = sum(s.balance_weight for s in selected_solutions)
     lines = []
+
+    # 时间上下文前缀
+    period = (meal_ctx or {}).get("period", "")
+    label = (meal_ctx or {}).get("label", "")
+    if label:
+        lines.append(f"当前时段：{label}")
 
     if risk_weight < 25:
         lines.append(f"{food_name}的血糖负荷相对较低，通常对血糖影响有限。")
@@ -1074,22 +1366,35 @@ def generate_counterbalance_advice(food_name: str, risk_weight: float,
     else:
         lines.append(f"{food_name}对血糖影响较大，建议结合以下方案进行综合管理。")
 
+    # 基于时段的血糖预测提示
+    if period in ("afternoon_snack", "morning_snack"):
+        lines.append(f"加餐时段进食会在当前基础上叠加血糖波动，预计餐后30分钟血糖可能额外升高1-3 mmol/L。")
+    elif period == "late_snack":
+        lines.append("夜间胰岛素敏感性下降约20-30%，同等食物的血糖峰值可能比白天高出1.5-2 mmol/L。")
+    elif period == "midnight":
+        lines.append("深夜进食时身体代谢最低，血糖峰值可能比正常用餐时高出2-3 mmol/L，且恢复更慢。")
+    elif period == "breakfast" and risk_weight >= 50:
+        lines.append("早晨皮质醇高峰期胰岛素抵抗较强，餐后血糖峰值可能比午餐同等食物高1-2 mmol/L。")
+
     food_sols = [s for s in selected_solutions if s.type == "food"]
     exercise_sols = [s for s in selected_solutions if s.type == "exercise"]
 
-    if food_sols:
-        names = "、".join(s.name.replace("搭配 ", "") for s in food_sols[:3])
-        lines.append(f"饮食搭配建议：{names}。")
-
-    if exercise_sols:
-        lines.append(f"运动建议：{exercise_sols[0].name}可能有助于缓解餐后血糖波动。")
-
-    if total_balance >= risk_weight:
-        lines.append("以上方案组合起来可能有助于缓冲血糖波动，但实际效果因人而异。")
+    if not selected_solutions:
+        lines.append("请从右侧方案中选择搭配来对冲血糖风险。")
     else:
-        gap = round(risk_weight - total_balance, 1)
-        lines.append(f"当前方案可能仍不足以完全平衡（差约{gap}分），可考虑增加一项搭配。")
+        # 对冲覆盖分析
+        if total_balance >= risk_weight:
+            lines.append(f"当前方案总对冲 {total_balance:.0f} 分，已覆盖风险权重 {risk_weight:.0f} 分，组合较为合理。")
+        else:
+            gap = round(risk_weight - total_balance, 1)
+            coverage = round(total_balance / risk_weight * 100) if risk_weight > 0 else 0
+            lines.append(f"当前方案对冲 {total_balance:.0f}/{risk_weight:.0f} 分（覆盖 {coverage}%），还差约 {gap} 分，可考虑再加一项搭配。")
 
+        # 生成结构化用餐方案
+        meal_plan = _build_meal_plan(food_name, food_sols, exercise_sols, meal_ctx, risk_weight)
+        lines.append(meal_plan)
+
+    lines.append("")
     lines.append("⚠️ 以上建议仅供参考，不构成医疗建议。请遵医嘱，结合个人血糖监测数据调整饮食。")
 
     return "\n".join(lines)
@@ -1122,11 +1427,18 @@ def run_analysis(req: AnalyzeRequest) -> AnalyzeResponse:
             duration_ms=elapsed,
         ))
 
+    # Step 1.5: ISF 为空时从数据库读用户 ISF
+    isf = req.isf
+    if isf is None or isf == 0:
+        user = database.get_user(1)
+        if user and user.get("isf"):
+            isf = user["isf"]
+
     # Step 2: 自动选择滤波器 + 运行
     t_start = datetime.now()
     filter_type, kf = kf_engine.auto_select_filter(
         req.readings, event=req.event,
-        dose=req.dose, isf=req.isf,
+        dose=req.dose, isf=isf,
         gi=gi, gl=gl,
     )
     filtered = kf.filter(req.readings)
@@ -1251,6 +1563,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 启动时初始化 SQLite
+database.init_db()
+
 
 @app.get("/api/health")
 async def health():
@@ -1348,9 +1663,19 @@ async def replay_stream(case_id: str):
 
 @app.post("/api/scale/risk", response_model=CalculateRiskResponse)
 async def calculate_risk(req: CalculateRiskRequest):
-    """左盘：计算食物的风险权重。"""
+    """左盘：计算食物的风险权重（含时间上下文）。"""
     traces = []
     t0 = datetime.now()
+
+    # Step 0: 推断用餐场景
+    meal_ctx = infer_meal_context(req.query_time)
+    if meal_ctx["label"]:
+        traces.append(AgentTrace(
+            agent="Coordinator",
+            action=f"infer_meal_context('{req.query_time}')",
+            result=f"场景={meal_ctx['label']}，时段风险修正+{meal_ctx['risk_modifier']}",
+            duration_ms=0,
+        ))
 
     # Step 1: 查询食物信息
     t_start = datetime.now()
@@ -1375,7 +1700,7 @@ async def calculate_risk(req: CalculateRiskRequest):
         duration_ms=elapsed,
     ))
 
-    # Step 2: 计算风险权重
+    # Step 2: 计算风险权重（含时间修正）
     t_start = datetime.now()
     risk = calculate_risk_weight(
         gi=raw.get("gi_value", 0),
@@ -1384,13 +1709,20 @@ async def calculate_risk(req: CalculateRiskRequest):
         fiber_g=raw.get("fiber_g", 0),
         protein_g=raw.get("protein_g", 0),
         fat_g=raw.get("fat_g", 0),
+        time_modifier=meal_ctx["risk_modifier"],
     )
+    # 乘以份数倍数，上限100
+    if req.quantity_multiplier != 1.0:
+        risk = round(min(risk * req.quantity_multiplier, 100.0), 1)
+
     level = risk_level_label(risk)
     elapsed = int((datetime.now() - t_start).total_seconds() * 1000)
+
+    time_note = f"（含时段修正+{meal_ctx['risk_modifier']}）" if meal_ctx["risk_modifier"] > 0 else ""
     traces.append(AgentTrace(
         agent="Physiological Analyst",
-        action="calculate_risk_weight(gi, gl, nutrients)",
-        result=f"risk={risk}/100 ({level})",
+        action="calculate_risk_weight(gi, gl, nutrients, time)",
+        result=f"risk={risk}/100 ({level}){time_note}",
         duration_ms=elapsed,
     ))
 
@@ -1402,20 +1734,35 @@ async def calculate_risk(req: CalculateRiskRequest):
     detail += f"碳水 {raw.get('carb_g', 0)}g 纤维 {raw.get('fiber_g', 0)}g "
     detail += f"蛋白质 {raw.get('protein_g', 0)}g 脂肪 {raw.get('fat_g', 0)}g"
 
+    # Step 3: 生成时间相关建议
+    time_advice = generate_time_advice(meal_ctx, req.food_name, risk)
+
     return CalculateRiskResponse(
         food=food,
         risk_weight=risk,
         risk_level=level,
         risk_detail=detail,
+        meal_context=meal_ctx["label"],
+        time_advice=time_advice,
         agent_traces=traces,
     )
 
 
 @app.post("/api/scale/balance", response_model=FindBalanceResponse)
 async def find_balance(req: FindBalanceRequest):
-    """右盘：生成对冲方案列表。"""
+    """右盘：生成对冲方案列表（含时间上下文）。"""
     traces = []
     t0 = datetime.now()
+
+    # Step 0: 推断用餐场景
+    meal_ctx = infer_meal_context(req.query_time)
+    if meal_ctx["label"]:
+        traces.append(AgentTrace(
+            agent="Coordinator",
+            action=f"infer_meal_context('{req.query_time}')",
+            result=f"场景={meal_ctx['label']}",
+            duration_ms=0,
+        ))
 
     # Step 1: 如果没有提供 risk_weight，先计算
     t_start = datetime.now()
@@ -1441,6 +1788,7 @@ async def find_balance(req: FindBalanceRequest):
             fiber_g=raw.get("fiber_g", 0),
             protein_g=raw.get("protein_g", 0),
             fat_g=raw.get("fat_g", 0),
+            time_modifier=meal_ctx["risk_modifier"],
         )
 
     food = build_food_item(raw, risk)
@@ -1471,13 +1819,15 @@ async def find_balance(req: FindBalanceRequest):
     # 按 balance_weight 降序排列
     all_solutions.sort(key=lambda s: s.balance_weight, reverse=True)
 
-    # Step 4: 生成综合建议
+    # Step 4: 生成初始建议（用户尚未选择方案，传空列表）
     t_start = datetime.now()
-    advice = generate_counterbalance_advice(req.food_name, risk, all_solutions)
+    advice = generate_counterbalance_advice(
+        req.food_name, risk, [], meal_ctx=meal_ctx,
+    )
     elapsed = int((datetime.now() - t_start).total_seconds() * 1000)
     traces.append(AgentTrace(
         agent="Coordinator",
-        action="generate_counterbalance_advice()",
+        action="generate_counterbalance_advice(initial, no_selection)",
         result=advice[:80] + "..." if len(advice) > 80 else advice,
         duration_ms=elapsed,
     ))
@@ -1490,12 +1840,40 @@ async def find_balance(req: FindBalanceRequest):
         duration_ms=total_ms,
     ))
 
+    # 生成时间相关建议
+    time_advice = generate_time_advice(meal_ctx, req.food_name, risk)
+
     return FindBalanceResponse(
         risk_weight=risk,
         food=food,
         solutions=all_solutions,
         advice=advice,
+        meal_context=meal_ctx["label"],
+        time_advice=time_advice,
         agent_traces=traces,
+    )
+
+
+@app.post("/api/scale/advice", response_model=RefreshAdviceResponse)
+async def refresh_advice(req: RefreshAdviceRequest):
+    """根据用户实际选中的对冲方案，重新生成 Coordinator 建议。"""
+    meal_ctx = infer_meal_context(req.query_time)
+
+    # 从全部方案中筛选用户选中的
+    selected = []
+    for idx in req.selected_indices:
+        if 0 <= idx < len(req.all_solutions):
+            selected.append(req.all_solutions[idx])
+
+    advice = generate_counterbalance_advice(
+        req.food_name, req.risk_weight, selected, meal_ctx=meal_ctx,
+    )
+    time_advice = generate_time_advice(meal_ctx, req.food_name, req.risk_weight)
+
+    return RefreshAdviceResponse(
+        advice=advice,
+        meal_context=meal_ctx["label"],
+        time_advice=time_advice,
     )
 
 
@@ -1508,12 +1886,7 @@ async def add_custom_exercise(req: AddExerciseRequest):
     raw_effect = met * req.duration_min / 60.0 * 15.0
     balance = round(min(raw_effect, 40.0), 1)
 
-    if met <= 4.0:
-        group = "轻度运动"
-    elif met <= 6.5:
-        group = "中度运动"
-    else:
-        group = "高强度运动"
+    group = "运动"
 
     display_name = std_name if std_name != raw_name else raw_name
 
@@ -1564,11 +1937,17 @@ async def add_custom_food_counter(req: AddFoodCounterRequest):
         "主食": "主食替换", "谷物": "主食替换",
         "饮料": "汤饮搭配", "汤": "汤饮搭配",
     }
-    group = CATEGORY_TO_GROUP.get(cat, "蔬菜搭配")
+    group = CATEGORY_TO_GROUP.get(cat, "其他搭配")
+
+    capped_serving = int(min(serving, MAX_SERVING.get(cat, 150))) if serving else 0
+    label = _get_serving_label(cat, capped_serving, name)
+    counter_name = f"搭配 {name}"
+    if capped_serving:
+        counter_name += f" · {label}({capped_serving}g)"
 
     return CounterSolution(
         type="food",
-        name=f"搭配 {name}" + (f" ({serving}g)" if serving else ""),
+        name=counter_name,
         description=desc,
         balance_weight=balance,
         group=group,
@@ -1635,16 +2014,47 @@ def _build_system_prompt() -> str:
         parts.append(user)
         parts.append("")
 
+    # 注入数据库中的真实用户档案
+    db_user = database.get_user(1)
+    if db_user and db_user.get("name"):
+        parts.append("---")
+        parts.append("# 用户档案（来自数据库）")
+        profile_lines = []
+        if db_user.get("name"):
+            profile_lines.append(f"- 姓名: {db_user['name']}")
+        if db_user.get("age"):
+            profile_lines.append(f"- 年龄: {db_user['age']}")
+        if db_user.get("weight"):
+            profile_lines.append(f"- 体重: {db_user['weight']} kg")
+        if db_user.get("height"):
+            profile_lines.append(f"- 身高: {db_user['height']} cm")
+        if db_user.get("diabetes_type"):
+            profile_lines.append(f"- 糖尿病类型: {db_user['diabetes_type']}")
+        if db_user.get("isf"):
+            profile_lines.append(f"- ISF: {db_user['isf']}")
+        if db_user.get("icr"):
+            profile_lines.append(f"- ICR: {db_user['icr']}")
+        if db_user.get("medications"):
+            meds = db_user["medications"]
+            if meds:
+                profile_lines.append(f"- 用药: {', '.join(meds) if isinstance(meds, list) else meds}")
+        if db_user.get("regional_preference") and db_user["regional_preference"] != "全国":
+            profile_lines.append(f"- 地域偏好: {db_user['regional_preference']}")
+        parts.extend(profile_lines)
+        parts.append("")
+
     if agents:
         parts.append("---")
         parts.append("# Agent 协作角色定义（你的多重身份）")
         parts.append(agents)
         parts.append("")
 
+    # 注入权威糖尿病指南知识库
+    parts.append("---")
+    parts.append(guidelines.get_all_guidelines_summary())
+    parts.append("")
+
     return "\n".join(parts)
-
-
-SUGARCLAW_SYSTEM_PROMPT = _build_system_prompt()
 
 
 class ChatRequest(BaseModel):
@@ -1653,9 +2063,22 @@ class ChatRequest(BaseModel):
 
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
-    """DeepSeek R1 深度思考对话，SSE 流式返回。"""
-    # 构造完整消息列表：system + 用户对话历史
-    full_messages = [{"role": "system", "content": SUGARCLAW_SYSTEM_PROMPT}]
+    """DeepSeek Chat 对话，SSE 流式返回。"""
+    # 每次请求重新读取配置文件，确保 SOUL.md / USER.md / AGENTS.md 的修改即时生效
+    system_prompt = _build_system_prompt()
+
+    # 根据用户最新消息检索最相关的指南条目，注入上下文
+    last_user_msg = ""
+    for msg in reversed(req.messages):
+        if msg.get("role") == "user" and msg.get("content"):
+            last_user_msg = msg["content"]
+            break
+    if last_user_msg:
+        relevant = guidelines.search_guidelines(last_user_msg, max_results=3)
+        if relevant:
+            system_prompt += "\n" + guidelines.format_guidelines_for_prompt(relevant)
+
+    full_messages = [{"role": "system", "content": system_prompt}]
     for msg in req.messages:
         full_messages.append({
             "role": msg.get("role", "user"),
@@ -1665,7 +2088,7 @@ async def chat(req: ChatRequest):
     async def generate():
         try:
             stream = _deepseek_client.chat.completions.create(
-                model="deepseek-reasoner",
+                model="deepseek-chat",
                 messages=full_messages,
                 stream=True,
             )
@@ -1674,12 +2097,6 @@ async def chat(req: ChatRequest):
                 if not choice:
                     continue
                 delta = choice.delta
-
-                # deepseek-reasoner 的思考过程
-                thinking = getattr(delta, "reasoning_content", None)
-                if thinking:
-                    event = {"type": "thinking", "content": thinking}
-                    yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
 
                 # 最终回答内容
                 if delta.content:
@@ -1690,9 +2107,217 @@ async def chat(req: ChatRequest):
                     yield f"data: {json.dumps({'type': 'done'})}\n\n"
                     break
         except Exception as e:
-            yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+            import traceback
+            detail = traceback.format_exc()
+            print(f"[chat error] {detail}", flush=True)
+            yield f"data: {json.dumps({'type': 'error', 'message': str(e), 'detail': detail})}\n\n"
 
     return StreamingResponse(generate(), media_type="text/event-stream")
+
+
+# ─── 用户档案 Endpoints ────────────────────────────
+
+class UserProfileUpdate(BaseModel):
+    name: Optional[str] = None
+    age: Optional[int] = None
+    weight: Optional[float] = None
+    height: Optional[float] = None
+    diabetes_type: Optional[str] = None
+    medications: Optional[List[str]] = None
+    isf: Optional[float] = None
+    icr: Optional[float] = None
+    regional_preference: Optional[str] = None
+
+
+@app.get("/api/user/profile")
+async def get_profile():
+    """获取当前用户档案 (MVP 单用户 id=1)。"""
+    user = database.get_user(1)
+    if not user:
+        raise HTTPException(404, "User not found")
+    return user
+
+
+@app.put("/api/user/profile")
+async def update_profile(body: UserProfileUpdate):
+    """更新用户档案字段。"""
+    fields = {k: v for k, v in body.model_dump().items() if v is not None}
+    if not fields:
+        raise HTTPException(400, "No fields to update")
+    updated = database.update_user(1, **fields)
+    return updated
+
+
+class CalibrateISFRequest(BaseModel):
+    before: float = Field(..., description="餐前血糖 mmol/L")
+    after: float = Field(..., description="餐后血糖 mmol/L")
+    dose: float = Field(..., description="胰岛素剂量 U")
+
+
+@app.post("/api/user/calibrate_isf")
+async def calibrate_isf(req: CalibrateISFRequest):
+    """根据观测数据 EMA 更新 ISF。"""
+    if req.dose <= 0:
+        raise HTTPException(400, "Dose must be positive")
+    observed_isf = abs(req.before - req.after) / req.dose
+    user = database.get_user(1)
+    stored_isf = user.get("isf", 0) if user else 0
+    if stored_isf > 0:
+        new_isf = round(0.3 * observed_isf + 0.7 * stored_isf, 3)
+    else:
+        new_isf = round(observed_isf, 3)
+    updated = database.update_user(1, isf=new_isf)
+    return {
+        "observed_isf": round(observed_isf, 3),
+        "previous_isf": stored_isf,
+        "new_isf": new_isf,
+        "user": updated,
+    }
+
+
+# ─── 血糖日志 Endpoints ────────────────────────────
+
+class GlucoseLogEntry(BaseModel):
+    timestamp: str = Field(..., description="ISO 格式时间戳")
+    glucose_mmol: float = Field(..., ge=0.5, le=40, description="血糖值 mmol/L")
+    note: str = Field("", description="备注（如：早餐后、运动前）")
+
+
+@app.post("/api/glucose/log")
+async def add_glucose_log(entry: GlucoseLogEntry):
+    """添加一条手动血糖记录。"""
+    saved = database.save_glucose_entry(
+        timestamp=entry.timestamp,
+        glucose_mmol=entry.glucose_mmol,
+        note=entry.note,
+    )
+    return saved
+
+
+@app.get("/api/glucose/log")
+async def get_glucose_log(limit: int = 100):
+    """获取血糖日志。"""
+    return database.get_glucose_log(limit=limit)
+
+
+@app.delete("/api/glucose/log/{entry_id}")
+async def delete_glucose_log(entry_id: int):
+    """删除一条血糖记录。"""
+    ok = database.delete_glucose_entry(entry_id)
+    if not ok:
+        raise HTTPException(404, "Entry not found")
+    return {"deleted": True}
+
+
+# ─── CGM 模拟 Endpoints ────────────────────────────
+
+import uuid
+
+
+class CGMSimulateRequest(BaseModel):
+    seed: Optional[int] = None
+
+
+@app.post("/api/cgm/simulate")
+def cgm_simulate(req: CGMSimulateRequest = CGMSimulateRequest()):
+    """调用 generate_demo_data() 生成 24h 模拟数据，存入 SQLite。"""
+    seed = req.seed if req.seed is not None else int(datetime.now().timestamp()) % 100000
+    readings = ble_cgm_parser.generate_demo_data(seed=seed)
+    session_id = f"sim_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+    database.save_cgm_readings(session_id, readings, source="simulation")
+    return {
+        "session_id": session_id,
+        "count": len(readings),
+        "readings": readings,
+    }
+
+
+@app.get("/api/cgm/stream/{session_id}")
+async def cgm_stream(session_id: str):
+    """SSE 逐条推送 CGM 读数（复用 replay_stream 模式）。"""
+    readings = database.get_cgm_session(session_id)
+    if not readings:
+        raise HTTPException(404, f"Session {session_id} not found")
+
+    async def generate():
+        for i, r in enumerate(readings):
+            event = {
+                "type": "reading",
+                "index": i,
+                "total": len(readings),
+                "timestamp": r.get("timestamp", ""),
+                "glucose_mmol": r.get("glucose_mmol", 0),
+                "glucose_mgdl": r.get("glucose_mgdl", 0),
+                "event": r.get("event", ""),
+            }
+            yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+            await asyncio.sleep(0.05)
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+    return StreamingResponse(generate(), media_type="text/event-stream")
+
+
+@app.get("/api/cgm/history")
+async def cgm_history(limit: int = 100):
+    """查询最近 N 条 CGM 读数。"""
+    return database.get_cgm_history(limit)
+
+
+@app.get("/api/cgm/sessions")
+async def cgm_sessions():
+    """列出历史模拟会话。"""
+    return database.list_cgm_sessions()
+
+
+# ─── PubMed 文献检索 Endpoints ────────────────────────────
+
+PUBMED_PRESETS = {
+    "food-impact": "({query}) AND (glycemic index OR glycemic load OR blood glucose)",
+    "therapy": "({query}) AND (treatment OR therapy OR management) AND diabetes",
+    "cgm": "({query}) AND (continuous glucose monitoring OR CGM)",
+    "mental": "({query}) AND (mental health OR depression OR anxiety) AND diabetes",
+}
+
+
+class PubMedSearchRequest(BaseModel):
+    query: str
+    mode: str = Field("custom", description="搜索模式: custom / food-impact / therapy / cgm / mental")
+    max_results: int = Field(5, ge=1, le=20)
+    include_abstracts: bool = False
+
+
+@app.post("/api/pubmed/search")
+def pubmed_search(req: PubMedSearchRequest):
+    """搜索 PubMed 文献（sync def，FastAPI 自动放线程池）。"""
+    search_query = req.query
+    if req.mode in PUBMED_PRESETS:
+        search_query = PUBMED_PRESETS[req.mode].format(query=req.query)
+
+    api_key = os.environ.get("NCBI_API_KEY")
+    pmids, count = pubmed_researcher.esearch(search_query, max_results=req.max_results, api_key=api_key)
+
+    summaries = pubmed_researcher.esummary(pmids, api_key=api_key)
+
+    abstracts_text = ""
+    if req.include_abstracts and pmids:
+        abstracts_text = pubmed_researcher.efetch_abstracts(pmids, api_key=api_key)
+
+    # 保存搜索历史
+    database.save_search(req.query, req.mode, summaries, total_count=count)
+
+    return {
+        "query": req.query,
+        "mode": req.mode,
+        "total_count": count,
+        "articles": summaries,
+        "abstracts": abstracts_text,
+    }
+
+
+@app.get("/api/pubmed/history")
+async def pubmed_history(limit: int = 20):
+    """获取最近的 PubMed 搜索历史。"""
+    return database.get_recent_searches(limit)
 
 
 # Serve Flutter web build as static files at root
@@ -1703,4 +2328,20 @@ if os.path.isdir(WEB_BUILD):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+
+    # 监听的额外目录：配置文件变更时也自动重启
+    _watch_dirs = []
+    _project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    _workspace_root = os.path.expanduser("~/.openclaw/workspace")
+    for d in [_project_root, _workspace_root]:
+        if os.path.isdir(d):
+            _watch_dirs.append(d)
+
+    uvicorn.run(
+        "api:app",
+        host="0.0.0.0",
+        port=8080,
+        reload=True,
+        reload_dirs=_watch_dirs,
+        reload_includes=["*.py", "*.json", "*.md", "*.env"],
+    )
