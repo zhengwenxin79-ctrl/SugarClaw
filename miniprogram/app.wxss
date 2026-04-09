@@ -1,0 +1,118 @@
+/* app.wxss - 全局样式 */
+page {
+  background-color: #F8FAFC;
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  color: #1A202C;
+  box-sizing: border-box;
+}
+
+/* 颜色变量（通过 CSS 变量实现主题） */
+.container {
+  padding: 16rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 主色按钮 */
+.btn-primary {
+  background: #6C63FF;
+  color: #FFFFFF;
+  border-radius: 28rpx;
+  border: none;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.btn-primary[disabled] {
+  background: #B0ADE8;
+}
+
+/* 次色按钮 */
+.btn-accent {
+  background: #ED8936;
+  color: #FFFFFF;
+  border-radius: 28rpx;
+  border: none;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* 幽灵按钮 */
+.btn-ghost {
+  background: transparent;
+  color: #6C63FF;
+  border: 2rpx solid #6C63FF;
+  border-radius: 28rpx;
+  padding: 18rpx 40rpx;
+  font-size: 28rpx;
+}
+
+/* 标签/pill */
+.pill {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 40rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.pill-low    { background: #E6F9F0; color: #27AE60; }
+.pill-medium { background: #FFF8E1; color: #E67E22; }
+.pill-high   { background: #FEF0F0; color: #E53E3E; }
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: #EDF2F7;
+  margin: 16rpx 0;
+}
+
+/* 加载中 */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+  color: #999;
+}
+.empty-state text {
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+
+/* 错误提示 */
+.error-banner {
+  background: #FEF0F0;
+  color: #E53E3E;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+/* 血糖等级色 */
+.glucose-critical { color: #E53E3E; }
+.glucose-low      { color: #DD6B20; }
+.glucose-normal   { color: #27AE60; }
+.glucose-high     { color: #DD6B20; }
+.glucose-very-high{ color: #E53E3E; }

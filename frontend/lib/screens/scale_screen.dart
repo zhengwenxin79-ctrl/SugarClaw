@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/counterbalance.dart';
 import '../providers/scale_state.dart';
+import '../theme.dart';
 import '../widgets/advice_bubble.dart';
 
 class ScaleScreen extends StatelessWidget {
@@ -29,6 +31,14 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
   late Animation<double> _tiltAnimation;
   double _prevTilt = 0;
 
+  late AnimationController _rippleController;
+  late Animation<double> _rippleAnimation;
+
+  // 悬浮天平尺寸与位置
+  static const double _floatSize = 100.0;
+  Offset _floatOffset = const Offset(double.infinity, 16); // sentinel for init
+  bool _floatExpanded = false; // 点击展开显示详情
+
   @override
   void initState() {
     super.initState();
@@ -39,15 +49,23 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     _tiltAnimation = Tween<double>(begin: 0, end: 0).animate(
       CurvedAnimation(parent: _tiltController, curve: Curves.elasticOut),
     );
+    _rippleController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _rippleAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _rippleController, curve: Curves.easeOut),
+    );
   }
 
   @override
   void dispose() {
     _tiltController.dispose();
+    _rippleController.dispose();
     super.dispose();
   }
 
-  void _animateTilt(double target) {
+  void _animateTilt(double target, {bool balanced = false}) {
     if ((target - _prevTilt).abs() < 0.001) return;
     _tiltAnimation = Tween<double>(
       begin: _tiltAnimation.value,
@@ -57,23 +75,31 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
     _tiltController.forward(from: 0);
     _prevTilt = target;
+    if (balanced) {
+      HapticFeedback.heavyImpact();
+      _rippleController.forward(from: 0);
+    }
   }
 
+  // ─── Dialogs ───────────────────────────────────
+
   void _showAddFoodDialog(ScaleState state) {
+    HapticFeedback.lightImpact();
     final controller = TextEditingController();
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('Add Food',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+        title: Text('添加食物', style: SC.headline.copyWith(fontSize: 16)),
         content: TextField(
           controller: controller,
           autofocus: true,
+          style: SC.body,
           decoration: InputDecoration(
-            hintText: 'Enter food name...',
+            hintText: '输入食物名称...',
+            hintStyle: SC.body.copyWith(color: SC.textTertiary),
             filled: true,
-            fillColor: const Color(0xFFF7FAFC),
+            fillColor: SC.bg,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
@@ -89,8 +115,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: Text('Cancel',
-                style: TextStyle(color: Colors.grey.shade500)),
+            child: Text('取消', style: SC.body.copyWith(color: SC.textTertiary)),
           ),
           ElevatedButton(
             onPressed: () {
@@ -100,13 +125,13 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFED8936),
+              backgroundColor: SC.accent,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(SC.radiusMd)),
               elevation: 0,
             ),
-            child: const Text('Add & Analyze'),
+            child: Text('添加并分析', style: SC.label.copyWith(color: Colors.white)),
           ),
         ],
       ),
@@ -114,24 +139,26 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
   }
 
   void _showAddExerciseDialog(ScaleState state) {
+    HapticFeedback.lightImpact();
     final nameController = TextEditingController();
     final durationController = TextEditingController(text: '20');
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('添加自定义运动',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+        title: Text('添加自定义运动', style: SC.headline.copyWith(fontSize: 16)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: nameController,
               autofocus: true,
+              style: SC.body,
               decoration: InputDecoration(
                 hintText: '运动名称（如瑜伽、跳绳）',
+                hintStyle: SC.body.copyWith(color: SC.textTertiary),
                 filled: true,
-                fillColor: const Color(0xFFF7FAFC),
+                fillColor: SC.bg,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -142,10 +169,12 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
             TextField(
               controller: durationController,
               keyboardType: TextInputType.number,
+              style: SC.body,
               decoration: InputDecoration(
                 hintText: '时长（分钟）',
+                hintStyle: SC.body.copyWith(color: SC.textTertiary),
                 filled: true,
-                fillColor: const Color(0xFFF7FAFC),
+                fillColor: SC.bg,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -158,7 +187,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: Text('取消', style: TextStyle(color: Colors.grey.shade500)),
+            child: Text('取消', style: SC.body.copyWith(color: SC.textTertiary)),
           ),
           ElevatedButton(
             onPressed: () {
@@ -170,13 +199,13 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF4299E1),
+              backgroundColor: SC.info,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(SC.radiusMd)),
               elevation: 0,
             ),
-            child: const Text('添加'),
+            child: Text('添加', style: SC.label.copyWith(color: Colors.white)),
           ),
         ],
       ),
@@ -184,20 +213,22 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
   }
 
   void _showAddFoodCounterDialog(ScaleState state) {
+    HapticFeedback.lightImpact();
     final controller = TextEditingController();
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('添加对冲食物',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+        title: Text('添加对冲食物', style: SC.headline.copyWith(fontSize: 16)),
         content: TextField(
           controller: controller,
           autofocus: true,
+          style: SC.body,
           decoration: InputDecoration(
             hintText: '食物名称（如豆腐、西兰花）',
+            hintStyle: SC.body.copyWith(color: SC.textTertiary),
             filled: true,
-            fillColor: const Color(0xFFF7FAFC),
+            fillColor: SC.bg,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
@@ -213,7 +244,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: Text('取消', style: TextStyle(color: Colors.grey.shade500)),
+            child: Text('取消', style: SC.body.copyWith(color: SC.textTertiary)),
           ),
           ElevatedButton(
             onPressed: () {
@@ -223,97 +254,125 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF48BB78),
+              backgroundColor: SC.success,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(SC.radiusMd)),
               elevation: 0,
             ),
-            child: const Text('添加'),
+            child: Text('添加', style: SC.label.copyWith(color: Colors.white)),
           ),
         ],
       ),
     );
   }
 
+  // ─── Build ─────────────────────────────────────
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: SC.bg,
       body: SafeArea(
         child: Consumer<ScaleState>(
           builder: (context, state, _) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              _animateTilt(state.tiltAngle);
+              _animateTilt(state.tiltAngle, balanced: state.isBalanced);
             });
 
-            return Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // ── Left Pan: Food card library ──
-                        _buildSectionTitle(
-                          'Indulgence',
-                          Icons.restaurant_rounded,
-                          const Color(0xFFE53E3E),
-                          'Choose what you ate',
-                        ),
-                        _buildFoodCardRow(state),
-                        // ── The Scale ──
-                        _buildScale(state),
-                        // ── Risk info ──
-                        if (state.riskResult != null) _buildRiskBadge(state),
-                        // ── Loading ──
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                // 初始化悬浮位置：右上角
+                if (_floatOffset.dx == double.infinity) {
+                  _floatOffset = Offset(
+                      constraints.maxWidth - _floatSize - 12, 12);
+                }
+
+                return Stack(
+                  children: [
+                    // ── 全宽可滚动内容 ──
+                    CustomScrollView(
+                      slivers: [
+                        // ── 标题行 ──
+                        SliverToBoxAdapter(child: _buildTitle(state)),
+                        // ── 食物卡片行 ──
+                        SliverToBoxAdapter(child: _buildFoodCardRow(state)),
+                        // ── 加载/错误状态 ──
                         if (state.loadingRisk || state.loadingBalance)
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16),
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                  color: Color(0xFFED8936), strokeWidth: 3),
-                            ),
-                          ),
-                        // ── Error ──
-                        if (state.error != null)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.red.shade50,
-                                borderRadius: BorderRadius.circular(10),
+                          const SliverToBoxAdapter(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 24),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                    color: SC.accent, strokeWidth: 3),
                               ),
-                              child: Text(state.error!,
-                                  style: TextStyle(
-                                      color: Colors.red.shade700,
-                                      fontSize: 12)),
                             ),
                           ),
-                        // ── Right Pan: Draggable solutions ──
-                        if (state.balanceResult != null) ...[
-                          _buildSectionTitle(
-                            'Balance',
-                            Icons.auto_fix_high_rounded,
-                            const Color(0xFF48BB78),
-                            'Drag cards onto the right pan',
+                        if (state.error != null)
+                          SliverToBoxAdapter(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: SC.emptyState(
+                                Icons.error_outline,
+                                '分析失败',
+                                subtitle: state.error,
+                                ctaLabel: '重试',
+                                onCta: () {
+                                  final foods = state.selectedFoods.toList();
+                                  state.selectedFoods.clear();
+                                  state.riskResults.clear();
+                                  for (final f in foods) {
+                                    state.toggleFood(f);
+                                  }
+                                },
+                              ),
+                            ),
                           ),
-                          _buildSolutionCards(state),
-                          if (state.isBalanced) _buildBalancedBanner(),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-                            child: AdviceBubble(
-                                advice: state.balanceResult!.advice),
+                        // ── 风险卡片 ──
+                        if (state.riskResults.isNotEmpty)
+                          SliverToBoxAdapter(child: _buildRiskBadges(state)),
+                        if (state.riskResults.isNotEmpty) ...[
+                          for (final rr in state.riskResults.values)
+                            if (rr.timeAdvice.isNotEmpty)
+                              SliverToBoxAdapter(
+                                  child: _buildTimeAdvice(rr.timeAdvice)),
+                        ],
+                        // ── 对冲方案 ──
+                        if (state.balanceResult != null) ...[
+                          SliverToBoxAdapter(
+                            child: _buildSectionTitle(
+                              '对冲方案',
+                              Icons.auto_fix_high_rounded,
+                              SC.success,
+                              '点击选择 · 长按拖拽',
+                            ),
+                          ),
+                          SliverToBoxAdapter(child: _buildProgressBar(state)),
+                          SliverToBoxAdapter(child: _buildSolutionCards(state)),
+                          if (state.isBalanced)
+                            SliverToBoxAdapter(child: _buildBalancedBanner()),
+                          SliverToBoxAdapter(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                              child: AdviceBubble(
+                                  advice: state.currentAdvice ??
+                                      state.balanceResult!.advice),
+                            ),
                           ),
                         ],
-                        const SizedBox(height: 30),
+                        const SliverToBoxAdapter(child: SizedBox(height: 32)),
                       ],
                     ),
-                  ),
-                ),
-              ],
+                    // ── 悬浮可拖动天平 ──
+                    Positioned(
+                      left: _floatOffset.dx,
+                      top: _floatOffset.dy,
+                      child: _buildFloatingScale(
+                          state, constraints.maxWidth, constraints.maxHeight),
+                    ),
+                  ],
+                );
+              },
             );
           },
         ),
@@ -321,92 +380,203 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildHeader() {
+  // ─── Floating Draggable Scale ──────────────────
+
+  Widget _buildFloatingScale(
+      ScaleState state, double maxW, double maxH) {
+    final expanded = _floatExpanded;
+    final size = expanded ? _floatSize * 1.8 : _floatSize;
+
+    return GestureDetector(
+      onPanUpdate: (d) {
+        setState(() {
+          _floatOffset = Offset(
+            (_floatOffset.dx + d.delta.dx).clamp(0, maxW - size),
+            (_floatOffset.dy + d.delta.dy).clamp(0, maxH - size),
+          );
+        });
+      },
+      onTap: () {
+        setState(() => _floatExpanded = !_floatExpanded);
+      },
+      child: DragTarget<int>(
+        onAcceptWithDetails: (d) {
+          HapticFeedback.mediumImpact();
+          state.dropSolution(d.data);
+        },
+        builder: (context, candidates, _) {
+          final hovering = candidates.isNotEmpty;
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOut,
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              color: hovering
+                  ? SC.success.withAlpha(30)
+                  : SC.surface.withAlpha(245),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: hovering
+                    ? SC.success.withAlpha(150)
+                    : state.isBalanced
+                        ? SC.success.withAlpha(100)
+                        : SC.border.withAlpha(120),
+                width: hovering ? 2 : 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withAlpha(20),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Column(
+                children: [
+                  // 天平动画
+                  Expanded(
+                    child: AnimatedBuilder(
+                      animation: Listenable.merge(
+                          [_tiltAnimation, _rippleAnimation]),
+                      builder: (context, _) {
+                        return CustomPaint(
+                          painter: _ScalePainter(
+                            tilt: _tiltAnimation.value,
+                            riskWeight: state.riskWeight,
+                            balanceWeight: state.balanceWeight,
+                            leftFood: null, // 小尺寸不显示食物名
+                            isBalanced: state.isBalanced,
+                            rippleProgress: _rippleAnimation.value,
+                          ),
+                          size: Size.infinite,
+                        );
+                      },
+                    ),
+                  ),
+                  // 底部百分比条
+                  if (state.riskWeight > 0)
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 3),
+                      color: (state.isBalanced ? SC.success : SC.accent)
+                          .withAlpha(15),
+                      child: Text(
+                        '${(state.balanceWeight / state.riskWeight * 100).clamp(0, 999).toStringAsFixed(0)}%  ${state.balanceWeight.toStringAsFixed(0)}/${state.riskWeight.toStringAsFixed(0)}',
+                        textAlign: TextAlign.center,
+                        style: SC.caption.copyWith(
+                          fontSize: 9,
+                          fontWeight: FontWeight.w700,
+                          color: state.isBalanced ? SC.success : SC.accent,
+                        ),
+                      ),
+                    ),
+                  // 展开时显示已选食物
+                  if (expanded && state.selectedFoods.isNotEmpty)
+                    Container(
+                      constraints: BoxConstraints(maxHeight: size * 0.3),
+                      padding: const EdgeInsets.fromLTRB(4, 2, 4, 4),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          spacing: 3,
+                          runSpacing: 3,
+                          alignment: WrapAlignment.center,
+                          children: state.selectedFoods.map((food) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 4, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: SC.danger.withAlpha(15),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                '${_foodEmoji(food)}$food×${state.quantityOf(food)}${state.unitFor(food)}',
+                                style: SC.caption.copyWith(
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  // ─── Title Row ───────────────────────────────
+
+  Widget _buildTitle(ScaleState state) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      padding: const EdgeInsets.fromLTRB(16, 8, 8, 4),
       child: Row(
         children: [
           Container(
-            width: 38,
-            height: 38,
+            width: 32,
+            height: 32,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFED8936), Color(0xFFDD6B20)],
-              ),
-              borderRadius: BorderRadius.circular(12),
+              gradient: SC.accentGradient,
+              borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(Icons.balance_rounded,
-                color: Colors.white, size: 20),
+                color: Colors.white, size: 16),
           ),
-          const SizedBox(width: 10),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Counterbalance Scale',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF1A202C),
-                  letterSpacing: -0.5,
-                ),
-              ),
-              Text(
-                'Pick food on left, drag solutions to right',
-                style: TextStyle(fontSize: 10, color: Colors.grey),
-              ),
-            ],
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('饮食对冲天平',
+                    style: SC.headline.copyWith(fontSize: 14)),
+                Text('点击食物卡片多选，天平风险叠加', style: SC.caption),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
+
+  // ─── Section Title ──────────────────────────────
 
   Widget _buildSectionTitle(
       String title, IconData icon, Color color, String subtitle) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 14, 20, 6),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
       child: Row(
         children: [
           Icon(icon, size: 16, color: color),
-          const SizedBox(width: 6),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: color,
-            ),
-          ),
           const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              subtitle,
-              style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
-            ),
-          ),
+          Text(title,
+              style: SC.body.copyWith(fontWeight: FontWeight.w700, color: color)),
+          const SizedBox(width: 8),
+          Expanded(child: Text(subtitle, style: SC.caption)),
         ],
       ),
     );
   }
 
-  // ═══════════════════════════════════════════
-  // LEFT PAN: Horizontal scrollable food cards
-  // ═══════════════════════════════════════════
+  // ─── Food Card Row ──────────────────────────────
+
   Widget _buildFoodCardRow(ScaleState state) {
     return SizedBox(
-      height: 80,
+      height: 110,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: state.foodLibrary.length + 1, // +1 for the "+" card
+        itemCount: state.foodLibrary.length + 1,
         itemBuilder: (context, i) {
-          // Last card is the "+" add button
-          if (i == state.foodLibrary.length) {
-            return _buildAddFoodCard(state);
-          }
-          final name = state.foodLibrary[i];
-          final isActive = state.selectedFood == name;
+          if (i == 0) return _buildAddFoodCard(state);
+          final name = state.foodLibrary[i - 1];
+          final isActive = state.selectedFoods.contains(name);
           return _buildFoodCard(name, isActive, state);
         },
       ),
@@ -414,91 +584,166 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
   }
 
   Widget _buildFoodCard(String name, bool isActive, ScaleState state) {
+    final qty = state.quantityOf(name);
+    final unit = state.unitFor(name);
     return Padding(
-      padding: const EdgeInsets.only(right: 10),
-      child: GestureDetector(
-        onTap: () => state.selectFood(name),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          width: 76,
-          decoration: BoxDecoration(
-            color: isActive ? const Color(0xFFE53E3E) : Colors.white,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: isActive
-                  ? const Color(0xFFE53E3E)
-                  : Colors.grey.shade200,
-              width: isActive ? 2 : 1,
-            ),
-            boxShadow: isActive
-                ? [
-                    BoxShadow(
-                      color: const Color(0xFFE53E3E).withAlpha(40),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    )
-                  ]
-                : [],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.restaurant_rounded,
-                size: 22,
-                color: isActive ? Colors.white : const Color(0xFFED8936),
-              ),
-              const SizedBox(height: 6),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: isActive ? Colors.white : const Color(0xFF4A5568),
-                  ),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
+      padding: const EdgeInsets.only(right: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SC.pressable(
+            onTap: () {
+              HapticFeedback.lightImpact();
+              state.toggleFood(name);
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: 76,
+              height: 72,
+              decoration: BoxDecoration(
+                color: isActive ? SC.accent : SC.surface,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: isActive ? SC.accent : SC.border,
+                  width: isActive ? 2 : 1,
                 ),
+                boxShadow: isActive
+                    ? [BoxShadow(color: SC.accent.withAlpha(40), blurRadius: 8, offset: const Offset(0, 4))]
+                    : [],
               ),
-            ],
+              child: Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          _foodEmoji(name),
+                          style: const TextStyle(fontSize: 22),
+                        ),
+                        const SizedBox(height: 4),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: Text(
+                            isActive ? '$name×$qty$unit' : name,
+                            style: SC.caption.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: isActive ? Colors.white : SC.textPrimary,
+                              fontSize: isActive ? 9 : null,
+                            ),
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Checkmark for selected
+                  if (isActive)
+                    Positioned(
+                      top: 4,
+                      right: 4,
+                      child: Container(
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 2)],
+                        ),
+                        child: const Icon(Icons.check, size: 12, color: SC.accent),
+                      ),
+                    ),
+                ],
+              ),
+            ),
           ),
-        ),
+          if (isActive) _buildQuantityStepper(name, qty, state),
+        ],
       ),
     );
+  }
+
+  Widget _buildQuantityStepper(String name, int qty, ScaleState state) {
+    return Container(
+      width: 76,
+      height: 28,
+      margin: const EdgeInsets.only(top: 4),
+      decoration: BoxDecoration(
+        color: SC.surface,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: SC.border),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              state.setQuantity(name, qty - 1);
+            },
+            child: Container(
+              width: 26,
+              height: 28,
+              alignment: Alignment.center,
+              child: Text('−', style: SC.caption.copyWith(fontWeight: FontWeight.w700, color: SC.accent)),
+            ),
+          ),
+          Text(
+            '$qty',
+            style: SC.caption.copyWith(fontWeight: FontWeight.w700, color: SC.textPrimary),
+          ),
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              state.setQuantity(name, qty + 1);
+            },
+            child: Container(
+              width: 26,
+              height: 28,
+              alignment: Alignment.center,
+              child: Text('+', style: SC.caption.copyWith(fontWeight: FontWeight.w700, color: SC.accent)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _foodEmoji(String name) {
+    const map = {
+      '热干面': '🍜',
+      '白米饭': '🍚',
+      '螺蛳粉': '🍜',
+      '肠粉': '🥟',
+      '馒头': '🍞',
+      '面包': '🥖',
+      '牛奶': '🥛',
+      '苹果': '🍎',
+    };
+    return map[name] ?? '🍽️';
   }
 
   Widget _buildAddFoodCard(ScaleState state) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10),
-      child: GestureDetector(
+      padding: const EdgeInsets.only(right: 8),
+      child: SC.pressable(
         onTap: () => _showAddFoodDialog(state),
         child: Container(
           width: 76,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: SC.surface,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: Colors.grey.shade300,
-              style: BorderStyle.solid,
-              width: 1.5,
-            ),
+            border: Border.all(color: SC.border, width: 1.5),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add_rounded, size: 28, color: Colors.grey.shade400),
+              const Icon(Icons.add_rounded, size: 28, color: SC.textTertiary),
               const SizedBox(height: 4),
-              Text(
-                'Search',
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey.shade400,
-                ),
-              ),
+              Text('搜索',
+                  style: SC.caption.copyWith(fontWeight: FontWeight.w600)),
             ],
           ),
         ),
@@ -506,161 +751,137 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
   }
 
-  // ═══════════════════════════════════════════
-  // THE SCALE (with DragTarget on right pan)
-  // ═══════════════════════════════════════════
-  Widget _buildScale(ScaleState state) {
-    return AnimatedBuilder(
-      animation: _tiltAnimation,
-      builder: (context, _) {
-        final tilt = _tiltAnimation.value;
+  // ─── Risk Badges (all selected foods) ──────────
+
+  Widget _buildRiskBadges(ScaleState state) {
+    return Column(
+      children: state.riskResults.entries.map((entry) {
+        final r = entry.value;
+        Color lc;
+        String levelText;
+        switch (r.riskLevel) {
+          case 'low':
+            lc = SC.success;
+            levelText = '低风险';
+            break;
+          case 'medium':
+            lc = SC.warning;
+            levelText = '中风险';
+            break;
+          default:
+            lc = SC.danger;
+            levelText = '高风险';
+        }
         return Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-          child: SizedBox(
-            height: 210,
-            child: Stack(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: SC.surface,
+              borderRadius: BorderRadius.circular(SC.radiusMd),
+              border: Border.all(color: lc.withAlpha(50)),
+            ),
+            child: Row(
               children: [
-                CustomPaint(
-                  painter: _ScalePainter(
-                    tilt: tilt,
-                    riskWeight: state.riskWeight,
-                    balanceWeight: state.balanceWeight,
-                    leftFood: state.riskResult?.food.name,
-                    isBalanced: state.isBalanced,
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: lc.withAlpha(20),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  size: Size.infinite,
-                ),
-                // DragTarget on right pan area
-                if (state.balanceResult != null)
-                  Positioned(
-                    right: 0,
-                    top: 20,
-                    width: MediaQuery.of(context).size.width * 0.38,
-                    height: 160,
-                    child: DragTarget<int>(
-                      onAcceptWithDetails: (d) => state.dropSolution(d.data),
-                      builder: (context, candidates, _) {
-                        final hovering = candidates.isNotEmpty;
-                        return AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          decoration: BoxDecoration(
-                            color: hovering
-                                ? const Color(0xFF48BB78).withAlpha(25)
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(20),
-                            border: hovering
-                                ? Border.all(
-                                    color: const Color(0xFF48BB78).withAlpha(100),
-                                    width: 2)
-                                : null,
-                          ),
-                          child: hovering
-                              ? const Center(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.add_circle_outline_rounded,
-                                          color: Color(0xFF48BB78), size: 32),
-                                      SizedBox(height: 4),
-                                      Text('Drop here',
-                                          style: TextStyle(
-                                            color: Color(0xFF48BB78),
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.w700,
-                                          )),
-                                    ],
-                                  ),
-                                )
-                              : const SizedBox(),
-                        );
-                      },
+                  child: Center(
+                    child: Text(
+                      r.riskWeight.toStringAsFixed(0),
+                      style: SC.headline.copyWith(fontSize: 16, color: lc),
                     ),
                   ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(children: [
+                        Text(r.food.name,
+                            style:
+                                SC.body.copyWith(fontWeight: FontWeight.w700)),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: lc.withAlpha(20),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(levelText,
+                              style: SC.caption.copyWith(
+                                  color: lc, fontWeight: FontWeight.w700)),
+                        ),
+                        if (r.mealContext.isNotEmpty) ...[
+                          const SizedBox(width: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: SC.primaryLight,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(r.mealContext,
+                                style: SC.caption.copyWith(
+                                    color: SC.primary,
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                        ],
+                      ]),
+                      const SizedBox(height: 4),
+                      Text(r.riskDetail,
+                          style: SC.caption,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis),
+                    ],
+                  ),
+                ),
+                // Remove button
+                GestureDetector(
+                  onTap: () {
+                    HapticFeedback.lightImpact();
+                    state.deselectFood(entry.key);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(Icons.close_rounded,
+                        size: 16, color: SC.textTertiary),
+                  ),
+                ),
               ],
             ),
           ),
         );
-      },
+      }).toList(),
     );
   }
 
-  // ═══════════════════════════════════════════
-  // RISK BADGE under the scale
-  // ═══════════════════════════════════════════
-  Widget _buildRiskBadge(ScaleState state) {
-    final r = state.riskResult!;
-    Color lc;
-    switch (r.riskLevel) {
-      case 'low':
-        lc = const Color(0xFF48BB78);
-        break;
-      case 'medium':
-        lc = const Color(0xFFED8936);
-        break;
-      case 'high':
-        lc = const Color(0xFFE53E3E);
-        break;
-      default:
-        lc = const Color(0xFF9B2C2C);
-    }
+  // ─── Time Advice ────────────────────────────────
+
+  Widget _buildTimeAdvice(String advice) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 2, 20, 0),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: SC.primaryLight,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: lc.withAlpha(50)),
+          border: Border.all(color: SC.primary.withAlpha(40)),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 38,
-              height: 38,
-              decoration: BoxDecoration(
-                color: lc.withAlpha(25),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  r.riskWeight.toStringAsFixed(0),
-                  style: TextStyle(
-                      color: lc, fontSize: 16, fontWeight: FontWeight.w800),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
+            const Icon(Icons.schedule_rounded, size: 16, color: SC.primary),
+            const SizedBox(width: 8),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(children: [
-                    Text(r.food.name,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 13)),
-                    const SizedBox(width: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 1),
-                      decoration: BoxDecoration(
-                        color: lc.withAlpha(20),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(r.riskLevel.toUpperCase(),
-                          style: TextStyle(
-                              color: lc,
-                              fontSize: 9,
-                              fontWeight: FontWeight.w700)),
-                    ),
-                  ]),
-                  const SizedBox(height: 2),
-                  Text(r.riskDetail,
-                      style: TextStyle(
-                          fontSize: 10, color: Colors.grey.shade500),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis),
-                ],
-              ),
+              child: Text(advice,
+                  style: SC.label.copyWith(color: SC.textPrimary, height: 1.5)),
             ),
           ],
         ),
@@ -668,13 +889,47 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
   }
 
-  // ═══════════════════════════════════════════
-  // RIGHT PAN: Draggable solution mini-cards
-  // ═══════════════════════════════════════════
+  // ─── Progress Bar ───────────────────────────────
+
+  Widget _buildProgressBar(ScaleState state) {
+    final progress = state.riskWeight > 0
+        ? (state.balanceWeight / state.riskWeight).clamp(0.0, 1.0)
+        : 0.0;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: LinearProgressIndicator(
+                value: progress,
+                minHeight: 8,
+                backgroundColor: SC.borderLight,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  state.isBalanced ? SC.success : SC.accent,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            '${state.balanceWeight.toStringAsFixed(0)} / ${state.riskWeight.toStringAsFixed(0)}',
+            style: SC.label.copyWith(
+              fontWeight: FontWeight.w700,
+              color: state.isBalanced ? SC.success : SC.textSecondary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ─── Solution Cards ─────────────────────────────
+
   Widget _buildSolutionCards(ScaleState state) {
     final solutions = state.balanceResult!.solutions;
 
-    // Group solutions by their group field, preserving order of first appearance
     final groupOrder = <String>[];
     final groupIndices = <String, List<int>>{};
     for (int i = 0; i < solutions.length; i++) {
@@ -686,26 +941,21 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
       groupIndices[g]!.add(i);
     }
 
-    // Group display config
-    const groupIcons = <String, IconData>{
-      '蔬菜搭配': Icons.eco_rounded,
-      '蛋白搭配': Icons.egg_rounded,
-      '主食替换': Icons.rice_bowl_rounded,
-      '汤饮搭配': Icons.local_cafe_rounded,
-      '烹饪技巧': Icons.auto_fix_high_rounded,
-      '轻度运动': Icons.directions_walk_rounded,
-      '中度运动': Icons.directions_bike_rounded,
-      '高强度运动': Icons.directions_run_rounded,
+    const groupEmojis = <String, String>{
+      '蔬菜搭配': '🥦',
+      '蛋白搭配': '🥚',
+      '主食替换': '🍙',
+      '汤饮搭配': '🍵',
+      '烹饪技巧': '👨‍🍳',
+      '运动': '🏃',
     };
     const groupColors = <String, Color>{
-      '蔬菜搭配': Color(0xFF48BB78),
-      '蛋白搭配': Color(0xFFED8936),
-      '主食替换': Color(0xFF9F7AEA),
-      '汤饮搭配': Color(0xFF4299E1),
-      '烹饪技巧': Color(0xFF718096),
-      '轻度运动': Color(0xFF48BB78),
-      '中度运动': Color(0xFF4299E1),
-      '高强度运动': Color(0xFFE53E3E),
+      '蔬菜搭配': SC.success,
+      '蛋白搭配': SC.accent,
+      '主食替换': SC.purple,
+      '汤饮搭配': SC.info,
+      '烹饪技巧': SC.textSecondary,
+      '运动': SC.info,
     };
 
     return Padding(
@@ -713,39 +963,45 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildProgressBar(state),
-          const SizedBox(height: 8),
           for (final group in groupOrder) ...[
-            const SizedBox(height: 6),
-            _groupHeader(
-              group,
-              groupIcons[group] ?? Icons.category_rounded,
-              groupColors[group] ?? const Color(0xFF718096),
-              group == '烹饪技巧' ? '固定展示' : '选一项',
+            const SizedBox(height: 10),
+            // Group header
+            Row(
+              children: [
+                Text(groupEmojis[group] ?? '📦', style: const TextStyle(fontSize: 14)),
+                const SizedBox(width: 6),
+                Text(group,
+                    style: SC.label.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: groupColors[group] ?? SC.textSecondary)),
+                const SizedBox(width: 8),
+                Text(group == '烹饪技巧' ? '固定展示' : '可多选',
+                    style: SC.caption),
+              ],
             ),
             const SizedBox(height: 6),
+            // Horizontal scroll of solution chips
             SizedBox(
               height: 44,
               child: Builder(builder: (context) {
-                final isExerciseGroup = group == '轻度运动' || group == '中度运动' || group == '高强度运动';
-                final isFoodGroup = group == '蔬菜搭配' || group == '蛋白搭配' || group == '主食替换' || group == '汤饮搭配';
+                final isExerciseGroup = group == '运动';
+                final isFoodGroup = group == '蔬菜搭配' ||
+                    group == '蛋白搭配' ||
+                    group == '主食替换' ||
+                    group == '汤饮搭配';
                 final hasAddButton = isExerciseGroup || isFoodGroup;
-                // 反转卡片顺序：最新添加的排在前面（靠近搜索按钮）
-                final indices = groupIndices[group]!.reversed.toList();
+                final indices = groupIndices[group]!;
                 final itemCount = indices.length + (hasAddButton ? 1 : 0);
                 return ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: itemCount,
                   separatorBuilder: (_, __) => const SizedBox(width: 8),
                   itemBuilder: (context, j) {
-                    // 搜索/添加按钮始终排第一个
                     if (j == 0 && hasAddButton) {
                       return _buildAddSolutionChip(
                         state,
                         isExercise: isExerciseGroup,
-                        color: isExerciseGroup
-                            ? const Color(0xFF4299E1)
-                            : const Color(0xFF48BB78),
+                        color: isExerciseGroup ? SC.info : SC.success,
                       );
                     }
                     final listIdx = hasAddButton ? j - 1 : j;
@@ -761,108 +1017,44 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
   }
 
-  Widget _groupHeader(String label, IconData icon, Color color, String hint) {
-    return Row(
-      children: [
-        Icon(icon, size: 13, color: color),
-        const SizedBox(width: 4),
-        Text(label,
-            style: TextStyle(
-                fontSize: 12, fontWeight: FontWeight.w700, color: color)),
-        const SizedBox(width: 6),
-        Text(hint,
-            style: TextStyle(fontSize: 10, color: Colors.grey.shade400)),
-      ],
-    );
-  }
-
-  Widget _buildProgressBar(ScaleState state) {
-    final progress = state.riskWeight > 0
-        ? (state.balanceWeight / state.riskWeight).clamp(0.0, 1.0)
-        : 0.0;
-    return Row(
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 8,
-              backgroundColor: Colors.grey.shade200,
-              valueColor: AlwaysStoppedAnimation<Color>(
-                state.isBalanced
-                    ? const Color(0xFF48BB78)
-                    : const Color(0xFFED8936),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Text(
-          '${state.balanceWeight.toStringAsFixed(0)} / ${state.riskWeight.toStringAsFixed(0)}',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: state.isBalanced
-                ? const Color(0xFF48BB78)
-                : Colors.grey.shade600,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _miniSectionLabel(String label, IconData icon, Color color) {
-    return Row(
-      children: [
-        Icon(icon, size: 13, color: color),
-        const SizedBox(width: 4),
-        Text(label,
-            style: TextStyle(
-                fontSize: 11, fontWeight: FontWeight.w700, color: color)),
-      ],
-    );
-  }
-
   Widget _draggableMiniCard(
       ScaleState state, int index, CounterSolution s) {
     final selected = state.selectedIndices.contains(index);
     Color ac;
-    IconData ic;
+    String emoji;
     switch (s.type) {
       case 'exercise':
-        ac = const Color(0xFF4299E1);
-        ic = Icons.directions_run_rounded;
+        ac = SC.info;
+        emoji = '🏃';
         break;
       default:
-        ac = const Color(0xFF48BB78);
-        ic = Icons.eco_rounded;
+        ac = SC.success;
+        emoji = '🥗';
     }
 
     final chip = AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: selected ? ac.withAlpha(20) : Colors.white,
+        color: selected ? ac.withAlpha(20) : SC.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: selected ? ac : Colors.grey.shade200,
+          color: selected ? ac : SC.border,
           width: selected ? 2 : 1,
         ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(ic, size: 14, color: ac),
+          Text(emoji, style: const TextStyle(fontSize: 14)),
           const SizedBox(width: 6),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 100),
             child: Text(
               s.name,
-              style: TextStyle(
-                fontSize: 11,
+              style: SC.caption.copyWith(
                 fontWeight: FontWeight.w600,
-                color: selected ? ac : Colors.grey.shade700,
+                color: selected ? ac : SC.textPrimary,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -872,22 +1064,21 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
             decoration: BoxDecoration(
-              color: selected ? ac : Colors.grey.shade100,
+              color: selected ? ac : SC.borderLight,
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
               '+${s.balanceWeight.toStringAsFixed(0)}',
-              style: TextStyle(
-                fontSize: 10,
+              style: SC.caption.copyWith(
                 fontWeight: FontWeight.w700,
-                color: selected ? Colors.white : Colors.grey.shade600,
+                color: selected ? Colors.white : SC.textSecondary,
               ),
             ),
           ),
           if (selected)
             const Padding(
               padding: EdgeInsets.only(left: 4),
-              child: Icon(Icons.check_circle, size: 14, color: Color(0xFF48BB78)),
+              child: Icon(Icons.check_circle, size: 14, color: SC.success),
             ),
         ],
       ),
@@ -902,7 +1093,10 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
       ),
       childWhenDragging: Opacity(opacity: 0.3, child: chip),
       child: GestureDetector(
-        onTap: () => state.toggleSolution(index),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          state.toggleSolution(index);
+        },
         child: chip,
       ),
     );
@@ -910,7 +1104,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
 
   Widget _buildAddSolutionChip(ScaleState state,
       {required bool isExercise, required Color color}) {
-    return GestureDetector(
+    return SC.pressable(
       onTap: () {
         if (isExercise) {
           _showAddExerciseDialog(state);
@@ -921,9 +1115,9 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: color.withAlpha(25),
+          color: color.withAlpha(15),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withAlpha(150), width: 1.5),
+          border: Border.all(color: color.withAlpha(100), width: 1.5),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -936,8 +1130,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
             const SizedBox(width: 4),
             Text(
               isExercise ? '添加运动' : '搜索食物',
-              style: TextStyle(
-                fontSize: 11,
+              style: SC.caption.copyWith(
                 fontWeight: FontWeight.w700,
                 color: color,
               ),
@@ -948,30 +1141,29 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
     );
   }
 
+  // ─── Balanced Banner ────────────────────────────
+
   Widget _buildBalancedBanner() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF48BB78), Color(0xFF38A169)],
+          gradient: LinearGradient(
+            colors: [SC.success, SC.success.withAlpha(200)],
           ),
           borderRadius: BorderRadius.circular(14),
         ),
-        child: const Center(
+        child: Center(
           child: Column(
             children: [
-              Icon(Icons.celebration_rounded, color: Colors.white, size: 26),
-              SizedBox(height: 4),
-              Text('Perfectly Balanced!',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17)),
-              SizedBox(height: 2),
-              Text('Enjoy your meal with confidence',
-                  style: TextStyle(color: Colors.white70, fontSize: 12)),
+              const Text('🎉', style: TextStyle(fontSize: 24)),
+              const SizedBox(height: 4),
+              Text('完美平衡！',
+                  style: SC.headline.copyWith(color: Colors.white)),
+              const SizedBox(height: 4),
+              Text('放心享用你的美食吧',
+                  style: SC.label.copyWith(color: Colors.white70)),
             ],
           ),
         ),
@@ -981,7 +1173,7 @@ class _ScaleBodyState extends State<_ScaleBody> with TickerProviderStateMixin {
 }
 
 // ═══════════════════════════════════════════
-// CUSTOM PAINTER — The Scale
+// CUSTOM PAINTER — Scale (compact, warm style)
 // ═══════════════════════════════════════════
 
 class _ScalePainter extends CustomPainter {
@@ -990,6 +1182,7 @@ class _ScalePainter extends CustomPainter {
   final double balanceWeight;
   final String? leftFood;
   final bool isBalanced;
+  final double rippleProgress;
 
   _ScalePainter({
     required this.tilt,
@@ -997,50 +1190,163 @@ class _ScalePainter extends CustomPainter {
     required this.balanceWeight,
     this.leftFood,
     this.isBalanced = false,
+    this.rippleProgress = 0,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     final cx = size.width / 2;
-    final baseY = size.height - 26;
-    final pivotY = size.height * 0.32;
-    final beamLen = size.width * 0.38;
+    final baseY = size.height - 12;
+
+    // 比例自适应
+    final pillarH = size.height * 0.48;
+    final pivotY = baseY - pillarH;
+    final beamLen = (size.width * 0.32).clamp(30.0, 120.0);
 
     final beamColor = isBalanced
-        ? const Color(0xFF48BB78)
-        : tilt > 0.15
-            ? const Color(0xFFE53E3E)
-            : tilt < -0.15
-                ? const Color(0xFF4299E1)
-                : const Color(0xFF718096);
+        ? SC.success
+        : tilt.abs() > 0.1
+            ? (tilt > 0 ? SC.danger : SC.success)
+            : const Color(0xFFB0B8C0);
 
-    // Base triangle
-    final tri = Path()
-      ..moveTo(cx, pivotY)
-      ..lineTo(cx - 13, baseY)
-      ..lineTo(cx + 13, baseY)
-      ..close();
-    canvas.drawPath(tri, Paint()..color = const Color(0xFFE2E8F0));
+    // 1. 底座
+    _drawBase(canvas, cx, baseY);
+    // 2. 支柱
+    _drawPillar(canvas, cx, pivotY, baseY);
+    // 3. 支点
+    _drawPivot(canvas, cx, pivotY, beamColor);
 
-    // Base line
-    canvas.drawLine(
-      Offset(cx - 36, baseY),
-      Offset(cx + 36, baseY),
-      Paint()
-        ..color = const Color(0xFFCBD5E0)
-        ..strokeWidth = 3
-        ..strokeCap = StrokeCap.round,
-    );
-
-    // Beam
+    // 4. 横梁
     final lEnd = Offset(
-      cx - beamLen * math.cos(tilt),
-      pivotY + beamLen * math.sin(tilt),
-    );
+        cx - beamLen * math.cos(tilt), pivotY + beamLen * math.sin(tilt));
     final rEnd = Offset(
-      cx + beamLen * math.cos(tilt),
-      pivotY - beamLen * math.sin(tilt),
+        cx + beamLen * math.cos(tilt), pivotY - beamLen * math.sin(tilt));
+    _drawBeam(canvas, lEnd, rEnd, beamColor);
+
+    // 5. 绳索 + 托盘
+    const ropeLen = 22.0;
+    const panR = 18.0;
+    final lPan = Offset(lEnd.dx, lEnd.dy + ropeLen);
+    final rPan = Offset(rEnd.dx, rEnd.dy + ropeLen);
+    _drawRope(canvas, lEnd, lPan);
+    _drawRope(canvas, rEnd, rPan);
+    _drawPan(canvas, lPan, panR, riskWeight > 0, SC.danger);
+    _drawPan(canvas, rPan, panR, balanceWeight > 0, SC.success);
+
+    // 6. 托盘内数字
+    if (riskWeight > 0) {
+      _text(canvas, lPan.dx, lPan.dy - panR * 0.5,
+          riskWeight.toStringAsFixed(0), 11, SC.danger, bold: true);
+    }
+    if (balanceWeight > 0) {
+      _text(canvas, rPan.dx, rPan.dy - panR * 0.5,
+          balanceWeight.toStringAsFixed(0), 11, SC.success, bold: true);
+    }
+
+    // 7. 标签
+    _text(canvas, lPan.dx, lPan.dy + panR + 2, '放纵', 9, SC.textTertiary);
+    if (leftFood != null && leftFood!.isNotEmpty) {
+      // Truncate long multi-food names
+      final displayName = leftFood!.length > 8
+          ? '${leftFood!.substring(0, 8)}...'
+          : leftFood!;
+      _text(canvas, lPan.dx, lPan.dy + panR + 13, displayName, 8,
+          SC.textTertiary);
+    }
+    _text(canvas, rPan.dx, rPan.dy + panR + 2, '对冲', 9, SC.textTertiary);
+
+    // 8. 平衡光环
+    if (isBalanced && rippleProgress > 0) {
+      _drawGlow(canvas, cx, pivotY, rippleProgress);
+    }
+  }
+
+  void _drawBase(Canvas canvas, double cx, double baseY) {
+    final basePath = Path()
+      ..moveTo(cx - 32, baseY)
+      ..lineTo(cx + 32, baseY)
+      ..lineTo(cx + 26, baseY - 6)
+      ..lineTo(cx - 26, baseY - 6)
+      ..close();
+    canvas.drawPath(
+      basePath,
+      Paint()
+        ..shader = LinearGradient(
+          colors: [
+            const Color(0xFFD4B896),
+            const Color(0xFFC09060),
+            const Color(0xFFD4B896),
+          ],
+          stops: const [0, 0.5, 1],
+        ).createShader(Rect.fromLTRB(cx - 32, baseY - 6, cx + 32, baseY)),
     );
+    // 阴影
+    canvas.drawLine(
+      Offset(cx - 34, baseY + 2),
+      Offset(cx + 34, baseY + 2),
+      Paint()
+        ..color = Colors.black.withAlpha(12)
+        ..strokeWidth = 4
+        ..strokeCap = StrokeCap.round
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),
+    );
+  }
+
+  void _drawPillar(Canvas canvas, double cx, double pivotY, double baseY) {
+    final rect = RRect.fromRectAndRadius(
+      Rect.fromLTRB(cx - 3, pivotY + 6, cx + 3, baseY - 6),
+      const Radius.circular(2),
+    );
+    canvas.drawRRect(
+      rect,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            const Color(0xFFB8B8C8),
+            const Color(0xFFD8D8E4),
+            const Color(0xFFB8B8C8),
+          ],
+        ).createShader(rect.outerRect),
+    );
+  }
+
+  void _drawPivot(Canvas canvas, double cx, double pivotY, Color beamColor) {
+    canvas.drawCircle(
+        Offset(cx, pivotY), 7, Paint()..color = beamColor.withAlpha(25));
+    canvas.drawCircle(
+      Offset(cx, pivotY),
+      6,
+      Paint()
+        ..shader = RadialGradient(
+          center: const Alignment(-0.3, -0.3),
+          colors: [Colors.white, beamColor.withAlpha(200), beamColor],
+          stops: const [0, 0.5, 1],
+        ).createShader(Rect.fromCircle(center: Offset(cx, pivotY), radius: 6)),
+    );
+    canvas.drawCircle(
+      Offset(cx - 1.5, pivotY - 1.5),
+      2,
+      Paint()..color = Colors.white.withAlpha(200),
+    );
+  }
+
+  void _drawBeam(Canvas canvas, Offset lEnd, Offset rEnd, Color beamColor) {
+    // 阴影
+    canvas.save();
+    canvas.translate(0, 3);
+    canvas.drawLine(
+      lEnd,
+      rEnd,
+      Paint()
+        ..color = Colors.black.withAlpha(12)
+        ..strokeWidth = 6
+        ..strokeCap = StrokeCap.round
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
+    );
+    canvas.restore();
+    // 梁体
     canvas.drawLine(
       lEnd,
       rEnd,
@@ -1049,63 +1355,88 @@ class _ScalePainter extends CustomPainter {
         ..strokeWidth = 4
         ..strokeCap = StrokeCap.round,
     );
+    // 高光
+    canvas.drawLine(
+      lEnd + const Offset(0, -1),
+      rEnd + const Offset(0, -1),
+      Paint()
+        ..color = Colors.white.withAlpha(70)
+        ..strokeWidth = 1.5
+        ..strokeCap = StrokeCap.round,
+    );
+  }
 
-    // Pivot
-    canvas.drawCircle(Offset(cx, pivotY), 6, Paint()..color = beamColor);
-    canvas.drawCircle(Offset(cx, pivotY), 3, Paint()..color = Colors.white);
-
-    // Strings
-    final sp = Paint()
-      ..color = const Color(0xFFCBD5E0)
-      ..strokeWidth = 1.5;
-    final lPan = Offset(lEnd.dx, lEnd.dy + 46);
-    final rPan = Offset(rEnd.dx, rEnd.dy + 46);
-    canvas.drawLine(lEnd, lPan + const Offset(-18, -7), sp);
-    canvas.drawLine(lEnd, lPan + const Offset(18, -7), sp);
-    canvas.drawLine(rEnd, rPan + const Offset(-18, -7), sp);
-    canvas.drawLine(rEnd, rPan + const Offset(18, -7), sp);
-
-    // Pans
-    _drawPan(canvas, lPan, 38, riskWeight > 0, const Color(0xFFE53E3E));
-    _drawPan(canvas, rPan, 38, balanceWeight > 0, const Color(0xFF48BB78));
-
-    // Labels
-    _text(canvas, lPan.dx, lPan.dy + 18, 'Indulgence', 10,
-        const Color(0xFF718096));
-    _text(
-        canvas, rPan.dx, rPan.dy + 18, 'Balance', 10, const Color(0xFF718096));
-
-    // Weight numbers
-    if (riskWeight > 0) {
-      _text(canvas, lPan.dx, lPan.dy - 4, riskWeight.toStringAsFixed(0), 16,
-          const Color(0xFFE53E3E),
-          bold: true);
-    }
-    if (balanceWeight > 0) {
-      _text(canvas, rPan.dx, rPan.dy - 4, balanceWeight.toStringAsFixed(0), 16,
-          const Color(0xFF48BB78),
-          bold: true);
-    }
-
-    // Food name
-    if (leftFood != null && leftFood!.isNotEmpty) {
-      _text(canvas, lPan.dx, lPan.dy + 30, leftFood!, 9,
-          const Color(0xFF718096));
-    }
+  void _drawRope(Canvas canvas, Offset beamEnd, Offset panCenter) {
+    final paint = Paint()
+      ..color = SC.textTertiary.withAlpha(100)
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
+    final left = Path()
+      ..moveTo(beamEnd.dx, beamEnd.dy)
+      ..quadraticBezierTo(panCenter.dx - 18, (beamEnd.dy + panCenter.dy) / 2 + 3,
+          panCenter.dx - 14, panCenter.dy - 6);
+    final right = Path()
+      ..moveTo(beamEnd.dx, beamEnd.dy)
+      ..quadraticBezierTo(panCenter.dx + 18, (beamEnd.dy + panCenter.dy) / 2 + 3,
+          panCenter.dx + 14, panCenter.dy - 6);
+    canvas.drawPath(left, paint);
+    canvas.drawPath(right, paint);
   }
 
   void _drawPan(Canvas canvas, Offset c, double r, bool active, Color ac) {
-    final fill = Paint()
-      ..color = active ? ac.withAlpha(30) : const Color(0xFFF7FAFC)
-      ..style = PaintingStyle.fill;
+    // 碟子阴影
+    canvas.drawOval(
+      Rect.fromCenter(
+          center: Offset(c.dx, c.dy + 3), width: r * 2.1, height: r * 0.5),
+      Paint()
+        ..color = Colors.black.withAlpha(8)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
+    );
+    // 碟子
+    final panPath = Path()
+      ..addArc(Rect.fromCircle(center: c, radius: r), 0, math.pi);
+    canvas.drawPath(
+      panPath,
+      Paint()
+        ..shader = RadialGradient(
+          center: const Alignment(0, -0.5),
+          colors: active
+              ? [ac.withAlpha(50), ac.withAlpha(15)]
+              : [SC.bg, const Color(0xFFF0ECE8)],
+        ).createShader(Rect.fromCircle(center: c, radius: r)),
+    );
     final stroke = Paint()
-      ..color = active ? ac.withAlpha(120) : const Color(0xFFCBD5E0)
+      ..color = active ? ac.withAlpha(100) : SC.textTertiary.withAlpha(60)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-    final path = Path()..addArc(Rect.fromCircle(center: c, radius: r), 0, math.pi);
-    canvas.drawPath(path, fill);
-    canvas.drawPath(path, stroke);
+      ..strokeWidth = 1.5;
+    canvas.drawPath(panPath, stroke);
     canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), stroke);
+    // 碟沿高光
+    canvas.drawLine(
+      Offset(c.dx - r + 3, c.dy),
+      Offset(c.dx + r - 3, c.dy),
+      Paint()
+        ..color = Colors.white.withAlpha(80)
+        ..strokeWidth = 0.8
+        ..strokeCap = StrokeCap.round,
+    );
+  }
+
+  void _drawGlow(
+      Canvas canvas, double cx, double pivotY, double progress) {
+    for (int i = 0; i < 3; i++) {
+      final delay = i * 0.2;
+      final p = ((progress - delay) / (1 - delay)).clamp(0.0, 1.0);
+      if (p <= 0) continue;
+      canvas.drawCircle(
+        Offset(cx, pivotY),
+        10 + p * 24,
+        Paint()
+          ..color = SC.success.withAlpha(((1 - p) * 35).toInt().clamp(0, 255))
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5,
+      );
+    }
   }
 
   void _text(Canvas canvas, double cx, double cy, String text, double fontSize,
@@ -1122,7 +1453,7 @@ class _ScalePainter extends CustomPainter {
       ),
       textDirection: TextDirection.ltr,
     );
-    tp.layout(maxWidth: 90);
+    tp.layout(maxWidth: 80);
     tp.paint(canvas, Offset(cx - tp.width / 2, cy));
   }
 
@@ -1132,5 +1463,6 @@ class _ScalePainter extends CustomPainter {
       o.riskWeight != riskWeight ||
       o.balanceWeight != balanceWeight ||
       o.isBalanced != isBalanced ||
-      o.leftFood != leftFood;
+      o.leftFood != leftFood ||
+      o.rippleProgress != rippleProgress;
 }

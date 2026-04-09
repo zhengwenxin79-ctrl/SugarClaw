@@ -1,6 +1,14 @@
 # Secrets
 .env
 
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Personal documents
+*.docx
+
 # Flutter
 frontend/build/
 frontend/.dart_tool/

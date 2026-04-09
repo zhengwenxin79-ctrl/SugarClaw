@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/dashboard/dashboard",
+    "pages/chat/chat",
+    "pages/scale/scale",
+    "pages/profile/profile",
+    "pages/pubmed/pubmed"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#6C63FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/dashboard/dashboard",
+        "text": "今日血糖",
+        "iconPath": "assets/icons/glucose.png",
+        "selectedIconPath": "assets/icons/glucose_active.png"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "AI问诊",
+        "iconPath": "assets/icons/chat.png",
+        "selectedIconPath": "assets/icons/chat_active.png"
+      },
+      {
+        "pagePath": "pages/scale/scale",
+        "text": "饮食平衡",
+        "iconPath": "assets/icons/scale.png",
+        "selectedIconPath": "assets/icons/scale_active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile_active.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6C63FF",
+    "navigationBarTitleText": "SugarClaw",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F8FAFC"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

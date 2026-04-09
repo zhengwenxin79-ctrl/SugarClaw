@@ -1,0 +1,121 @@
+<!-- pages/dashboard/dashboard.wxml -->
+<view class="page">
+
+  <!-- 顶部当前血糖卡片 -->
+  <view class="hero-card">
+    <view class="hero-label">当前血糖</view>
+    <view class="hero-value {{currentLevel.cls}}">
+      {{currentGlucose > 0 ? currentGlucose : '--'}}
+      <text class="hero-unit">mmol/L</text>
+    </view>
+    <view class="hero-badge pill {{currentLevel.cls}}" wx:if="{{currentGlucose > 0}}">
+      {{currentLevel.emoji}} {{currentLevel.label}}
+    </view>
+    <view class="hero-time" wx:if="{{lastLogTime}}">上次记录 {{lastLogTime}}</view>
+  </view>
+
+  <!-- 快速记录血糖 -->
+  <view class="card">
+    <view class="section-title">📝 快速记录</view>
+    <view class="input-row">
+      <input
+        class="glucose-input"
+        type="digit"
+        placeholder="输入血糖值 (mmol/L)"
+        value="{{inputGlucose}}"
+        bindinput="onInputChange"
+        placeholder-class="input-placeholder"
+      />
+      <picker mode="selector" range="{{mealOptions}}" bindchange="onMealPick">
+        <view class="meal-picker">{{selectedMeal}} ▾</view>
+      </picker>
+    </view>
+    <button class="btn-primary full-width" bindtap="addLog" loading="{{addingLog}}">
+      记录血糖
+    </button>
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-banner" wx:if="{{error}}">{{error}}</view>
+
+  <!-- AI 分析触发 -->
+  <view class="card" wx:if="{{glucoseLog.length >= 3}}">
+    <view class="section-title">🤖 AI 智能分析</view>
+    <view class="analyze-hint">已记录 {{glucoseLog.length}} 条数据，可进行趋势分析</view>
+    <button class="btn-primary full-width" bindtap="runAnalysis" loading="{{analyzing}}">
+      分析血糖趋势（30分钟预测）
+    </button>
+  </view>
+
+  <!-- 分析结果 -->
+  <view class="card result-card" wx:if="{{result}}">
+    <view class="section-title">📊 分析结果</view>
+    <view class="result-filter">
+      滤波器：<text class="filter-badge">{{result.filter_type}}</text>
+    </view>
+
+    <!-- 预测 -->
+    <view class="pred-section" wx:if="{{result.predictions.length > 0}}">
+      <view class="pred-title">30分钟预测</view>
+      <view class="pred-row" wx:for="{{result.predictions}}" wx:key="time_offset_min">
+        <text class="pred-time">+{{item.time_offset_min}}分</text>
+        <text class="pred-val {{glucoseLevelCls(item.glucose)}}">{{item.glucose}}</text>
+        <text class="pred-ci">±{{item.sigma}}</text>
+      </view>
+    </view>
+
+    <!-- 预警 -->
+    <view class="alerts-section" wx:if="{{result.alerts.length > 0}}">
+      <view class="alert-item alert-{{item.level}}" wx:for="{{result.alerts}}" wx:key="type">
+        <text class="alert-icon">{{item.level === 'CRITICAL' ? '🚨' : item.level === 'WARNING' ? '⚠️' : '📢'}}</text>
+        <text class="alert-msg">{{item.message}}</text>
+      </view>
+    </view>
+
+    <!-- 建议 -->
+    <view class="advice-box" wx:if="{{result.advice}}">
+      <view class="advice-title">💡 建议</view>
+      <view class="advice-text">{{result.advice}}</view>
+    </view>
+  </view>
+
+  <!-- 内置案例 -->
+  <view class="card">
+    <view class="section-title">📚 经典案例回放</view>
+    <view class="case-list">
+      <view
+        class="case-item {{selectedCase === item.id ? 'case-selected' : ''}}"
+        wx:for="{{cases}}"
+        wx:key="id"
+        bindtap="selectCase"
+        data-id="{{item.id}}"
+      >
+        <view class="case-title">{{item.title}}</view>
+        <view class="case-desc">{{item.description}}</view>
+      </view>
+    </view>
+    <button
+      class="btn-ghost full-width"
+      wx:if="{{selectedCase}}"
+      bindtap="replayCase"
+      loading="{{replaying}}"
+    >回放此案例</button>
+  </view>
+
+  <!-- 血糖日志 -->
+  <view class="card" wx:if="{{glucoseLog.length > 0}}">
+    <view class="section-title">🗓 血糖日志</view>
+    <view class="log-item" wx:for="{{glucoseLog}}" wx:key="id">
+      <view class="log-left">
+        <text class="log-val {{item.levelCls}}">{{item.glucose_mmol}}</text>
+        <text class="log-unit">mmol/L</text>
+      </view>
+      <view class="log-mid">
+        <text class="log-note">{{item.note || '手动记录'}}</text>
+        <text class="log-time">{{item.timeStr}}</text>
+      </view>
+      <view class="log-del" bindtap="deleteLog" data-id="{{item.id}}">✕</view>
+    </view>
+  </view>
+
+</view>

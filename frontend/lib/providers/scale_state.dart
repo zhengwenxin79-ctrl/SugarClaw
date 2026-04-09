@@ -4,6 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/counterbalance.dart';
 import '../services/api_service.dart';
 
+const _foodUnitMap = {
+  '羊肉串': '串', '白米饭': '碗', '热干面': '碗', '螺蛳粉': '碗',
+  '肠粉': '份', '馒头': '个', '面包': '片', '牛奶': '杯',
+  '苹果': '个', '鸡蛋': '个', '豆浆': '杯', '包子': '个',
+  '饺子': '份', '油条': '根',
+};
+const _defaultUnit = '份';
+
 class ScaleState extends ChangeNotifier {
   final ApiService _api = ApiService();
 
@@ -22,7 +30,7 @@ class ScaleState extends ChangeNotifier {
   // ─── Left Pan: user's food library ──────
   // Preset common foods + user-added custom foods
   final List<String> foodLibrary = [..._presetFoods];
-  String? selectedFood; // currently placed on left pan
+  final Set<String> selectedFoods = {}; // multi-select foods on left pan
 
   ScaleState() {
     _loadCustomFoods();
@@ -32,9 +40,10 @@ class ScaleState extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final saved = prefs.getStringList(_storageKey);
     if (saved != null && saved.isNotEmpty) {
-      for (final food in saved) {
-        if (!foodLibrary.contains(food)) {
-          foodLibrary.add(food);
+      // 自定义食物插到最前面，最新的排第一
+      for (var i = saved.length - 1; i >= 0; i--) {
+        if (!foodLibrary.contains(saved[i])) {
+          foodLibrary.insert(0, saved[i]);
         }
       }
       notifyListeners();
@@ -47,7 +56,14 @@ class ScaleState extends ChangeNotifier {
     await prefs.setStringList(_storageKey, custom);
   }
 
-  RiskResult? riskResult;
+  // ─── Quantity per food ────────────────────
+  final Map<String, int> foodQuantities = {};
+
+  String unitFor(String food) => _foodUnitMap[food] ?? _defaultUnit;
+  int quantityOf(String food) => foodQuantities[food] ?? 1;
+
+  // ─── Risk results per food ────────────────
+  final Map<String, RiskResult> riskResults = {};
   bool loadingRisk = false;
 
   // ─── Right Pan: counter solutions ───────
@@ -55,11 +71,21 @@ class ScaleState extends ChangeNotifier {
   bool loadingBalance = false;
   final Set<int> selectedIndices = {}; // indices dropped onto right pan
 
+  // ─── Coordinator advice (refreshed on selection change) ──
+  String? currentAdvice; // null = use balanceResult.advice as fallback
+  String? _queryTime; // stored from toggleFood for advice refresh
+
   // ─── Error ──────────────────────────────
   String? error;
 
   // ─── Computed ───────────────────────────
-  double get riskWeight => riskResult?.riskWeight ?? 0;
+  double get riskWeight {
+    double total = 0;
+    for (final food in selectedFoods) {
+      total += riskResults[food]?.riskWeight ?? 0;
+    }
+    return total;
+  }
 
   double get balanceWeight {
     if (balanceResult == null) return 0;
@@ -76,31 +102,52 @@ class ScaleState extends ChangeNotifier {
   double get tiltAngle {
     if (riskWeight == 0 && balanceWeight == 0) return 0;
     const c = 50.0;
-    return math.atan((riskWeight - balanceWeight) / c);
+    // 限制最大倾斜 ±60°
+    final diff = riskWeight - balanceWeight;
+    if (diff.isNaN || diff.isInfinite) return 0;
+    final angle = math.atan(diff / c);
+    if (angle.isNaN || angle.isInfinite) return 0;
+    return angle.clamp(-1.05, 1.05);
   }
 
   bool get isBalanced => riskWeight > 0 && balanceWeight >= riskWeight;
 
+  /// Names of selected foods joined for display
+  String get selectedFoodNames => selectedFoods.join('、');
+
   // ─── Actions ────────────────────────────
 
-  /// User taps a food card on left pan area
-  Future<void> selectFood(String name) async {
-    if (name == selectedFood) return;
-    selectedFood = name;
+  /// User taps a food card — toggle selection
+  Future<void> toggleFood(String name) async {
+    if (selectedFoods.contains(name)) {
+      // Deselect
+      selectedFoods.remove(name);
+      riskResults.remove(name);
+      notifyListeners();
+      // Re-fetch balance with updated total riskWeight
+      await _refetchBalance();
+      return;
+    }
+
+    // Select — add food and fetch its risk
+    selectedFoods.add(name);
     loadingRisk = true;
     error = null;
-    riskResult = null;
-    balanceResult = null;
-    selectedIndices.clear();
     notifyListeners();
 
+    final queryTime = DateTime.now().toIso8601String();
+    _queryTime = queryTime;
+
     try {
-      final risk = await _api.calculateRisk(name);
-      riskResult = risk;
+      final risk = await _api.calculateRisk(
+        name, queryTime: queryTime,
+        quantityMultiplier: (foodQuantities[name] ?? 1).toDouble(),
+      );
+      riskResults[name] = risk;
       loadingRisk = false;
       notifyListeners();
-      // auto-find balance solutions
-      await _findBalance(name);
+      // Re-fetch balance with updated total riskWeight
+      await _refetchBalance();
     } catch (e) {
       error = e.toString();
       loadingRisk = false;
@@ -108,14 +155,71 @@ class ScaleState extends ChangeNotifier {
     }
   }
 
-  Future<void> _findBalance(String foodName) async {
-    if (riskResult == null) return;
-    loadingBalance = true;
+  /// Remove a specific food from selection
+  void deselectFood(String name) {
+    selectedFoods.remove(name);
+    riskResults.remove(name);
+    foodQuantities.remove(name);
     notifyListeners();
+    _refetchBalance();
+  }
+
+  /// Update quantity for a food and refresh risk if selected
+  Future<void> setQuantity(String name, int qty) async {
+    qty = qty.clamp(1, 5);
+    foodQuantities[name] = qty;
+    notifyListeners();
+    if (selectedFoods.contains(name)) {
+      loadingRisk = true;
+      notifyListeners();
+      try {
+        final risk = await _api.calculateRisk(
+          name, queryTime: _queryTime,
+          quantityMultiplier: qty.toDouble(),
+        );
+        riskResults[name] = risk;
+        loadingRisk = false;
+        notifyListeners();
+        await _refetchBalance();
+      } catch (e) {
+        error = e.toString();
+        loadingRisk = false;
+        notifyListeners();
+      }
+    }
+  }
+
+  /// Re-fetch balance solutions based on total riskWeight of all selected foods
+  Future<void> _refetchBalance() async {
+    if (selectedFoods.isEmpty) {
+      balanceResult = null;
+      currentAdvice = null;
+      selectedIndices.clear();
+      notifyListeners();
+      return;
+    }
+
+    // Use the first selected food as primary for the balance API
+    final primaryFood = selectedFoods.first;
+    final totalRisk = riskWeight;
+    if (totalRisk <= 0) {
+      balanceResult = null;
+      currentAdvice = null;
+      selectedIndices.clear();
+      notifyListeners();
+      return;
+    }
+
+    loadingBalance = true;
+    selectedIndices.clear();
+    currentAdvice = null;
+    notifyListeners();
+
     try {
       final balance = await _api.findBalance(
-        foodName,
-        riskWeight: riskWeight,
+        primaryFood,
+        riskWeight: totalRisk,
+        queryTime: _queryTime,
       );
       balanceResult = balance;
       loadingBalance = false;
@@ -133,48 +237,58 @@ class ScaleState extends ChangeNotifier {
     if (trimmed.isEmpty) return;
     // avoid duplicates
     if (!foodLibrary.contains(trimmed)) {
-      foodLibrary.add(trimmed);
+      foodLibrary.insert(0, trimmed);
       await _saveCustomFoods();
     }
     notifyListeners();
-    await selectFood(trimmed);
+    await toggleFood(trimmed);
   }
 
-  /// Drop a solution card onto right pan (group-aware single-select)
+  /// Drop a solution card onto right pan (multi-select)
   void dropSolution(int index) {
-    _selectWithinGroup(index);
+    if (balanceResult == null) return;
+    if (index >= balanceResult!.solutions.length) return;
+    selectedIndices.add(index);
     notifyListeners();
+    _refreshAdvice();
   }
 
-  /// Tap to toggle a solution on right pan (group-aware single-select)
+  /// Tap to toggle a solution on right pan (multi-select)
   void toggleSolution(int index) {
+    if (balanceResult == null) return;
+    if (index >= balanceResult!.solutions.length) return;
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
     } else {
-      _selectWithinGroup(index);
+      selectedIndices.add(index);
     }
     notifyListeners();
-  }
-
-  /// Select [index] and deselect any other selected item in the same group.
-  void _selectWithinGroup(int index) {
-    if (balanceResult == null) return;
-    final solutions = balanceResult!.solutions;
-    if (index >= solutions.length) return;
-
-    final group = solutions[index].group;
-    if (group.isNotEmpty) {
-      // Remove other selections in the same group
-      selectedIndices.removeWhere((i) =>
-          i < solutions.length && solutions[i].group == group && i != index);
-    }
-    selectedIndices.add(index);
+    _refreshAdvice();
   }
 
   /// Remove a solution from right pan
   void removeSolution(int index) {
     selectedIndices.remove(index);
     notifyListeners();
+    _refreshAdvice();
+  }
+
+  /// Refresh coordinator advice based on user's current selection
+  Future<void> _refreshAdvice() async {
+    if (balanceResult == null || selectedFoods.isEmpty) return;
+    try {
+      final result = await _api.refreshAdvice(
+        foodName: selectedFoodNames,
+        riskWeight: riskWeight,
+        selectedIndices: selectedIndices.toList(),
+        allSolutions: balanceResult!.solutions,
+        queryTime: _queryTime,
+      );
+      currentAdvice = result['advice'];
+      notifyListeners();
+    } catch (_) {
+      // Silently fail — keep existing advice
+    }
   }
 
   /// User adds a custom exercise to the right pan
@@ -184,8 +298,9 @@ class ScaleState extends ChangeNotifier {
       final solution = await _api.addCustomExercise(name, durationMin, riskWeight);
       balanceResult!.solutions.add(solution);
       final newIndex = balanceResult!.solutions.length - 1;
-      _selectWithinGroup(newIndex);
+      selectedIndices.add(newIndex);
       notifyListeners();
+      _refreshAdvice();
     } catch (e) {
       error = e.toString();
       notifyListeners();
@@ -199,8 +314,9 @@ class ScaleState extends ChangeNotifier {
       final solution = await _api.addCustomFoodCounter(name, riskWeight);
       balanceResult!.solutions.add(solution);
       final newIndex = balanceResult!.solutions.length - 1;
-      _selectWithinGroup(newIndex);
+      selectedIndices.add(newIndex);
       notifyListeners();
+      _refreshAdvice();
     } catch (e) {
       error = e.toString();
       notifyListeners();

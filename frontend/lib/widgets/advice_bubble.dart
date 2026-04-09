@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme.dart';
 
 class AdviceBubble extends StatelessWidget {
   final String advice;
@@ -8,24 +9,12 @@ class AdviceBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: SC.cardPadding,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1A1A2E),
-            const Color(0xFF16213E),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF1A1A2E).withAlpha(40),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        color: SC.primaryLight,
+        borderRadius: BorderRadius.circular(SC.radiusLg),
+        border: Border.all(color: SC.primary.withAlpha(30)),
+        boxShadow: SC.shadowSm,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,39 +22,57 @@ class AdviceBubble extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 32,
-                height: 32,
+                width: 34,
+                height: 34,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF6C63FF), Color(0xFF48C6EF)],
-                  ),
-                  borderRadius: BorderRadius.circular(10),
+                  gradient: SC.primaryGradient,
+                  borderRadius: BorderRadius.circular(SC.radiusMd),
                 ),
-                child: const Icon(
-                  Icons.psychology_rounded,
-                  color: Colors.white,
-                  size: 18,
+                child: const Center(
+                  child: Text('🌿', style: TextStyle(fontSize: 16)),
                 ),
               ),
               const SizedBox(width: 10),
-              const Text(
-                'SugarClaw Coordinator',
-                style: TextStyle(
-                  color: Color(0xFF48C6EF),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'SugarClaw 建议',
+                    style: SC.label.copyWith(
+                      color: SC.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'AI 个性化分析',
+                    style: SC.caption.copyWith(color: SC.textTertiary),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: SC.primary.withAlpha(15),
+                  borderRadius: BorderRadius.circular(SC.radiusPill),
+                ),
+                child: Text(
+                  '● 在线',
+                  style: SC.caption.copyWith(
+                    color: SC.primary,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 10,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          Text(
+          Container(height: 1, color: SC.primary.withAlpha(20)),
+          const SizedBox(height: 12),
+          SelectableText(
             advice,
-            style: const TextStyle(
-              color: Color(0xFFE2E8F0),
-              fontSize: 14,
-              height: 1.6,
-            ),
+            style: SC.body.copyWith(height: 1.7),
           ),
         ],
       ),

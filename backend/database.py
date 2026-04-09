@@ -1,6 +1,6 @@
 """
 SugarClaw SQLite 持久化层
-4 张表: users, food_cache, cgm_readings, search_history
+6 张表: users, food_cache, cgm_readings, search_history, conversations, pubmed_cache
 """
 
 import json
@@ -27,12 +27,12 @@ def init_db():
         CREATE TABLE IF NOT EXISTS users (
             id          INTEGER PRIMARY KEY,
             name        TEXT DEFAULT '',
-            age         INTEGER DEFAULT 0,
+            age         INTEGER DEFAULT 0 CHECK(age >= 0 AND age <= 150),
             weight      REAL DEFAULT 0,
             height      REAL DEFAULT 0,
             diabetes_type TEXT DEFAULT '',
             medications TEXT DEFAULT '[]',
-            isf         REAL DEFAULT 0,
+            isf         REAL DEFAULT 0 CHECK(isf >= 0 AND isf <= 20),
             icr         REAL DEFAULT 0,
             regional_preference TEXT DEFAULT '全国',
             created_at  TEXT DEFAULT (datetime('now')),
@@ -87,6 +87,26 @@ def init_db():
             created_at  TEXT DEFAULT (datetime('now'))
         );
         CREATE INDEX IF NOT EXISTS idx_glucose_log_ts ON glucose_log(timestamp);
+        CREATE INDEX IF NOT EXISTS idx_glucose_log_user ON glucose_log(user_id);
+
+        CREATE TABLE IF NOT EXISTS conversations (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id     INTEGER DEFAULT 1,
+            session_id  TEXT NOT NULL,
+            role        TEXT NOT NULL CHECK(role IN ('user', 'assistant')),
+            content     TEXT NOT NULL,
+            created_at  TEXT DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_conv_session ON conversations(session_id);
+        CREATE INDEX IF NOT EXISTS idx_conv_user ON conversations(user_id);
+
+        CREATE TABLE IF NOT EXISTS pubmed_cache (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            cache_key   TEXT UNIQUE NOT NULL,
+            results_json TEXT NOT NULL,
+            total_count INTEGER DEFAULT 0,
+            created_at  TEXT DEFAULT (datetime('now'))
+        );
 
         -- 插入默认用户（id=1），如果不存在
         INSERT OR IGNORE INTO users (id, name) VALUES (1, '默认用户');
@@ -297,3 +317,97 @@ def get_recent_searches(limit: int = 20) -> list:
         d["results"] = json.loads(d.pop("results_json", "[]"))
         result.append(d)
     return result
+
+
+# ─── 聊天记录 ──────────────────────────────
+
+def save_message(session_id: str, role: str, content: str, user_id: int = 1) -> dict:
+    """保存一条聊天消息。"""
+    conn = _conn()
+    cur = conn.execute("""
+        INSERT INTO conversations (user_id, session_id, role, content)
+        VALUES (?, ?, ?, ?)
+    """, (user_id, session_id, role, content))
+    row_id = cur.lastrowid
+    conn.commit()
+    row = conn.execute("SELECT * FROM conversations WHERE id = ?", (row_id,)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def get_conversation(session_id: str, limit: int = 50) -> list:
+    """获取一个会话的最近消息（按时间正序）。"""
+    conn = _conn()
+    rows = conn.execute("""
+        SELECT * FROM conversations
+        WHERE session_id = ?
+        ORDER BY created_at ASC
+        LIMIT ?
+    """, (session_id, limit)).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def get_recent_sessions(user_id: int = 1, limit: int = 10) -> list:
+    """获取用户最近的会话列表（每个会话取第一条消息作为标题）。"""
+    conn = _conn()
+    rows = conn.execute("""
+        SELECT session_id,
+               MIN(created_at) as started_at,
+               COUNT(*) as message_count,
+               (SELECT content FROM conversations c2
+                WHERE c2.session_id = c1.session_id AND c2.role = 'user'
+                ORDER BY c2.created_at ASC LIMIT 1) as first_message
+        FROM conversations c1
+        WHERE user_id = ?
+        GROUP BY session_id
+        ORDER BY started_at DESC
+        LIMIT ?
+    """, (user_id, limit)).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def delete_session(session_id: str, user_id: int = 1) -> bool:
+    """删除一个会话的所有消息。"""
+    conn = _conn()
+    cur = conn.execute(
+        "DELETE FROM conversations WHERE session_id = ? AND user_id = ?",
+        (session_id, user_id)
+    )
+    conn.commit()
+    conn.close()
+    return cur.rowcount > 0
+
+
+# ─── PubMed 缓存 ──────────────────────────────
+
+def get_pubmed_cache(query: str, mode: str) -> Optional[dict]:
+    """获取 PubMed 搜索缓存（24小时内有效）。"""
+    import hashlib
+    cache_key = hashlib.md5(f"{query}:{mode}".encode()).hexdigest()
+    conn = _conn()
+    row = conn.execute("""
+        SELECT * FROM pubmed_cache
+        WHERE cache_key = ?
+        AND created_at > datetime('now', '-24 hours')
+    """, (cache_key,)).fetchone()
+    conn.close()
+    if row is None:
+        return None
+    d = dict(row)
+    d["results"] = json.loads(d.pop("results_json", "[]"))
+    return d
+
+
+def set_pubmed_cache(query: str, mode: str, results: list, total_count: int = 0):
+    """写入 PubMed 搜索缓存。"""
+    import hashlib
+    cache_key = hashlib.md5(f"{query}:{mode}".encode()).hexdigest()
+    conn = _conn()
+    conn.execute("""
+        INSERT OR REPLACE INTO pubmed_cache (cache_key, results_json, total_count)
+        VALUES (?, ?, ?)
+    """, (cache_key, json.dumps(results, ensure_ascii=False), total_count))
+    conn.commit()
+    conn.close()

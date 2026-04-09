@@ -4,16 +4,22 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import '../models/analysis_result.dart';
 import '../models/counterbalance.dart';
+import '../models/user_profile.dart';
+import '../models/cgm_reading.dart';
+import '../models/pubmed_article.dart';
 
-// Web 平台用 dart:html 获取当前页面 host
+// Web 平台根据当前页面 URL 自动推断后端地址
 String _getBaseUrl() {
   if (kIsWeb) {
-    // 在 Web 端自动使用当前页面的 host:port，手机/电脑都能用
     final uri = Uri.base;
-    return '${uri.scheme}://${uri.host}:${uri.port}';
+    // flutter dev 模式（8080）→ 后端在 8082
+    if (uri.port == 8080) {
+      return '${uri.scheme}://${uri.host}:8082';
+    }
+    // 生产部署 / 公网隧道 → 前后端同域同端口（后端 mount 了静态文件）
+    return uri.origin;
   }
-  // 非 Web（原生 App）回退到 localhost
-  return 'http://localhost:8080';
+  return 'http://localhost:8082';
 }
 
 class ApiService {
@@ -67,11 +73,19 @@ class ApiService {
     throw Exception('Replay failed: ${response.body}');
   }
 
-  Future<RiskResult> calculateRisk(String foodName) async {
+  Future<RiskResult> calculateRisk(
+    String foodName, {
+    String? queryTime,
+    double quantityMultiplier = 1.0,
+  }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/scale/risk'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode({'food_name': foodName}),
+      body: json.encode({
+        'food_name': foodName,
+        'query_time': queryTime ?? DateTime.now().toIso8601String(),
+        'quantity_multiplier': quantityMultiplier,
+      }),
     );
     if (response.statusCode == 200) {
       return RiskResult.fromJson(json.decode(response.body));
@@ -79,16 +93,58 @@ class ApiService {
     throw Exception('Risk calculation failed: ${response.body}');
   }
 
-  Future<BalanceResult> findBalance(String foodName, {double riskWeight = 0}) async {
+  Future<BalanceResult> findBalance(String foodName, {double riskWeight = 0, String? queryTime}) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/scale/balance'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode({'food_name': foodName, 'risk_weight': riskWeight}),
+      body: json.encode({
+        'food_name': foodName,
+        'risk_weight': riskWeight,
+        'query_time': queryTime ?? DateTime.now().toIso8601String(),
+      }),
     );
     if (response.statusCode == 200) {
       return BalanceResult.fromJson(json.decode(response.body));
     }
     throw Exception('Balance search failed: ${response.body}');
+  }
+
+  Future<Map<String, String>> refreshAdvice({
+    required String foodName,
+    required double riskWeight,
+    required List<int> selectedIndices,
+    required List<CounterSolution> allSolutions,
+    String? queryTime,
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/scale/advice'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'food_name': foodName,
+        'risk_weight': riskWeight,
+        'selected_indices': selectedIndices,
+        'all_solutions': allSolutions.map((s) {
+          return {
+            'type': s.type,
+            'name': s.name,
+            'description': s.description,
+            'balance_weight': s.balanceWeight,
+            'group': s.group,
+            'details': s.details,
+          };
+        }).toList(),
+        'query_time': queryTime ?? DateTime.now().toIso8601String(),
+      }),
+    );
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return {
+        'advice': data['advice'] as String,
+        'meal_context': (data['meal_context'] ?? '') as String,
+        'time_advice': (data['time_advice'] ?? '') as String,
+      };
+    }
+    throw Exception('Refresh advice failed: ${response.body}');
   }
 
   Future<CounterSolution> addCustomExercise(String name, int durationMin, double riskWeight) async {
@@ -173,5 +229,184 @@ class ApiService {
       return CounterSolution.fromJson(json.decode(response.body));
     }
     throw Exception('Add food counter failed: ${response.body}');
+  }
+
+  // ─── 用户档案 ──────────────────────────────
+
+  Future<Map<String, dynamic>> getOnboardingStatus() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/user/onboarding_status'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    }
+    throw Exception('Failed to load onboarding status: ${response.statusCode}');
+  }
+
+  Future<UserProfile> getUserProfile() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/user/profile'));
+    if (response.statusCode == 200) {
+      return UserProfile.fromJson(json.decode(response.body));
+    }
+    throw Exception('Failed to load profile: ${response.statusCode}');
+  }
+
+  Future<UserProfile> updateUserProfile(Map<String, dynamic> fields) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/api/user/profile'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(fields),
+    );
+    if (response.statusCode == 200) {
+      return UserProfile.fromJson(json.decode(response.body));
+    }
+    throw Exception('Failed to update profile: ${response.body}');
+  }
+
+  // ─── 血糖日志 ──────────────────────────────
+
+  Future<Map<String, dynamic>> addGlucoseLog({
+    required String timestamp,
+    required double glucoseMmol,
+    String note = '',
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/glucose/log'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'timestamp': timestamp,
+        'glucose_mmol': glucoseMmol,
+        'note': note,
+      }),
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    }
+    throw Exception('Failed to add glucose log: ${response.body}');
+  }
+
+  Future<List<Map<String, dynamic>>> getGlucoseLog({int limit = 100}) async {
+    final response = await http.get(Uri.parse('$baseUrl/api/glucose/log?limit=$limit'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((e) => Map<String, dynamic>.from(e)).toList();
+    }
+    throw Exception('Failed to load glucose log: ${response.statusCode}');
+  }
+
+  Future<void> deleteGlucoseLog(int entryId) async {
+    final response = await http.delete(Uri.parse('$baseUrl/api/glucose/log/$entryId'));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete glucose log: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> calibrateISF({
+    required double before,
+    required double after,
+    required double dose,
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/user/calibrate_isf'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({'before': before, 'after': after, 'dose': dose}),
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    }
+    throw Exception('ISF calibration failed: ${response.body}');
+  }
+
+  // ─── CGM 模拟 ──────────────────────────────
+
+  Future<Map<String, dynamic>> cgmSimulate({int? seed}) async {
+    final body = <String, dynamic>{};
+    if (seed != null) body['seed'] = seed;
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/cgm/simulate'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    }
+    throw Exception('CGM simulation failed: ${response.body}');
+  }
+
+  Future<List<CgmReading>> cgmHistory({int limit = 100}) async {
+    final response = await http.get(Uri.parse('$baseUrl/api/cgm/history?limit=$limit'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((e) => CgmReading.fromJson(e)).toList();
+    }
+    throw Exception('Failed to load CGM history: ${response.statusCode}');
+  }
+
+  Future<List<CgmSession>> cgmSessions() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/cgm/sessions'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((e) => CgmSession.fromJson(e)).toList();
+    }
+    throw Exception('Failed to load CGM sessions: ${response.statusCode}');
+  }
+
+  // ─── PubMed 文献检索 ──────────────────────────────
+
+  Future<PubMedSearchResult> pubmedSearch({
+    required String query,
+    String mode = 'custom',
+    int maxResults = 5,
+    bool includeAbstracts = false,
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/pubmed/search'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'query': query,
+        'mode': mode,
+        'max_results': maxResults,
+        'include_abstracts': includeAbstracts,
+      }),
+    );
+    if (response.statusCode == 200) {
+      return PubMedSearchResult.fromJson(json.decode(response.body));
+    }
+    throw Exception('PubMed search failed: ${response.body}');
+  }
+
+  Future<List<Map<String, dynamic>>> pubmedHistory({int limit = 20}) async {
+    final response = await http.get(Uri.parse('$baseUrl/api/pubmed/history?limit=$limit'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((e) => Map<String, dynamic>.from(e)).toList();
+    }
+    throw Exception('Failed to load PubMed history: ${response.statusCode}');
+  }
+
+  // ─── 聊天会话持久化 ──────────────────────────────
+
+  Future<void> saveMessage(String sessionId, String role, String content) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/chat/message'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'session_id': sessionId,
+        'role': role,
+        'content': content,
+      }),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to save message: ${response.body}');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getConversation(String sessionId) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/api/chat/conversation/$sessionId'),
+    );
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((e) => Map<String, dynamic>.from(e)).toList();
+    }
+    throw Exception('Failed to load conversation: ${response.statusCode}');
   }
 }

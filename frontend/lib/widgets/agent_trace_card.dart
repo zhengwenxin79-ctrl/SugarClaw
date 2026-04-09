@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/analysis_result.dart';
+import '../theme.dart';
 
 class AgentTraceCard extends StatelessWidget {
   final List<AgentTrace> traces;
@@ -9,32 +10,30 @@ class AgentTraceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7FAFC),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200),
+        color: SC.bg,
+        borderRadius: BorderRadius.circular(SC.radiusMd),
+        border: Border.all(color: SC.borderLight),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.account_tree_rounded,
-                  color: Colors.grey.shade600, size: 16),
-              const SizedBox(width: 6),
+              const Icon(Icons.account_tree_rounded,
+                  color: SC.textSecondary, size: 16),
+              const SizedBox(width: 8),
               Text(
-                'Agent Trace Log',
-                style: TextStyle(
-                  color: Colors.grey.shade700,
+                'Agent 追踪日志',
+                style: SC.label.copyWith(
                   fontWeight: FontWeight.w600,
-                  fontSize: 12,
                   letterSpacing: 0.3,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           ...traces.map((t) => _traceRow(t)),
         ],
       ),
@@ -45,19 +44,19 @@ class AgentTraceCard extends StatelessWidget {
     Color dotColor;
     switch (trace.agent) {
       case 'Regional Dietitian':
-        dotColor = const Color(0xFF48BB78);
+        dotColor = SC.agentDietitian;
         break;
       case 'Physiological Analyst':
-        dotColor = const Color(0xFF4299E1);
+        dotColor = SC.agentPhysio;
         break;
       case 'Alert System':
-        dotColor = const Color(0xFFED8936);
+        dotColor = SC.agentAlert;
         break;
       case 'Coordinator':
-        dotColor = const Color(0xFF9F7AEA);
+        dotColor = SC.agentCoordinator;
         break;
       default:
-        dotColor = Colors.grey;
+        dotColor = SC.textTertiary;
     }
 
     return Padding(
@@ -74,7 +73,7 @@ class AgentTraceCard extends StatelessWidget {
               shape: BoxShape.circle,
             ),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,32 +82,28 @@ class AgentTraceCard extends StatelessWidget {
                   children: [
                     Text(
                       trace.agent,
-                      style: TextStyle(
+                      style: SC.label.copyWith(
                         color: dotColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 12,
                       ),
                     ),
                     const Spacer(),
                     Text(
                       '${trace.durationMs}ms',
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
+                      style: SC.caption.copyWith(
                         fontSize: 10,
-                        fontFamily: 'monospace',
+                        fontFamily: SC.monoStyle.fontFamily,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 2),
-                Text(
+                const SizedBox(height: 4),
+                SelectableText(
                   trace.result,
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 11,
+                  style: SC.caption.copyWith(
+                    color: SC.textSecondary,
                   ),
                   maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

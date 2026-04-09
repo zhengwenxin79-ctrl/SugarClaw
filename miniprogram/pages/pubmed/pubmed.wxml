@@ -1,0 +1,82 @@
+<!-- pages/pubmed/pubmed.wxml -->
+<view class="page">
+
+  <!-- 搜索框 -->
+  <view class="search-card">
+    <view class="search-title">🔬 PubMed 文献检索</view>
+    <view class="search-row">
+      <input
+        class="search-input"
+        placeholder="输入关键词，如：diabetes GLP-1"
+        value="{{query}}"
+        bindinput="onQueryInput"
+        placeholder-class="input-placeholder"
+        confirm-type="search"
+        bindconfirm="doSearch"
+      />
+      <button class="btn-search" bindtap="doSearch" loading="{{searching}}">搜索</button>
+    </view>
+    <!-- 预设查询 -->
+    <view class="preset-row">
+      <view
+        class="preset-chip"
+        wx:for="{{presets}}"
+        wx:key="label"
+        bindtap="usePreset"
+        data-query="{{item.query}}"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 结果数量 -->
+  <view class="result-meta" wx:if="{{articles.length > 0}}">
+    找到 {{totalCount}} 篇文献，显示前 {{articles.length}} 篇
+  </view>
+
+  <!-- 错误 -->
+  <view class="error-banner" wx:if="{{error}}">{{error}}</view>
+
+  <!-- 文章列表 -->
+  <view class="article-card" wx:for="{{articles}}" wx:key="pmid">
+    <view class="article-title">{{item.title || '（无标题）'}}</view>
+    <view class="article-meta">
+      <text class="article-journal">{{item.journal || ''}}</text>
+      <text class="article-year" wx:if="{{item.year}}">{{item.year}}</text>
+    </view>
+    <view class="article-authors" wx:if="{{item.authors && item.authors.length > 0}}">
+      {{item.authors.slice(0,3).join(', ')}}{{item.authors.length > 3 ? ' 等' : ''}}
+    </view>
+    <view class="article-abstract" wx:if="{{item.abstract}}">
+      <view class="abstract-toggle" bindtap="toggleAbstract" data-pmid="{{item.pmid}}">
+        摘要 {{expandedPmids[item.pmid] ? '▲' : '▼'}}
+      </view>
+      <view class="abstract-text" wx:if="{{expandedPmids[item.pmid]}}">{{item.abstract}}</view>
+    </view>
+    <view class="article-footer">
+      <text class="pmid-text">PMID: {{item.pmid}}</text>
+      <view class="copy-btn" bindtap="copyPmid" data-pmid="{{item.pmid}}">复制PMID</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!searching && articles.length === 0 && !error}}">
+    <view class="empty-icon">🔬</view>
+    <view class="empty-text">搜索糖尿病、GLP-1、胰岛素等关键词</view>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="card history-card" wx:if="{{history.length > 0 && articles.length === 0}}">
+    <view class="section-title">🕐 最近搜索</view>
+    <view
+      class="history-item"
+      wx:for="{{history}}"
+      wx:key="id"
+      bindtap="useHistory"
+      data-query="{{item.query}}"
+    >
+      <text class="history-query">{{item.query}}</text>
+      <text class="history-count">{{item.total_count}} 篇</text>
+    </view>
+  </view>
+
+</view>

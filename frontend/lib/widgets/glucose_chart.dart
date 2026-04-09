@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../models/analysis_result.dart';
+import '../theme.dart';
 
 class GlucoseChart extends StatelessWidget {
   final AnalysisResult result;
@@ -20,7 +21,7 @@ class GlucoseChart extends StatelessWidget {
       rawSpots.add(FlSpot(i.toDouble(), chart.rawReadings[i]));
     }
 
-    // Filtered readings (blue line)
+    // Filtered readings (primary line)
     final filteredSpots = <FlSpot>[];
     for (int i = 0; i < chart.filteredReadings.length; i++) {
       filteredSpots.add(FlSpot(i.toDouble(), chart.filteredReadings[i]));
@@ -28,7 +29,6 @@ class GlucoseChart extends StatelessWidget {
 
     // Predictions (orange dashed)
     final predSpots = <FlSpot>[];
-    // Connect from last filtered point
     if (chart.filteredReadings.isNotEmpty) {
       predSpots.add(FlSpot(
         (historyCount - 1).toDouble(),
@@ -42,7 +42,7 @@ class GlucoseChart extends StatelessWidget {
       ));
     }
 
-    // CI band (upper)
+    // CI band
     final ciHighSpots = <FlSpot>[];
     final ciLowSpots = <FlSpot>[];
     for (int i = 0; i < predCount; i++) {
@@ -71,14 +71,14 @@ class GlucoseChart extends StatelessWidget {
                     value == chart.zones['hyper_warning']!) {
                   return FlLine(
                     color: value < 5
-                        ? Colors.red.withAlpha(80)
-                        : Colors.orange.withAlpha(80),
+                        ? SC.glucoseHypo.withAlpha(80)
+                        : SC.glucoseHyper.withAlpha(80),
                     strokeWidth: 1.5,
                     dashArray: [8, 4],
                   );
                 }
                 return FlLine(
-                  color: Colors.grey.withAlpha(30),
+                  color: SC.border.withAlpha(40),
                   strokeWidth: 0.5,
                 );
               },
@@ -92,8 +92,8 @@ class GlucoseChart extends StatelessWidget {
                   getTitlesWidget: (value, meta) {
                     return Text(
                       '${value.toInt()}',
-                      style: const TextStyle(
-                        color: Colors.grey,
+                      style: TextStyle(
+                        color: SC.textTertiary,
                         fontSize: 11,
                       ),
                     );
@@ -112,14 +112,14 @@ class GlucoseChart extends StatelessWidget {
                       final offset = (historyCount - 1 - idx) * 5;
                       return Text(
                         '-${offset}m',
-                        style: const TextStyle(color: Colors.grey, fontSize: 10),
+                        style: TextStyle(color: SC.textTertiary, fontSize: 10),
                       );
                     } else {
                       final offset = (idx - historyCount + 1) * 5;
                       return Text(
                         '+${offset}m',
                         style: TextStyle(
-                          color: Colors.orange.shade700,
+                          color: SC.accent,
                           fontSize: 10,
                         ),
                       );
@@ -131,42 +131,40 @@ class GlucoseChart extends StatelessWidget {
               rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             ),
             borderData: FlBorderData(show: false),
-            // Hypo / target / hyper background zones
             rangeAnnotations: RangeAnnotations(
               horizontalRangeAnnotations: [
                 HorizontalRangeAnnotation(
                   y1: 0,
                   y2: chart.zones['hypo_warning']!,
-                  color: Colors.red.withAlpha(15),
+                  color: SC.glucoseHypo.withAlpha(15),
                 ),
                 HorizontalRangeAnnotation(
                   y1: chart.zones['target_low']!,
                   y2: chart.zones['target_high']!,
-                  color: Colors.green.withAlpha(12),
+                  color: SC.glucoseTarget.withAlpha(12),
                 ),
                 HorizontalRangeAnnotation(
                   y1: chart.zones['hyper_warning']!,
                   y2: 22,
-                  color: Colors.orange.withAlpha(15),
+                  color: SC.glucoseHyper.withAlpha(15),
                 ),
               ],
             ),
-            // Vertical line separating history from prediction
             extraLinesData: ExtraLinesData(
               verticalLines: [
                 VerticalLine(
                   x: (historyCount - 1).toDouble(),
-                  color: Colors.grey.withAlpha(60),
+                  color: SC.textTertiary.withAlpha(60),
                   strokeWidth: 1,
                   dashArray: [4, 4],
                   label: VerticalLineLabel(
                     show: true,
                     alignment: Alignment.topRight,
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: SC.textSecondary,
                       fontSize: 10,
                     ),
-                    labelResolver: (_) => 'now',
+                    labelResolver: (_) => '当前',
                   ),
                 ),
               ],
@@ -182,17 +180,17 @@ class GlucoseChart extends StatelessWidget {
                   dotData: const FlDotData(show: false),
                   belowBarData: BarAreaData(show: false),
                 ),
-              // CI band (between low and high)
+              // CI band
               if (ciLowSpots.isNotEmpty)
                 LineChartBarData(
                   spots: ciHighSpots,
                   isCurved: true,
-                  color: Colors.orange.withAlpha(30),
+                  color: SC.accent.withAlpha(30),
                   barWidth: 0,
                   dotData: const FlDotData(show: false),
                   belowBarData: BarAreaData(
                     show: true,
-                    color: Colors.orange.withAlpha(25),
+                    color: SC.accent.withAlpha(25),
                     cutOffY: 0,
                     applyCutOffY: true,
                   ),
@@ -208,24 +206,24 @@ class GlucoseChart extends StatelessWidget {
                   getDotPainter: (spot, percent, barData, index) {
                     return FlDotCirclePainter(
                       radius: 3,
-                      color: Colors.grey.shade400,
+                      color: SC.textTertiary,
                       strokeWidth: 0,
                     );
                   },
                 ),
               ),
-              // Filtered line (solid blue)
+              // Filtered line (solid primary)
               LineChartBarData(
                 spots: filteredSpots,
                 isCurved: true,
                 curveSmoothness: 0.3,
-                color: const Color(0xFF2196F3),
+                color: SC.primary,
                 barWidth: 2.5,
                 isStrokeCapRound: true,
                 dotData: const FlDotData(show: false),
                 belowBarData: BarAreaData(
                   show: true,
-                  color: const Color(0xFF2196F3).withAlpha(20),
+                  color: SC.primary.withAlpha(20),
                 ),
               ),
               // Prediction line (dashed orange)
@@ -234,7 +232,7 @@ class GlucoseChart extends StatelessWidget {
                   spots: predSpots,
                   isCurved: true,
                   curveSmoothness: 0.3,
-                  color: Colors.orange.shade600,
+                  color: SC.accent,
                   barWidth: 2.5,
                   isStrokeCapRound: true,
                   dashArray: [8, 4],
@@ -250,7 +248,7 @@ class GlucoseChart extends StatelessWidget {
                       }
                       return FlDotCirclePainter(
                         radius: 3,
-                        color: Colors.orange.shade600,
+                        color: SC.accent,
                         strokeWidth: 1.5,
                         strokeColor: Colors.white,
                       );
@@ -275,7 +273,7 @@ class GlucoseChart extends StatelessWidget {
               ),
             ),
           ),
-          duration: const Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
         ),
       ),

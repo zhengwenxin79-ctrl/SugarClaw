@@ -1,0 +1,119 @@
+<!-- pages/scale/scale.wxml -->
+<view class="page">
+
+  <!-- 天平可视化 -->
+  <view class="scale-hero">
+    <view class="scale-title">⚖️ 饮食平衡天平</view>
+    <view class="balance-bar-wrap">
+      <view class="pan-label left-label">食物风险</view>
+      <view class="balance-beam" style="transform: rotate({{tiltDeg}}deg); transition: transform 0.6s ease;">
+        <view class="beam-line"></view>
+        <view class="pan left-pan">
+          <text class="pan-val">{{riskWeight > 0 ? riskWeight.toFixed(1) : '--'}}</text>
+        </view>
+        <view class="pan right-pan">
+          <text class="pan-val">{{balanceWeight > 0 ? balanceWeight.toFixed(1) : '--'}}</text>
+        </view>
+      </view>
+      <view class="pan-label right-label">对冲方案</view>
+    </view>
+    <view class="balance-status {{isBalanced ? 'status-ok' : 'status-tip'}}" wx:if="{{riskWeight > 0}}">
+      {{isBalanced ? '✅ 已平衡' : '📈 需要对冲'}}
+    </view>
+    <!-- oref0风格物理量 -->
+    <view class="physics-row" wx:if="{{cobImpact > 0}}">
+      <view class="physics-item">
+        <text class="physics-label">食物升糖</text>
+        <text class="physics-val">+{{cobImpact}} mmol/L</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 左盘：选食物 -->
+  <view class="card">
+    <view class="section-title">🍱 选择食物（左盘）</view>
+    <view class="food-grid">
+      <view
+        class="food-chip-wrap"
+        wx:for="{{foodLibrary}}"
+        wx:key="*this"
+      >
+        <view
+          class="food-chip {{selectedFoods[item] ? 'food-selected' : ''}}"
+          bindtap="toggleFood"
+          data-name="{{item}}"
+        >
+          <text>{{item}}</text>
+          <view class="chip-qty" wx:if="{{selectedFoods[item]}}">×{{foodQty[item] || 1}}</view>
+        </view>
+        <view
+          class="chip-counter-btn"
+          bindtap="addFoodToCounter"
+          data-name="{{item}}"
+          wx:if="{{riskWeight > 0}}"
+        >⊕</view>
+      </view>
+    </view>
+    <!-- 自定义搜索 -->
+    <view class="search-row">
+      <input
+        class="search-input"
+        placeholder="搜索或添加食物..."
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+        placeholder-class="input-placeholder"
+      />
+      <button class="btn-add" bindtap="addCustomFood" loading="{{addingFood}}">添加</button>
+    </view>
+    <!-- 已选食物风险详情 -->
+    <view class="risk-list" wx:if="{{riskDetails.length > 0}}">
+      <view class="risk-item" wx:for="{{riskDetails}}" wx:key="name">
+        <text class="risk-name">{{item.name}}</text>
+        <view class="risk-right">
+          <text class="risk-level pill pill-{{item.level}}">{{item.levelText}}</text>
+          <text class="risk-score">{{item.score.toFixed(1)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="loading-wrap" wx:if="{{loadingRisk}}">⏳ 查询食物数据...</view>
+  </view>
+
+  <!-- 右盘：对冲方案 -->
+  <view class="card" wx:if="{{solutions.length > 0}}">
+    <view class="section-title">🏃 对冲方案（右盘）</view>
+    <view class="solution-list">
+      <view
+        class="solution-item {{selectedSolutions[index] ? 'solution-selected' : ''}}"
+        wx:for="{{solutions}}"
+        wx:key="name"
+        bindtap="toggleSolution"
+        data-index="{{index}}"
+      >
+        <view class="solution-icon">{{item.type === 'exercise' ? '🏃' : item.type === 'food' ? '🥗' : '💊'}}</view>
+        <view class="solution-body">
+          <view class="solution-name">{{item.name}}</view>
+          <view class="solution-desc">{{item.description}}</view>
+        </view>
+        <view class="solution-weight">-{{item.balance_weight.toFixed(1)}}</view>
+      </view>
+    </view>
+    <!-- 添加自定义运动 -->
+    <view class="add-exercise-row">
+      <input class="exercise-input" placeholder="添加运动，如：跑步" value="{{exerciseName}}" bindinput="onExerciseInput" placeholder-class="input-placeholder"/>
+      <input class="duration-input" type="number" placeholder="分钟" value="{{exerciseDuration}}" bindinput="onDurationInput" placeholder-class="input-placeholder"/>
+      <button class="btn-add" bindtap="addExercise" loading="{{addingExercise}}">+</button>
+    </view>
+  </view>
+
+  <view class="loading-wrap" wx:if="{{loadingBalance}}">⏳ 生成对冲方案...</view>
+
+  <!-- Coordinator 建议 -->
+  <view class="card advice-card" wx:if="{{advice}}">
+    <view class="section-title">💡 智能建议</view>
+    <view class="advice-text">{{advice}}</view>
+  </view>
+
+  <!-- 错误 -->
+  <view class="error-banner" wx:if="{{error}}">{{error}}</view>
+
+</view>

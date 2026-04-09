@@ -75,12 +75,16 @@ class RiskResult {
   final double riskWeight;
   final String riskLevel;
   final String riskDetail;
+  final String mealContext;
+  final String timeAdvice;
 
   RiskResult({
     required this.food,
     required this.riskWeight,
     required this.riskLevel,
     required this.riskDetail,
+    this.mealContext = '',
+    this.timeAdvice = '',
   });
 
   factory RiskResult.fromJson(Map<String, dynamic> json) {
@@ -89,6 +93,8 @@ class RiskResult {
       riskWeight: (json['risk_weight'] as num).toDouble(),
       riskLevel: json['risk_level'],
       riskDetail: json['risk_detail'],
+      mealContext: json['meal_context'] ?? '',
+      timeAdvice: json['time_advice'] ?? '',
     );
   }
 }
@@ -98,12 +104,16 @@ class BalanceResult {
   final FoodItem food;
   final List<CounterSolution> solutions;
   final String advice;
+  final String mealContext;
+  final String timeAdvice;
 
   BalanceResult({
     required this.riskWeight,
     required this.food,
     required this.solutions,
     required this.advice,
+    this.mealContext = '',
+    this.timeAdvice = '',
   });
 
   factory BalanceResult.fromJson(Map<String, dynamic> json) {
@@ -114,6 +124,8 @@ class BalanceResult {
           .map((e) => CounterSolution.fromJson(e))
           .toList(),
       advice: json['advice'],
+      mealContext: json['meal_context'] ?? '',
+      timeAdvice: json['time_advice'] ?? '',
     );
   }
 }

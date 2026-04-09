@@ -1,0 +1,85 @@
+<!-- pages/profile/profile.wxml -->
+<view class="page">
+
+  <!-- 头像区 -->
+  <view class="profile-hero">
+    <view class="avatar-circle">{{nameInitial}}</view>
+    <view class="profile-name">{{form.name || '未设置名称'}}</view>
+    <view class="profile-type pill pill-type" wx:if="{{form.diabetes_type}}">{{form.diabetes_type}}</view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="card">
+    <view class="section-title">👤 基本信息</view>
+    <view class="form-item">
+      <text class="form-label">姓名</text>
+      <input class="form-input" value="{{form.name}}" bindinput="onInput" data-field="name" placeholder="请输入姓名" placeholder-class="input-placeholder"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">年龄</text>
+      <input class="form-input" type="number" value="{{form.age}}" bindinput="onInput" data-field="age" placeholder="请输入年龄" placeholder-class="input-placeholder"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">体重 (kg)</text>
+      <input class="form-input" type="digit" value="{{form.weight}}" bindinput="onInput" data-field="weight" placeholder="请输入体重" placeholder-class="input-placeholder"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">糖尿病类型</text>
+      <picker mode="selector" range="{{diabetesTypes}}" bindchange="onTypePick">
+        <view class="form-picker">{{form.diabetes_type || '请选择'}} ▾</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="form-label">地域偏好</text>
+      <picker mode="selector" range="{{regions}}" bindchange="onRegionPick">
+        <view class="form-picker">{{form.regional_preference || '全国'}} ▾</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 胰岛素参数 -->
+  <view class="card">
+    <view class="section-title">💉 胰岛素参数</view>
+    <view class="param-hint">这些参数影响对冲天平的计算精度</view>
+    <view class="form-item">
+      <text class="form-label">ISF <text class="label-sub">(胰岛素敏感因子)</text></text>
+      <input class="form-input" type="digit" value="{{form.isf}}" bindinput="onInput" data-field="isf" placeholder="默认 1.8" placeholder-class="input-placeholder"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">ICR <text class="label-sub">(碳水比，g/U)</text></text>
+      <input class="form-input" type="digit" value="{{form.icr}}" bindinput="onInput" data-field="icr" placeholder="默认 10" placeholder-class="input-placeholder"/>
+    </view>
+    <!-- ISF 快捷校准 -->
+    <view class="calibrate-section">
+      <view class="calibrate-title">⚡ 快捷校准 ISF</view>
+      <view class="calibrate-hint">记录一次胰岛素注射前后的血糖，自动计算你的实际 ISF</view>
+      <view class="calibrate-row">
+        <input class="calib-input" type="digit" placeholder="注射前 mmol/L" value="{{calibBefore}}" bindinput="onCalibInput" data-field="calibBefore" placeholder-class="input-placeholder"/>
+        <input class="calib-input" type="digit" placeholder="注射后 mmol/L" value="{{calibAfter}}" bindinput="onCalibInput" data-field="calibAfter" placeholder-class="input-placeholder"/>
+        <input class="calib-input" type="digit" placeholder="剂量 U" value="{{calibDose}}" bindinput="onCalibInput" data-field="calibDose" placeholder-class="input-placeholder"/>
+      </view>
+      <button class="btn-secondary" bindtap="calibrateISF" loading="{{calibrating}}">计算并更新 ISF</button>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-wrap">
+    <button class="btn-primary save-btn" bindtap="saveProfile" loading="{{saving}}">保存档案</button>
+  </view>
+
+  <!-- 数据导出 -->
+  <view class="card">
+    <view class="section-title">📤 数据导出</view>
+    <view class="export-hint">导出最近血糖记录，与医生分享</view>
+    <view class="export-row">
+      <picker mode="selector" range="{{exportDays}}" bindchange="onExportDayPick">
+        <view class="form-picker">最近 {{selectedExportDays}} 天 ▾</view>
+      </picker>
+      <button class="btn-export" bindtap="exportCSV">导出 CSV</button>
+    </view>
+  </view>
+
+  <view class="error-banner" wx:if="{{error}}">{{error}}</view>
+  <view class="success-banner" wx:if="{{success}}">{{success}}</view>
+
+</view>

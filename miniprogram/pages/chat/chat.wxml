@@ -1,0 +1,94 @@
+<!-- pages/chat/chat.wxml -->
+<view class="chat-page">
+
+  <!-- 消息列表 -->
+  <scroll-view
+    class="msg-list"
+    scroll-y
+    scroll-into-view="{{scrollTarget}}"
+    scroll-with-animation
+  >
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{messages.length === 0}}">
+      <view class="empty-icon">🌿</view>
+      <view class="empty-title">SugarClaw 健康助手</view>
+      <view class="empty-subtitle">有什么关于血糖、饮食或糖尿病管理的问题，都可以问我</view>
+      <!-- 快捷提问 -->
+      <view class="quick-list">
+        <view
+          class="quick-item"
+          wx:for="{{quickQuestions}}"
+          wx:key="*this"
+          bindtap="sendQuick"
+          data-text="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 消息气泡 -->
+    <view
+      class="msg-wrap {{item.role === 'user' ? 'msg-user' : 'msg-ai'}}"
+      wx:for="{{messages}}"
+      wx:key="id"
+      id="msg-{{item.id}}"
+    >
+      <!-- AI 头像 -->
+      <view class="avatar ai-avatar" wx:if="{{item.role !== 'user'}}">🌿</view>
+
+      <view class="bubble-col">
+        <!-- 思考过程（可折叠） -->
+        <view class="thinking-box" wx:if="{{item.thinking}}">
+          <view class="thinking-toggle" bindtap="toggleThinking" data-id="{{item.id}}">
+            <text>💭 思考过程</text>
+            <text>{{item.showThinking ? '▲' : '▼'}}</text>
+          </view>
+          <view class="thinking-content" wx:if="{{item.showThinking}}">{{item.thinking}}</view>
+        </view>
+
+        <!-- 消息气泡 -->
+        <view class="bubble {{item.role === 'user' ? 'bubble-user' : 'bubble-ai'}}">
+          <text class="bubble-text" selectable>{{item.text}}</text>
+          <!-- 流式光标 -->
+          <text class="cursor" wx:if="{{item.streaming}}">▋</text>
+        </view>
+        <view class="msg-time">{{item.timeStr}}</view>
+      </view>
+
+      <!-- 用户头像 -->
+      <view class="avatar user-avatar" wx:if="{{item.role === 'user'}}">👤</view>
+    </view>
+
+    <!-- 加载中占位 -->
+    <view class="msg-wrap msg-ai" wx:if="{{loading}}">
+      <view class="avatar ai-avatar">🌿</view>
+      <view class="bubble bubble-ai loading-bubble">
+        <view class="dot-pulse">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 滚动锚点 -->
+    <view id="msg-bottom" style="height: 20rpx;"></view>
+  </scroll-view>
+
+  <!-- 输入区 -->
+  <view class="input-bar">
+    <textarea
+      class="chat-input"
+      placeholder="描述你的血糖情况或问题..."
+      value="{{inputText}}"
+      bindinput="onInput"
+      auto-height
+      maxlength="500"
+      placeholder-class="chat-placeholder"
+      disabled="{{loading}}"
+    />
+    <view class="send-btn {{(inputText.length > 0 && !loading) ? 'send-active' : 'send-inactive'}}" bindtap="sendMessage">
+      <text>↑</text>
+    </view>
+  </view>
+
+</view>

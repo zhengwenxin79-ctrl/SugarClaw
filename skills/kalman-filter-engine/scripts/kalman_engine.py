@@ -46,22 +46,24 @@ URGENT_LOW = 3.0       # 紧急低血糖
 URGENT_HIGH = 13.9     # 紧急高血糖（酮体风险）
 
 # ─────────────────────────────────────────────
-# 校准参数加载
+# 校准参数加载（支持文件变更自动刷新）
 # ─────────────────────────────────────────────
 CALIBRATED_PARAMS = None
+_PARAMS_MTIME = 0  # 上次加载时的文件修改时间
 
 def load_calibrated_params():
-    """加载校准参数文件（如果存在）。"""
-    global CALIBRATED_PARAMS
-    if CALIBRATED_PARAMS is not None:
-        return CALIBRATED_PARAMS
+    """加载校准参数文件，文件有变更时自动重新读取。"""
+    global CALIBRATED_PARAMS, _PARAMS_MTIME
     params_path = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
         "data", "calibrated_params.json"
     )
     if os.path.exists(params_path):
-        with open(params_path, 'r') as f:
-            CALIBRATED_PARAMS = json.load(f)
+        mtime = os.path.getmtime(params_path)
+        if CALIBRATED_PARAMS is None or mtime != _PARAMS_MTIME:
+            with open(params_path, 'r') as f:
+                CALIBRATED_PARAMS = json.load(f)
+            _PARAMS_MTIME = mtime
     return CALIBRATED_PARAMS
 
 

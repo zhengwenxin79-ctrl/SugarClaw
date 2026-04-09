@@ -27,6 +27,7 @@ if _env_file.exists():
         if "=" in line and not line.startswith("#"):
             k, v = line.split("=", 1)
             os.environ.setdefault(k.strip(), v.strip())
+import logging
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException
@@ -34,6 +35,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+
+logger = logging.getLogger(__name__)
 
 # 把 kalman_engine 和 food query 加入 path
 SKILLS_DIR = os.path.expanduser("~/.openclaw/workspace/skills")
@@ -220,6 +223,7 @@ class FindBalanceRequest(BaseModel):
     food_name: str
     risk_weight: float = 0
     query_time: Optional[str] = Field(None, description="ISO8601 时间戳，用于推断用餐场景")
+    quantity_multiplier: float = Field(1.0, ge=0.5, le=5.0, description="份数倍数，1.0=1份")
 
 
 class AddExerciseRequest(BaseModel):
@@ -255,6 +259,8 @@ class FindBalanceResponse(BaseModel):
     meal_context: str = Field("", description="推断的用餐场景")
     time_advice: str = Field("", description="基于时间的建议")
     agent_traces: List[AgentTrace]
+    cob_glucose_impact: float = Field(0.0, description="左盘：食物碳水对血糖的影响 mmol/L（COB × CSF）")
+    iob_glucose_impact: float = Field(0.0, description="右盘：胰岛素对血糖的影响 mmol/L（IOB × ISF，暂用 0 表示未注射）")
 
 
 # ─── 食物查询辅助 ────────────────────────────
@@ -542,7 +548,11 @@ def infer_meal_context(query_time: Optional[str]) -> dict:
         return {"label": "", "period": "", "risk_modifier": 0.0, "hour": -1}
 
     try:
+        from datetime import timezone, timedelta
         dt = datetime.fromisoformat(query_time.replace("Z", "+00:00"))
+        # 转换为北京时间 UTC+8
+        tz_beijing = timezone(timedelta(hours=8))
+        dt = dt.astimezone(tz_beijing)
     except (ValueError, TypeError):
         return {"label": "", "period": "", "risk_modifier": 0.0, "hour": -1}
 
@@ -643,6 +653,52 @@ def risk_level_label(risk: float) -> str:
         return "very_high"
 
 
+def _exact_match_food(food_name: str, all_foods: list) -> Optional[dict]:
+    """内联精确匹配：按 food_name 或 aliases 完全匹配，返回标准化 dict 或 None。"""
+    name_lower = food_name.lower()
+    for food in all_foods:
+        if food.get("food_name", "").lower() == name_lower:
+            macro = food.get("macro", {})
+            result = {
+                "food_name": food["food_name"],
+                "gi_value": food["gi_value"],
+                "gi_level": food["gi_level"],
+                "gl_per_serving": food["gl_per_serving"],
+                "serving_size_g": food["serving_size_g"],
+                "carb_g": macro.get("carb_g", 0),
+                "protein_g": macro.get("protein_g", 0),
+                "fat_g": macro.get("fat_g", 0),
+                "fiber_g": macro.get("fiber_g", 0),
+                "regional_tag": food.get("regional_tag", "全国"),
+                "food_category": food.get("food_category", "其他"),
+                "counter_strategy": food.get("counter_strategy", ""),
+                "data_source": food.get("data_source", "本地数据库"),
+            }
+            database.cache_food(result)
+            return result
+        for alias in food.get("aliases", []):
+            if alias.lower() == name_lower:
+                macro = food.get("macro", {})
+                result = {
+                    "food_name": food["food_name"],
+                    "gi_value": food["gi_value"],
+                    "gi_level": food["gi_level"],
+                    "gl_per_serving": food["gl_per_serving"],
+                    "serving_size_g": food["serving_size_g"],
+                    "carb_g": macro.get("carb_g", 0),
+                    "protein_g": macro.get("protein_g", 0),
+                    "fat_g": macro.get("fat_g", 0),
+                    "fiber_g": macro.get("fiber_g", 0),
+                    "regional_tag": food.get("regional_tag", "全国"),
+                    "food_category": food.get("food_category", "其他"),
+                    "counter_strategy": food.get("counter_strategy", ""),
+                    "data_source": food.get("data_source", "本地数据库"),
+                }
+                database.cache_food(result)
+                return result
+    return None
+
+
 def lookup_food(food_name: str) -> Optional[dict]:
     """查询食物信息：SQLite 缓存 → 精确匹配 → 拆词组合估算 → 向量搜索。"""
     # === 第零步：SQLite 缓存命中 ===
@@ -652,41 +708,10 @@ def lookup_food(food_name: str) -> Optional[dict]:
 
     all_foods = _load_all_foods()
 
-    # === 第一步：精确匹配 ===
-    from query_food import exact_match
-    exact = exact_match(food_name, all_foods, max_results=1)
+    # === 第一步：精确匹配（内联实现，无需外部 import）===
+    exact = _exact_match_food(food_name, all_foods)
     if exact:
-        food = exact[0]
-        matched_name = food["food_name"]
-
-        # 如果查询词≠匹配结果，且查询词包含主食后缀，优先走拆词
-        # 例如"鸡排饭"匹配到"鸡排"，但"饭"部分被漏掉了
-        staple_suffixes = ["饭", "面", "粉", "粥", "饼", "糕"]
-        query_has_staple = any(s in food_name for s in staple_suffixes)
-        match_has_staple = any(s in matched_name for s in staple_suffixes)
-
-        if food_name != matched_name and query_has_staple and not match_has_staple:
-            # 查询词有主食后缀但匹配结果没有 → 优先拆词
-            combo = _try_combo_estimate(food_name, all_foods)
-            if combo and combo.get("carb_g", 0) > food.get("macro", {}).get("carb_g", 0):
-                return combo
-
-        macro = food.get("macro", {})
-        return {
-            "food_name": food["food_name"],
-            "gi_value": food["gi_value"],
-            "gi_level": food["gi_level"],
-            "gl_per_serving": food["gl_per_serving"],
-            "serving_size_g": food["serving_size_g"],
-            "carb_g": macro.get("carb_g", 0),
-            "protein_g": macro.get("protein_g", 0),
-            "fat_g": macro.get("fat_g", 0),
-            "fiber_g": macro.get("fiber_g", 0),
-            "regional_tag": food["regional_tag"],
-            "food_category": food["food_category"],
-            "counter_strategy": food["counter_strategy"],
-            "data_source": food["data_source"],
-        }
+        return exact
 
     # === 第二步：拆词组合估算 ===
     # 尝试把复合食物名拆成子词，分别查找，加权合并
@@ -694,7 +719,7 @@ def lookup_food(food_name: str) -> Optional[dict]:
     if combo:
         return combo
 
-    # === 第三步：向量语义搜索（兜底） ===
+    # === 第二步：向量语义搜索（兜底） ===
     import subprocess
     venv_python = os.path.expanduser(
         "~/.openclaw/workspace/skills/food-gi-rag/.venv/bin/python3"
@@ -703,7 +728,7 @@ def lookup_food(food_name: str) -> Optional[dict]:
     try:
         result = subprocess.run(
             [venv_python, query_script, food_name, "--json"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True, text=True, timeout=3,
         )
         if result.returncode == 0:
             parsed = json.loads(result.stdout)
@@ -726,7 +751,7 @@ def lookup_food(food_name: str) -> Optional[dict]:
     except Exception:
         pass
 
-    # === 第四步：DeepSeek AI 查询（兜底） ===
+    # === 第三步：DeepSeek AI 查询（兜底） ===
     ai_result = _deepseek_food_lookup(food_name)
     if ai_result:
         _cache_food_to_db(ai_result)
@@ -788,7 +813,8 @@ def _deepseek_food_lookup(food_name: str) -> Optional[dict]:
         # 补充 data_source
         data["data_source"] = "DeepSeek AI 估算"
         return data
-    except Exception:
+    except Exception as e:
+        logger.warning(f"DeepSeek food lookup failed for '{food_name}': {e}")
         return None
 
 
@@ -842,25 +868,52 @@ def _try_combo_estimate(food_name: str, all_foods: list) -> Optional[dict]:
         # 主食（长词优先）
         "糙米饭", "米饭", "白饭", "面条", "拉面", "米粉", "河粉", "凉皮",
         "馒头", "包子", "饺子", "馄饨", "烧饼", "煎饼", "披萨", "吐司", "面包",
+        "拌粉", "拌面", "炒粉", "炒面", "汤粉", "汤面",
         # 单字主食（最后匹配）
         "饭", "面", "粉", "粥",
-        # 烹饪方式+食材
-        "炸鸡", "烤鸡", "鸡排", "鸡腿", "鸡翅", "鸡肉", "鸡块",
-        "牛肉", "猪肉", "羊肉", "排骨", "五花肉",
+        # 肉类（含常见做法+碎肉词）
+        "肉沫", "肉末", "肉丝", "肉片", "肉碎",
+        "炸鸡", "烤鸡", "鸡排", "鸡腿", "鸡翅", "鸡肉", "鸡块", "鸡胸",
+        "牛肉", "猪肉", "羊肉", "排骨", "五花肉", "腊肉", "培根",
         "豆腐", "鸡蛋",
         # 海鲜
         "鱼", "虾", "蟹", "鱿鱼",
+        # 蔬菜（覆盖数据库中所有蔬菜词条的核心词）
+        "西兰花", "花菜", "菠菜", "白菜", "娃娃菜", "油麦菜", "生菜", "菜心",
+        "空心菜", "青菜", "苋菜", "茼蒿", "芥兰", "韭菜",
+        "西红柿", "番茄", "黄瓜", "苦瓜", "丝瓜", "冬瓜", "南瓜", "西葫芦",
+        "茄子", "青椒", "辣椒", "洋葱", "大蒜", "生姜",
+        "胡萝卜", "莲藕", "莴笋", "芹菜", "竹笋", "芦笋", "秋葵", "豆角",
+        "香菇", "平菇", "杏鲍菇", "金针菇", "木耳", "银耳", "海带", "紫菜",
+        "豆芽", "土豆", "紫甘蓝", "百合", "荸荠",
+        # 豆类
+        "毛豆", "黄豆", "红豆", "绿豆", "豌豆", "扁豆", "豆腐皮", "豆干",
         # 调味/菜式
-        "咖喱", "红烧", "糖醋", "鱼香", "宫保", "麻辣", "酸辣",
-        "番茄", "土豆", "青椒", "洋葱", "白菜", "茄子",
+        "咖喱", "红烧", "糖醋", "鱼香", "宫保", "麻辣", "酸辣", "蒜蓉", "清炒",
         # 饮品
         "牛奶", "豆浆", "酸奶", "奶茶", "咖啡", "可乐", "果汁",
     ]
 
-    # 单字词映射到标准食物名（因为 exact_match 要求 >=2 字符）
+    # 短词/歧义词映射到数据库中存在的标准食物名
     single_char_map = {
-        "面": "面条", "饭": "白米饭", "粉": "米粉", "粥": "白粥",
+        "面": "面条", "饭": "白米饭", "粥": "白粥",
         "鱼": "鱼(清蒸)", "虾": "虾(白灼)", "蟹": "螃蟹",
+        # 「粉」系列映射到长沙米粉（数据库真实词条）
+        "粉": "米粉(长沙)", "拌粉": "米粉(长沙)", "汤粉": "米粉(长沙)", "炒粉": "米粉(长沙)",
+        # 碎肉词映射到猪肉
+        "肉沫": "猪瘦肉", "肉末": "猪瘦肉", "肉丝": "猪瘦肉",
+        "肉片": "猪瘦肉", "肉碎": "猪瘦肉",
+        # 鸡肉系
+        "鸡胸": "鸡胸肉", "鸡肉": "鸡胸肉",
+        # 蔬菜别名
+        "西红柿": "西红柿", "番茄": "西红柿",
+        "青菜": "青菜(小白菜)",
+        "胡萝卜": "胡萝卜(煮)",
+        "南瓜": "南瓜(蒸)",
+        "土豆": "土豆(蒸)",
+        "荸荠": "荸荠(马蹄)",
+        "辣椒": "辣椒(青)",
+        "蒜蓉": "大蒜",
     }
 
     matched_parts = []
@@ -890,7 +943,7 @@ def _try_combo_estimate(food_name: str, all_foods: list) -> Optional[dict]:
                 })
                 remaining = remaining.replace(kw, "", 1)
 
-    if len(matched_parts) < 2:
+    if len(matched_parts) < 1:
         return None
 
     # 加权合并：按碳水量加权计算综合 GI
@@ -1066,13 +1119,28 @@ def _get_serving_label(category: str, grams: int, food_name: str) -> str:
         "豆腐": "约1/4块", "魔芋": "几片", "黄瓜": "半根",
         "西红柿": "1个", "番茄": "1个", "鸡蛋": "1个", "牛奶": "1杯",
         "豆浆": "1杯", "西兰花": "小半朵",
+        # 小粒水果
+        "山楂": "约7-8颗", "樱桃": "约10颗", "葡萄": "约10颗",
+        "蓝莓": "约20颗", "草莓": "约5颗", "荔枝": "约5颗",
+        "龙眼": "约8颗", "桂圆": "约8颗", "枸杞": "约30颗",
+        "杨梅": "约8颗", "枣": "约3颗", "红枣": "约3颗",
+        "枇杷": "约3颗", "葡萄干": "约30粒", "椰枣": "约2颗",
+        # 中等水果（整个或半个）
+        "苹果": "约半个", "梨": "约半个", "橙子": "约1个", "柑橘": "约1个",
+        "猕猴桃": "约1个", "桃子": "约1个", "李子": "约2个", "杏": "约2个",
+        "芒果": "约半个", "柿子": "约半个", "火龙果": "约半个",
+        "香蕉": "约半根", "哈密瓜": "1小块", "西瓜": "1小块",
+        "菠萝": "几块", "木瓜": "1小块", "百香果": "约2个",
+        # 坚果
+        "核桃": "约3颗", "杏仁": "约15颗", "腰果": "约10颗",
+        "花生": "约20粒", "开心果": "约20颗", "松子": "约30颗",
     }
     for key, label in FOOD_SPECIFIC.items():
         if key in food_name:
             return label
     labels = {
         "蔬菜": "1小把", "菌菇": "1小碟", "豆类": "适量",
-        "坚果": "一小把", "水果": "约半个", "肉类": "薄切几片",
+        "坚果": "一小把", "水果": "适量", "肉类": "薄切几片",
         "奶类": "1杯", "饮料": "1杯",
     }
     return labels.get(category, "适量")
@@ -1558,7 +1626,15 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://sugarclaw.top",
+        "https://www.sugarclaw.top",
+        "https://servicewechat.com",
+        "http://localhost:3000",
+        "http://localhost:8080",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:8080",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -1791,6 +1867,22 @@ async def find_balance(req: FindBalanceRequest):
             time_modifier=meal_ctx["risk_modifier"],
         )
 
+    # 对冲天平物理量计算（参考 oref0 公式）
+    # CSF = ISF / CR (碳水敏感因子)
+    # 左盘 = COB × CSF = carb_g × (ISF / CR)
+    # 右盘 = IOB × ISF（此处 IOB 未从 CGM 实时获取，暂为 0）
+    _user = database.get_user(1)
+    _isf = _user.get("isf", 1.8) if _user else 1.8  # mmol/L per U
+    _icr = _user.get("icr", 10.0) if _user else 10.0  # g carb per U
+    if _isf <= 0:
+        _isf = 1.8
+    if _icr <= 0:
+        _icr = 10.0
+    _csf = _isf / _icr  # mmol/L per g carb
+    _carb_g = raw.get("carb_g", 0) * req.quantity_multiplier
+    cob_glucose_impact = round(_carb_g * _csf, 2)  # mmol/L
+    iob_glucose_impact = 0.0  # 右盘 IOB × ISF，需实时 CGM 注射数据，此处默认 0
+
     food = build_food_item(raw, risk)
 
     # Step 2: 生成饮食对冲
@@ -1851,6 +1943,8 @@ async def find_balance(req: FindBalanceRequest):
         meal_context=meal_ctx["label"],
         time_advice=time_advice,
         agent_traces=traces,
+        cob_glucose_impact=cob_glucose_impact,
+        iob_glucose_impact=iob_glucose_impact,
     )
 
 
@@ -1908,12 +2002,20 @@ async def add_custom_exercise(req: AddExerciseRequest):
 
 @app.post("/api/scale/add_food_counter", response_model=CounterSolution)
 async def add_custom_food_counter(req: AddFoodCounterRequest):
-    """右盘：用户自定义食物对冲，查食物库计算 balance_weight。"""
+    """右盘：用户自定义食物对冲，查食物库计算 balance_weight。仅接受低GI食物（GI≤55）。"""
     raw = lookup_food(req.food_name)
     if not raw:
         raise HTTPException(status_code=404, detail=f"Food '{req.food_name}' not found")
 
     gi = raw.get("gi_value", 50)
+
+    # 高GI食物会升高血糖，不能作为对冲方案
+    if gi > 55:
+        food_name = raw.get("food_name", req.food_name)
+        raise HTTPException(
+            status_code=422,
+            detail=f"'{food_name}' 的GI值为{gi}，属于高GI食物，搭配后会升高而非降低血糖风险，无法作为对冲方案。建议选择GI≤55的食物，如蔬菜、豆制品、低糖水果等。"
+        )
     fiber = raw.get("fiber_g", 0)
     protein = raw.get("protein_g", 0)
 
@@ -2061,6 +2163,7 @@ def _build_system_prompt() -> str:
 
 class ChatRequest(BaseModel):
     messages: List[dict]
+    stream: bool = False
 
 
 @app.post("/api/chat")
@@ -2087,6 +2190,25 @@ async def chat(req: ChatRequest):
             "content": msg.get("content", ""),
         })
 
+    # 检查客户端是否请求流式响应
+    stream_mode = req.stream if hasattr(req, 'stream') else False
+
+    if not stream_mode:
+        # 非流式：适合微信小程序等不支持 SSE 的客户端
+        try:
+            response = _deepseek_client.chat.completions.create(
+                model="deepseek-chat",
+                messages=full_messages,
+                stream=False,
+            )
+            reply = response.choices[0].message.content if response.choices else ""
+            return {"reply": reply}
+        except Exception as e:
+            import traceback
+            print(f"[chat error] {traceback.format_exc()}", flush=True)
+            raise HTTPException(status_code=502, detail=f"AI 服务暂时不可用: {e}")
+
+    # 流式 SSE 模式
     async def generate():
         try:
             stream = _deepseek_client.chat.completions.create(
@@ -2162,6 +2284,7 @@ async def calibrate_isf(req: CalibrateISFRequest):
     if req.dose <= 0:
         raise HTTPException(400, "Dose must be positive")
     observed_isf = abs(req.before - req.after) / req.dose
+    observed_isf = max(1.0, min(10.0, observed_isf))  # Clamp to physiological range
     user = database.get_user(1)
     stored_isf = user.get("isf", 0) if user else 0
     if stored_isf > 0:
@@ -2291,6 +2414,11 @@ class PubMedSearchRequest(BaseModel):
 @app.post("/api/pubmed/search")
 def pubmed_search(req: PubMedSearchRequest):
     """搜索 PubMed 文献（sync def，FastAPI 自动放线程池）。"""
+    # 先查缓存
+    cached = database.get_pubmed_cache(req.query, req.mode)
+    if cached is not None:
+        return cached
+
     search_query = req.query
     if req.mode in PUBMED_PRESETS:
         search_query = PUBMED_PRESETS[req.mode].format(query=req.query)
@@ -2307,7 +2435,7 @@ def pubmed_search(req: PubMedSearchRequest):
     # 保存搜索历史
     database.save_search(req.query, req.mode, summaries, total_count=count)
 
-    return {
+    results = {
         "query": req.query,
         "mode": req.mode,
         "total_count": count,
@@ -2315,11 +2443,113 @@ def pubmed_search(req: PubMedSearchRequest):
         "abstracts": abstracts_text,
     }
 
+    # 写入缓存
+    database.set_pubmed_cache(req.query, req.mode, results, count)
+
+    return results
+
 
 @app.get("/api/pubmed/history")
 async def pubmed_history(limit: int = 20):
     """获取最近的 PubMed 搜索历史。"""
     return database.get_recent_searches(limit)
+
+
+# ─── 聊天记录持久化 Endpoints ────────────────────────────
+
+class SaveMessageRequest(BaseModel):
+    session_id: str = Field(..., description="会话ID")
+    role: str = Field(..., description="user 或 assistant")
+    content: str = Field(..., description="消息内容")
+
+
+@app.post("/api/chat/message")
+async def save_chat_message(req: SaveMessageRequest):
+    """保存一条聊天消息到数据库。"""
+    if req.role not in ("user", "assistant"):
+        raise HTTPException(400, "role must be 'user' or 'assistant'")
+    if not req.content.strip():
+        raise HTTPException(400, "content cannot be empty")
+    saved = database.save_message(
+        session_id=req.session_id,
+        role=req.role,
+        content=req.content,
+    )
+    return saved
+
+
+@app.get("/api/chat/conversation/{session_id}")
+async def get_conversation(session_id: str, limit: int = 50):
+    """获取指定会话的消息列表。"""
+    messages = database.get_conversation(session_id, limit=limit)
+    return messages
+
+
+@app.get("/api/chat/sessions")
+async def list_chat_sessions():
+    """获取用户最近的会话列表。"""
+    sessions = database.get_recent_sessions(user_id=1, limit=20)
+    return sessions
+
+
+@app.delete("/api/chat/conversation/{session_id}")
+async def delete_conversation(session_id: str):
+    """删除一个会话的所有消息。"""
+    ok = database.delete_session(session_id, user_id=1)
+    if not ok:
+        raise HTTPException(404, "Session not found")
+    return {"deleted": True}
+
+
+# ─── 数据导出 Endpoints ────────────────────────────
+
+import csv
+import io
+from fastapi.responses import StreamingResponse as _StreamingResponse
+
+
+@app.get("/api/export/glucose")
+async def export_glucose(days: int = 30, format: str = "csv"):
+    """导出血糖日志为 CSV 文件。"""
+    if days < 1 or days > 365:
+        raise HTTPException(400, "days must be between 1 and 365")
+
+    # 获取指定天数的数据
+    from datetime import datetime, timedelta
+    since = (datetime.now() - timedelta(days=days)).isoformat()
+
+    conn_func = database._conn
+    import sqlite3
+    conn = database._conn()
+    rows = conn.execute("""
+        SELECT timestamp, glucose_mmol, note, created_at
+        FROM glucose_log
+        WHERE user_id = 1 AND timestamp >= ?
+        ORDER BY timestamp ASC
+    """, (since,)).fetchall()
+    conn.close()
+
+    entries = [dict(r) for r in rows]
+
+    if format == "csv":
+        output = io.StringIO()
+        writer = csv.DictWriter(output, fieldnames=["timestamp", "glucose_mmol", "note"])
+        writer.writeheader()
+        for entry in entries:
+            writer.writerow({
+                "timestamp": entry.get("timestamp", ""),
+                "glucose_mmol": entry.get("glucose_mmol", ""),
+                "note": entry.get("note", ""),
+            })
+        output.seek(0)
+        filename = f"sugarclaw_glucose_{datetime.now().strftime('%Y%m%d')}.csv"
+        return _StreamingResponse(
+            iter([output.getvalue()]),
+            media_type="text/csv",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+
+    return entries
 
 
 # Serve Flutter web build as static files at root

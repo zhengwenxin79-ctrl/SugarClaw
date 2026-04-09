@@ -175,6 +175,12 @@ workspace/
 
 ---
 
+## 安全架构与容错机制
+
+系统采用三层纵深防御（Defense in Depth）架构，确保即使 LLM 发生幻觉，底层硬编码逻辑仍然能够拦截违反生理常识的输出。详见 **[ARCHITECTURE.md](ARCHITECTURE.md)**。
+
+---
+
 ## 技术栈
 
 | 组件 | 技术 |

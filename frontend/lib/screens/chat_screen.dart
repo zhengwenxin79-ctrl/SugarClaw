@@ -1,6 +1,9 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/chat_state.dart';
+import '../providers/predictor_state.dart';
+import '../theme.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -34,6 +37,30 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
+  // Agent 人格配色
+  static const _agentConfig = <AgentType, _AgentVisual>{
+    AgentType.coordinator: _AgentVisual(
+      color: SC.agentCoordinator,
+      icon: Icons.psychology_rounded,
+      label: 'SugarClaw 协调员',
+    ),
+    AgentType.dietitian: _AgentVisual(
+      color: SC.agentDietitian,
+      icon: Icons.eco_rounded,
+      label: '地域营养师',
+    ),
+    AgentType.physio: _AgentVisual(
+      color: SC.agentPhysio,
+      icon: Icons.monitor_heart_rounded,
+      label: '生理分析师',
+    ),
+    AgentType.alert: _AgentVisual(
+      color: SC.agentAlert,
+      icon: Icons.notifications_active_rounded,
+      label: '预警系统',
+    ),
+  };
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ChatState>(
@@ -42,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
           _scrollToBottom();
         }
         return Scaffold(
-          backgroundColor: const Color(0xFFF8FAFC),
+          backgroundColor: SC.bg,
           body: SafeArea(
             child: Column(
               children: [
@@ -63,12 +90,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: SC.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(8),
+            color: SC.primary.withAlpha(8),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -77,33 +104,28 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Row(
         children: [
           Container(
-            width: 38,
-            height: 38,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF6C63FF), Color(0xFF5A52D5)],
-              ),
+              gradient: SC.primaryGradient,
               borderRadius: BorderRadius.circular(12),
             ),
-            child:
-                const Icon(Icons.smart_toy_rounded, color: Colors.white, size: 20),
+            child: const Center(
+              child: Text('🌿', style: TextStyle(fontSize: 20)),
+            ),
           ),
           const SizedBox(width: 10),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'SugarClaw',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF1A202C),
-                  ),
+                  style: SC.headline.copyWith(fontSize: 16),
                 ),
                 Text(
-                  'Your blood sugar assistant',
-                  style: TextStyle(fontSize: 11, color: Colors.grey),
+                  '你的贴身血糖管理伙伴',
+                  style: SC.caption,
                 ),
               ],
             ),
@@ -111,23 +133,33 @@ class _ChatScreenState extends State<ChatScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: const Color(0xFF48BB78).withAlpha(25),
+              color: SC.success.withAlpha(25),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.circle, size: 6, color: Color(0xFF48BB78)),
-                SizedBox(width: 4),
+                const Icon(Icons.circle, size: 8, color: SC.success),
+                const SizedBox(width: 4),
                 Text(
-                  'Online',
-                  style: TextStyle(
-                    fontSize: 10,
+                  '在线',
+                  style: SC.caption.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF48BB78),
+                    color: SC.success,
                   ),
                 ),
               ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () {
+              context.read<ChatState>().clearHistory();
+            },
+            child: const Icon(
+              Icons.delete_outline_rounded,
+              size: 20,
+              color: SC.textTertiary,
             ),
           ),
         ],
@@ -136,30 +168,46 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildEmptyState() {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.chat_bubble_outline_rounded,
-              size: 48, color: Colors.grey.shade300),
-          const SizedBox(height: 12),
-          Text(
-            'Ask me anything about blood sugar',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey.shade400,
-              fontWeight: FontWeight.w500,
+          Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              gradient: SC.primaryGradient,
+              shape: BoxShape.circle,
+              boxShadow: SC.shadowMd,
+            ),
+            child: const Center(
+              child: Text('🌿', style: TextStyle(fontSize: 32)),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 18),
+          Text(
+            '你好，我是 SugarClaw',
+            style: SC.headline.copyWith(fontSize: 20),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '有什么关于血糖的问题，尽管问我～',
+            style: SC.body.copyWith(color: SC.textSecondary),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 28),
+          // 场景快捷问题
           Wrap(
             spacing: 8,
-            runSpacing: 8,
+            runSpacing: 10,
             alignment: WrapAlignment.center,
             children: [
-              _quickAction('What should I eat?'),
-              _quickAction('How to lower my blood sugar?'),
-              _quickAction('Explain GI and GL'),
+              _quickAction('🍚 餐后血糖高怎么办？'),
+              _quickAction('🥦 低GI食物推荐'),
+              _quickAction('🏃 运动后血糖变化'),
+              _quickAction('💊 什么是胰岛素抵抗？'),
+              _quickAction('📊 TIR 是什么意思？'),
             ],
           ),
         ],
@@ -168,23 +216,23 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _quickAction(String text) {
-    return GestureDetector(
+    return SC.pressable(
       onTap: () {
         final state = context.read<ChatState>();
-        state.sendMessage(text);
+        final summary = context.read<PredictorState>().buildContextSummary();
+        state.sendMessage(text, predictorContext: summary);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: SC.surface,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFF6C63FF).withAlpha(60)),
+          border: Border.all(color: SC.primary.withAlpha(60)),
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFF6C63FF),
+          style: SC.label.copyWith(
+            color: SC.primary,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -206,94 +254,94 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildBubble(ChatMessage msg) {
     final isUser = msg.isUser;
+    final visual = isUser ? null : _agentConfig[msg.agentType];
+    final agentColor = visual?.color ?? SC.primary;
+
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.78,
         ),
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        decoration: BoxDecoration(
-          color: isUser ? const Color(0xFF6C63FF) : Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(16),
-            topRight: const Radius.circular(16),
-            bottomLeft: Radius.circular(isUser ? 16 : 4),
-            bottomRight: Radius.circular(isUser ? 4 : 16),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(8),
-              blurRadius: 6,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
+        margin: const EdgeInsets.only(bottom: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!isUser)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.smart_toy_rounded,
-                        size: 12, color: Color(0xFF6C63FF)),
-                    const SizedBox(width: 4),
-                    Text(
-                      'SugarClaw',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.grey.shade500,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: isUser ? SC.primary : SC.surface,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(16),
+                  topRight: const Radius.circular(16),
+                  bottomLeft: Radius.circular(isUser ? 16 : 4),
+                  bottomRight: Radius.circular(isUser ? 4 : 16),
+                ),
+                border: isUser
+                    ? null
+                    : Border.all(color: agentColor.withAlpha(40)),
+                boxShadow: [
+                  BoxShadow(
+                    color: (isUser ? SC.primary : agentColor).withAlpha(8),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Agent 人格色带 + 标签
+                  if (!isUser && visual != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 4,
+                            height: 14,
+                            decoration: BoxDecoration(
+                              color: agentColor,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(visual.icon, size: 12, color: agentColor),
+                          const SizedBox(width: 4),
+                          Text(
+                            visual.label,
+                            style: SC.caption.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: agentColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            if (!isUser && msg.text.isEmpty)
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 14,
-                    height: 14,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: Colors.grey.shade400,
+                  // 呼吸式打字指示器
+                  if (!isUser && msg.text.isEmpty)
+                    const _BreathingDots()
+                  else
+                    SelectableText(
+                      msg.text,
+                      style: SC.body.copyWith(
+                        color: isUser ? Colors.white : SC.textPrimary,
+                        height: 1.4,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '正在思考...',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey.shade500,
-                      fontStyle: FontStyle.italic,
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      '${msg.time.hour.toString().padLeft(2, '0')}:${msg.time.minute.toString().padLeft(2, '0')}',
+                      style: SC.caption.copyWith(
+                        fontSize: 9,
+                        color: isUser ? Colors.white60 : SC.textTertiary,
+                      ),
                     ),
                   ),
                 ],
-              )
-            else
-              Text(
-                msg.text,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: isUser ? Colors.white : const Color(0xFF1A202C),
-                  height: 1.4,
-                ),
-              ),
-            const SizedBox(height: 2),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                '${msg.time.hour.toString().padLeft(2, '0')}:${msg.time.minute.toString().padLeft(2, '0')}',
-                style: TextStyle(
-                  fontSize: 9,
-                  color: isUser ? Colors.white60 : Colors.grey.shade400,
-                ),
               ),
             ),
           ],
@@ -307,11 +355,11 @@ class _ChatScreenState extends State<ChatScreen> {
       padding: EdgeInsets.fromLTRB(
           12, 8, 12, MediaQuery.of(context).viewPadding.bottom + 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: SC.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(10),
-            blurRadius: 10,
+            color: SC.primary.withAlpha(8),
+            blurRadius: 8,
             offset: const Offset(0, -2),
           ),
         ],
@@ -324,36 +372,36 @@ class _ChatScreenState extends State<ChatScreen> {
               focusNode: _focusNode,
               enabled: !state.isLoading,
               decoration: InputDecoration(
-                hintText: state.isLoading ? '正在思考...' : 'Ask SugarClaw...',
-                hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                hintText: state.isLoading ? '正在思考...' : '问问 SugarClaw...',
+                hintStyle: SC.body.copyWith(color: SC.textTertiary),
                 filled: true,
-                fillColor: const Color(0xFFF7FAFC),
+                fillColor: SC.bg,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(24),
                   borderSide: BorderSide.none,
                 ),
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 isDense: true,
               ),
-              style: const TextStyle(fontSize: 14),
+              style: SC.body,
               textInputAction: TextInputAction.send,
               onSubmitted: (text) => _send(state),
             ),
           ),
           const SizedBox(width: 8),
-          GestureDetector(
+          SC.pressable(
             onTap: state.isLoading ? null : () => _send(state),
             child: Container(
-              width: 42,
-              height: 42,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: state.isLoading
-                      ? [Colors.grey.shade400, Colors.grey.shade500]
-                      : const [Color(0xFF6C63FF), Color(0xFF5A52D5)],
+                      ? [SC.textTertiary, SC.textSecondary]
+                      : const [SC.primaryMid, SC.primary],
                 ),
-                borderRadius: BorderRadius.circular(21),
+                borderRadius: BorderRadius.circular(20),
               ),
               child:
                   const Icon(Icons.send_rounded, color: Colors.white, size: 18),
@@ -367,7 +415,75 @@ class _ChatScreenState extends State<ChatScreen> {
   void _send(ChatState state) {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
-    state.sendMessage(text);
+    final summary = context.read<PredictorState>().buildContextSummary();
+    state.sendMessage(text, predictorContext: summary);
     _controller.clear();
+  }
+}
+
+// Agent 视觉配置
+class _AgentVisual {
+  final Color color;
+  final IconData icon;
+  final String label;
+  const _AgentVisual({required this.color, required this.icon, required this.label});
+}
+
+// 呼吸式打字指示器 — 3 个序列脉动圆点
+class _BreathingDots extends StatefulWidget {
+  const _BreathingDots();
+
+  @override
+  State<_BreathingDots> createState() => _BreathingDotsState();
+}
+
+class _BreathingDotsState extends State<_BreathingDots>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(3, (i) {
+        return AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            final phase = (_controller.value - i * 0.15) % 1.0;
+            final scale = 0.5 + 0.5 * (0.5 + 0.5 * math.sin(phase * 2 * math.pi));
+            final opacity = 0.3 + 0.7 * (0.5 + 0.5 * math.sin(phase * 2 * math.pi));
+            return Container(
+              margin: EdgeInsets.only(right: i < 2 ? 4 : 0),
+              child: Transform.scale(
+                scale: scale,
+                child: Container(
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: SC.primary.withAlpha((opacity * 255).toInt()),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      }),
+    );
   }
 }
